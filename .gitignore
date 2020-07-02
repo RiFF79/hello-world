@@ -1,0 +1,20 @@
+/Components Install
+/DATABASE.GDB
+/DATABASE — копия.GDB
+/DATABASE_before restore.GDB
+/DETAILS.GDB
+/IndexRepair.exe
+/Mosquito.drc
+/Mosquito.exe
+/Mosquito.map
+/Mosquito Stretch-Film.exe
+/TrayMessage.exe
+/upx.exe
+/Упаковать Mosquito UPX.bat
+/Help
+/Index Repair
+/Images
+/Units/__history
+/Units/__recovery
+/Units/Profiling
+*.dcu

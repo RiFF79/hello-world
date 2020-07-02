@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<TfrxReport Version="4.12.6" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="4095" PreviewOptions.Zoom="1" PrintOptions.Printer="По умолчанию" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="41481.4013278009" ReportOptions.Description.Text="" ReportOptions.LastChange="42524.4292178704" ScriptLanguage="PascalScript" ScriptText.Text="begin&#13;&#10;&#13;&#10;end." StoreInDFM="False" PropData="044C656674022003546F7003D8000844617461736574730101062C20446174615365743D224644535F476F6F64732220446174615365744E616D653D224644535F476F6F6473220000095661726961626C65730100055374796C650100">
+  <TfrxDataPage Name="Data" Height="1000" Left="0" Top="0" Width="1000"/>
+  <TfrxReportPage Name="Page1" PaperWidth="210" PaperHeight="297" PaperSize="9" LeftMargin="5" RightMargin="4" TopMargin="4" BottomMargin="3" Columns="2" ColumnWidth="362" ColumnPositions.Text="0&#13;&#10;100.5" HGuides.Text="" VGuides.Text="" OnBeforePrint="Page1OnBeforePrint">
+    <TfrxMasterData Name="Band2" Height="16.77953" Left="0" Top="181.41744" Width="1368.18986" OnBeforePrint="Band2OnBeforePrint" AllowSplit="True" Columns="1" ColumnWidth="200" ColumnGap="0" DataSet="FDS_Goods" DataSetName="FDS_Goods" RowCount="0" Stretched="True">
+      <TfrxMemoView Name="NameF" Left="0" Top="0" Width="334.78293143" Height="16.77953" ShowHint="False" StretchMode="smMaxHeight" DataSet="FDS_Goods" DataSetName="FDS_Goods" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" Frame.Width="0.5" GapX="6" ParentFont="False" Text="[FDS_Goods.&#34;FULLNAME&#34;]"/>
+      <TfrxMemoView Name="PriceF" Left="334.89765" Top="0" Width="42" Height="16.77953" ShowHint="False" StretchMode="smMaxHeight" DisplayFormat.DecimalSeparator="." DisplayFormat.FormatStr="%g" DisplayFormat.Kind="fkNumeric" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" Frame.Width="0.5" GapX="3" HAlign="haRight" ParentFont="False" Text="[DEPOT_COUNT]"/>
+    </TfrxMasterData>
+    <TfrxColumnHeader Name="ColumnHeader1" Height="16.77953" Left="0" Top="105.82684" Width="1368.18986">
+      <TfrxMemoView Name="Memo3" Left="0" Top="0" Width="337.13389" Height="16.77953" ShowHint="False" StretchMode="smMaxHeight" Color="14079702" Font.Charset="1" Font.Color="0" Font.Height="-9" Font.Name="Arial" Font.Style="1" Frame.Typ="7" GapX="0" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="НАИМЕНОВАНИЕ"/>
+      <TfrxMemoView Name="Memo5" Left="334.89765" Top="0" Width="42" Height="16.77953" ShowHint="False" StretchMode="smMaxHeight" Color="14079702" Font.Charset="1" Font.Color="0" Font.Height="-9" Font.Name="Arial" Font.Style="1" Frame.Typ="7" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="КОЛ-ВО"/>
+    </TfrxColumnHeader>
+    <TfrxPageFooter Name="PageFooter1" Height="13" Left="0" Top="257.00804" Width="759.68553">
+      <TfrxMemoView Name="Memo7" Left="0" Top="0" Width="761.57483" Height="13" ShowHint="False" StretchMode="smMaxHeight" Font.Charset="1" Font.Color="0" Font.Height="-9" Font.Name="Arial" Font.Style="0" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="[PAGE#]"/>
+    </TfrxPageFooter>
+    <TfrxReportTitle Name="ReportTitle1" Height="21.98423" Left="0" Top="18.89765" Width="759.68553">
+      <TfrxLineView Name="Line2" Left="0" Top="21.98423" Width="761.35436" Height="0" ShowHint="False" Frame.Typ="4"/>
+      <TfrxMemoView Name="Memo8" Left="0" Top="0" Width="761.10266" Height="18" ShowHint="False" StretchMode="smMaxHeight" AutoWidth="True" Font.Charset="1" Font.Color="8421504" Font.Height="-16" Font.Name="Arial" Font.Style="1" ParentFont="False" VAlign="vaCenter" Text="Склад: [DEPOT_NAME]"/>
+    </TfrxReportTitle>
+    <TfrxPageHeader Name="PageHeader1" Height="20" Left="0" Top="64.25201" Width="759.68553">
+      <TfrxMemoView Name="Memo6" Left="0" Top="0" Width="68" Height="14" ShowHint="False" StretchMode="smMaxHeight" AutoWidth="True" Frame.Color="536870911" Frame.Width="0.5" VAlign="vaCenter" Text="[DATE]"/>
+      <TfrxMemoView Name="Memo1" Left="650.07916" Top="0" Width="108" Height="18" ShowHint="False" StretchMode="smMaxHeight" AutoWidth="True" Font.Charset="1" Font.Color="8421504" Font.Height="-13" Font.Name="Arial Black" Font.Style="2" HAlign="haRight" ParentFont="False" Text="Количество"/>
+    </TfrxPageHeader>
+  </TfrxReportPage>
+</TfrxReport>

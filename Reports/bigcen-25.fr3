@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<TfrxReport Version="4.12.6" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="4095" PreviewOptions.Zoom="1" PrintOptions.Printer="Default" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="39435.7269198495" ReportOptions.Description.Text="" ReportOptions.LastChange="41471.6208467014" ScriptLanguage="PascalScript" ScriptText.Text="begin&#13;&#10;&#13;&#10;end." PropData="044C656674022003546F7003D8000844617461736574730101062E20446174615365743D224644535F4465706F74732220446174615365744E616D653D224644535F4465706F7473220001062C20446174615365743D224644535F4D6F7665732220446174615365744E616D653D224644535F4D6F766573220000095661726961626C65730100055374796C650100">
+  <TfrxDataPage Name="Data" Height="1000" Left="0" Top="0" Width="1000"/>
+  <TfrxReportPage Name="Page1" PaperWidth="210" PaperHeight="297" PaperSize="9" LeftMargin="4" RightMargin="4" TopMargin="4" BottomMargin="4" Columns="4" ColumnWidth="182" ColumnPositions.Text="0&#13;&#10;50.5&#13;&#10;101&#13;&#10;151.5" HGuides.Text="" VGuides.Text="">
+    <TfrxMasterData Name="MasterData1" Height="207" Left="0" Top="18.89765" Width="687.87446" Columns="1" ColumnWidth="200" ColumnGap="20" DataSet="FDS_Moves" DataSetName="FDS_Moves" RowCount="0">
+      <TfrxShapeView Name="Shape1" Left="3" Top="21.10235" Width="176" Height="125" ShowHint="False"/>
+      <TfrxShapeView Name="Shape2" Left="8" Top="25.10235" Width="166" Height="116" ShowHint="False"/>
+      <TfrxMemoView Name="Memo2" Left="7.70068" Top="60.47248" Width="166.29932" Height="48.25974" ShowHint="False" StretchMode="smActualHeight" DataField="NAME" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Times New Roman" Font.Style="3" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="[FDS_Moves.&#34;NAME&#34;]"/>
+      <TfrxMemoView Name="Memo4" Left="7" Top="107.10235" Width="168" Height="34" ShowHint="False" StretchMode="smMaxHeight" Font.Charset="1" Font.Color="0" Font.Height="-27" Font.Name="Times New Roman" Font.Style="2" HAlign="haCenter" ParentFont="False" Text="[PRICE]"/>
+      <TfrxLineView Name="Line1" Left="181" Top="21.10235" Width="0" Height="206" ShowHint="False" Frame.Style="fsDash" Frame.Typ="1" Frame.Width="0.5"/>
+      <TfrxMemoView Name="Memo1" Left="7" Top="26.10235" Width="168" Height="14" ShowHint="False" StretchMode="smMaxHeight" Font.Charset="1" Font.Color="0" Font.Height="-8" Font.Name="Arial" Font.Style="0" HAlign="haCenter" ParentFont="False" Text="[FDS_Depots.&#34;ORGANIZATION&#34;]"/>
+      <TfrxMemoView Name="Memo3" Left="9" Top="36.10235" Width="164" Height="10" ShowHint="False" StretchMode="smMaxHeight" Font.Charset="1" Font.Color="0" Font.Height="-8" Font.Name="Arial" Font.Style="1" HAlign="haCenter" ParentFont="False" Text="[FDS_Depots.&#34;NAME_PRINT&#34;]"/>
+      <TfrxMemoView Name="Memo5" Left="9" Top="46.10235" Width="164" Height="14" ShowHint="False" StretchMode="smMaxHeight" Font.Charset="1" Font.Color="0" Font.Height="-8" Font.Name="Arial" Font.Style="2" HAlign="haCenter" ParentFont="False" Text="[FDS_Depots.&#34;ADRESS&#34;]"/>
+    </TfrxMasterData>
+  </TfrxReportPage>
+</TfrxReport>

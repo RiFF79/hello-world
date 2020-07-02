@@ -4,7 +4,7 @@ object MainForm: TMainForm
   ActiveControl = area_client
   Caption = 'Mosquito Stretch-Film Edition v3.5'
   ClientHeight = 855
-  ClientWidth = 1370
+  ClientWidth = 1284
   Color = clBtnFace
   Constraints.MinHeight = 600
   Constraints.MinWidth = 800
@@ -28,7 +28,7 @@ object MainForm: TMainForm
   object Ribbon: TdxRibbon
     Left = 0
     Top = 0
-    Width = 1370
+    Width = 1284
     Height = 124
     BarManager = BarManager
     Style = rs2010
@@ -80,7 +80,7 @@ object MainForm: TMainForm
   object StatusBar: TdxRibbonStatusBar
     Left = 0
     Top = 832
-    Width = 1370
+    Width = 1284
     Height = 23
     Panels = <
       item
@@ -122,11 +122,12 @@ object MainForm: TMainForm
     Font.Style = []
     ExplicitLeft = 128
     ExplicitTop = 837
+    ExplicitWidth = 1370
   end
   object area_client: TcxPageControl
     Left = 205
     Top = 148
-    Width = 1165
+    Width = 1079
     Height = 684
     Align = alClient
     TabOrder = 4
@@ -135,7 +136,7 @@ object MainForm: TMainForm
     Properties.HideTabs = True
     ClientRectBottom = 683
     ClientRectLeft = 1
-    ClientRectRight = 1164
+    ClientRectRight = 1078
     ClientRectTop = 1
     object P_Sale_N: TcxTabSheet
       Caption = 'P_Sale_N'
@@ -143,7 +144,7 @@ object MainForm: TMainForm
       object dxBarDockControl1: TdxBarDockControl
         Left = 0
         Top = 0
-        Width = 1163
+        Width = 1077
         Height = 63
         Align = dalTop
         BarManager = BarManager
@@ -151,7 +152,7 @@ object MainForm: TMainForm
       object TB_Sale_N: TDBGridEh
         Left = 0
         Top = 63
-        Width = 1163
+        Width = 1077
         Height = 619
         Align = alClient
         AutoFitColWidths = True
@@ -317,7 +318,7 @@ object MainForm: TMainForm
       object dxBarDockControl3: TdxBarDockControl
         Left = 0
         Top = 0
-        Width = 1163
+        Width = 1077
         Height = 63
         Align = dalTop
         BarManager = BarManager
@@ -325,7 +326,7 @@ object MainForm: TMainForm
       object TB_Arrival_N: TDBGridEh
         Left = 0
         Top = 63
-        Width = 1163
+        Width = 1077
         Height = 619
         Align = alClient
         AutoFitColWidths = True
@@ -481,7 +482,7 @@ object MainForm: TMainForm
       object TB_Moves_N: TDBGridEh
         Left = 0
         Top = 63
-        Width = 1163
+        Width = 1077
         Height = 619
         Align = alClient
         AutoFitColWidths = True
@@ -615,7 +616,7 @@ object MainForm: TMainForm
       object dxBarDockControl2: TdxBarDockControl
         Left = 0
         Top = 0
-        Width = 1163
+        Width = 1077
         Height = 63
         Align = dalTop
         BarManager = BarManager
@@ -627,7 +628,7 @@ object MainForm: TMainForm
       object TB_Return_Cust_N: TDBGridEh
         Left = 0
         Top = 63
-        Width = 1163
+        Width = 1077
         Height = 619
         Align = alClient
         AutoFitColWidths = True
@@ -780,7 +781,7 @@ object MainForm: TMainForm
       object dxBarDockControl4: TdxBarDockControl
         Left = 0
         Top = 0
-        Width = 1163
+        Width = 1077
         Height = 63
         Align = dalTop
         BarManager = BarManager
@@ -792,7 +793,7 @@ object MainForm: TMainForm
       object TB_Return_Suppl_N: TDBGridEh
         Left = 0
         Top = 63
-        Width = 1163
+        Width = 1077
         Height = 619
         Align = alClient
         AutoFitColWidths = True
@@ -908,7 +909,7 @@ object MainForm: TMainForm
       object dxBarDockControl5: TdxBarDockControl
         Left = 0
         Top = 0
-        Width = 1163
+        Width = 1077
         Height = 63
         Align = dalTop
         BarManager = BarManager
@@ -1214,7 +1215,7 @@ object MainForm: TMainForm
       object TB_Customers: TDBGridEh
         Left = 0
         Top = 31
-        Width = 1163
+        Width = 1077
         Height = 651
         Align = alClient
         AutoFitColWidths = True
@@ -1317,7 +1318,7 @@ object MainForm: TMainForm
       object dxBarDockControl8: TdxBarDockControl
         Left = 0
         Top = 0
-        Width = 1163
+        Width = 1077
         Height = 31
         Align = dalTop
         BarManager = BarManager
@@ -1339,7 +1340,7 @@ object MainForm: TMainForm
       object TB_Price: TDBGridEh
         Left = 0
         Top = 31
-        Width = 1163
+        Width = 1077
         Height = 651
         Align = alClient
         AllowedOperations = [alopInsertEh, alopUpdateEh, alopDeleteEh]
@@ -1444,7 +1445,7 @@ object MainForm: TMainForm
       object dxBarDockControl10: TdxBarDockControl
         Left = 0
         Top = 0
-        Width = 1163
+        Width = 1077
         Height = 31
         Align = dalTop
         BarManager = BarManager
@@ -1458,7 +1459,7 @@ object MainForm: TMainForm
       object TB_GoodsOnDepots: TDBGridEh
         Left = 0
         Top = 31
-        Width = 1163
+        Width = 1077
         Height = 651
         Align = alClient
         AllowedOperations = [alopUpdateEh]
@@ -1824,7 +1825,7 @@ object MainForm: TMainForm
       object dxBarDockControl9: TdxBarDockControl
         Left = 0
         Top = 0
-        Width = 1163
+        Width = 1077
         Height = 31
         Align = dalTop
         BarManager = BarManager
@@ -1840,7 +1841,7 @@ object MainForm: TMainForm
       object list_ExecDoc: TListView
         Left = 0
         Top = 0
-        Width = 1163
+        Width = 1077
         Height = 682
         Align = alClient
         Columns = <>
@@ -1858,6 +1859,7 @@ object MainForm: TMainForm
         ReadOnly = True
         TabOrder = 0
         OnClick = list_ExecDocClick
+        ExplicitWidth = 1163
       end
     end
     object P_Report: TcxTabSheet
@@ -1866,18 +1868,21 @@ object MainForm: TMainForm
       object preview_Report: TfrxPreview
         Left = 0
         Top = 31
-        Width = 1163
+        Width = 1077
         Height = 651
         Align = alClient
         OutlineVisible = False
         OutlineWidth = 120
         ThumbnailVisible = False
+        FindFmVisible = False
         UseReportHints = True
+        HideScrolls = False
+        ExplicitWidth = 1163
       end
       object dxBarDockControl11: TdxBarDockControl
         Left = 0
         Top = 0
-        Width = 1163
+        Width = 1077
         Height = 31
         Align = dalTop
         BarManager = BarManager
@@ -2419,11 +2424,12 @@ object MainForm: TMainForm
       object Panel10: TPanel
         Left = 0
         Top = 663
-        Width = 1163
+        Width = 1077
         Height = 19
         Align = alBottom
         BevelOuter = bvLowered
         TabOrder = 0
+        ExplicitWidth = 1163
         object Panel13: TPanel
           Left = 1
           Top = 1
@@ -2493,7 +2499,7 @@ object MainForm: TMainForm
       object TB_KASSA: TDBGridEh
         Left = 0
         Top = 63
-        Width = 1163
+        Width = 1077
         Height = 600
         Align = alClient
         AutoFitColWidths = True
@@ -2628,7 +2634,7 @@ object MainForm: TMainForm
       object dxBarDockControl7: TdxBarDockControl
         Left = 0
         Top = 0
-        Width = 1163
+        Width = 1077
         Height = 63
         Align = dalTop
         BarManager = BarManager
@@ -2650,11 +2656,12 @@ object MainForm: TMainForm
       object Panel8: TPanel
         Left = 0
         Top = 666
-        Width = 1163
+        Width = 1077
         Height = 16
         Align = alBottom
         BevelOuter = bvLowered
         TabOrder = 0
+        ExplicitWidth = 1163
         object Panel9: TPanel
           Left = 151
           Top = 1
@@ -2855,10 +2862,11 @@ object MainForm: TMainForm
       object TB_Accounting_panel: TPanel
         Left = 343
         Top = 63
-        Width = 820
+        Width = 734
         Height = 603
         Align = alClient
         TabOrder = 2
+        ExplicitWidth = 820
         object TB_Accounting: TDBGridEh
           Left = 1
           Top = 17
@@ -3002,7 +3010,7 @@ object MainForm: TMainForm
       object dxBarDockControl6: TdxBarDockControl
         Left = 0
         Top = 0
-        Width = 1163
+        Width = 1077
         Height = 63
         Align = dalTop
         BarManager = BarManager
@@ -3193,7 +3201,7 @@ object MainForm: TMainForm
       object dxBarDockControl12: TdxBarDockControl
         Left = 0
         Top = 0
-        Width = 1163
+        Width = 1077
         Height = 31
         Align = dalTop
         BarManager = BarManager
@@ -3201,10 +3209,11 @@ object MainForm: TMainForm
       object dxLayoutControl1: TdxLayoutControl
         Left = 0
         Top = 31
-        Width = 1163
+        Width = 1077
         Height = 651
         Align = alClient
         TabOrder = 1
+        ExplicitWidth = 1163
         object TB_AccReport: TDBGridEh
           Left = 10
           Top = 28
@@ -3592,7 +3601,7 @@ object MainForm: TMainForm
       object dxBarDockControl13: TdxBarDockControl
         Left = 0
         Top = 0
-        Width = 1163
+        Width = 1077
         Height = 63
         Align = dalTop
         BarManager = BarManager
@@ -3600,7 +3609,7 @@ object MainForm: TMainForm
       object TB_Production_N: TDBGridEh
         Left = 0
         Top = 63
-        Width = 1163
+        Width = 1077
         Height = 619
         Align = alClient
         AutoFitColWidths = True
@@ -3718,8 +3727,8 @@ object MainForm: TMainForm
     Properties.Alignment.Horz = taCenter
     Properties.Alignment.Vert = taVCenter
     Height = 24
-    Width = 1370
-    AnchorX = 685
+    Width = 1284
+    AnchorX = 642
     AnchorY = 136
   end
   object Splitter_TreeClient: TcxSplitter
@@ -4143,7 +4152,7 @@ object MainForm: TMainForm
     object rib_bar_money: TdxBar
       Caption = #1054#1090#1095#1105#1090#1099
       CaptionButtons = <>
-      DockedLeft = 614
+      DockedLeft = 617
       DockedTop = 0
       FloatLeft = 169
       FloatTop = 141
@@ -4211,7 +4220,7 @@ object MainForm: TMainForm
     object rib_bar_prices: TdxBar
       Caption = #1055#1088#1072#1081#1089#1099
       CaptionButtons = <>
-      DockedLeft = 909
+      DockedLeft = 912
       DockedTop = 0
       FloatLeft = 169
       FloatTop = 141

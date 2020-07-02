@@ -5,8 +5,7 @@ object Data: TData
   Width = 1128
   object Database: TpFIBDatabase
     AutoReconnect = True
-    Connected = True
-    DBName = 'SERVER:C:\Mosquito-Stretch v3.5\DATABASE.GDB'
+    DBName = 'SERVER:C:\mosquito-stretch\DATABASE.GDB'
     DBParams.Strings = (
       'password=masterkey'
       'user_name=SYSDBA'
@@ -21,7 +20,6 @@ object Data: TData
     Top = 9
   end
   object TRead_Arrival_N: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 28
     Top = 104
@@ -129,7 +127,6 @@ object Data: TData
     poSQLINT64ToBCD = True
   end
   object TRead_Depots: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 200
     Top = 104
@@ -196,7 +193,6 @@ object Data: TData
     poSQLINT64ToBCD = True
   end
   object TRead_Firms: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 286
     Top = 104
@@ -294,7 +290,6 @@ object Data: TData
     poSQLINT64ToBCD = True
   end
   object TRead_GoodTypes: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 372
     Top = 104
@@ -471,7 +466,6 @@ object Data: TData
     poSQLINT64ToBCD = True
   end
   object TRead_Customers: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 458
     Top = 104
@@ -553,7 +547,6 @@ object Data: TData
     poSQLINT64ToBCD = True
   end
   object TRead_Currency: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 545
     Top = 104
@@ -662,7 +655,6 @@ object Data: TData
     end
   end
   object TRead_Curs: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 631
     Top = 104
@@ -1328,7 +1320,6 @@ object Data: TData
     poSQLINT64ToBCD = True
   end
   object TRead_Goods: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 32
     Top = 336
@@ -1441,7 +1432,6 @@ object Data: TData
     poSQLINT64ToBCD = True
   end
   object TRead_Arrival: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 114
     Top = 104
@@ -1780,7 +1770,6 @@ object Data: TData
     end
   end
   object TRead_Defaults: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 117
     Top = 336
@@ -2036,7 +2025,6 @@ object Data: TData
     end
   end
   object TRead_Sale_N: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 203
     Top = 336
@@ -2156,7 +2144,6 @@ object Data: TData
     poSQLINT64ToBCD = True
   end
   object TRead_Sale: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 289
     Top = 336
@@ -2381,7 +2368,6 @@ object Data: TData
     poSQLINT64ToBCD = True
   end
   object TRead_Moves_N: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 375
     Top = 336
@@ -2392,7 +2378,6 @@ object Data: TData
     Top = 384
   end
   object TRead_Moves: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 461
     Top = 336
@@ -2486,7 +2471,6 @@ object Data: TData
     poSQLINT64ToBCD = True
   end
   object TRead_Return_Suppl: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 632
     Top = 336
@@ -2699,7 +2683,6 @@ object Data: TData
     end
   end
   object TRead_Return_Suppl_N: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 546
     Top = 336
@@ -2792,7 +2775,6 @@ object Data: TData
     poSQLINT64ToBCD = True
   end
   object TRead_Filters: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 718
     Top = 336
@@ -2904,7 +2886,6 @@ object Data: TData
     Top = 288
   end
   object TRead_ImportPrice: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 804
     Top = 336
@@ -2997,7 +2978,6 @@ object Data: TData
     Top = 288
   end
   object TRead_Banned: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 890
     Top = 336
@@ -3008,7 +2988,6 @@ object Data: TData
     Top = 384
   end
   object TRead_Return_Cust_N: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 803
     Top = 104
@@ -3101,7 +3080,6 @@ object Data: TData
     poSQLINT64ToBCD = True
   end
   object TRead_Return_Cust: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 889
     Top = 104
@@ -3368,7 +3346,6 @@ object Data: TData
     poSQLINT64ToBCD = True
   end
   object TRead_PriceCategory: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 632
     Top = 560
@@ -3542,7 +3519,6 @@ object Data: TData
     end
   end
   object TRead_KASSA: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 717
     Top = 104
@@ -3640,7 +3616,6 @@ object Data: TData
     poSQLINT64ToBCD = True
   end
   object TRead_Users: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 976
     Top = 104
@@ -3741,7 +3716,6 @@ object Data: TData
     poSQLINT64ToBCD = True
   end
   object TRead_Requirements: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 32
     Top = 560
@@ -3790,7 +3764,6 @@ object Data: TData
     Top = 512
   end
   object TRead_ReqList: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 1056
     Top = 560
@@ -3894,7 +3867,6 @@ object Data: TData
     Top = 512
   end
   object TRead_EXT_PRICE: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 208
     Top = 560
@@ -3946,7 +3918,6 @@ object Data: TData
     Top = 512
   end
   object TRead_LAST_ARRIVALS: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 896
     Top = 560
@@ -4021,7 +3992,6 @@ object Data: TData
     poSQLINT64ToBCD = True
   end
   object TRead_Discounts: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 120
     Top = 560
@@ -4153,7 +4123,6 @@ object Data: TData
     Top = 512
   end
   object TRead_EmailGroups: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 720
     Top = 560
@@ -4192,7 +4161,6 @@ object Data: TData
     Top = 512
   end
   object TRead_PRICETOEXCEL: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 984
     Top = 560
@@ -4266,7 +4234,6 @@ object Data: TData
     Top = 288
   end
   object TRead_SaleImportDepots: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 976
     Top = 336
@@ -4277,7 +4244,6 @@ object Data: TData
     Top = 384
   end
   object TRead_Production_N: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 288
     Top = 560
@@ -4488,7 +4454,6 @@ object Data: TData
     poSQLINT64ToBCD = True
   end
   object TRead_Production: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 376
     Top = 560
@@ -4598,7 +4563,6 @@ object Data: TData
     poSQLINT64ToBCD = True
   end
   object TRead_Production_SP: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 464
     Top = 560

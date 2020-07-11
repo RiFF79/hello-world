@@ -149,7 +149,7 @@ var
 
 implementation
 
-uses DataConteiner, HistoryUnit, PricePercent, MainUnit, QueryDataContainer,
+uses DataConteiner, HistoryUnit, MainUnit, QueryDataContainer,
   ShopProduct;
 
 {$R *.dfm}
@@ -279,26 +279,6 @@ var
   sp_price: real;
   gen_price: real;
 begin
-  if (Msg.CharCode = VK_F2) then
-  begin
-    if PricePercentForm.ShowModal = mrOK then
-    begin
-      if isFromArrival then
-        price := Data.DS_Arrival.FieldValues['PRICE']
-      else
-      begin
-        // price := Data.GetLastArrivalPrice(Data.DS_Goods.FBN('ID').AsInteger, -1);
-        MainForm.price_perc := 0;
-        price := Data.UseMinSupplPrice;
-      end;
-      sp_price := price + price * Data.DS_Defaults.FieldByName
-        ('PRICE2_DISCOUNT').AsFloat / 100;
-      gen_price := price + price * Data.DS_Defaults.FieldByName
-        ('PRICE1_DISCOUNT').AsFloat / 100;
-      Edit_Price1.Text := floattostrF(gen_price, ffFixed, 20, 2);
-      Edit_Price2.Text := floattostrF(sp_price, ffFixed, 20, 2);
-    end;
-  end;
   if (Msg.CharCode = VK_F4) and (HistoryForm.Visible = false) then
     HistoryForm.ShowEx(Data.DS_Goods.FieldByName('ID').AsInteger, default);
 end;

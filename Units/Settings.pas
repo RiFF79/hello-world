@@ -19,7 +19,7 @@ implementation
 uses MainUnit, SysUtils, Forms, SelectGood, ArrivalUnit, SaleUnit,
   ItemEditor, MovesUnit, RetSupplUnit, ImportExcelSale, DataConteiner,
   Variants, RetCustUnit, HistoryUnit, AuthoriseUnit, int_const, OptionsUnit,
-  repricedialog, CustomHistoryUnit, SelectShopGood, ShopProduct, EmailSetupUnit,
+  CustomHistoryUnit, SelectShopGood, ShopProduct, EmailSetupUnit,
   mailingunit, UnsortedItems;
 
 procedure LoadSettings;
@@ -144,15 +144,6 @@ begin
 
   MailingProgressForm.DirSelect.FileName :=
     I.ReadString('Defaults', 'export_dir', '');
-
-  RepriceForm.perc_mini_general_edit.EditValue :=
-    I.ReadFloat('Reprice', 'perc_mini_general', 20);
-  RepriceForm.perc_mini_special_edit.EditValue :=
-    I.ReadFloat('Reprice', 'perc_mini_special', 20);
-  RepriceForm.perc_other_general_edit.EditValue :=
-    I.ReadFloat('Reprice', 'perc_other_general', 20);
-  RepriceForm.perc_other_special_edit.EditValue :=
-    I.ReadFloat('Reprice', 'perc_other_special', 20);
 
   I.Free;
 end;
@@ -375,15 +366,6 @@ begin
         I.WriteString('UnsortedItemsForm', 'WindowState', 'Normal');
     end;
   end;
-
-  I.WriteFloat('Reprice', 'perc_mini_general',
-    RepriceForm.perc_mini_general_edit.EditValue);
-  I.WriteFloat('Reprice', 'perc_mini_special',
-    RepriceForm.perc_mini_special_edit.EditValue);
-  I.WriteFloat('Reprice', 'perc_other_general',
-    RepriceForm.perc_other_general_edit.EditValue);
-  I.WriteFloat('Reprice', 'perc_other_special',
-    RepriceForm.perc_other_special_edit.EditValue);
 
   I.Free;
 end;

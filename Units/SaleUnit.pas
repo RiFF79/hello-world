@@ -161,7 +161,7 @@ implementation
 
 uses MainUnit, SelectGood, DataConteiner, ItemEditor, QueryDataContainer,
   SystemContainerUnit, ImportExcelSale, HistoryUnit, CursEditUnit,
-  repricedialog, CustomHistoryUnit;
+  CustomHistoryUnit;
 
 {$R *.dfm}
 

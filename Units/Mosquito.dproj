@@ -199,9 +199,6 @@
         <DCCReference Include="HistoryUnit.pas">
             <Form>HistoryForm</Form>
         </DCCReference>
-        <DCCReference Include="PricePercent.pas">
-            <Form>PricePercentForm</Form>
-        </DCCReference>
         <DCCReference Include="Incassation.pas">
             <Form>IncassationForm</Form>
         </DCCReference>

@@ -1317,7 +1317,7 @@ uses
   SupplReportEdit, KassaUnit, RetCustUnit, DeptReasonSelectUnit,
   ClientCardUnit, GoodsFullEdit, HistoryUnit, ExternapPriceImportUnit,
   AuthoriseUnit, ChangePassUnit, ImportExcelSale, OptionsUnit,
-  WaitUnit, ProgressUnit, repricedialog, Top100, SupplSelector, CONF_SKU_Unit,
+  WaitUnit, ProgressUnit, Top100, SupplSelector, CONF_SKU_Unit,
   EmailSetupUnit, exportcsvUnit, CustomHistoryUnit, ShopProduct, SelectShopGood,
   mailingunit, CursEditUnit, NewCursUnit, ProductionUnit;
 

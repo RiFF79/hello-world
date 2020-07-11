@@ -33,7 +33,6 @@ uses
   ClientCardUnit in 'ClientCardUnit.pas' {ClientCardForm},
   GoodsFullEdit in 'GoodsFullEdit.pas' {GoodsFullEditForm},
   HistoryUnit in 'HistoryUnit.pas' {HistoryForm},
-  PricePercent in 'PricePercent.pas' {PricePercentForm},
   Incassation in 'Incassation.pas' {IncassationForm},
   int_const in 'int_const.pas',
   ExternapPriceImportUnit in 'ExternapPriceImportUnit.pas' {ExternalPriceImportForm},
@@ -87,9 +86,6 @@ begin
   SplashForm.text.Caption := s + 'LimitDateForm';
   Application.ProcessMessages;
   Application.CreateForm(TLimitDateForm, LimitDateForm);
-  SplashForm.text.Caption := s + 'RepriceForm';
-  Application.ProcessMessages;
-  Application.CreateForm(TRepriceForm, RepriceForm);
   SplashForm.text.Caption := s + 'Top100Form';
   Application.ProcessMessages;
   Application.CreateForm(TTop100Form, Top100Form);
@@ -112,9 +108,6 @@ begin
   Application.ProcessMessages;
   Application.CreateForm(TMailingProgressForm, MailingProgressForm);
   MainForm.ProgStarted := false;
-  SplashForm.text.Caption := s + 'PricePercentForm';
-  Application.ProcessMessages;
-  Application.CreateForm(TPricePercentForm, PricePercentForm);
   SplashForm.text.Caption := s + 'IncassationForm';
   Application.ProcessMessages;
   Application.CreateForm(TIncassationForm, IncassationForm);

@@ -240,55 +240,6 @@ object ProductionForm: TProductionForm
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 5
-    object DepotPanel: TPanel
-      Left = 600
-      Top = 400
-      Width = 113
-      Height = 81
-      Caption = 'DepotPanel'
-      TabOrder = 0
-      Visible = False
-      object TB_Depots: TDBGridEh
-        Left = 1
-        Top = 1
-        Width = 111
-        Height = 79
-        Align = alClient
-        AllowedOperations = []
-        AllowedSelections = [gstRecordBookmarks]
-        AutoFitColWidths = True
-        Color = clBtnFace
-        DataSource = Query.S_Depots
-        DynProps = <>
-        Flat = True
-        Font.Charset = RUSSIAN_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -13
-        Font.Name = 'Segoe UI'
-        Font.Style = []
-        FooterParams.Color = clWindow
-        HorzScrollBar.VisibleMode = sbNeverShowEh
-        IndicatorOptions = []
-        Options = [dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit]
-        OptionsEh = [dghFixed3D, dghHighlightFocus, dghClearSelection, dghDialogFind, dghExtendVertLines]
-        ParentFont = False
-        TabOrder = 0
-        VertScrollBar.VisibleMode = sbNeverShowEh
-        OnCellClick = TB_DepotsCellClick
-        OnExit = TB_DepotsExit
-        OnKeyDown = TB_DepotsKeyDown
-        Columns = <
-          item
-            CellButtons = <>
-            DynProps = <>
-            EditButtons = <>
-            FieldName = 'NAME'
-            Footers = <>
-          end>
-        object RowDetailData: TRowDetailPanelControlEh
-        end
-      end
-    end
     object panel_production: TPanel
       Left = 0
       Top = 0
@@ -296,7 +247,7 @@ object ProductionForm: TProductionForm
       Height = 305
       Align = alTop
       BevelOuter = bvNone
-      TabOrder = 1
+      TabOrder = 0
       object TB_Production: TDBGridEh
         Left = 0
         Top = 31
@@ -376,7 +327,7 @@ object ProductionForm: TProductionForm
       Height = 323
       Align = alClient
       BevelOuter = bvNone
-      TabOrder = 2
+      TabOrder = 1
       object TB_Specification: TDBGridEh
         Left = 0
         Top = 31
@@ -460,6 +411,55 @@ object ProductionForm: TProductionForm
         Height = 31
         Align = dalTop
         BarManager = dxBarManager1
+      end
+      object DepotPanel: TPanel
+        Left = 562
+        Top = 62
+        Width = 103
+        Height = 81
+        Caption = 'DepotPanel'
+        TabOrder = 2
+        Visible = False
+        object TB_Depots: TDBGridEh
+          Left = 1
+          Top = 1
+          Width = 101
+          Height = 79
+          Align = alClient
+          AllowedOperations = []
+          AllowedSelections = [gstRecordBookmarks]
+          AutoFitColWidths = True
+          Color = clBtnFace
+          DataSource = Query.S_Depots
+          DynProps = <>
+          Flat = True
+          Font.Charset = RUSSIAN_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          FooterParams.Color = clWindow
+          HorzScrollBar.VisibleMode = sbNeverShowEh
+          IndicatorOptions = []
+          Options = [dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit]
+          OptionsEh = [dghFixed3D, dghHighlightFocus, dghClearSelection, dghDialogFind, dghExtendVertLines]
+          ParentFont = False
+          TabOrder = 0
+          VertScrollBar.VisibleMode = sbNeverShowEh
+          OnCellClick = TB_DepotsCellClick
+          OnExit = TB_DepotsExit
+          OnKeyDown = TB_DepotsKeyDown
+          Columns = <
+            item
+              CellButtons = <>
+              DynProps = <>
+              EditButtons = <>
+              FieldName = 'NAME'
+              Footers = <>
+            end>
+          object RowDetailData: TRowDetailPanelControlEh
+          end
+        end
       end
     end
     object cxSplitter1: TcxSplitter

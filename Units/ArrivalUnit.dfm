@@ -478,27 +478,14 @@ object ArrivalForm: TArrivalForm
           ItemName = 'btn_exportexcel'
         end
         item
-          Visible = True
-          ItemName = 'btn_importexcel'
-        end
-        item
           BeginGroup = True
           Visible = True
           ItemName = 'btn_price'
         end
         item
-          Visible = True
-          ItemName = 'dxBarButton2'
-        end
-        item
           BeginGroup = True
           Visible = True
           ItemName = 'dxBarButton1'
-        end
-        item
-          BeginGroup = True
-          Visible = True
-          ItemName = 'btn_special1'
         end
         item
           Visible = True
@@ -550,12 +537,11 @@ object ArrivalForm: TArrivalForm
     end
     object N1: TdxBarButton
       Action = MainForm.act_arr_price_spec
-      Caption = #1055#1088#1072#1081#1089' 1'
       Category = 0
     end
     object N2: TdxBarButton
       Action = MainForm.act_arr_price_general
-      Caption = #1055#1088#1072#1081#1089' 2'
+      Caption = #1055#1088#1072#1081#1089' 1'
       Category = 0
     end
     object N3: TdxBarButton
@@ -600,7 +586,6 @@ object ArrivalForm: TArrivalForm
         #1077#1074#1077
       Visible = ivAlways
       ImageIndex = 93
-      OnClick = btn_special1Click
     end
     object dxBarButton2: TdxBarButton
       Action = MainForm.act_arr_reprice
@@ -628,11 +613,11 @@ object ArrivalForm: TArrivalForm
     ItemLinks = <
       item
         Visible = True
-        ItemName = 'N1'
+        ItemName = 'N2'
       end
       item
         Visible = True
-        ItemName = 'N2'
+        ItemName = 'N1'
       end
       item
         Visible = True

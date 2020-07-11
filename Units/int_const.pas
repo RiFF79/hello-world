@@ -82,28 +82,8 @@ const
   tr_AccReport = 2;
   tr_DayReport = 3;
   tr_DolgiKlienta = 4;
-  tr_GenReports = 5;
-  tr_GenReport_Parf = 6;
-  tr_GenReport_Kosm = 7;
-  tr_SpecReports = 8;
-  tr_SpecReport_Parf = 9;
-  tr_SpecReport_Kosm = 10;
-  tr_RetReports = 11;
-  tr_RetReport_Parf = 12;
-  tr_RetReport_Kosm = 13;
-  tr_SupplReports = 14;
-  tr_SupplReport_Parf = 15;
-  tr_SupplReport_Kosm = 16;
-  tr_Count_Reports = 17;
-  tr_CountReport_Depots = 18;
-  tr_CountReport_Depots_Parf = 19;
-  tr_CountReport_Depots_Kosm = 20;
-  tr_OtherReports = 21;
-  tr_LastArrPrices = 22;
-  tr_Articuls = 23;
-  tr_GenaReport = 24;
-  tr_DneprReport = 25;
-  tr_ParfexReport = 26;
+  tr_PriceReport = 5;
+  tr_CountReport_Depots = 6;
 
   // Настройки
   tr_ReportsSettings = 0;

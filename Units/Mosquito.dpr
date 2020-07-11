@@ -44,7 +44,6 @@ uses
   OptionsUnit in 'OptionsUnit.pas' {OptionsForm},
   WaitUnit in 'WaitUnit.pas' {WaitForm},
   LimitDateUnit in 'LimitDateUnit.pas' {LimitDateForm},
-  repricedialog in 'repricedialog.pas' {RepriceForm},
   Top100 in 'Top100.pas' {Top100Form},
   SupplSelector in 'SupplSelector.pas' {SelectSupplForm},
   DiscountsUnit in 'DiscountsUnit.pas' {DiscountsForm},

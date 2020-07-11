@@ -559,18 +559,22 @@ object RetCustForm: TRetCustForm
     end
     object m_specprice: TdxBarButton
       Action = MainForm.act_rc_price_spec
+      Caption = #1055#1088#1072#1081#1089' 2'
       Category = 1
     end
     object m_genprice: TdxBarButton
       Action = MainForm.act_rc_price_general
+      Caption = #1055#1088#1072#1081#1089' 1'
       Category = 1
     end
     object m_shop: TdxBarButton
       Action = MainForm.act_rc_price_shop1
+      Caption = #1055#1088#1072#1081#1089' 3'
       Category = 1
     end
     object m_shop2: TdxBarButton
       Action = MainForm.act_rc_price_shop2
+      Caption = #1055#1088#1072#1081#1089' 4'
       Category = 1
     end
     object m_LastPrices: TdxBarButton
@@ -583,11 +587,11 @@ object RetCustForm: TRetCustForm
     ItemLinks = <
       item
         Visible = True
-        ItemName = 'm_specprice'
+        ItemName = 'm_genprice'
       end
       item
         Visible = True
-        ItemName = 'm_genprice'
+        ItemName = 'm_specprice'
       end
       item
         Visible = True

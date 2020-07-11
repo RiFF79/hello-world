@@ -158,7 +158,7 @@ uses DataConteiner;
 
 function TSysContainer.StandartIntRound(value: Variant): Variant;
 begin
-  if (value <> '') and (not VarIsNull(value)) then
+   if (value <> '') and (not VarIsNull(value)) then
     Result := Int(value);
 end;
 

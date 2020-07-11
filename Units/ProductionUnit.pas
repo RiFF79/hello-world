@@ -327,7 +327,7 @@ end;
 procedure TProductionForm.TB_SpecificationKeyDown(Sender: TObject;
   var Key: Word; Shift: TShiftState);
 begin
-if Key = VK_ESCAPE then Close;
+  if Key = VK_ESCAPE then Close;
   if (TB_Specification.SelectedIndex = 0) and (Key = VK_RETURN) and
     (LayoutControl.Enabled) then SetSpecificationRecord;
   if (Key = VK_SPACE) and (TB_Specification.SelectedIndex = 3) and

@@ -924,11 +924,9 @@ type
     procedure act_sale_item_historyExecute(Sender: TObject);
     procedure act_sale_item_cardExecute(Sender: TObject);
     procedure act_rep_goodsondepotsExecute(Sender: TObject);
-    procedure act_rep_articulsExecute(Sender: TObject);
     procedure act_rep_accountingExecute(Sender: TObject);
     procedure act_rep_moneyingoodsExecute(Sender: TObject);
     procedure act_rep_valoviydohodExecute(Sender: TObject);
-    procedure act_rep_ReportsExecute(Sender: TObject);
     procedure act_rep_historyExecute(Sender: TObject);
     procedure act_rep_dayreportExecute(Sender: TObject);
     procedure act_file_changepassExecute(Sender: TObject);
@@ -953,7 +951,6 @@ type
     procedure act_arr_nextdayExecute(Sender: TObject);
     procedure act_arr_todayExecute(Sender: TObject);
     procedure act_arr_resetExecute(Sender: TObject);
-    procedure act_arr_importexcelExecute(Sender: TObject);
     procedure act_arr_price_specExecute(Sender: TObject);
     procedure act_arr_price_generalExecute(Sender: TObject);
     procedure act_arr_price_shop1Execute(Sender: TObject);
@@ -1138,7 +1135,6 @@ type
     procedure act_sale_req_addExecute(Sender: TObject);
     procedure act_sale_checkExecute(Sender: TObject);
     procedure dxBarButton15Click(Sender: TObject);
-    procedure act_arr_repriceExecute(Sender: TObject);
     procedure act_sale_req_clearExecute(Sender: TObject);
     procedure act_rep_top100Execute(Sender: TObject);
     procedure act_sale_req_printExecute(Sender: TObject);
@@ -1831,70 +1827,6 @@ begin
         Data.DS_Depots.Refresh;
         area_client.ActivePage := P_GoodsOnDepots;
       end;
-    tr_GenReport_Parf:
-      begin
-        label_ListName.Caption := 'Парфюмерия. Основной прайс-лист';
-        preview_Report.Clear;
-        area_client.ActivePage := P_Report;
-        check_print_ondepot.enabled := true;
-        act_print_edit.enabled := false;
-      end;
-    tr_GenReport_Kosm:
-      begin
-        label_ListName.Caption := 'Косметика. Основной прайс-лист';
-        preview_Report.Clear;
-        area_client.ActivePage := P_Report;
-        check_print_ondepot.enabled := true;
-        act_print_edit.enabled := false;
-      end;
-    tr_SpecReport_Parf:
-      begin
-        label_ListName.Caption := 'Парфюмерия. Специальный прайс-лист';
-        preview_Report.Clear;
-        area_client.ActivePage := P_Report;
-        check_print_ondepot.enabled := true;
-        act_print_edit.enabled := false;
-      end;
-    tr_SpecReport_Kosm:
-      begin
-        label_ListName.Caption := 'Косметика. Специальный прайс-лист';
-        preview_Report.Clear;
-        area_client.ActivePage := P_Report;
-        check_print_ondepot.enabled := true;
-        act_print_edit.enabled := false;
-      end;
-    tr_RetReport_Parf:
-      begin
-        label_ListName.Caption := 'Парфюмерия. Розничный прайс-лист';
-        preview_Report.Clear;
-        area_client.ActivePage := P_Report;
-        check_print_ondepot.enabled := true;
-        act_print_edit.enabled := false;
-      end;
-    tr_RetReport_Kosm:
-      begin
-        label_ListName.Caption := 'Косметика. Розничный прайс-лист';
-        preview_Report.Clear;
-        area_client.ActivePage := P_Report;
-        check_print_ondepot.enabled := true;
-        act_print_edit.enabled := false;
-      end;
-    tr_SupplReport_Parf:
-      begin
-        label_ListName.Caption := 'Парфюмерия. Цены поставщиков';
-        preview_Report.Clear;
-        area_client.ActivePage := P_Report;
-        check_print_ondepot.enabled := true;
-        act_print_edit.enabled := false;
-      end;
-    tr_SupplReport_Kosm:
-      begin
-        label_ListName.Caption := 'Косметика. Цены поставщиков';
-        preview_Report.Clear;
-        area_client.ActivePage := P_Report;
-        check_print_ondepot.enabled := true;
-        act_print_edit.enabled := false;
-      end;
     tr_CountReport_Depots:
       begin
         label_ListName.Caption := 'Общее количество на складе';
@@ -1902,62 +1834,6 @@ begin
         area_client.ActivePage := P_Report;
         check_print_ondepot.enabled := true;
         act_print_edit.enabled := false;
-      end;
-    tr_CountReport_Depots_Parf:
-      begin
-        label_ListName.Caption := 'Количество парфюмерии на складе';
-        preview_Report.Clear;
-        area_client.ActivePage := P_Report;
-        check_print_ondepot.enabled := true;
-        act_print_edit.enabled := false;
-      end;
-    tr_CountReport_Depots_Kosm:
-      begin
-        label_ListName.Caption := 'Количество косметики на складе';
-        preview_Report.Clear;
-        area_client.ActivePage := P_Report;
-        check_print_ondepot.enabled := true;
-        act_print_edit.enabled := false;
-      end;
-    tr_LastArrPrices:
-      begin
-        label_ListName.Caption := 'Последние закупочные цены';
-        preview_Report.Clear;
-        area_client.ActivePage := P_Report;
-        check_print_ondepot.enabled := true;
-        act_print_edit.enabled := false;
-      end;
-    tr_GenaReport:
-      begin
-        label_ListName.Caption := 'Отчет по Гене';
-        preview_Report.Clear;
-        area_client.ActivePage := P_Report;
-        check_print_ondepot.enabled := true;
-        act_print_edit.enabled := false;
-      end;
-    tr_DneprReport:
-      begin
-        label_ListName.Caption := 'Отчет по Днепропетровску';
-        preview_Report.Clear;
-        area_client.ActivePage := P_Report;
-        check_print_ondepot.enabled := true;
-        act_print_edit.enabled := false;
-      end;
-    tr_ParfexReport:
-      begin
-        label_ListName.Caption := 'Отчет по Parfex';
-        preview_Report.Clear;
-        area_client.ActivePage := P_Report;
-        check_print_ondepot.enabled := true;
-        act_print_edit.enabled := false;
-      end;
-    tr_Articuls:
-      begin
-        label_ListName.Caption := 'Внешние артикулы';
-        SetArticulNames;
-        area_client.ActivePage := P_Articuls;
-        Data.DS_Goods.Filtered := false;
-        TB_Articuls.SetFocus;
       end;
     tr_DolgiKlienta:
       begin
@@ -4814,38 +4690,6 @@ begin
   SysContainer.defReport.DesignReport(false, false);
 end;
 
-procedure TMainForm.act_arr_importexcelExecute(Sender: TObject);
-var
-  colors: Boolean;
-begin
-  if ExternalPriceImportForm.ShowModal <> mrOK then
-    exit;
-
-  if SysContainer.ImportExcelDialog.Execute then
-  begin
-    colors := ArrivalForm.check_Colours.Down;
-    ArrivalForm.check_Colours.Down := false;
-    Data.DS_Arrival.DisableControls;
-    Data.DS_Arrival_N.DisableControls;
-    Data.DS_Goods.DisableControls;
-    Screen.Cursor := crHourGlass;
-    try
-      SysContainer.exlArrival.filename :=
-        SysContainer.ImportExcelDialog.filename;
-      SysContainer.exlArrival.Execute;
-    finally
-      MainForm.progressbar.Position := 0;
-      Screen.Cursor := crDefault;
-      ArrivalForm.check_Colours.Down := colors;
-      Data.DS_Arrival.ReopenLocate('ID');
-      Data.DS_Arrival.EnableControls;
-      Data.DS_Arrival_N.EnableControls;
-      Data.DS_Goods.EnableControls;
-      act_arr_reprice.Execute;
-    end;
-  end;
-end;
-
 procedure TMainForm.act_arr_price_specExecute(Sender: TObject);
 begin
   if MessageBox(Application.Handle, 'Пересчитать входные цены по ''Прайс 2''?',
@@ -6177,12 +6021,6 @@ begin
   Tree_Reports.Select(Tree_Reports.Items[tr_AccReport]);
 end;
 
-procedure TMainForm.act_rep_articulsExecute(Sender: TObject);
-begin
-  area_tree.ActivePage := P_Reports;
-  Tree_Reports.Select(Tree_Reports.Items[tr_Articuls]);
-end;
-
 procedure TMainForm.act_rep_customer_historyExecute(Sender: TObject);
 begin
   CustomerHistoryForm.ShowEx(7);
@@ -6252,12 +6090,6 @@ begin
   Query.DS_Depots.First;
   Screen.Cursor := crDefault;
   MoneyInDepotsForm.ShowModal;
-end;
-
-procedure TMainForm.act_rep_ReportsExecute(Sender: TObject);
-begin
-  area_tree.ActivePage := P_Reports;
-  Tree_Reports.Select(Tree_Reports.Items[tr_SpecReport_Parf]);
 end;
 
 procedure TMainForm.act_rep_top100Execute(Sender: TObject);
@@ -6841,12 +6673,8 @@ end;
 
 procedure TMainForm.act_sale_payExecute(Sender: TObject);
 var
-  sm: variant;
-  curs: double;
   nakl_summ: double;
-  nakl_uah: double;
   paid_summ: double;
-  paid_uah: double;
   id: integer;
   cust_id: integer;
   s_date: TDateTime;
@@ -6866,7 +6694,6 @@ begin
 
   KassaForm.edit_paid.Value := paid_summ * - 1;
   nakl_summ := Data.DS_Sale_N.fbn('SUM_TOTAL').AsFloat;
-  nakl_uah := Data.DS_Sale_N.FBN('SUMM').AsFloat;
   cust_id := Data.DS_Sale_N.fbn('CUST_ID').AsInteger;
   s_date := Data.DS_Sale_N.fbn('S_DATE').AsDateTime;
 
@@ -7222,8 +7049,6 @@ procedure TMainForm.act_kassa_editExecute(Sender: TObject);
 var
   dt: variant;
   nakl_id: integer;
-  fld: String;
-  curs: integer;
 begin
   if Data.DS_KASSA.RecordCountFromSrv = 0 then
     exit;
@@ -8093,95 +7918,7 @@ var
 begin
   case Tree_Reports.Selected.AbsoluteIndex of
 
-    tr_GenReport_Parf:
-      begin
-        if check_print_ondepot.EditValue = true then
-        begin
-          if VarIsNull(combo_print_depot.KeyValue) then
-            Data.DS_Goods.Filter :=
-              '(DELETED=0) AND ((C1>0) or (C2>0) or (C3>0) or (C4>0) or (C5>0) or (C6>0)) and (TYPE_ID<>15) and (TYPE_ID<>16) and (TYPE_ID<>3)'
-          else
-            Data.DS_Goods.Filter := '(C' + inttostr(combo_print_depot.KeyValue)
-              + '>0) and (TYPE_ID<>15) and (TYPE_ID<>16) and (TYPE_ID<>3)';
-        end
-        else
-          Data.DS_Goods.Filter :=
-            '(DELETED=0) and (TYPE_ID<>15) and (TYPE_ID<>16) and (TYPE_ID<>3)';
-        Data.DS_Goods.Filtered := true;
-        if SysContainer.PriceReport.LoadFromFile
-          (OptionsForm.edit_PriceReport.Text) then
-        begin
-          SysContainer.PriceReport.PrepareReport;
-          SysContainer.PriceReport.ShowPreparedReport;
-          act_print_edit.enabled := true;
-        end
-        else
-        begin
-          ShowMessage('Ошибка открытия файла.');
-          act_print_edit.enabled := false;
-        end;
-      end;
-
-    tr_GenReport_Kosm:
-      begin
-        if check_print_ondepot.EditValue = true then
-        begin
-          if VarIsNull(combo_print_depot.KeyValue) then
-            Data.DS_Goods.Filter :=
-              '(DELETED=0) AND ((C1>0) or (C2>0) or (C3>0) or (C4>0) or (C5>0) or (C6>0)) and ((TYPE_ID=15) or (TYPE_ID=16))'
-          else
-            Data.DS_Goods.Filter := '(C' + inttostr(combo_print_depot.KeyValue)
-              + '>0) and ((TYPE_ID=15) or (TYPE_ID=16))';
-        end
-        else
-          Data.DS_Goods.Filter :=
-            '(DELETED=0) and ((TYPE_ID=15) or (TYPE_ID=16))';
-        Data.DS_Goods.Filtered := true;
-        if SysContainer.PriceReport.LoadFromFile
-          (OptionsForm.edit_PriceReport.Text) then
-        begin
-          // SysContainer.PriceReport.DoublePass:=false;
-          SysContainer.PriceReport.PrepareReport;
-          SysContainer.PriceReport.ShowPreparedReport;
-          act_print_edit.enabled := true;
-        end
-        else
-        begin
-          ShowMessage('Ошибка открытия файла.');
-          act_print_edit.enabled := false;
-        end;
-      end;
-    tr_SpecReport_Parf:
-      begin
-        if check_print_ondepot.EditValue = true then
-        begin
-          if VarIsNull(combo_print_depot.KeyValue) then
-            Data.DS_Goods.Filter :=
-              '(DELETED=0) AND ((C1>0) or (C2>0) or (C3>0) or (C4>0) or (C5>0) or (C6>0)) and (TYPE_ID<>15) and (TYPE_ID<>16) and (TYPE_ID<>3)'
-          else
-            Data.DS_Goods.Filter := '(C' + inttostr(combo_print_depot.KeyValue)
-              + '>0) and (TYPE_ID<>15) and (TYPE_ID<>16) and (TYPE_ID<>3)';
-        end
-        else
-          Data.DS_Goods.Filter :=
-            '(DELETED=0) and (TYPE_ID<>15) and (TYPE_ID<>16) and (TYPE_ID<>3)';
-
-        Data.DS_Goods.Filtered := true;
-        if SysContainer.PriceReport.LoadFromFile
-          (OptionsForm.edit_SpecPriceReport.Text) then
-        begin
-          // SysContainer.PriceReport.DoublePass:=false;
-          SysContainer.PriceReport.PrepareReport;
-          SysContainer.PriceReport.ShowPreparedReport;
-          act_print_edit.enabled := true;
-        end
-        else
-        begin
-          ShowMessage('Ошибка открытия файла.');
-          act_print_edit.enabled := false;
-        end;
-      end;
-    tr_SpecReport_Kosm:
+    tr_PriceReport:
       begin
         if check_print_ondepot.EditValue = true then
         begin
@@ -8198,64 +7935,6 @@ begin
         Data.DS_Goods.Filtered := true;
         if SysContainer.PriceReport.LoadFromFile
           (OptionsForm.edit_SpecPriceReport.Text) then
-        begin
-          // SysContainer.PriceReport.DoublePass:=false;
-          SysContainer.PriceReport.PrepareReport;
-          SysContainer.PriceReport.ShowPreparedReport;
-          act_print_edit.enabled := true;
-        end
-        else
-        begin
-          ShowMessage('Ошибка открытия файла.');
-          act_print_edit.enabled := false;
-        end;
-      end;
-    tr_RetReport_Parf:
-      begin
-        if check_print_ondepot.EditValue = true then
-        begin
-          if VarIsNull(combo_print_depot.KeyValue) then
-            Data.DS_Goods.Filter :=
-              '(DELETED=0) AND ((C1>0) or (C2>0) or (C3>0) or (C4>0) or (C5>0) or (C6>0)) and (TYPE_ID<>15) and (TYPE_ID<>16) and (TYPE_ID<>3)'
-          else
-            Data.DS_Goods.Filter := '(C' + inttostr(combo_print_depot.KeyValue)
-              + '>0) and (TYPE_ID<>15) and (TYPE_ID<>16) and (TYPE_ID<>3)';
-        end
-        else
-          Data.DS_Goods.Filter :=
-            '(DELETED=0) and (TYPE_ID<>15) and (TYPE_ID<>16) and (TYPE_ID<>3)';
-        Data.DS_Goods.Filtered := true;
-        if SysContainer.PriceReport.LoadFromFile
-          (OptionsForm.edit_RetPriceReport.Text) then
-        begin
-          // SysContainer.PriceReport.DoublePass:=false;
-          SysContainer.PriceReport.PrepareReport;
-          SysContainer.PriceReport.ShowPreparedReport;
-          act_print_edit.enabled := true;
-        end
-        else
-        begin
-          ShowMessage('Ошибка открытия файла.');
-          act_print_edit.enabled := false;
-        end;
-      end;
-    tr_RetReport_Kosm:
-      begin
-        if check_print_ondepot.EditValue = true then
-        begin
-          if VarIsNull(combo_print_depot.KeyValue) then
-            Data.DS_Goods.Filter :=
-              '(DELETED=0) AND ((C1>0) or (C2>0) or (C3>0) or (C4>0) or (C5>0) or (C6>0)) and ((TYPE_ID=15) or (TYPE_ID=16))'
-          else
-            Data.DS_Goods.Filter := '(C' + inttostr(combo_print_depot.KeyValue)
-              + '>0) and ((TYPE_ID=15) or (TYPE_ID=16))';
-        end
-        else
-          Data.DS_Goods.Filter :=
-            '(DELETED=0) and ((TYPE_ID=15) or (TYPE_ID=16))';
-        Data.DS_Goods.Filtered := true;
-        if SysContainer.PriceReport.LoadFromFile
-          (OptionsForm.edit_RetPriceReport.Text) then
         begin
           // SysContainer.PriceReport.DoublePass:=false;
           SysContainer.PriceReport.PrepareReport;
@@ -8290,168 +7969,6 @@ begin
         Data.DS_Goods.Filtered := true;
         if SysContainer.PriceReport.LoadFromFile
           (OptionsForm.edit_CountOnDepot_Report.Text) then
-        begin
-          // SysContainer.PriceReport.DoublePass:=false;
-          SysContainer.PriceReport.PrepareReport;
-          SysContainer.PriceReport.ShowPreparedReport;
-          act_print_edit.enabled := true;
-        end
-        else
-        begin
-          ShowMessage('Ошибка открытия файла.');
-          act_print_edit.enabled := false;
-        end;
-      end;
-
-    tr_CountReport_Depots_Parf:
-      begin
-        if not VarIsNull(combo_print_depot.KeyValue) then
-        begin
-          DepotOnPrint := combo_print_depot.KeyValue;
-          if check_print_ondepot.EditValue = true then
-            Data.DS_Goods.Filter := '(C' + inttostr(combo_print_depot.KeyValue)
-              + '<>0) and (TYPE_ID<>15) and (TYPE_ID<>16) and (TYPE_ID<>3)'
-          else
-            Data.DS_Goods.Filter :=
-              'DELETED=0 and (TYPE_ID<>15) and (TYPE_ID<>16) and (TYPE_ID<>3)';
-        end
-        else
-        begin
-          DepotOnPrint := -1;
-          if check_print_ondepot.EditValue = true then
-            Data.DS_Goods.Filter :=
-              '(CNT_ALL<>0) and (TYPE_ID<>15) and (TYPE_ID<>16) and (TYPE_ID<>3)'
-          else
-            Data.DS_Goods.Filter :=
-              '(DELETED=0) and (TYPE_ID<>15) and (TYPE_ID<>16) and (TYPE_ID<>3)';
-        end;
-        Data.DS_Goods.Filtered := true;
-        if SysContainer.PriceReport.LoadFromFile
-          (OptionsForm.edit_CountOnDepot_Report.Text) then
-        begin
-          // SysContainer.PriceReport.DoublePass:=false;
-          Data.DS_Goods.DisableControls;
-          SysContainer.PriceReport.PrepareReport;
-          SysContainer.PriceReport.ShowPreparedReport;
-          Data.DS_Goods.EnableControls;
-          act_print_edit.enabled := true;
-        end
-        else
-        begin
-          ShowMessage('Ошибка открытия файла.');
-          act_print_edit.enabled := false;
-        end;
-      end;
-
-    tr_CountReport_Depots_Kosm:
-      begin
-        if not VarIsNull(combo_print_depot.KeyValue) then
-        begin
-          DepotOnPrint := combo_print_depot.KeyValue;
-          if check_print_ondepot.EditValue = true then
-            Data.DS_Goods.Filter := '(C' + inttostr(combo_print_depot.KeyValue)
-              + '<>0) and ((TYPE_ID=15) or (TYPE_ID=16))'
-          else
-            Data.DS_Goods.Filter :=
-              'DELETED=0 and ((TYPE_ID=15) or (TYPE_ID=16))';
-        end
-        else
-        begin
-          DepotOnPrint := -1;
-          if check_print_ondepot.EditValue = true then
-            Data.DS_Goods.Filter :=
-              '(CNT_ALL<>0) and ((TYPE_ID=15) or (TYPE_ID=16))'
-          else
-            Data.DS_Goods.Filter :=
-              '(DELETED=0) and ((TYPE_ID=15) or (TYPE_ID=16))';
-        end;
-        Data.DS_Goods.Filtered := true;
-        if SysContainer.PriceReport.LoadFromFile
-          (OptionsForm.edit_CountOnDepot_Report.Text) then
-        begin
-          // SysContainer.PriceReport.DoublePass:=false;
-          SysContainer.PriceReport.PrepareReport;
-          SysContainer.PriceReport.ShowPreparedReport;
-          act_print_edit.enabled := true;
-        end
-        else
-        begin
-          ShowMessage('Ошибка открытия файла.');
-          act_print_edit.enabled := false;
-        end;
-      end;
-
-    tr_LastArrPrices:
-      begin
-        if check_print_ondepot.EditValue = true then
-          Data.DS_Goods.Filter :=
-            '(DELETED=0) and ((C1>0) or (C2>0) or (C3>0) or (C4>0) or (C5>0) or (C6>0)) and (TYPE_ID<>3) and (TYPE_ID<>15)'
-        else
-          Data.DS_Goods.Filter :=
-            '(DELETED=0) and (TYPE_ID<>3) and (TYPE_ID<>15)';
-        Data.DS_Goods.Filtered := true;
-        if SysContainer.PriceReport.LoadFromFile
-          (ApplicationPath + 'Reports\Последние закупочные цены.frf') then
-        begin
-          // SysContainer.PriceReport.DoublePass:=false;
-          SysContainer.PriceReport.PrepareReport;
-          SysContainer.PriceReport.ShowPreparedReport;
-          act_print_edit.enabled := true;
-        end
-        else
-        begin
-          ShowMessage('Ошибка открытия файла.');
-          act_print_edit.enabled := false;
-        end;
-      end;
-    tr_GenaReport:
-      begin
-        prc := floattostr(Data.DS_Defaults.FieldValues['DISCOUNT'] / 100);
-        Data.DS_Goods.Filter := '(((PRICE2 - (PRICE2 * ' + prc +
-          ')) - SUPL_PRICE_11) >= 0.01) AND (AVAILABLE_11 = 1) AND (C1>0 or C2>0 or C3>0 or C4>0 or C6>0)';
-        Data.DS_Goods.Filtered := true;
-        if SysContainer.PriceReport.LoadFromFile
-          (ApplicationPath + 'Reports\Отчет по Гене.frf') then
-        begin
-          // SysContainer.PriceReport.DoublePass:=false;
-          SysContainer.PriceReport.PrepareReport;
-          SysContainer.PriceReport.ShowPreparedReport;
-          act_print_edit.enabled := true;
-        end
-        else
-        begin
-          ShowMessage('Ошибка открытия файла.');
-          act_print_edit.enabled := false;
-        end;
-      end;
-    tr_DneprReport:
-      begin
-        prc := floattostr(Data.DS_Defaults.FieldValues['DISCOUNT'] / 100);
-        Data.DS_Goods.Filter := '(((PRICE2 - (PRICE2 * ' + prc +
-          ')) - (SUPL_PRICE_6) >= 0.01)) AND (AVAILABLE_6 = 1) AND (C1>0 or C2>0 or C3>0 or C4>0 or C6>0)';
-        Data.DS_Goods.Filtered := true;
-        if SysContainer.PriceReport.LoadFromFile
-          (ApplicationPath + 'Reports\Отчет по Днепру.frf') then
-        begin
-          // SysContainer.PriceReport.DoublePass:=false;
-          SysContainer.PriceReport.PrepareReport;
-          SysContainer.PriceReport.ShowPreparedReport;
-          act_print_edit.enabled := true;
-        end
-        else
-        begin
-          ShowMessage('Ошибка открытия файла.');
-          act_print_edit.enabled := false;
-        end;
-      end;
-    tr_ParfexReport:
-      begin
-        prc := floattostr(Data.DS_Defaults.FieldValues['DISCOUNT'] / 100);
-        Data.DS_Goods.Filter := '(((PRICE2 - (PRICE2 * ' + prc +
-          ')) - SUPL_PRICE_9) >= 0.01) AND (AVAILABLE_9 = 1) AND (C1>0 or C2>0 or C3>0 or C4>0 or C6>0)';
-        Data.DS_Goods.Filtered := true;
-        if SysContainer.PriceReport.LoadFromFile
-          (ApplicationPath + 'Reports\Отчет по Parfex.frf') then
         begin
           // SysContainer.PriceReport.DoublePass:=false;
           SysContainer.PriceReport.PrepareReport;
@@ -9195,19 +8712,6 @@ procedure TMainForm.cxGrid1DBTableView1CellDblClick
 begin
   if AButton = mbLeft then
     act_sale_edit.Execute;
-end;
-
-procedure TMainForm.act_arr_repriceExecute(Sender: TObject);
-begin
-  if MessageBox(Application.Handle,
-    'Пересчитать цены в прайсе по этой накладной?', PChar(MainForm.Caption),
-    MB_OKCANCEL + MB_ICONQUESTION) <> IDOK then
-    exit;
-
-  Data.Database.Execute('EXECUTE PROCEDURE UPDATE_PRICES_FROM_ARR_BILL(' +
-    inttostr(Data.DS_Arrival_N.fbn('id').AsInteger) + ')');
-  Data.DS_Goods.ReopenLocate('id');
-  Data.DS_Arrival.ReopenLocate('id');
 end;
 
 procedure TMainForm.btnColorfulGridClick(Sender: TObject);

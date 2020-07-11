@@ -98,7 +98,6 @@ type
       Shift: TShiftState);
     procedure TB_ArrivalGetCellParams(Sender: TObject; Column: TColumnEh;
       AFont: TFont; var Background: TColor; State: TGridDrawState);
-    procedure btn_special1Click(Sender: TObject);
     procedure TB_ArrivalColumns5GetCellParams(Sender: TObject;
       EditMode: Boolean; Params: TColCellParamsEh);
     procedure TB_ArrivalColumns6GetCellParams(Sender: TObject;
@@ -323,57 +322,6 @@ end;
 procedure TArrivalForm.btn_priceClick(Sender: TObject);
 begin
   btn_price.DropDown;
-end;
-
-procedure TArrivalForm.btn_special1Click(Sender: TObject);
-var
-  f: string;
-  b: Boolean;
-  rc: integer;
-begin
-  if MessageBox(Application.Handle,
-    'Добавить в накладную позиции которых нет в наличии, но есть в Киеве?',
-    PChar(MainForm.Caption), MB_OKCANCEL + MB_ICONQUESTION) <> IDOK then
-    exit;
-  with Data.DS_Goods do
-  begin
-    DisableControls;
-    Data.DS_Arrival.DisableControls;
-    Data.DS_Arrival_N.DisableControls;
-    f := Filter;
-    b := Filtered;
-    Filter := '(C1<1) and (C2<1) and (C3<1) and (C4<1) and (C6<1) and (AVAILABLE_1 = 1) AND (PRICE_CATEGORY_ID <> 3)';
-    Filtered := true;
-    Last;
-    First;
-    rc := VisibleRecordCount;
-    ProgressForm.ProgressBar.max := rc;
-    ProgressForm.Caption := 'Обновление приходной накладной из прайса';
-    ProgressForm.lbl1.Caption := 'Позиция 0 из ' + inttostr(rc);
-    ProgressForm.ProgressBar.Position := 0;
-    ProgressForm.ProgressBar.Step := 1;
-    ProgressForm.Show;
-    while not eof do
-    begin
-      Data.DS_Arrival.Append;
-      Data.DS_Arrival.FBN('GOOD_ID').AsInteger := FBN('ID').AsInteger;
-      Data.DS_Arrival.FBN('CNT').AsFloat := 1;
-      Data.DS_Arrival.FBN('PRICE').AsFloat := FBN('SUPL_PRICE_1').AsFloat;
-      Data.DS_Arrival.Post;
-      Next;
-      ProgressForm.ProgressBar.StepIt;
-      ProgressForm.lbl1.Caption := 'Позиция ' +
-        inttostr(ProgressForm.ProgressBar.Position) + ' из ' + inttostr(rc);
-      Application.ProcessMessages
-    end;
-    Filter := f;
-    Filtered := b;
-    Data.DS_Arrival.First;
-    Data.DS_Arrival_N.EnableControls;
-    Data.DS_Arrival.EnableControls;
-    EnableControls;
-    ProgressForm.Close;
-  end;
 end;
 
 procedure TArrivalForm.FormClose(Sender: TObject; var Action: TCloseAction);

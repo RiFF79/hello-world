@@ -18,3 +18,4 @@
 /Units/__recovery
 /Units/Profiling
 *.dcu
+/Units/*.identcache

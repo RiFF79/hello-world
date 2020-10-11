@@ -320,12 +320,13 @@ type
     procedure DS_Production_SPAfterDelete(DataSet: TDataSet);
     procedure DS_Production_SPAfterPost(DataSet: TDataSet);
     procedure DS_ProductionEndScroll(DataSet: TDataSet);
+    procedure DS_Production_SPNewRecord(DataSet: TDataSet);
     // procedure UpdatePricesFromSuppliers;
   private
     pre_summ: Real;
     first_row: boolean;
     FCounter: integer;
-    FDepot, RSDepot: integer;
+    FDepot, RSDepot, SPDepot: integer;
     procedure addPromCSVValue(var row: string; const Field: string;
       postfix: string = '');
     procedure addPromCSVString(var row: string; const Value: string);
@@ -506,6 +507,7 @@ begin
   DS_SaleImportDepots.Open;
   FDepot := DS_Defaults['DEPOT'];
   RSDepot := FDepot;
+  SPDepot := FDepot;
   CanUpdateUser := true;
 end;
 
@@ -700,149 +702,44 @@ begin
 end;
 
 function TData.AllSaled(id: integer): real;
-var
-  v: Variant;
 begin
-  Result := 0;
-  v := Database.QueryValue
-    ('SELECT SUM(SALE.CNT) FROM SALE, SALE_N WHERE (SALE.NAKL_ID = SALE_N.ID) AND (SALE_N.ENTERED = 1) AND (GOOD_ID ='
-    + inttostr(id) + ')', 0);
-  if VarIsNumeric(v) then
-    Result := v;
-  v := Database.QueryValue
-    ('SELECT SUM(RETURN_CUST.CNT) FROM RETURN_CUST, RETURN_CUST_N WHERE (RETURN_CUST.NAKL_ID = RETURN_CUST_N.ID) AND (RETURN_CUST_N.ENTERED = 1) AND (GOOD_ID ='
-    + inttostr(id) + ')', 0);
-  if VarIsNumeric(v) then
-    Result := Result - v;
+  Result := Data.Database.QueryValue('execute procedure ALL_SALED('+inttostr(id)+')', 0);
 end;
 
 function TData.AllSaledOnDate(id: integer; OnDate: TDate;
   Depot: integer): real;
-var
-  v: Variant;
 begin
-  Result := 0;
-  v := Database.QueryValue
-    ('SELECT SUM(SALE.CNT) FROM SALE, SALE_N WHERE (SALE.NAKL_ID = SALE_N.ID) AND (SALE_N.ENTERED = 1) AND (SALE.DEPOT_ID = '
-    + inttostr(Depot) + ') AND (GOOD_ID =' + inttostr(id) +
-    ') AND (SALE_N.S_DATE <=''' + DateToStr(OnDate) + ' 23:59:59'')', 0);
-  if VarIsNumeric(v) then
-    Result := v;
-  v := Database.QueryValue
-    ('SELECT SUM(RETURN_CUST.CNT) FROM RETURN_CUST, RETURN_CUST_N WHERE (RETURN_CUST.NAKL_ID = RETURN_CUST_N.ID) AND (RETURN_CUST_N.ENTERED = 1) AND (RETURN_CUST_N.DEPOT_ID = '
-    + inttostr(Depot) + ') AND (GOOD_ID =' + inttostr(id) +
-    ') AND (RETURN_CUST_N.R_DATE <=''' + DateToStr(OnDate) + ' 23:59:59'')', 0);
-  if VarIsNumeric(v) then
-    Result := Result - v;
+  Result := Data.Database.QueryValue(
+    'execute procedure ALL_SALED_ON_DATE('+inttostr(id)+','''+DateToStr(OnDate)+' 23:59:59'','+inttostr(Depot)+')', 0);
 end;
 
 function TData.AllArrived(id: integer): real;
-var
-  v: Variant;
 begin
-  Result := 0;
-  v := Database.QueryValue
-    ('SELECT SUM(ARRIVAL.CNT) FROM ARRIVAL, ARRIVAL_N WHERE (ARRIVAL.NAKL_ID = ARRIVAL_N.ID) AND (ARRIVAL_N.ENTERED = 1) AND (GOOD_ID ='
-    + inttostr(id) + ')', 0);
-  if VarIsNumeric(v) then
-    Result := v;
-  v := Database.QueryValue
-    ('SELECT SUM(RETURN_SUPPL.CNT) FROM RETURN_SUPPL, RETURN_SUPPL_N WHERE (RETURN_SUPPL.NAKL_ID = RETURN_SUPPL_N.ID) AND (RETURN_SUPPL_N.ENTERED = 1) AND (GOOD_ID ='
-    + inttostr(id) + ')', 0);
-  if VarIsNumeric(v) then
-    Result := Result - v;
+  Result := Data.Database.QueryValue('execute procedure ALL_ARRIVED('+inttostr(id)+')', 0);
 end;
 
 function TData.AllArrivedOnDate(id: integer; OnDate: TDate;
   Depot: integer): real;
-var
-  v: Variant;
 begin
-  Result := 0;
-  v := Database.QueryValue
-    ('SELECT SUM(ARRIVAL.CNT) FROM ARRIVAL, ARRIVAL_N WHERE (ARRIVAL.NAKL_ID = ARRIVAL_N.ID) AND (ARRIVAL_N.ENTERED = 1) AND (ARRIVAL_N.DEPOT_ID = '
-    + inttostr(Depot) + ') AND (GOOD_ID =' + inttostr(id) +
-    ') AND (ARRIVAL_N.A_DATE <=''' + DateToStr(OnDate) + ' 23:59:59'')', 0);
-  if VarIsNumeric(v) then
-    Result := v;
-  v := Database.QueryValue
-    ('SELECT SUM(RETURN_SUPPL.CNT) FROM RETURN_SUPPL, RETURN_SUPPL_N WHERE (RETURN_SUPPL.NAKL_ID = RETURN_SUPPL_N.ID) AND (RETURN_SUPPL_N.ENTERED = 1) AND (RETURN_SUPPL.DEPOT_ID = '
-    + inttostr(Depot) + ') AND (GOOD_ID =' + inttostr(id) +
-    ') AND (RETURN_SUPPL_N.R_DATE <=''' + DateToStr(OnDate) +
-    ' 23:59:59'')', 0);
-  if VarIsNumeric(v) then
-    Result := Result - v;
+  Result := Data.Database.QueryValue(
+    'execute procedure ALL_ARRIVED_ON_DATE('+inttostr(id)+','''+DateToStr(OnDate)+' 23:59:59'','+inttostr(Depot)+')', 0);
 end;
 
 function TData.AllMovedOnDate(id: integer; OnDate: TDate;
   Depot: integer): real;
-var
-  v: Variant;
 begin
-  Result := 0;
-  v := Database.QueryValue
-    ('SELECT SUM(DEPOT_MOVES.CNT) FROM DEPOT_MOVES, DEPOT_MOVES_N WHERE (DEPOT_MOVES.NAKL_ID = DEPOT_MOVES_N.ID) AND (DEPOT_MOVES_N.ENTERED = 1) AND (DEPOT_MOVES_N.DEPOT_TO_ID = '
-    + inttostr(Depot) + ') AND (GOOD_ID =' + inttostr(id) +
-    ') AND (DEPOT_MOVES_N.M_DATE <= ''' + DateToStr(OnDate) +
-    ' 23:59:59'')', 0);
-  if VarIsNumeric(v) then
-    Result := v;
-  v := Database.QueryValue
-    ('SELECT SUM(DEPOT_MOVES.CNT) FROM DEPOT_MOVES, DEPOT_MOVES_N WHERE (DEPOT_MOVES.NAKL_ID = DEPOT_MOVES_N.ID) AND (DEPOT_MOVES_N.ENTERED = 1) AND (DEPOT_MOVES_N.DEPOT_FROM_ID = '
-    + inttostr(Depot) + ') AND (GOOD_ID =' + inttostr(id) +
-    ') AND (DEPOT_MOVES_N.M_DATE <= ''' + DateToStr(OnDate) +
-    ' 23:59:59'')', 0);
-  if VarIsNumeric(v) then
-    Result := Result - v;
+  Result := Data.Database.QueryValue(
+    'execute procedure ALL_MOVED_ON_DATE('+inttostr(id)+','''+DateToStr(OnDate)+' 23:59:59'','+inttostr(Depot)+')', 0);
 end;
 
 function TData.TotalDepotCount(id, depot_id: integer): real;
 var
-  v: Variant;
+  ondate: TDateTime;
 begin
-  Result := 0;
-  v := Database.QueryValue
-    ('SELECT SUM(ARRIVAL.CNT) FROM ARRIVAL, ARRIVAL_N WHERE (GOOD_ID =' +
-    inttostr(id) +
-    ') AND (ARRIVAL_N.ID = ARRIVAL.NAKL_ID) AND (ARRIVAL_N.ENTERED = 1) AND (ARRIVAL_N.DEPOT_ID='
-    + inttostr(depot_id) + ')', 0);
-  if VarIsNumeric(v) then
-    Result := v;
-  v := Database.QueryValue
-    ('SELECT SUM(RETURN_CUST.CNT) FROM RETURN_CUST, RETURN_CUST_N WHERE (GOOD_ID ='
-    + inttostr(id) +
-    ') AND (RETURN_CUST_N.ID = RETURN_CUST.NAKL_ID) AND (RETURN_CUST_N.ENTERED = 1) AND (RETURN_CUST_N.DEPOT_ID='
-    + inttostr(depot_id) + ')', 0);
-  if VarIsNumeric(v) then
-    Result := Result + v;
-  v := Database.QueryValue
-    ('SELECT SUM(SALE.CNT) FROM SALE, SALE_N WHERE (GOOD_ID =' + inttostr(id) +
-    ') AND (SALE_N.ID = SALE.NAKL_ID) AND (SALE_N.ENTERED = 1) AND (SALE.DEPOT_ID='
-    + inttostr(depot_id) + ')', 0);
-  if VarIsNumeric(v) then
-    Result := Result - v;
-  v := Database.QueryValue
-    ('SELECT SUM(RETURN_SUPPL.CNT) FROM RETURN_SUPPL, RETURN_SUPPL_N WHERE (GOOD_ID ='
-    + inttostr(id) +
-    ') AND (RETURN_SUPPL_N.ID = RETURN_SUPPL.NAKL_ID) AND (RETURN_SUPPL_N.ENTERED = 1) AND (RETURN_SUPPL.DEPOT_ID='
-    + inttostr(depot_id) + ')', 0);
-  if VarIsNumeric(v) then
-    Result := Result - v;
-  v := Database.QueryValue
-    ('SELECT SUM(DEPOT_MOVES.CNT) FROM DEPOT_MOVES, DEPOT_MOVES_N WHERE (GOOD_ID ='
-    + inttostr(id) +
-    ') AND (DEPOT_MOVES_N.ID = DEPOT_MOVES.NAKL_ID) AND (DEPOT_MOVES_N.ENTERED = 1) AND (DEPOT_MOVES_N.DEPOT_FROM_ID='
-    + inttostr(depot_id) + ')', 0);
-  if VarIsNumeric(v) then
-    Result := Result - v;
-  v := Database.QueryValue
-    ('SELECT SUM(DEPOT_MOVES.CNT) FROM DEPOT_MOVES, DEPOT_MOVES_N WHERE (GOOD_ID ='
-    + inttostr(id) +
-    ') AND (DEPOT_MOVES_N.ID = DEPOT_MOVES.NAKL_ID) AND (DEPOT_MOVES_N.ENTERED = 1) AND (DEPOT_MOVES_N.DEPOT_TO_ID='
-    + inttostr(depot_id) + ')', 0);
-  if VarIsNumeric(v) then
-    Result := Result + v;
-
+  ondate := DateUtils.IncYear(now, 100); //shit
+  Result := AllArrivedOnDate(id, ondate, depot_id)
+          + AllMovedOnDate(id, ondate, depot_id)
+          - AllSaledOnDate(id, ondate, depot_id);
 end;
 
 function TData.GetLastSalePrice(good_id: integer; cust_id: integer): Variant;
@@ -996,6 +893,12 @@ procedure TData.DS_Production_SPAfterPost(DataSet: TDataSet);
 begin
   if (DS_Production.State <> dsInsert) or (DS_Production.State <> dsInactive) then
     Data.DS_Production.Refresh;
+  SPDepot := DS_Production_SP.FieldByName('DEPOT_ID').AsInteger;
+end;
+
+procedure TData.DS_Production_SPNewRecord(DataSet: TDataSet);
+begin
+  DS_Production_SP.FieldByName('DEPOT_ID').AsInteger := SPDepot;
 end;
 
 procedure TData.ExcelExportBeforeBuild(Sender: TObject);

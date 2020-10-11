@@ -135,6 +135,8 @@ type
       var Value: Variant; var UseText, Handled: Boolean);
     procedure TB_SaleColumns3UpdateData(Sender: TObject; var Text: string;
       var Value: Variant; var UseText, Handled: Boolean);
+    procedure TB_SaleColumns6GetCellParams(Sender: TObject; EditMode: Boolean;
+      Params: TColCellParamsEh);
   private
     procedure SetRecord;
     procedure ApplyDepot;
@@ -616,6 +618,14 @@ begin
   if VarIsNull(Value) or (Value='') then exit;
   UseText := false;
   Value := SysContainer.StandartRound(Value);
+end;
+
+procedure TSaleForm.TB_SaleColumns6GetCellParams(Sender: TObject;
+  EditMode: Boolean; Params: TColCellParamsEh);
+begin
+  if (Data.DS_Sale.FBN('UNIT_ID').AsInteger = 1) OR (Data.DS_Sale.FBN('TOTAL_WEIGHT').AsFloat = 0)
+    then Params.Text := ''
+    else Params.Text := Params.Text + 'Í„';
 end;
 
 procedure TSaleForm.ShowDepotsPanel;

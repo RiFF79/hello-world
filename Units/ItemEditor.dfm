@@ -30,63 +30,6 @@ object ItemEditorForm: TItemEditorForm
     Height = 13
     Caption = #1055#1086#1083#1085#1086#1077' '#1085#1072#1079#1074#1072#1085#1080#1077
   end
-  object Label3: TLabel
-    Left = 397
-    Top = 173
-    Width = 18
-    Height = 13
-    Caption = #1058#1080#1087
-  end
-  object Label6: TLabel
-    Left = 8
-    Top = 68
-    Width = 94
-    Height = 19
-    Alignment = taCenter
-    AutoSize = False
-    Caption = #1062#1077#1085#1072' 1'
-  end
-  object Label7: TLabel
-    Left = 110
-    Top = 68
-    Width = 94
-    Height = 19
-    Alignment = taCenter
-    AutoSize = False
-    Caption = #1062#1077#1085#1072' 2'
-  end
-  object Label8: TLabel
-    Left = 315
-    Top = 68
-    Width = 94
-    Height = 19
-    Alignment = taCenter
-    AutoSize = False
-    Caption = #1062#1077#1085#1072' 4'
-  end
-  object cap_Firm: TLabel
-    Left = 129
-    Top = 173
-    Width = 79
-    Height = 13
-    Caption = #1055#1088#1086#1080#1079#1074#1086#1076#1080#1090#1077#1083#1100
-  end
-  object Bevel5: TBevel
-    Left = 220
-    Top = 179
-    Width = 169
-    Height = 3
-    Shape = bsTopLine
-    Style = bsRaised
-  end
-  object Bevel6: TBevel
-    Left = 8
-    Top = 180
-    Width = 108
-    Height = 3
-    Shape = bsTopLine
-    Style = bsRaised
-  end
   object Bevel7: TBevel
     Left = 8
     Top = 14
@@ -114,18 +57,9 @@ object ItemEditorForm: TItemEditorForm
     Left = 427
     Top = 8
     Width = 9
-    Height = 372
+    Height = 460
     Shape = bsLeftLine
     Style = bsRaised
-  end
-  object Label19: TLabel
-    Left = 212
-    Top = 68
-    Width = 94
-    Height = 19
-    Alignment = taCenter
-    AutoSize = False
-    Caption = #1062#1077#1085#1072' 3'
   end
   object bvl1: TBevel
     Left = 8
@@ -142,21 +76,6 @@ object ItemEditorForm: TItemEditorForm
     Height = 13
     Caption = #1058#1077#1082#1091#1097#1080#1077' '#1094#1077#1085#1099' '#1087#1086#1089#1090#1072#1074#1097#1080#1082#1086#1074' '#1080#1079' '#1087#1088#1072#1081#1089#1072
   end
-  object Bevel19: TBevel
-    Left = 8
-    Top = 239
-    Width = 132
-    Height = 3
-    Shape = bsTopLine
-    Style = bsRaised
-  end
-  object Label22: TLabel
-    Left = 148
-    Top = 233
-    Width = 54
-    Height = 13
-    Caption = #1050#1072#1090#1077#1075#1086#1088#1080#1103
-  end
   object Label27: TLabel
     Left = 693
     Top = 334
@@ -169,21 +88,6 @@ object ItemEditorForm: TItemEditorForm
     Top = 341
     Width = 250
     Height = 6
-    Shape = bsTopLine
-    Style = bsRaised
-  end
-  object Label2: TLabel
-    Left = 322
-    Top = 233
-    Width = 99
-    Height = 13
-    Caption = #1045#1076#1080#1085#1080#1094#1072' '#1080#1079#1084#1077#1088#1077#1085#1080#1103
-  end
-  object Bevel2: TBevel
-    Left = 227
-    Top = 239
-    Width = 89
-    Height = 3
     Shape = bsTopLine
     Style = bsRaised
   end
@@ -206,6 +110,10 @@ object ItemEditorForm: TItemEditorForm
     Top = 192
     Width = 200
     Height = 19
+    ControlLabel.Width = 18
+    ControlLabel.Height = 13
+    ControlLabel.Caption = #1058#1080#1087
+    ControlLabel.Visible = True
     AlwaysShowBorder = True
     Ctl3D = True
     ParentCtl3D = False
@@ -231,6 +139,10 @@ object ItemEditorForm: TItemEditorForm
     Top = 192
     Width = 200
     Height = 19
+    ControlLabel.Width = 79
+    ControlLabel.Height = 13
+    ControlLabel.Caption = #1055#1088#1086#1080#1079#1074#1086#1076#1080#1090#1077#1083#1100
+    ControlLabel.Visible = True
     AlwaysShowBorder = True
     Ctl3D = True
     ParentCtl3D = False
@@ -257,6 +169,10 @@ object ItemEditorForm: TItemEditorForm
     Width = 94
     Height = 19
     Hint = #1056#1086#1079#1085#1080#1095#1085#1072#1103' '#1094#1077#1085#1072#1072' (F12 - '#1072#1074#1090#1086#1084#1072#1090#1080#1095#1077#1089#1082#1080#1081' '#1088#1072#1089#1095#1077#1090')'
+    ControlLabel.Width = 35
+    ControlLabel.Height = 13
+    ControlLabel.Caption = #1062#1077#1085#1072' 3'
+    ControlLabel.Visible = True
     AlwaysShowBorder = True
     Ctl3D = True
     currency = False
@@ -376,6 +292,10 @@ object ItemEditorForm: TItemEditorForm
     Top = 87
     Width = 94
     Height = 19
+    ControlLabel.Width = 35
+    ControlLabel.Height = 13
+    ControlLabel.Caption = #1062#1077#1085#1072' 2'
+    ControlLabel.Visible = True
     AlwaysShowBorder = True
     Ctl3D = True
     currency = False
@@ -446,6 +366,10 @@ object ItemEditorForm: TItemEditorForm
     Top = 87
     Width = 94
     Height = 19
+    ControlLabel.Width = 35
+    ControlLabel.Height = 13
+    ControlLabel.Caption = #1062#1077#1085#1072' 1'
+    ControlLabel.Visible = True
     AlwaysShowBorder = True
     Ctl3D = True
     currency = False
@@ -733,6 +657,10 @@ object ItemEditorForm: TItemEditorForm
     Width = 94
     Height = 19
     Hint = #1056#1086#1079#1085#1080#1095#1085#1072#1103' '#1094#1077#1085#1072#1072' (F12 - '#1072#1074#1090#1086#1084#1072#1090#1080#1095#1077#1089#1082#1080#1081' '#1088#1072#1089#1095#1077#1090')'
+    ControlLabel.Width = 35
+    ControlLabel.Height = 13
+    ControlLabel.Caption = #1062#1077#1085#1072' 4'
+    ControlLabel.Visible = True
     AlwaysShowBorder = True
     Ctl3D = True
     currency = False
@@ -1340,8 +1268,12 @@ object ItemEditorForm: TItemEditorForm
   object edit_PriceCategory: TDBLookupComboboxEh
     Left = 8
     Top = 254
-    Width = 198
+    Width = 130
     Height = 19
+    ControlLabel.Width = 54
+    ControlLabel.Height = 13
+    ControlLabel.Caption = #1050#1072#1090#1077#1075#1086#1088#1080#1103
+    ControlLabel.Visible = True
     AlwaysShowBorder = True
     Ctl3D = True
     ParentCtl3D = False
@@ -1505,8 +1437,8 @@ object ItemEditorForm: TItemEditorForm
     TabOrder = 21
     DesignSize = (
       413
-      129)
-    Height = 135
+      139)
+    Height = 145
     Width = 413
     object Label24: TLabel
       Left = 10
@@ -1595,9 +1527,30 @@ object ItemEditorForm: TItemEditorForm
       Font.Style = []
       ParentFont = False
     end
-    object btn_Recalculate: TcxButton
+    object Label2: TLabel
       Left = 10
-      Top = 100
+      Top = 95
+      Width = 59
+      Height = 13
+      Caption = #1054#1073#1097#1080#1081' '#1074#1077#1089':'
+    end
+    object lbl_total_weight: TLabel
+      Left = 376
+      Top = 95
+      Width = 26
+      Height = 13
+      Alignment = taRightJustify
+      Caption = '0'
+      Font.Charset = RUSSIAN_CHARSET
+      Font.Color = clNavy
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object btn_Recalculate: TcxButton
+      Left = 3
+      Top = 118
       Width = 395
       Height = 18
       Caption = #1055#1077#1088#1077#1089#1095#1080#1090#1072#1090#1100' '#1086#1089#1090#1072#1090#1082#1080' '#1085#1072' '#1089#1082#1083#1072#1076#1072#1093
@@ -1616,7 +1569,7 @@ object ItemEditorForm: TItemEditorForm
     TabStop = False
     OnClick = btn_minpriceClick
   end
-  object DateTimePicker1: TDateTimePicker
+  object item_date_to_check: TDateTimePicker
     Left = 113
     Top = 326
     Width = 98
@@ -1878,17 +1831,17 @@ object ItemEditorForm: TItemEditorForm
   end
   object cxGroupBox4: TcxGroupBox
     Left = 439
-    Top = 254
+    Top = 264
     Caption = #1060#1080#1083#1100#1090#1088#1099
     TabOrder = 26
     DesignSize = (
       413
-      68)
-    Height = 74
+      58)
+    Height = 64
     Width = 413
     object cxDBCheckBox1: TcxDBCheckBox
       Left = 3
-      Top = 22
+      Top = 17
       TabStop = False
       Anchors = []
       Caption = #1053#1077' '#1080#1089#1087#1086#1083#1100#1079#1086#1074#1072#1090#1100' '#1074' '#1087#1088#1072#1081#1089#1072#1093
@@ -1907,10 +1860,11 @@ object ItemEditorForm: TItemEditorForm
       StyleHot.LookAndFeel.Kind = lfUltraFlat
       StyleHot.LookAndFeel.ScrollbarMode = sbmClassic
       TabOrder = 0
+      ExplicitTop = 22
     end
     object cxDBCheckBox2: TcxDBCheckBox
       Left = 3
-      Top = 44
+      Top = 36
       TabStop = False
       Anchors = []
       Caption = #1060#1080#1082#1089#1080#1088#1086#1074#1072#1085#1085#1072#1103' '#1094#1077#1085#1072
@@ -1927,13 +1881,20 @@ object ItemEditorForm: TItemEditorForm
       StyleHot.LookAndFeel.Kind = lfUltraFlat
       StyleHot.LookAndFeel.NativeStyle = False
       TabOrder = 1
+      ExplicitTop = 44
     end
   end
   object DBComboBoxEh1: TDBComboBoxEh
-    Left = 218
-    Top = 252
-    Width = 200
+    Left = 149
+    Top = 254
+    Width = 130
     Height = 19
+    ControlLabel.Width = 99
+    ControlLabel.Height = 13
+    ControlLabel.Caption = #1045#1076#1080#1085#1080#1094#1072' '#1080#1079#1084#1077#1088#1077#1085#1080#1103
+    ControlLabel.ParentShowHint = False
+    ControlLabel.ShowHint = False
+    ControlLabel.Visible = True
     DataField = 'UNIT'
     DataSource = Data.S_Goods
     DynProps = <>
@@ -1946,6 +1907,80 @@ object ItemEditorForm: TItemEditorForm
       '0'
       '1')
     TabOrder = 27
+    Visible = True
+  end
+  object edit_weight: TDBNumberEditEh
+    Left = 291
+    Top = 254
+    Width = 130
+    Height = 19
+    ControlLabel.Width = 17
+    ControlLabel.Height = 13
+    ControlLabel.Caption = #1042#1077#1089
+    ControlLabel.Visible = True
+    AlwaysShowBorder = True
+    Ctl3D = True
+    currency = False
+    DataField = 'ITEM_WEIGHT'
+    DataSource = Data.S_Goods
+    DisplayFormat = '0.00#.##'
+    DynProps = <>
+    EditButton.Enabled = False
+    EditButton.Glyph.Data = {
+      36050000424D3605000000000000360400002800000010000000100000000100
+      080000000000000100000000000000000000000100000000000000000000FFE4
+      E300FFE6E300FFCCC100FFE0DA00FBBFB000FCB29E00F2AF9C00F7B5A200FAB9
+      A800FCC1B100FFC8B900FFD4C900FFDAD000D9C0B900D5BDB600C37A6400BB76
+      6000CA826B0098625100C8867100AF7B6B00DABDB400DAC0B800D6806200DA8C
+      7200A46B5800D78E7400BC806B00EBA38900B8837000AB7A6900C6958400D4B6
+      AC00EDCDC100D7C0B800DE957800B87C6500C2846C00CE8F7500FCB09000C589
+      7200D59A8300D6A28E00EAB5A000D5A59200D6AF9F00EBCABD00E9CABE00E5CB
+      C100DE7C4E00D87D5500FBAD8C00E69F8100A0736000E0A38700D29C8400F3C0
+      AA00DAB09E00DABEB100ECD0C300F5D9CC00F6844D00EE844E00DC7D4F00E287
+      5C00E18A5F00F0996C00E89E7800EFAC8900E0A08000DDA08100FFBE9E00F6C7
+      B000E8CFC200FF975B00FCB28900E1A27F00E9AA8900E1AE9300E6B39800E1B4
+      9A00E8C1AC00D9B7A500EDC9B600FF965600FF9F6500FFA56C00FFA97200F1BF
+      9F00FFD2B600FCD2B800E6C1AA00F7C19B00F4BF9B00FFD0AF00EABFA100E9BF
+      A200FFD1B200F6CBAE00DCB9A100F0CEB600FFBF9000D7B8A100F3D1B700F6DA
+      C600E8D2C100EAD8CB00DBB59600FFD4B100F5CDAD00FFD7B500FFD7B700FFD8
+      B700E2C2A900E5CCB700FFD5B100FFDAB900FFDABA00FFDCBC00FFE0C400EFDF
+      D100D5B39200FFDEBC00FFDFBF00FFDFC000FFD1A000E3C7AA00E6CAAD00E8CD
+      B100FFE3C400DCC7B100FFE8CE00FFE2BB00D6CEC400EFD6AE00FFEAC700F8E3
+      BA00FFEECD00D4CFC000FFF8DA00FFFAE100FFFBE000FFFDCB00FFFEE000FFFF
+      DE00FFFFE300FFFFE400FFFFFA0063AAE9004775B900286AD10078A2EB00FFFF
+      FF00000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000000000000000000000009A9A9A132915
+      9A9A9A9A9A9A9A9A9A9A9A9A21067B271934251F9A9A9A9A9A9A9A9A2107622D
+      482A11281B18319A9A9A9A9A21085F52812B94382C35229A9A9A9A9A21097526
+      1085367172612F9A9A9A9A9A2105623A7C1E1D3714243C9A9A9A9A9A210A6F5C
+      7F398D514950309A9A9A9A9A210B771C126D1A746C7E3D9A9A9A9A9A2103762E
+      8A205A459796849A9A9A9A9A0F0C7065645B835D95985B9A9A9A9A9A230D7D59
+      4F607D888B86549A9A9A9A9A0E046344664C4D474E5E4A9A9A9A9A9A17026E3F
+      554B565758433B9A9A9A9A9A21018246424132333E40539A9A9A9A9A16998E91
+      9390928C6878699A9A9A9A9A9A6B796A73807A87898F679A9A9A}
+    EditButton.Style = ebsGlyphEh
+    EditButton.Width = 11
+    EditButtons = <>
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    Flat = True
+    ParentCtl3D = False
+    ParentFont = False
+    TabOrder = 28
     Visible = True
   end
   object menu_suppl: TPopupMenu

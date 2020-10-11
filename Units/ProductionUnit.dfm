@@ -413,9 +413,9 @@ object ProductionForm: TProductionForm
         BarManager = dxBarManager1
       end
       object DepotPanel: TPanel
-        Left = 562
-        Top = 62
-        Width = 103
+        Left = 600
+        Top = 224
+        Width = 113
         Height = 81
         Caption = 'DepotPanel'
         TabOrder = 2
@@ -423,7 +423,7 @@ object ProductionForm: TProductionForm
         object TB_Depots: TDBGridEh
           Left = 1
           Top = 1
-          Width = 101
+          Width = 111
           Height = 79
           Align = alClient
           AllowedOperations = []

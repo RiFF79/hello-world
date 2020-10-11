@@ -152,7 +152,7 @@ begin
       if (Data.GetItemUnits(SelectGoodForm.SelectedID) = 0) and
           not VarIsNull(FieldValues['CNT']) then
         FieldValues['CNT'] := SysContainer.StandartIntRound(FieldValues['CNT']);
-      Refresh;
+      Post;
     end;
     Data.DS_Production_SP.CloseOpen(true);
     UpdateSpecificationFilter;
@@ -166,10 +166,9 @@ begin
     begin
       Edit;
       FieldValues['GOOD_ID'] := SelectGoodForm.SelectedID;
-      if (Data.GetItemUnits(SelectGoodForm.SelectedID) = 0) and
-          not VarIsNull(FieldValues['CNT']) then
-        FieldValues['CNT'] := SysContainer.StandartIntRound(FieldValues['CNT']);
-      Refresh;
+      if (Data.GetItemUnits(SelectGoodForm.SelectedID) = 0) then
+        fbn('CNT').AsFloat := SysContainer.StandartIntRound(fbn('CNT').AsFloat);
+      Post;
     end;
 end;
 
@@ -327,7 +326,7 @@ end;
 procedure TProductionForm.TB_SpecificationKeyDown(Sender: TObject;
   var Key: Word; Shift: TShiftState);
 begin
-  if Key = VK_ESCAPE then Close;
+if Key = VK_ESCAPE then Close;
   if (TB_Specification.SelectedIndex = 0) and (Key = VK_RETURN) and
     (LayoutControl.Enabled) then SetSpecificationRecord;
   if (Key = VK_SPACE) and (TB_Specification.SelectedIndex = 3) and

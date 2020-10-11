@@ -333,7 +333,7 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="C:\Mosquito-Stretch v3.5\Mosquito.exe" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="..\Mosquito.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>Mosquito.exe</RemoteName>
                         <Overwrite>true</Overwrite>

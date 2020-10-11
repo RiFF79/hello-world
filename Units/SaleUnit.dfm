@@ -321,6 +321,18 @@ object SaleForm: TSaleForm
           Title.Alignment = taCenter
           Title.Caption = #1057#1091#1084#1084#1072
           Width = 80
+        end
+        item
+          CellButtons = <>
+          DynProps = <>
+          EditButtons = <>
+          FieldName = 'TOTAL_WEIGHT'
+          Footers = <>
+          ReadOnly = True
+          Title.Alignment = taCenter
+          Title.Caption = #1042#1077#1089
+          Width = 80
+          OnGetCellParams = TB_SaleColumns6GetCellParams
         end>
       object RowDetailData: TRowDetailPanelControlEh
       end

@@ -17,18 +17,11 @@ type
   TItemEditorForm = class(TForm)
     Label1: TLabel;
     Edit_FullName: TDBEditEh;
-    Label3: TLabel;
     Edit_Type: TDBLookupComboboxEh;
-    Label6: TLabel;
-    Label7: TLabel;
-    Label8: TLabel;
-    cap_Firm: TLabel;
     Edit_Firm: TDBLookupComboboxEh;
     Edit_PriceShop: TDBNumberEditEh;
     Edit_Price2: TDBNumberEditEh;
     Edit_Price1: TDBNumberEditEh;
-    Bevel5: TBevel;
-    Bevel6: TBevel;
     Bevel7: TBevel;
     Label17: TLabel;
     Bevel9: TBevel;
@@ -38,15 +31,12 @@ type
     Bevel1: TBevel;
     edit_PriceShop2: TDBNumberEditEh;
     edit_OldPriceShop2: TDBNumberEditEh;
-    Label19: TLabel;
     bvl1: TBevel;
     lbl1: TLabel;
     TB_SupplPrices2: TDBGridEh;
     TB_SupplPrices1: TDBGridEh;
     DBGridEh3: TDBGridEh;
     DBGridEh5: TDBGridEh;
-    Bevel19: TBevel;
-    Label22: TLabel;
     edit_PriceCategory: TDBLookupComboboxEh;
     btn_ok: TcxButton;
     btn_apply: TcxButton;
@@ -71,7 +61,7 @@ type
     btn_minprice: TcxButton;
     Label25: TLabel;
     DBText2: TDBText;
-    DateTimePicker1: TDateTimePicker;
+    item_date_to_check: TDateTimePicker;
     editDepot: TcxLookupComboBox;
     cxButton1: TcxButton;
     DBGridEh1: TDBGridEh;
@@ -82,9 +72,10 @@ type
     cxGroupBox4: TcxGroupBox;
     cxDBCheckBox1: TcxDBCheckBox;
     cxDBCheckBox2: TcxDBCheckBox;
-    Label2: TLabel;
-    Bevel2: TBevel;
     DBComboBoxEh1: TDBComboBoxEh;
+    edit_weight: TDBNumberEditEh;
+    Label2: TLabel;
+    lbl_total_weight: TLabel;
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormShortCut(var Msg: TWMKey; var Handled: Boolean);
@@ -171,6 +162,7 @@ begin
   lbl_allsaled.caption := floattostr(all_saled);
   lbl_allarrived.caption := floattostr(all_arrived);
   lbl_totalcount.caption := floattostr(all_arrived - all_saled);
+  lbl_total_weight.Caption := FloatToStrF(Data.DS_Goods.FBN('TOTAL_WEIGHT').AsFloat, ffFixed, 20, 2);
   cs := Data.Database.QueryValues
     ('SELECT ARRIVAL_N.CUST_ID, ARRIVAL_N.CURR_ID, ARRIVAL_N.A_DATE, ARRIVAL_N.CURS FROM ARRIVAL,ARRIVAL_N WHERE (ARRIVAL.GOOD_ID ='
     + inttostr(good_id) +
@@ -322,13 +314,13 @@ var
   saled, arrived, moved: real;
 begin
   saled := Data.AllSaledOnDate(Data.DS_Goods.fbn('ID').AsInteger,
-    DateTimePicker1.Date, editDepot.EditValue);
+    item_date_to_check.Date, editDepot.EditValue);
   arrived := Data.AllArrivedOnDate(Data.DS_Goods.fbn('ID').AsInteger,
-    DateTimePicker1.Date, editDepot.EditValue);
+    item_date_to_check.Date, editDepot.EditValue);
   moved := Data.AllMovedOnDate(Data.DS_Goods.fbn('ID').AsInteger,
-    DateTimePicker1.Date, editDepot.EditValue);
+    item_date_to_check.Date, editDepot.EditValue);
   ShowMessage('Остаток на ''' + editDepot.Text + ''' на ' +
-    datetostr(DateTimePicker1.Date) + ' : ' + floattostr(arrived + moved
+    datetostr(item_date_to_check.Date) + ' : ' + floattostr(arrived + moved
     - saled));
 end;
 

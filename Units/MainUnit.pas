@@ -1861,6 +1861,9 @@ procedure TMainForm.TB_GoodsOnDepotsColumnsGetCellParams(Sender: TObject;
 var
   c_name, cb_name: string;
   c, cb: real;
+  item_weight: double;
+  weight_text: string;
+  main: string;
 begin
   cb_name := (Sender as TDBGridColumnEh).FieldName;
   c_name := cb_name;
@@ -1870,7 +1873,18 @@ begin
   if EditMode then
     Params.Text := floattostrF(cb, ffFixed, 20, 2)
   else
-    Params.Text := floattostrF(c, ffFixed, 20, 2);
+    begin
+      if Data.DS_Goods.FBN('UNIT').AsInteger = 0
+        then main := floattostrF(c, ffFixed, 20, 0) + 'шт'
+        else main := floattostrF(c, ffFixed, 20, 2) + 'кг';
+      item_weight := Data.DS_Goods.FBN('ITEM_WEIGHT').AsFloat * c;
+      weight_text := '';
+      if item_weight <> 0 then
+        begin
+          weight_text := ' (' + floatToStrF(item_weight, ffFixed, 20, 2) + 'кг)';
+        end;
+      Params.Text := main + weight_text;
+    end;
   if cb > 0 then
   begin
     Params.Font.Color := clBlue;
@@ -2155,42 +2169,40 @@ end;
 
 procedure TMainForm.SetArrivalButtons;
 var
-  Posted: Boolean;
+  executed: Boolean;
 begin
-  if Tree_Docs.Selected.AbsoluteIndex = tr_arr_exec then
-    Posted := true
-  else
-    Posted := false;
+    executed := Tree_Docs.Selected.AbsoluteIndex = tr_arr_exec;
 
   // Установка интерфейсных элементов
   if Data.DS_Arrival_N.VisibleRecordCount > 0 then
   begin
-    act_arr_return.enabled := Posted;
-    act_arr_execute.enabled := not Posted;
-    act_arr_delete.enabled := not Posted;
+    act_arr_return.enabled := executed;
+    act_arr_execute.enabled := not executed;
+    act_arr_delete.enabled := not executed;
     act_arr_export.enabled := true;
     act_arr_exportexcel.enabled := true;
     act_arr_edit.enabled := true;
   end
   else
   begin
+    act_arr_execute.Enabled := false;
     act_arr_return.enabled := false;
     act_arr_delete.enabled := false;
     act_arr_export.enabled := false;
     act_arr_exportexcel.enabled := false;
     act_arr_edit.enabled := false;
   end;
-  rib_group_arr_filter.enabled := Posted;
-  act_arr_recalcprices.enabled := not Posted;
-  act_arr_reprice.enabled := not Posted;
-  act_arr_clear_nakl.enabled := not Posted;
-  ArrivalForm.btn_special1.enabled := not Posted;
-  act_arr_importexcel.enabled := not Posted;
-  ArrivalForm.edit_percent.enabled := not Posted;
-  ArrivalForm.btn_price.enabled := not Posted;
-  ArrivalForm.LayoutControl.enabled := not Posted;
-  ArrivalForm.btn_special1.enabled := not Posted;
-  if Posted then
+  rib_group_arr_filter.enabled := executed;
+  act_arr_recalcprices.enabled := not executed;
+  act_arr_reprice.enabled := not executed;
+  act_arr_clear_nakl.enabled := not executed;
+  ArrivalForm.btn_special1.enabled := not executed;
+  act_arr_importexcel.enabled := not executed;
+  ArrivalForm.edit_percent.enabled := not executed;
+  ArrivalForm.btn_price.enabled := not executed;
+  ArrivalForm.LayoutControl.enabled := not executed;
+  ArrivalForm.btn_special1.enabled := not executed;
+  if executed then
   begin
     ArrivalForm.TB_Arrival.Options := [dgTitles, dgColumnResize, dgColLines,
       dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete];
@@ -2567,7 +2579,13 @@ end;
 procedure TMainForm.SetExecProductionFilter;
 var
   date_filter: string;
+  depot_filter: string;
 begin
+    if not VarIsNull(edit_prod_depot.KeyValue) then
+      depot_filter := ' and (DEPOT_ID = ' +
+        inttostr(edit_prod_depot.KeyValue) + ')'
+    else
+      depot_filter := '';
   if not VarIsNull(edit_prod_date.EditValue) then
     date_filter := ' and (P_DATE >= ''' + DateToStr(edit_prod_date.EditValue) +
       ' 00:00:00'') and (P_DATE <= ''' + DateToStr(edit_prod_date.EditValue) +
@@ -2575,7 +2593,7 @@ begin
   else
     date_filter := '';
 
-  Data.DS_Production_N.SQLs.SelectSQL.Strings[17] := '(ENTERED = 1)' + date_filter
+  Data.DS_Production_N.SQLs.SelectSQL.Strings[17] := '(ENTERED = 1)' + date_filter + depot_filter;
 end;
 
 procedure TMainForm.SetWaitProductionFilter;
@@ -5125,8 +5143,10 @@ end;
 procedure TMainForm.act_arr_addExecute(Sender: TObject);
 begin
   Data.DS_Arrival_N.Append;
+  Data.DS_Arrival_N.Post;
   area_tree.ActivePage := P_Documents;
   Tree_Docs.Select(Tree_Docs.Items[tr_arr_wait]);
+  SetArrivalFilter;
   ArrivalForm.ShowModal;
 end;
 
@@ -5174,6 +5194,7 @@ begin
   Data.DS_Arrival_N.Delete;
   Data.ClearUserActivity;
   Data.CanUpdateUser := true;
+  SetArrivalFilter;
 end;
 
 procedure TMainForm.act_arr_editExecute(Sender: TObject);
@@ -5236,6 +5257,7 @@ begin
   Data.DS_Arrival_N.Edit;
   Data.DS_Arrival_N.fbn('ENTERED').AsBoolean := true;
   Data.DS_Arrival_N.Post;
+  SetArrivalFilter;
 end;
 
 procedure TMainForm.act_arr_exportExecute(Sender: TObject);
@@ -5485,6 +5507,7 @@ begin
   Data.DS_Arrival_N.Edit;
   Data.DS_Arrival_N.fbn('ENTERED').AsBoolean := false;
   Data.DS_Arrival_N.Post;
+  SetArrivalFilter;
 end;
 
 procedure TMainForm.act_arr_todayExecute(Sender: TObject);
@@ -8046,6 +8069,7 @@ begin
   Data.DS_Production_N.Delete;
   Data.ClearUserActivity;
   Data.CanUpdateUser := true;
+  SetProductionFilter;
 end;
 
 procedure TMainForm.act_prod_editExecute(Sender: TObject);
@@ -8081,6 +8105,7 @@ begin
   Data.DS_Production_N.Edit;
   Data.DS_Production_N.fbn('ENTERED').AsBoolean := true;
   Data.DS_Production_N.Post;
+  SetProductionFilter;
 end;
 
 procedure TMainForm.act_prod_item_cardExecute(Sender: TObject);
@@ -8126,6 +8151,7 @@ begin
   Tree_Docs.Select(Tree_Docs.Items[tr_production_wait]);
   Data.DS_Production_N.Append;
   Data.DS_Production_N.Post;
+  SetProductionFilter;
   ProductionForm.ShowModal;
 end;
 
@@ -8228,6 +8254,7 @@ begin
   Data.DS_Production_N.Edit;
   Data.DS_Production_N.fbn('ENTERED').AsBoolean := false;
   Data.DS_Production_N.Post;
+  SetProductionFilter;
 end;
 
 procedure TMainForm.act_prod_spec_clear_naklExecute(Sender: TObject);

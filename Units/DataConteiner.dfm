@@ -5,8 +5,7 @@ object Data: TData
   Width = 1128
   object Database: TpFIBDatabase
     AutoReconnect = True
-    Connected = True
-    DBName = 'SERVER:C:\mosquito-stretch\DATABASE.GDB'
+    DBName = 'SERVER:C:\Mosquito-Stretch v3.5\DATABASE.GDB'
     DBParams.Strings = (
       'password=masterkey'
       'user_name=SYSDBA'
@@ -1337,7 +1336,6 @@ object Data: TData
     poSQLINT64ToBCD = True
   end
   object TRead_Goods: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 32
     Top = 336

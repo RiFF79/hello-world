@@ -39,7 +39,6 @@ object MainForm: TMainForm
     TabOrder = 1
     TabStop = False
     object rib_tab_documents: TdxRibbonTab
-      Active = True
       Caption = #1044#1086#1082#1091#1084#1077#1085#1090#1099
       Groups = <
         item
@@ -64,6 +63,7 @@ object MainForm: TMainForm
       Index = 1
     end
     object rib_tab_file: TdxRibbonTab
+      Active = True
       Caption = #1057#1080#1089#1090#1077#1084#1072
       Groups = <
         item
@@ -130,7 +130,7 @@ object MainForm: TMainForm
     Height = 684
     Align = alClient
     TabOrder = 4
-    Properties.ActivePage = P_GoodsOnDepots
+    Properties.ActivePage = P_Price
     Properties.CustomButtons.Buttons = <>
     Properties.HideTabs = True
     ClientRectBottom = 683
@@ -1409,14 +1409,15 @@ object MainForm: TMainForm
           end
           item
             CellButtons = <>
-            DisplayFormat = '0.##'
+            DisplayFormat = '0.###'
             DynProps = <>
             EditButtons = <>
             FieldName = 'CNT_ALL'
             Footers = <>
             Title.Alignment = taCenter
-            Title.Caption = #1050#1086#1083'-'#1074#1086
+            Title.Caption = #1054#1073#1097#1080#1081' '#1086#1089#1090#1072#1090#1086#1082
             Width = 80
+            OnGetCellParams = TB_PriceColumns6GetCellParams
           end>
         object RowDetailData: TRowDetailPanelControlEh
         end
@@ -1487,14 +1488,15 @@ object MainForm: TMainForm
           item
             ButtonStyle = cbsUpDown
             CellButtons = <>
-            DisplayFormat = '#.00'
+            DisplayFormat = '0.###'
             DynProps = <>
             EditButton.Style = ebsUpDownEh
             EditButton.Visible = True
             EditButtons = <>
-            FieldName = 'CB1'
+            FieldName = 'C1'
             Footer.ValueType = fvtFieldValue
             Footers = <>
+            ReadOnly = True
             Title.Alignment = taCenter
             Width = 32
             OnGetCellParams = TB_GoodsOnDepotsColumnsGetCellParams
@@ -1502,14 +1504,15 @@ object MainForm: TMainForm
           item
             ButtonStyle = cbsUpDown
             CellButtons = <>
-            DisplayFormat = '#.00'
+            DisplayFormat = '0.###'
             DynProps = <>
             EditButton.Style = ebsUpDownEh
             EditButton.Visible = True
             EditButtons = <>
-            FieldName = 'CB2'
+            FieldName = 'C2'
             Footer.ValueType = fvtFieldValue
             Footers = <>
+            ReadOnly = True
             Title.Alignment = taCenter
             Width = 32
             OnGetCellParams = TB_GoodsOnDepotsColumnsGetCellParams
@@ -1517,14 +1520,15 @@ object MainForm: TMainForm
           item
             ButtonStyle = cbsUpDown
             CellButtons = <>
-            DisplayFormat = '#.00'
+            DisplayFormat = '0.###'
             DynProps = <>
             EditButton.Style = ebsUpDownEh
             EditButton.Visible = True
             EditButtons = <>
-            FieldName = 'CB3'
+            FieldName = 'C3'
             Footer.ValueType = fvtFieldValue
             Footers = <>
+            ReadOnly = True
             Title.Alignment = taCenter
             Width = 32
             OnGetCellParams = TB_GoodsOnDepotsColumnsGetCellParams
@@ -1532,14 +1536,15 @@ object MainForm: TMainForm
           item
             ButtonStyle = cbsUpDown
             CellButtons = <>
-            DisplayFormat = '#.00'
+            DisplayFormat = '0.###'
             DynProps = <>
             EditButton.Style = ebsUpDownEh
             EditButton.Visible = True
             EditButtons = <>
-            FieldName = 'CB4'
+            FieldName = 'C4'
             Footer.ValueType = fvtFieldValue
             Footers = <>
+            ReadOnly = True
             Title.Alignment = taCenter
             Width = 32
             OnGetCellParams = TB_GoodsOnDepotsColumnsGetCellParams
@@ -1547,14 +1552,15 @@ object MainForm: TMainForm
           item
             ButtonStyle = cbsUpDown
             CellButtons = <>
-            DisplayFormat = '#.00'
+            DisplayFormat = '0.###'
             DynProps = <>
             EditButton.Style = ebsUpDownEh
             EditButton.Visible = True
             EditButtons = <>
-            FieldName = 'CB5'
+            FieldName = 'C5'
             Footer.ValueType = fvtFieldValue
             Footers = <>
+            ReadOnly = True
             Title.Alignment = taCenter
             Width = 32
             OnGetCellParams = TB_GoodsOnDepotsColumnsGetCellParams
@@ -1562,14 +1568,15 @@ object MainForm: TMainForm
           item
             ButtonStyle = cbsUpDown
             CellButtons = <>
-            DisplayFormat = '#.00'
+            DisplayFormat = '0.###'
             DynProps = <>
             EditButton.Style = ebsUpDownEh
             EditButton.Visible = True
             EditButtons = <>
-            FieldName = 'CB6'
+            FieldName = 'C6'
             Footer.ValueType = fvtFieldValue
             Footers = <>
+            ReadOnly = True
             Title.Alignment = taCenter
             Width = 32
             OnGetCellParams = TB_GoodsOnDepotsColumnsGetCellParams
@@ -1577,14 +1584,15 @@ object MainForm: TMainForm
           item
             ButtonStyle = cbsUpDown
             CellButtons = <>
-            DisplayFormat = '#.00'
+            DisplayFormat = '0.###'
             DynProps = <>
             EditButton.Style = ebsUpDownEh
             EditButton.Visible = True
             EditButtons = <>
-            FieldName = 'CB7'
+            FieldName = 'C7'
             Footer.ValueType = fvtFieldValue
             Footers = <>
+            ReadOnly = True
             Title.Alignment = taCenter
             Width = 32
             OnGetCellParams = TB_GoodsOnDepotsColumnsGetCellParams
@@ -1592,14 +1600,15 @@ object MainForm: TMainForm
           item
             ButtonStyle = cbsUpDown
             CellButtons = <>
-            DisplayFormat = '#.00'
+            DisplayFormat = '0.###'
             DynProps = <>
             EditButton.Style = ebsUpDownEh
             EditButton.Visible = True
             EditButtons = <>
-            FieldName = 'CB8'
+            FieldName = 'C8'
             Footer.ValueType = fvtFieldValue
             Footers = <>
+            ReadOnly = True
             Title.Alignment = taCenter
             Width = 32
             OnGetCellParams = TB_GoodsOnDepotsColumnsGetCellParams
@@ -1607,14 +1616,15 @@ object MainForm: TMainForm
           item
             ButtonStyle = cbsUpDown
             CellButtons = <>
-            DisplayFormat = '#.00'
+            DisplayFormat = '0.###'
             DynProps = <>
             EditButton.Style = ebsUpDownEh
             EditButton.Visible = True
             EditButtons = <>
-            FieldName = 'CB9'
+            FieldName = 'C9'
             Footer.ValueType = fvtFieldValue
             Footers = <>
+            ReadOnly = True
             Title.Alignment = taCenter
             Width = 32
             OnGetCellParams = TB_GoodsOnDepotsColumnsGetCellParams
@@ -1622,14 +1632,15 @@ object MainForm: TMainForm
           item
             ButtonStyle = cbsUpDown
             CellButtons = <>
-            DisplayFormat = '#.00'
+            DisplayFormat = '0.###'
             DynProps = <>
             EditButton.Style = ebsUpDownEh
             EditButton.Visible = True
             EditButtons = <>
-            FieldName = 'CB10'
+            FieldName = 'C10'
             Footer.ValueType = fvtFieldValue
             Footers = <>
+            ReadOnly = True
             Title.Alignment = taCenter
             Width = 32
             OnGetCellParams = TB_GoodsOnDepotsColumnsGetCellParams
@@ -1637,14 +1648,15 @@ object MainForm: TMainForm
           item
             ButtonStyle = cbsUpDown
             CellButtons = <>
-            DisplayFormat = '#.00'
+            DisplayFormat = '0.###'
             DynProps = <>
             EditButton.Style = ebsUpDownEh
             EditButton.Visible = True
             EditButtons = <>
-            FieldName = 'CB11'
+            FieldName = 'C11'
             Footer.ValueType = fvtFieldValue
             Footers = <>
+            ReadOnly = True
             Title.Alignment = taCenter
             Width = 32
             OnGetCellParams = TB_GoodsOnDepotsColumnsGetCellParams
@@ -1652,14 +1664,15 @@ object MainForm: TMainForm
           item
             ButtonStyle = cbsUpDown
             CellButtons = <>
-            DisplayFormat = '#.00'
+            DisplayFormat = '0.###'
             DynProps = <>
             EditButton.Style = ebsUpDownEh
             EditButton.Visible = True
             EditButtons = <>
-            FieldName = 'CB12'
+            FieldName = 'C12'
             Footer.ValueType = fvtFieldValue
             Footers = <>
+            ReadOnly = True
             Title.Alignment = taCenter
             Width = 32
             OnGetCellParams = TB_GoodsOnDepotsColumnsGetCellParams
@@ -1667,14 +1680,15 @@ object MainForm: TMainForm
           item
             ButtonStyle = cbsUpDown
             CellButtons = <>
-            DisplayFormat = '#.00'
+            DisplayFormat = '0.###'
             DynProps = <>
             EditButton.Style = ebsUpDownEh
             EditButton.Visible = True
             EditButtons = <>
-            FieldName = 'CB13'
+            FieldName = 'C13'
             Footer.ValueType = fvtFieldValue
             Footers = <>
+            ReadOnly = True
             Title.Alignment = taCenter
             Width = 32
             OnGetCellParams = TB_GoodsOnDepotsColumnsGetCellParams
@@ -1682,14 +1696,15 @@ object MainForm: TMainForm
           item
             ButtonStyle = cbsUpDown
             CellButtons = <>
-            DisplayFormat = '#.00'
+            DisplayFormat = '0.###'
             DynProps = <>
             EditButton.Style = ebsUpDownEh
             EditButton.Visible = True
             EditButtons = <>
-            FieldName = 'CB14'
+            FieldName = 'C14'
             Footer.ValueType = fvtFieldValue
             Footers = <>
+            ReadOnly = True
             Title.Alignment = taCenter
             Width = 32
             OnGetCellParams = TB_GoodsOnDepotsColumnsGetCellParams
@@ -1697,14 +1712,15 @@ object MainForm: TMainForm
           item
             ButtonStyle = cbsUpDown
             CellButtons = <>
-            DisplayFormat = '#.00'
+            DisplayFormat = '0.###'
             DynProps = <>
             EditButton.Style = ebsUpDownEh
             EditButton.Visible = True
             EditButtons = <>
-            FieldName = 'CB15'
+            FieldName = 'C15'
             Footer.ValueType = fvtFieldValue
             Footers = <>
+            ReadOnly = True
             Title.Alignment = taCenter
             Width = 32
             OnGetCellParams = TB_GoodsOnDepotsColumnsGetCellParams
@@ -1712,14 +1728,15 @@ object MainForm: TMainForm
           item
             ButtonStyle = cbsUpDown
             CellButtons = <>
-            DisplayFormat = '#.00'
+            DisplayFormat = '0.###'
             DynProps = <>
             EditButton.Style = ebsUpDownEh
             EditButton.Visible = True
             EditButtons = <>
-            FieldName = 'CB16'
+            FieldName = 'C16'
             Footer.ValueType = fvtFieldValue
             Footers = <>
+            ReadOnly = True
             Title.Alignment = taCenter
             Width = 32
             OnGetCellParams = TB_GoodsOnDepotsColumnsGetCellParams
@@ -1727,14 +1744,15 @@ object MainForm: TMainForm
           item
             ButtonStyle = cbsUpDown
             CellButtons = <>
-            DisplayFormat = '#.00'
+            DisplayFormat = '0.###'
             DynProps = <>
             EditButton.Style = ebsUpDownEh
             EditButton.Visible = True
             EditButtons = <>
-            FieldName = 'CB17'
+            FieldName = 'C17'
             Footer.ValueType = fvtFieldValue
             Footers = <>
+            ReadOnly = True
             Title.Alignment = taCenter
             Width = 32
             OnGetCellParams = TB_GoodsOnDepotsColumnsGetCellParams
@@ -1742,14 +1760,15 @@ object MainForm: TMainForm
           item
             ButtonStyle = cbsUpDown
             CellButtons = <>
-            DisplayFormat = '#.00'
+            DisplayFormat = '0.###'
             DynProps = <>
             EditButton.Style = ebsUpDownEh
             EditButton.Visible = True
             EditButtons = <>
-            FieldName = 'CB18'
+            FieldName = 'C18'
             Footer.ValueType = fvtFieldValue
             Footers = <>
+            ReadOnly = True
             Title.Alignment = taCenter
             Width = 32
             OnGetCellParams = TB_GoodsOnDepotsColumnsGetCellParams
@@ -1757,14 +1776,15 @@ object MainForm: TMainForm
           item
             ButtonStyle = cbsUpDown
             CellButtons = <>
-            DisplayFormat = '#.00'
+            DisplayFormat = '0.###'
             DynProps = <>
             EditButton.Style = ebsUpDownEh
             EditButton.Visible = True
             EditButtons = <>
-            FieldName = 'CB19'
+            FieldName = 'C19'
             Footer.ValueType = fvtFieldValue
             Footers = <>
+            ReadOnly = True
             Title.Alignment = taCenter
             Width = 32
             OnGetCellParams = TB_GoodsOnDepotsColumnsGetCellParams
@@ -1772,14 +1792,15 @@ object MainForm: TMainForm
           item
             ButtonStyle = cbsUpDown
             CellButtons = <>
-            DisplayFormat = '#.00'
+            DisplayFormat = '0.###'
             DynProps = <>
             EditButton.Style = ebsUpDownEh
             EditButton.Visible = True
             EditButtons = <>
-            FieldName = 'CB20'
+            FieldName = 'C20'
             Footer.ValueType = fvtFieldValue
             Footers = <>
+            ReadOnly = True
             Title.Alignment = taCenter
             Width = 32
             OnGetCellParams = TB_GoodsOnDepotsColumnsGetCellParams
@@ -1787,7 +1808,7 @@ object MainForm: TMainForm
           item
             CellButtons = <>
             Color = 16776176
-            DisplayFormat = '0.00'
+            DisplayFormat = '0.###'
             DynProps = <>
             EditButtons = <>
             FieldName = 'C0'
@@ -1797,6 +1818,7 @@ object MainForm: TMainForm
             Title.Alignment = taCenter
             Title.Caption = #1041#1088#1072#1082
             Width = 32
+            OnGetCellParams = TB_GoodsOnDepotsColumnsGetCellParams
           end>
         object RowDetailData: TRowDetailPanelControlEh
         end
@@ -1848,7 +1870,9 @@ object MainForm: TMainForm
         OutlineVisible = False
         OutlineWidth = 120
         ThumbnailVisible = False
+        FindFmVisible = False
         UseReportHints = True
+        HideScrolls = False
       end
       object dxBarDockControl11: TdxBarDockControl
         Left = 0
@@ -3987,7 +4011,7 @@ object MainForm: TMainForm
     object rib_bar_settings: TdxBar
       Caption = #1055#1072#1088#1072#1084#1077#1090#1088#1099
       CaptionButtons = <>
-      DockedLeft = 502
+      DockedLeft = 503
       DockedTop = 0
       FloatLeft = 169
       FloatTop = 141
@@ -4005,22 +4029,6 @@ object MainForm: TMainForm
         item
           Visible = True
           ItemName = 'btn_changepass'
-        end
-        item
-          Visible = True
-          ItemName = 'btn_admin_fullaccess'
-        end
-        item
-          Visible = True
-          ItemName = 'dxBarButton20'
-        end
-        item
-          Visible = True
-          ItemName = 'dxBarButton29'
-        end
-        item
-          Visible = True
-          ItemName = 'dxBarButton30'
         end>
       OneOnRow = False
       Row = 0
@@ -5155,6 +5163,16 @@ object MainForm: TMainForm
           BeginGroup = True
           Visible = True
           ItemName = 'dxBarButton8'
+        end
+        item
+          BeginGroup = True
+          Visible = True
+          ItemName = 'btn_price_exportexcel'
+        end
+        item
+          BeginGroup = True
+          Visible = True
+          ItemName = 'dxBarButton14'
         end>
       NotDocking = [dsNone, dsLeft, dsRight, dsBottom]
       OneOnRow = True
@@ -6877,8 +6895,9 @@ object MainForm: TMainForm
       InternalEditValue = False
     end
     object btn_admin_fullaccess: TdxBarLargeButton
-      Action = act_file_goods_full
+      Caption = #1040#1076#1084#1080#1085' '#1076#1086#1089#1090#1091#1087
       Category = 1
+      Visible = ivAlways
       LargeImageIndex = 25
     end
     object dxBarButton11: TdxBarButton
@@ -9176,12 +9195,6 @@ object MainForm: TMainForm
       AutoCheck = True
       Caption = 'act_print_ondepot'
       ImageIndex = 34
-    end
-    object act_file_goods_full: TAction
-      Category = #1060#1072#1081#1083
-      Caption = #1040#1076#1084#1080#1085' '#1076#1086#1089#1090#1091#1087
-      ImageIndex = 29
-      OnExecute = act_file_goods_fullExecute
     end
     object act_arep_update: TAction
       Category = #1054#1090#1095#1105#1090' '#1079#1072' '#1087#1077#1088#1080#1086#1076

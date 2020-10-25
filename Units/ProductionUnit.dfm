@@ -299,6 +299,7 @@ object ProductionForm: TProductionForm
           item
             AutoFitColWidth = False
             CellButtons = <>
+            DisplayFormat = '0.###'
             DynProps = <>
             EditButtons = <>
             FieldName = 'CNT'
@@ -306,7 +307,19 @@ object ProductionForm: TProductionForm
             Title.Alignment = taCenter
             Title.Caption = #1050#1086#1083'-'#1074#1086
             Width = 100
-            OnUpdateData = TB_ProductionColumns2UpdateData
+          end
+          item
+            CellButtons = <>
+            DisplayFormat = '0.###'
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'TOTAL_WEIGHT'
+            Footers = <>
+            ReadOnly = True
+            Title.Alignment = taCenter
+            Title.Caption = #1042#1077#1089
+            Width = 80
+            OnGetCellParams = TB_ProductionColumns3GetCellParams
           end>
         object RowDetailData: TRowDetailPanelControlEh
         end
@@ -381,7 +394,7 @@ object ProductionForm: TProductionForm
           item
             AutoFitColWidth = False
             CellButtons = <>
-            DisplayFormat = '0.##'
+            DisplayFormat = '0.###'
             DynProps = <>
             EditButtons = <>
             FieldName = 'CNT'
@@ -389,7 +402,6 @@ object ProductionForm: TProductionForm
             Title.Alignment = taCenter
             Title.Caption = #1050#1086#1083'-'#1074#1086
             Width = 100
-            OnUpdateData = TB_SpecificationColumns2UpdateData
           end
           item
             CellButtons = <>
@@ -400,6 +412,19 @@ object ProductionForm: TProductionForm
             Title.Alignment = taCenter
             Title.Caption = #1057#1082#1083#1072#1076
             Width = 100
+          end
+          item
+            CellButtons = <>
+            DisplayFormat = '0.###'
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'TOTAL_WEIGHT'
+            Footers = <>
+            ReadOnly = True
+            Title.Alignment = taCenter
+            Title.Caption = #1042#1077#1089
+            Width = 80
+            OnGetCellParams = TB_SpecificationColumns4GetCellParams
           end>
         object RowDetailData: TRowDetailPanelControlEh
         end

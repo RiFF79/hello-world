@@ -85,10 +85,8 @@ type
       Shift: TShiftState);
     procedure TB_RetSupplCellClick(Column: TColumnEh);
     procedure edit_clientPropertiesCloseUp(Sender: TObject);
-    procedure TB_RetSupplColumns2UpdateData(Sender: TObject; var Text: string;
-      var Value: Variant; var UseText, Handled: Boolean);
-    procedure TB_RetSupplColumns3UpdateData(Sender: TObject; var Text: string;
-      var Value: Variant; var UseText, Handled: Boolean);
+    procedure TB_RetSupplColumns6GetCellParams(Sender: TObject;
+      EditMode: Boolean; Params: TColCellParamsEh);
   private
     curs_accept: Boolean;
     procedure SetRecord;
@@ -121,9 +119,6 @@ begin
       fbn('GOOD_ID').AsInteger := SelectGoodForm.SelectedID;
       fbn('PRICE').AsFloat := Data.GetLastArrivalPrice(fbn('GOOD_ID').AsInteger,
         Data.DS_Return_Suppl_N.fbn('CUST_ID').AsInteger, false, false);
-      if (Data.GetItemUnits(SelectGoodForm.SelectedID) = 0) and
-          not VarIsNull(FieldValues['CNT']) then
-        FieldValues['CNT'] := SysContainer.StandartIntRound(FieldValues['CNT']);
       Refresh;
     end;
 end;
@@ -182,22 +177,12 @@ begin
     SetRecord;
 end;
 
-procedure TRetSupplForm.TB_RetSupplColumns2UpdateData(Sender: TObject;
-  var Text: string; var Value: Variant; var UseText, Handled: Boolean);
+procedure TRetSupplForm.TB_RetSupplColumns6GetCellParams(Sender: TObject;
+  EditMode: Boolean; Params: TColCellParamsEh);
 begin
-  if VarIsNull(Value) or (Value='') then exit;
-  UseText := false;
-  if Data.DS_Return_Suppl.FBN('UNIT_ID').AsInteger = 0
-    then Value := SysContainer.StandartIntRound(Value)
-    else Value := SysContainer.StandartRound(Value);
-end;
-
-procedure TRetSupplForm.TB_RetSupplColumns3UpdateData(Sender: TObject;
-  var Text: string; var Value: Variant; var UseText, Handled: Boolean);
-begin
-  if VarIsNull(Value) or (Value='') then exit;
-  UseText := false;
-  Value := SysContainer.StandartRound(Value);
+  if (Data.DS_Return_Suppl.FBN('UNIT_ID').AsInteger = 1) OR (Data.DS_Return_Suppl.FBN('TOTAL_WEIGHT').AsFloat = 0)
+    then Params.Text := ''
+    else Params.Text := Params.Text + ' Í„';
 end;
 
 procedure TRetSupplForm.FormCreate(Sender: TObject);

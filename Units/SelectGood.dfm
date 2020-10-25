@@ -128,7 +128,7 @@ object SelectGoodForm: TSelectGoodForm
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
-        Width = 232
+        Width = 100
       end
       item
         CellButtons = <>
@@ -466,6 +466,7 @@ object SelectGoodForm: TSelectGoodForm
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
         Width = 32
+        OnGetCellParams = TB_GoodsSelectColumnsGetCellParams
       end
       item
         Alignment = taCenter

@@ -11,18 +11,17 @@ uses
   cxDropDownEdit, cxDBEdit, Vcl.Menus, cxButtons, cxGroupBox, Vcl.Grids,
   dxSkinsCore, dxSkinDarkSide, Vcl.ComCtrls, cxLookupEdit, cxDBLookupEdit,
   cxDBLookupComboBox, cxCheckBox, StrUtils, ToolCtrlsEh, DBGridEhToolCtrls,
-  DynVarsEh, dxSkinSilver, EhLibVCL, DBAxisGridsEh, dxSkinDevExpressStyle;
+  DynVarsEh, dxSkinSilver, EhLibVCL, DBAxisGridsEh, dxSkinDevExpressStyle,
+  cxHyperLinkEdit, cxLabel;
 
 type
   TItemEditorForm = class(TForm)
-    Label1: TLabel;
     Edit_FullName: TDBEditEh;
     Edit_Type: TDBLookupComboboxEh;
     Edit_Firm: TDBLookupComboboxEh;
     Edit_PriceShop: TDBNumberEditEh;
     Edit_Price2: TDBNumberEditEh;
     Edit_Price1: TDBNumberEditEh;
-    Bevel7: TBevel;
     Label17: TLabel;
     Bevel9: TBevel;
     edit_OldPrice1: TDBNumberEditEh;
@@ -31,12 +30,6 @@ type
     Bevel1: TBevel;
     edit_PriceShop2: TDBNumberEditEh;
     edit_OldPriceShop2: TDBNumberEditEh;
-    bvl1: TBevel;
-    lbl1: TLabel;
-    TB_SupplPrices2: TDBGridEh;
-    TB_SupplPrices1: TDBGridEh;
-    DBGridEh3: TDBGridEh;
-    DBGridEh5: TDBGridEh;
     edit_PriceCategory: TDBLookupComboboxEh;
     btn_ok: TcxButton;
     btn_apply: TcxButton;
@@ -57,18 +50,12 @@ type
     lbl_allarrived: TLabel;
     Label13: TLabel;
     lbl_allsaled: TLabel;
-    btn_Recalculate: TcxButton;
-    btn_minprice: TcxButton;
     Label25: TLabel;
     DBText2: TDBText;
     item_date_to_check: TDateTimePicker;
     editDepot: TcxLookupComboBox;
     cxButton1: TcxButton;
     DBGridEh1: TDBGridEh;
-    Label27: TLabel;
-    Bevel11: TBevel;
-    menu_suppl: TPopupMenu;
-    N1: TMenuItem;
     cxGroupBox4: TcxGroupBox;
     cxDBCheckBox1: TcxDBCheckBox;
     cxDBCheckBox2: TcxDBCheckBox;
@@ -76,6 +63,11 @@ type
     edit_weight: TDBNumberEditEh;
     Label2: TLabel;
     lbl_total_weight: TLabel;
+    cxGroupBox1: TcxGroupBox;
+    cxGroupBox5: TcxGroupBox;
+    cxGroupBox6: TcxGroupBox;
+    cxGroupBox7: TcxGroupBox;
+    cxLabel1: TcxLabel;
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormShortCut(var Msg: TWMKey; var Handled: Boolean);
@@ -123,16 +115,14 @@ type
     procedure btn_applyClick(Sender: TObject);
     procedure LPgridDrawCell(Sender: TObject; ACol, ARow: Integer; Rect: TRect;
       State: TGridDrawState);
-    procedure btn_RecalculateClick(Sender: TObject);
-    procedure btn_minpriceClick(Sender: TObject);
     procedure cxButton1Click(Sender: TObject);
-    procedure N1Click(Sender: TObject);
+    procedure cxLabel1Click(Sender: TObject);
   private
     min_ext_price: real;
+    procedure UpdateLabels;
   public
     EnControl: Boolean;
     isFromArrival: Boolean;
-    procedure UpdateSupplierNames;
   end;
 
 var
@@ -146,29 +136,8 @@ uses DataConteiner, HistoryUnit, MainUnit, QueryDataContainer,
 {$R *.dfm}
 
 procedure TItemEditorForm.FormShow(Sender: TObject);
-var
-  good_id: Integer;
-  all_saled: real;
-  all_arrived: real;
-  cs: variant;
-  s: string;
-  last_arrival_price: real;
 begin
-  good_id := Data.DS_Goods.fbn('ID').AsInteger;
-  Data.DS_EXT_PRICE.Locate('GOOD_ID', inttostr(good_id), []);
-  min_ext_price := Data.DS_EXT_PRICE.fbn('EXT_PRICE').AsFloat;
-  all_saled := Data.AllSaled(Data.DS_Goods.fbn('ID').AsInteger);
-  all_arrived := Data.AllArrived(Data.DS_Goods.fbn('ID').AsInteger);
-  lbl_allsaled.caption := floattostr(all_saled);
-  lbl_allarrived.caption := floattostr(all_arrived);
-  lbl_totalcount.caption := floattostr(all_arrived - all_saled);
-  lbl_total_weight.Caption := FloatToStrF(Data.DS_Goods.FBN('TOTAL_WEIGHT').AsFloat, ffFixed, 20, 2);
-  cs := Data.Database.QueryValues
-    ('SELECT ARRIVAL_N.CUST_ID, ARRIVAL_N.CURR_ID, ARRIVAL_N.A_DATE, ARRIVAL_N.CURS FROM ARRIVAL,ARRIVAL_N WHERE (ARRIVAL.GOOD_ID ='
-    + inttostr(good_id) +
-    ') AND (ARRIVAL_N.ID = ARRIVAL.NAKL_ID) ORDER BY ARRIVAL.ID DESC ROWS 1');
-  UpdateSupplierNames;
-
+  UpdateLabels;
   Edit_Firm.Enabled := EnControl;
   Edit_FullName.Enabled := EnControl;
   Edit_Price1.Enabled := EnControl;
@@ -187,6 +156,26 @@ begin
       Edit_Price1.SelectAll;
     end
 end;
+
+procedure TItemEditorForm.UpdateLabels;
+var
+  good_id: Integer;
+  all_saled: real;
+  all_arrived: real;
+  s: string;
+  last_arrival_price: real;
+begin
+  good_id := Data.DS_Goods.fbn('ID').AsInteger;
+  Data.DS_EXT_PRICE.Locate('GOOD_ID', inttostr(good_id), []);
+  min_ext_price := Data.DS_EXT_PRICE.fbn('EXT_PRICE').AsFloat;
+  all_saled := Data.AllSaled(Data.DS_Goods.fbn('ID').AsInteger);
+  all_arrived := Data.AllArrived(Data.DS_Goods.fbn('ID').AsInteger);
+  lbl_allsaled.caption := floattostr(all_saled);
+  lbl_allarrived.caption := floattostr(all_arrived);
+  lbl_totalcount.caption := floattostr(all_arrived - all_saled);
+  lbl_total_weight.Caption := FloatToStrF(Data.DS_Goods.FBN('TOTAL_WEIGHT').AsFloat, ffFixed, 20, 2) + ' кг.';
+end;
+
 
 procedure TItemEditorForm.LPgridDrawCell(Sender: TObject; ACol, ARow: Integer;
   Rect: TRect; State: TGridDrawState);
@@ -207,51 +196,6 @@ begin
       Rect.Top + 1, s);
     SetTextAlign(Canvas.Handle, SavedAlign);
   end;
-end;
-
-procedure TItemEditorForm.N1Click(Sender: TObject);
-var
-  fname: string;
-  sname: string;
-begin
-  sname := (ActiveControl as TDBGridEh).Columns
-    [(ActiveControl as TDBGridEh).Col].Title.caption;
-  if MessageBox(Application.Handle, PChar('Удалить связь товара с поставщиком '
-    + sname + '?'), PChar(MainForm.caption), MB_OKCANCEL + MB_ICONQUESTION) <> IDOK
-  then
-    exit;
-  fname := ReplaceStr((ActiveControl as TDBGridEh).SelectedField.FieldName,
-    'SUPL_PRICE_', '');
-  with Data.DS_Goods do
-  begin
-    Edit;
-    fbn('SUPL_PRICE_' + fname).Clear;
-    fbn('AVAILABLE_' + fname).Clear;
-    fbn('SUPPL_DATE_' + fname).Clear;
-    fbn('ART_' + fname).Clear;
-    Post;
-  end;
-end;
-
-procedure TItemEditorForm.UpdateSupplierNames;
-var
-  i: Integer;
-begin
-
-//  Data.DS_ImportPrice.First;
-//  for i := 0 to 9 do
-//  begin
-//    TB_SupplPrices1.Columns.Items[i].Title.caption :=
-//      Data.DS_ImportPrice.FieldValues['SUPPL_NAME'];
-//    Data.DS_ImportPrice.Next;
-//  end;
-//  for i := 0 to 9 do
-//  begin
-//    TB_SupplPrices2.Columns.Items[i].Title.caption :=
-//      Data.DS_ImportPrice.FieldValues['SUPPL_NAME'];
-//    Data.DS_ImportPrice.Next;
-//  end;
-
 end;
 
 procedure TItemEditorForm.FormCreate(Sender: TObject);
@@ -275,40 +219,6 @@ begin
     HistoryForm.ShowEx(Data.DS_Goods.FieldByName('ID').AsInteger, default);
 end;
 
-procedure TItemEditorForm.btn_minpriceClick(Sender: TObject);
-var
-  suppl, dnepr, price, skid: real;
-  Handled: Boolean;
-begin
-  with Data.DS_Goods do
-  begin
-    if fbn('AVAILABLE_9').AsBoolean then
-      suppl := fbn('SUPL_PRICE_9').AsFloat
-    else
-      suppl := 0;
-    if fbn('AVAILABLE_6').AsBoolean then
-    begin
-      dnepr := fbn('SUPL_PRICE_6').AsFloat;
-      if (dnepr < suppl) or (suppl = 0) then
-        suppl := dnepr;
-    end;
-
-    if suppl = 0 then
-      exit;
-
-    skid := Data.DS_Defaults.fbn('DISCOUNT').AsFloat;
-
-    price := (suppl - 0.01) / (1 - skid / 100);
-    Edit_Price1.Text := floattostrF(price * 1.05, ffFixed, 20, 1);
-    Edit_Price2.Text := floattostrF(price, ffFixed, 20, 2);
-  end;
-end;
-
-procedure TItemEditorForm.btn_RecalculateClick(Sender: TObject);
-begin
-  Data.RecalculateCounts(Data.DS_Goods.fbn('ID').AsInteger);
-end;
-
 procedure TItemEditorForm.cxButton1Click(Sender: TObject);
 var
   saled, arrived, moved: real;
@@ -322,6 +232,12 @@ begin
   ShowMessage('Остаток на ''' + editDepot.Text + ''' на ' +
     datetostr(item_date_to_check.Date) + ' : ' + floattostr(arrived + moved
     - saled));
+end;
+
+procedure TItemEditorForm.cxLabel1Click(Sender: TObject);
+begin
+  Data.RecalculateCounts(Data.DS_Goods.fbn('ID').AsInteger);
+  UpdateLabels;
 end;
 
 procedure TItemEditorForm.TB_SupplPrices1Columns0GetCellParams(Sender: TObject;

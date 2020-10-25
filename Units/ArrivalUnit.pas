@@ -100,15 +100,9 @@ type
       AFont: TFont; var Background: TColor; State: TGridDrawState);
     procedure TB_ArrivalColumns5GetCellParams(Sender: TObject;
       EditMode: Boolean; Params: TColCellParamsEh);
-    procedure TB_ArrivalColumns6GetCellParams(Sender: TObject;
-      EditMode: Boolean; Params: TColCellParamsEh);
     procedure check_ColoursClick(Sender: TObject);
     procedure TB_ArrivalColumns4GetCellParams(Sender: TObject;
       EditMode: Boolean; Params: TColCellParamsEh);
-    procedure TB_ArrivalColumns2UpdateData(Sender: TObject; var Text: string;
-      var Value: Variant; var UseText, Handled: Boolean);
-    procedure TB_ArrivalColumns3UpdateData(Sender: TObject; var Text: string;
-      var Value: Variant; var UseText, Handled: Boolean);
   private
     procedure SetRecord;
   public
@@ -134,9 +128,6 @@ begin
     begin
       Edit;
       FieldValues['GOOD_ID'] := SelectGoodForm.SelectedID;
-      if (Data.GetItemUnits(SelectGoodForm.SelectedID) = 0) and
-          not VarIsNull(FieldValues['CNT']) then
-        FieldValues['CNT'] := SysContainer.StandartIntRound(FieldValues['CNT']);
       Refresh;
     end;
 end;
@@ -158,25 +149,6 @@ begin
     SetRecord;
 end;
 
-procedure TArrivalForm.TB_ArrivalColumns2UpdateData(Sender: TObject;
-  var Text: string; var Value: Variant; var UseText, Handled: Boolean);
-begin
-  if VarIsNull(Value) or (Value='') then exit;
-  
-  UseText := false;
-  if Data.DS_ARRIVAL.FBN('UNIT_ID').AsInteger = 0
-    then Value := SysContainer.StandartIntRound(Value)
-    else Value := SysContainer.StandartRound(Value);
-end;
-
-procedure TArrivalForm.TB_ArrivalColumns3UpdateData(Sender: TObject;
-  var Text: string; var Value: Variant; var UseText, Handled: Boolean);
-begin
-  if VarIsNull(Value) or (Value='') then exit;
-  UseText := false;
-  Value := SysContainer.StandartRound(Value);
-end;
-
 procedure TArrivalForm.TB_ArrivalColumns4GetCellParams(Sender: TObject;
   EditMode: Boolean; Params: TColCellParamsEh);
 begin
@@ -188,15 +160,9 @@ end;
 procedure TArrivalForm.TB_ArrivalColumns5GetCellParams(Sender: TObject;
   EditMode: Boolean; Params: TColCellParamsEh);
 begin
-  if Data.DS_Arrival.FBN('WEIGHT').AsInteger = 0 then
-    Params.Text := '';
-end;
-
-procedure TArrivalForm.TB_ArrivalColumns6GetCellParams(Sender: TObject;
-  EditMode: Boolean; Params: TColCellParamsEh);
-begin
-  if Data.DS_Arrival.FBN('WEIGHT').AsInteger = 0 then
-    Params.Text := '';
+  if (Data.DS_Arrival.FBN('UNIT_ID').AsInteger = 1) OR (Data.DS_Arrival.FBN('TOTAL_WEIGHT').AsFloat = 0)
+    then Params.Text := ''
+    else Params.Text := Params.Text + ' Í„';
 end;
 
 procedure TArrivalForm.TB_ArrivalDblClick(Sender: TObject);

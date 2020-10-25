@@ -3,7 +3,7 @@ object RetCustForm: TRetCustForm
   Top = 146
   Caption = #1042#1086#1079#1074#1088#1072#1090' '#1086#1090' '#1087#1086#1082#1091#1087#1072#1090#1077#1083#1103
   ClientHeight = 623
-  ClientWidth = 1048
+  ClientWidth = 1111
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -21,7 +21,7 @@ object RetCustForm: TRetCustForm
   object TB_RetCust: TDBGridEh
     Left = 273
     Top = 31
-    Width = 775
+    Width = 838
     Height = 592
     Align = alClient
     AutoFitColWidths = True
@@ -71,6 +71,7 @@ object RetCustForm: TRetCustForm
       item
         AutoFitColWidth = False
         CellButtons = <>
+        DisplayFormat = '0.###'
         DynProps = <>
         EditButtons = <>
         FieldName = 'CNT'
@@ -78,11 +79,11 @@ object RetCustForm: TRetCustForm
         Title.Alignment = taCenter
         Title.Caption = #1050#1086#1083'-'#1074#1086
         Width = 80
-        OnUpdateData = TB_RetCustColumns2UpdateData
       end
       item
         AutoFitColWidth = False
         CellButtons = <>
+        DisplayFormat = '0.00##'
         DynProps = <>
         EditButtons = <>
         FieldName = 'PRICE'
@@ -90,12 +91,11 @@ object RetCustForm: TRetCustForm
         Title.Alignment = taCenter
         Title.Caption = #1062#1077#1085#1072
         Width = 80
-        OnUpdateData = TB_RetCustColumns3UpdateData
       end
       item
         AutoFitColWidth = False
         CellButtons = <>
-        DisplayFormat = '#.00'
+        DisplayFormat = '0.00##'
         DynProps = <>
         EditButtons = <>
         FieldName = 'SUMM'
@@ -104,6 +104,19 @@ object RetCustForm: TRetCustForm
         Title.Alignment = taCenter
         Title.Caption = #1057#1091#1084#1084#1072
         Width = 80
+      end
+      item
+        CellButtons = <>
+        DisplayFormat = '0.###'
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'TOTAL_WEIGHT'
+        Footers = <>
+        ReadOnly = True
+        Title.Alignment = taCenter
+        Title.Caption = #1042#1077#1089
+        Width = 80
+        OnGetCellParams = TB_RetCustColumns5GetCellParams
       end>
     object RowDetailData: TRowDetailPanelControlEh
     end
@@ -559,22 +572,18 @@ object RetCustForm: TRetCustForm
     end
     object m_specprice: TdxBarButton
       Action = MainForm.act_rc_price_spec
-      Caption = #1055#1088#1072#1081#1089' 2'
       Category = 1
     end
     object m_genprice: TdxBarButton
       Action = MainForm.act_rc_price_general
-      Caption = #1055#1088#1072#1081#1089' 1'
       Category = 1
     end
     object m_shop: TdxBarButton
       Action = MainForm.act_rc_price_shop1
-      Caption = #1055#1088#1072#1081#1089' 3'
       Category = 1
     end
     object m_shop2: TdxBarButton
       Action = MainForm.act_rc_price_shop2
-      Caption = #1055#1088#1072#1081#1089' 4'
       Category = 1
     end
     object m_LastPrices: TdxBarButton

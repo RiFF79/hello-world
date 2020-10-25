@@ -147,7 +147,7 @@ object HistoryForm: THistoryForm
       item
         AutoFitColWidth = False
         CellButtons = <>
-        DisplayFormat = '0.00'
+        DisplayFormat = '0.00##'
         DynProps = <>
         EditButtons = <>
         FieldName = 'PRICE'
@@ -160,7 +160,7 @@ object HistoryForm: THistoryForm
       item
         AutoFitColWidth = False
         CellButtons = <>
-        DisplayFormat = '#.##'
+        DisplayFormat = '0.###'
         DynProps = <>
         EditButtons = <>
         FieldName = 'CNT'

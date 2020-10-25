@@ -7,7 +7,7 @@ uses
   Dialogs, DBGridEh, ExtCtrls, StdCtrls, Mask, DBCtrlsEh,
   DBLookupEh, inifiles, Buttons, DBCtrls, DB,
   GridsEh, StrUtils, int_const, DBGridEhGrouping, ToolCtrlsEh,
-  DBGridEhToolCtrls, DynVarsEh, EhLibVCL, DBAxisGridsEh;
+  DBGridEhToolCtrls, DynVarsEh, EhLibVCL, DBAxisGridsEh, Math;
 
 type
   TSelectGoodForm = class(TForm)
@@ -188,32 +188,29 @@ end;
 procedure TSelectGoodForm.TB_GoodsSelectColumnsGetCellParams(Sender: TObject;
   EditMode: Boolean; Params: TColCellParamsEh);
 var
-  cDepot: string;
-  cbDepot: string;
+  item_value: double;
+  item_weight: double;
+  weight_text: String;
 begin
-  if Params.Text <> '' then
+  if EditMode then exit;
+
+  item_value := Params.Text.ToDouble();
+  if item_value < 0 then
   begin
-    cDepot := (Sender as TDBGridColumnEh).FieldName;
-    cbDepot := 'CB' + copy(cDepot, 2, length(cDepot) - 1);
-    Params.Text := inttostr(Query.DS_Select[cDepot]);
-    if Query.DS_Select[cDepot] < Query.DS_Select[cbDepot] then
-    begin
-      Params.Font.Color := clBlue;
-      Params.Font.Style := [fsBold];
-      Params.Background := clSilver;
-    end;
-    if Query.DS_Select[cbDepot] < 0 then
-    begin
-      Params.Font.Color := clPurple;
-      Params.Font.Style := [fsBold];
-      Params.Background := clSilver;
-      Params.Text := '---   ' + Params.Text;
-    end;
-    if Query.DS_Select[cDepot] < 0 then
-    begin
-      Params.Font.Style := [fsBold];
-      Params.Font.Color := color_Minus;
-    end;
+    Params.Font.Style := [fsBold];
+    Params.Font.Color := color_Minus;
+  end;
+  if item_value = 0 then
+  begin
+    Params.Font.Color := clGrayText;
+  end;
+  if Query.DS_Select.FBN('UNIT').AsInteger = 0
+    then Params.Text := Params.Text + ' шт'
+    else Params.Text := Params.Text + ' кг';
+  item_weight := Query.DS_Select.FBN('ITEM_WEIGHT').AsFloat * item_value;
+  if item_weight <> 0 then
+  begin
+    Params.Text := Params.Text + ' (' + floatToStrF(RoundTo(item_weight, -3), ffGeneral, 15, 3) + ' кг)';
   end;
 end;
 

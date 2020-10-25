@@ -72,8 +72,8 @@ type
     procedure dxBarButton3Click(Sender: TObject);
     procedure edit_depotPropertiesCloseUp(Sender: TObject);
     procedure edit_commentsExit(Sender: TObject);
-    procedure TB_MovesColumns2UpdateData(Sender: TObject; var Text: string;
-      var Value: Variant; var UseText, Handled: Boolean);
+    procedure TB_MovesColumns3GetCellParams(Sender: TObject; EditMode: Boolean;
+      Params: TColCellParamsEh);
   private
     procedure SetRecord;
   public
@@ -98,21 +98,16 @@ begin
     begin
       Edit;
       FieldValues['GOOD_ID'] := SelectGoodForm.SelectedID;
-      if (Data.GetItemUnits(SelectGoodForm.SelectedID) = 0) and
-          not VarIsNull(FieldValues['CNT']) then
-        FieldValues['CNT'] := SysContainer.StandartIntRound(FieldValues['CNT']);
       Refresh;
     end;
 end;
 
-procedure TMovesForm.TB_MovesColumns2UpdateData(Sender: TObject;
-  var Text: string; var Value: Variant; var UseText, Handled: Boolean);
+procedure TMovesForm.TB_MovesColumns3GetCellParams(Sender: TObject;
+  EditMode: Boolean; Params: TColCellParamsEh);
 begin
-  if VarIsNull(Value) or (Value='') then exit;
-  UseText := false;
-  if Data.DS_Moves.FBN('UNIT_ID').AsInteger = 0
-    then Value := SysContainer.StandartIntRound(Value)
-    else Value := SysContainer.StandartRound(Value);
+  if (Data.DS_Moves.FBN('UNIT_ID').AsInteger = 1) OR (Data.DS_Moves.FBN('TOTAL_WEIGHT').AsFloat = 0)
+    then Params.Text := ''
+    else Params.Text := Params.Text + ' Í„';
 end;
 
 procedure TMovesForm.TB_MovesDblClick(Sender: TObject);

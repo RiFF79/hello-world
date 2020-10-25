@@ -131,10 +131,6 @@ type
     procedure edit_clientPropertiesCloseUp(Sender: TObject);
     procedure edit_clientPropertiesEditValueChanged(Sender: TObject);
     procedure edit_procentExit(Sender: TObject);
-    procedure TB_SaleColumns2UpdateData(Sender: TObject; var Text: string;
-      var Value: Variant; var UseText, Handled: Boolean);
-    procedure TB_SaleColumns3UpdateData(Sender: TObject; var Text: string;
-      var Value: Variant; var UseText, Handled: Boolean);
     procedure TB_SaleColumns6GetCellParams(Sender: TObject; EditMode: Boolean;
       Params: TColCellParamsEh);
   private
@@ -208,17 +204,18 @@ var
   SaleIsNotEmpty: Boolean;
   ReqIsNotEmpty: Boolean;
   ReqListIsNotEmpty: Boolean;
+  canEdit: Boolean;
 begin
-  SaleIsNotEmpty := Data.DS_Sale.VisibleRecordCount > 0;
+  canEdit := (Data.DS_Sale_N.FBN('ENTERED').AsInteger = 0) and FilterLayout.enabled;
+  SaleIsNotEmpty := (Data.DS_Sale.VisibleRecordCount > 0);
   ReqIsNotEmpty := Data.DS_Requirements.VisibleRecordCount > 0;
   ReqListIsNotEmpty := Data.DS_ReqList.VisibleRecordCount > 0;
   MainForm.act_sale_req_print.Enabled := ReqIsNotEmpty;
-  if MainForm.Tree_Docs.Selected.AbsoluteIndex = tr_sale_exec then exit;
-  MainForm.act_sale_req_add.Enabled := SaleIsNotEmpty;
-  MainForm.act_sale_req_clear.Enabled := ReqListIsNotEmpty;
-  MainForm.act_sale_req_delete.Enabled := ReqIsNotEmpty;
-  MainForm.act_sale_check.Enabled := SaleIsNotEmpty;
-  MainForm.act_sale_req_tosale.Enabled := ReqIsNotEmpty;
+  MainForm.act_sale_req_add.Enabled := SaleIsNotEmpty and canEdit;
+  MainForm.act_sale_req_clear.Enabled := ReqListIsNotEmpty and canEdit;
+  MainForm.act_sale_req_delete.Enabled := ReqIsNotEmpty and canEdit;
+  MainForm.act_sale_check.Enabled := SaleIsNotEmpty and canEdit;
+  MainForm.act_sale_req_tosale.Enabled := ReqIsNotEmpty and canEdit;
 end;
 
 procedure TSaleForm.SetRecord;
@@ -233,9 +230,6 @@ begin
       TB_Sale.Columns[4].ReadOnly := false;
       Data.DS_Sale.Edit;
       Data.DS_Sale.fbn('GOOD_ID').AsInteger := SelectedID;
-      if (Data.GetItemUnits(SelectGoodForm.SelectedID) = 0) and
-          not VarIsNull(Data.DS_Sale['CNT']) then
-        Data.DS_Sale['CNT'] := SysContainer.StandartIntRound(Data.DS_Sale['CNT']);
       Data.DS_Sale.Post;
     end;
   end;
@@ -602,30 +596,12 @@ begin
     end;
 end;
 
-procedure TSaleForm.TB_SaleColumns2UpdateData(Sender: TObject; var Text: string;
-  var Value: Variant; var UseText, Handled: Boolean);
-begin
-  if VarIsNull(Value) or (Value='') then exit;
-  UseText := false;
-  if Data.DS_Sale.FBN('UNIT_ID').AsInteger = 0
-    then Value := SysContainer.StandartIntRound(Value)
-    else Value := SysContainer.StandartRound(Value);
-end;
-
-procedure TSaleForm.TB_SaleColumns3UpdateData(Sender: TObject; var Text: string;
-  var Value: Variant; var UseText, Handled: Boolean);
-begin
-  if VarIsNull(Value) or (Value='') then exit;
-  UseText := false;
-  Value := SysContainer.StandartRound(Value);
-end;
-
 procedure TSaleForm.TB_SaleColumns6GetCellParams(Sender: TObject;
   EditMode: Boolean; Params: TColCellParamsEh);
 begin
   if (Data.DS_Sale.FBN('UNIT_ID').AsInteger = 1) OR (Data.DS_Sale.FBN('TOTAL_WEIGHT').AsFloat = 0)
     then Params.Text := ''
-    else Params.Text := Params.Text + 'Í„';
+    else Params.Text := Params.Text + ' Í„';
 end;
 
 procedure TSaleForm.ShowDepotsPanel;

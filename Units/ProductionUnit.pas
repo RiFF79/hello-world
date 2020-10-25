@@ -93,14 +93,14 @@ type
     procedure TB_DepotsExit(Sender: TObject);
     procedure TB_DepotsKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
-    procedure TB_ProductionColumns2UpdateData(Sender: TObject; var Text: string;
-      var Value: Variant; var UseText, Handled: Boolean);
-    procedure TB_SpecificationColumns2UpdateData(Sender: TObject;
-      var Text: string; var Value: Variant; var UseText, Handled: Boolean);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure edit_commentsKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure edit_commentsExit(Sender: TObject);
+    procedure TB_ProductionColumns3GetCellParams(Sender: TObject;
+      EditMode: Boolean; Params: TColCellParamsEh);
+    procedure TB_SpecificationColumns4GetCellParams(Sender: TObject;
+      EditMode: Boolean; Params: TColCellParamsEh);
   private
     procedure SetProductionRecord;
     procedure SetSpecificationRecord;
@@ -149,9 +149,6 @@ begin
     begin
       Edit;
       FieldValues['GOOD_ID'] := SelectGoodForm.SelectedID;
-      if (Data.GetItemUnits(SelectGoodForm.SelectedID) = 0) and
-          not VarIsNull(FieldValues['CNT']) then
-        FieldValues['CNT'] := SysContainer.StandartIntRound(FieldValues['CNT']);
       Post;
     end;
     Data.DS_Production_SP.CloseOpen(true);
@@ -166,8 +163,6 @@ begin
     begin
       Edit;
       FieldValues['GOOD_ID'] := SelectGoodForm.SelectedID;
-      if (Data.GetItemUnits(SelectGoodForm.SelectedID) = 0) then
-        fbn('CNT').AsFloat := SysContainer.StandartIntRound(fbn('CNT').AsFloat);
       Post;
     end;
 end;
@@ -235,14 +230,12 @@ begin
     ApplyDepot;
 end;
 
-procedure TProductionForm.TB_ProductionColumns2UpdateData(Sender: TObject;
-  var Text: string; var Value: Variant; var UseText, Handled: Boolean);
+procedure TProductionForm.TB_ProductionColumns3GetCellParams(Sender: TObject;
+  EditMode: Boolean; Params: TColCellParamsEh);
 begin
-  if VarIsNull(Value) or (Value='') then exit;
-  UseText := false;
-  if Data.DS_Production.FBN('UNIT_ID').AsInteger = 0
-    then Value := SysContainer.StandartIntRound(Value)
-    else Value := SysContainer.StandartRound(Value);
+  if (Data.DS_Production.FBN('UNIT_ID').AsInteger = 1) OR (Data.DS_Production.FBN('TOTAL_WEIGHT').AsFloat = 0)
+    then Params.Text := ''
+    else Params.Text := Params.Text + ' Í„';
 end;
 
 procedure TProductionForm.TB_ProductionDblClick(Sender: TObject);
@@ -275,14 +268,12 @@ begin
     then Data.DS_Production_SP.Post;
 end;
 
-procedure TProductionForm.TB_SpecificationColumns2UpdateData(Sender: TObject;
-  var Text: string; var Value: Variant; var UseText, Handled: Boolean);
+procedure TProductionForm.TB_SpecificationColumns4GetCellParams(Sender: TObject;
+  EditMode: Boolean; Params: TColCellParamsEh);
 begin
-  if VarIsNull(Value) or (Value='') then exit;
-  UseText := false;
-  if Data.DS_Production_SP.FBN('UNIT_ID').AsInteger = 0
-    then Value := SysContainer.StandartIntRound(Value)
-    else Value := SysContainer.StandartRound(Value);
+  if (Data.DS_Production_SP.FBN('UNIT_ID').AsInteger = 1) OR (Data.DS_Production_SP.FBN('TOTAL_WEIGHT').AsFloat = 0)
+    then Params.Text := ''
+    else Params.Text := Params.Text + ' Í„';
 end;
 
 procedure TProductionForm.ShowDepotsPanel;

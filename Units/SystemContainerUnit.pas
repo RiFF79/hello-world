@@ -143,8 +143,6 @@ type
       firm: string): string;
     function RemoveWasteSpaces(str: string): string;
     function FirstCapitals(str: string): string;
-    function StandartRound(value: Variant): Variant;
-    function StandartIntRound(value: Double): Double;
   end;
 
 var
@@ -156,16 +154,6 @@ uses DataConteiner;
 
 {$R *.dfm}
 
-function TSysContainer.StandartIntRound(value: Double): Double;
-begin
-    Result := Int(value);
-end;
-
-function TSysContainer.StandartRound(value: Variant): Variant;
-begin
-  if (value <> '') then
-    Result := RoundTo(value, -2);
-end;
 
 function TSysContainer.FirstCapitals(str: string): string;
 var

@@ -3,7 +3,7 @@ object MovesForm: TMovesForm
   Top = 176
   Caption = #1053#1072#1082#1083#1072#1076#1085#1072#1103' '#1087#1077#1088#1077#1084#1077#1097#1077#1085#1080#1103
   ClientHeight = 502
-  ClientWidth = 832
+  ClientWidth = 991
   Color = clBtnFace
   Font.Charset = RUSSIAN_CHARSET
   Font.Color = clWindowText
@@ -22,7 +22,7 @@ object MovesForm: TMovesForm
   object TB_Moves: TDBGridEh
     Left = 257
     Top = 31
-    Width = 575
+    Width = 734
     Height = 471
     Align = alClient
     AutoFitColWidths = True
@@ -69,6 +69,7 @@ object MovesForm: TMovesForm
       item
         AutoFitColWidth = False
         CellButtons = <>
+        DisplayFormat = '0.###'
         DynProps = <>
         EditButtons = <>
         FieldName = 'CNT'
@@ -76,7 +77,19 @@ object MovesForm: TMovesForm
         Title.Alignment = taCenter
         Title.Caption = #1050#1086#1083'-'#1074#1086
         Width = 80
-        OnUpdateData = TB_MovesColumns2UpdateData
+      end
+      item
+        CellButtons = <>
+        DisplayFormat = '0.###'
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'TOTAL_WEIGHT'
+        Footers = <>
+        ReadOnly = True
+        Title.Alignment = taCenter
+        Title.Caption = #1042#1077#1089
+        Width = 80
+        OnGetCellParams = TB_MovesColumns3GetCellParams
       end>
     object RowDetailData: TRowDetailPanelControlEh
     end

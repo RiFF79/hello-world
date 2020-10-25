@@ -84,10 +84,8 @@ type
       Shift: TShiftState);
     procedure controlExit(Sender: TObject);
     procedure clientCloseUp(Sender: TObject);
-    procedure TB_RetCustColumns2UpdateData(Sender: TObject; var Text: string;
-      var Value: Variant; var UseText, Handled: Boolean);
-    procedure TB_RetCustColumns3UpdateData(Sender: TObject; var Text: string;
-      var Value: Variant; var UseText, Handled: Boolean);
+    procedure TB_RetCustColumns5GetCellParams(Sender: TObject;
+      EditMode: Boolean; Params: TColCellParamsEh);
   private
     { Private declarations }
     curs_accept: Boolean;
@@ -115,11 +113,8 @@ begin
     begin
       Edit;
       fbn('GOOD_ID').AsInteger := SelectGoodForm.SelectedID;
-      if (Data.GetItemUnits(SelectGoodForm.SelectedID) = 0) and
-          not VarIsNull(FieldValues['CNT']) then
-        FieldValues['CNT'] := SysContainer.StandartIntRound(FieldValues['CNT']);
       FieldValues['PRICE'] := Data.GetLastSalePrice(fbn('GOOD_ID').AsInteger,
-        Data.DS_Return_Cust_N.fbn('CUST_ID').AsInteger);
+      Data.DS_Return_Cust_N.fbn('CUST_ID').AsInteger);
       Refresh;
     end;
 end;
@@ -159,22 +154,12 @@ begin
     SetRecord;
 end;
 
-procedure TRetCustForm.TB_RetCustColumns2UpdateData(Sender: TObject;
-  var Text: string; var Value: Variant; var UseText, Handled: Boolean);
+procedure TRetCustForm.TB_RetCustColumns5GetCellParams(Sender: TObject;
+  EditMode: Boolean; Params: TColCellParamsEh);
 begin
-  if VarIsNull(Value) or (Value='') then exit;
-  UseText := false;
-  if Data.DS_Return_Cust.FBN('UNIT_ID').AsInteger = 0
-    then Value := SysContainer.StandartIntRound(Value)
-    else Value := SysContainer.StandartRound(Value);
-end;
-
-procedure TRetCustForm.TB_RetCustColumns3UpdateData(Sender: TObject;
-  var Text: string; var Value: Variant; var UseText, Handled: Boolean);
-begin
-  if VarIsNull(Value) or (Value='') then exit;
-  UseText := false;
-  Value := SysContainer.StandartRound(Value);
+  if (Data.DS_Return_Cust.FBN('UNIT_ID').AsInteger = 1) OR (Data.DS_Return_Cust.FBN('TOTAL_WEIGHT').AsFloat = 0)
+    then Params.Text := ''
+    else Params.Text := Params.Text + ' Í„';
 end;
 
 procedure TRetCustForm.FormCreate(Sender: TObject);

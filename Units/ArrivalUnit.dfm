@@ -77,6 +77,7 @@ object ArrivalForm: TArrivalForm
       end
       item
         CellButtons = <>
+        DisplayFormat = '0.###'
         DynProps = <>
         EditButtons = <>
         FieldName = 'CNT'
@@ -84,10 +85,10 @@ object ArrivalForm: TArrivalForm
         Title.Alignment = taCenter
         Title.Caption = #1050#1086#1083'-'#1074#1086
         Width = 80
-        OnUpdateData = TB_ArrivalColumns2UpdateData
       end
       item
         CellButtons = <>
+        DisplayFormat = '0.00##'
         DynProps = <>
         EditButtons = <>
         FieldName = 'PRICE'
@@ -95,11 +96,10 @@ object ArrivalForm: TArrivalForm
         Title.Alignment = taCenter
         Title.Caption = #1062#1077#1085#1072
         Width = 80
-        OnUpdateData = TB_ArrivalColumns3UpdateData
       end
       item
         CellButtons = <>
-        DisplayFormat = '#.00'
+        DisplayFormat = '0.00##'
         DynProps = <>
         EditButtons = <>
         FieldName = 'SUMM'
@@ -108,6 +108,19 @@ object ArrivalForm: TArrivalForm
         Title.Alignment = taCenter
         Title.Caption = #1057#1091#1084#1084#1072
         Width = 80
+      end
+      item
+        CellButtons = <>
+        DisplayFormat = '0.###'
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'TOTAL_WEIGHT'
+        Footers = <>
+        ReadOnly = True
+        Title.Alignment = taCenter
+        Title.Caption = #1042#1077#1089
+        Width = 80
+        OnGetCellParams = TB_ArrivalColumns5GetCellParams
       end
       item
         Alignment = taCenter
@@ -541,17 +554,14 @@ object ArrivalForm: TArrivalForm
     end
     object N2: TdxBarButton
       Action = MainForm.act_arr_price_general
-      Caption = #1055#1088#1072#1081#1089' 1'
       Category = 0
     end
     object N3: TdxBarButton
       Action = MainForm.act_arr_price_shop1
-      Caption = #1055#1088#1072#1081#1089' 3'
       Category = 0
     end
     object N4: TdxBarButton
       Action = MainForm.act_arr_price_shop2
-      Caption = #1055#1088#1072#1081#1089' 4'
       Category = 0
     end
     object btn_price: TdxBarButton

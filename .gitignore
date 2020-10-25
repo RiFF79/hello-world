@@ -19,3 +19,4 @@
 /Units/Profiling
 *.dcu
 /Units/*.identcache
+/Units/dcu

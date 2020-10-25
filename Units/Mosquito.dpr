@@ -31,7 +31,6 @@ uses
   RetCustUnit in 'RetCustUnit.pas' {RetCustForm},
   DeptReasonSelectUnit in 'DeptReasonSelectUnit.pas' {DebtReasonSelectForm},
   ClientCardUnit in 'ClientCardUnit.pas' {ClientCardForm},
-  GoodsFullEdit in 'GoodsFullEdit.pas' {GoodsFullEditForm},
   HistoryUnit in 'HistoryUnit.pas' {HistoryForm},
   Incassation in 'Incassation.pas' {IncassationForm},
   int_const in 'int_const.pas',
@@ -150,9 +149,6 @@ begin
   SplashForm.text.Caption := s + 'ClientCardForm';
   Application.ProcessMessages;
   Application.CreateForm(TClientCardForm, ClientCardForm);
-  SplashForm.text.Caption := s + 'GoodsFullEditForm';
-  Application.ProcessMessages;
-  Application.CreateForm(TGoodsFullEditForm, GoodsFullEditForm);
   SplashForm.text.Caption := s + 'HistoryForm';
   Application.ProcessMessages;
   Application.CreateForm(THistoryForm, HistoryForm);
@@ -224,7 +220,6 @@ begin
   MoneyInDepotsForm.Free;
   ImportExcelSaleForm.Free;
   CalculateSalesForm.Free;
-  GoodsFullEditForm.Free;
   HistoryForm.Free;
   MainForm.Free;
   Query.Free;

@@ -78,6 +78,7 @@ object RetSupplForm: TRetSupplForm
       item
         AutoFitColWidth = False
         CellButtons = <>
+        DisplayFormat = '0.###'
         DynProps = <>
         EditButtons = <>
         FieldName = 'CNT'
@@ -85,11 +86,11 @@ object RetSupplForm: TRetSupplForm
         Title.Alignment = taCenter
         Title.Caption = #1050#1086#1083'-'#1074#1086
         Width = 80
-        OnUpdateData = TB_RetSupplColumns2UpdateData
       end
       item
         AutoFitColWidth = False
         CellButtons = <>
+        DisplayFormat = '0.00##'
         DynProps = <>
         EditButtons = <>
         FieldName = 'PRICE'
@@ -97,7 +98,6 @@ object RetSupplForm: TRetSupplForm
         Title.Alignment = taCenter
         Title.Caption = #1062#1077#1085#1072
         Width = 80
-        OnUpdateData = TB_RetSupplColumns3UpdateData
       end
       item
         AutoDropDown = True
@@ -124,7 +124,7 @@ object RetSupplForm: TRetSupplForm
       end
       item
         CellButtons = <>
-        DisplayFormat = '#.00'
+        DisplayFormat = '0.00##'
         DynProps = <>
         EditButtons = <>
         FieldName = 'SUMM'
@@ -133,6 +133,19 @@ object RetSupplForm: TRetSupplForm
         Title.Alignment = taCenter
         Title.Caption = #1057#1091#1084#1084#1072
         Width = 80
+      end
+      item
+        CellButtons = <>
+        DisplayFormat = '0.###'
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'TOTAL_WEIGHT'
+        Footers = <>
+        ReadOnly = True
+        Title.Alignment = taCenter
+        Title.Caption = #1042#1077#1089
+        Width = 80
+        OnGetCellParams = TB_RetSupplColumns6GetCellParams
       end>
     object RowDetailData: TRowDetailPanelControlEh
     end

@@ -5,11 +5,13 @@ object Data: TData
   Width = 1128
   object Database: TpFIBDatabase
     AutoReconnect = True
+    Connected = True
     DBName = 'SERVER:C:\mosquito-stretch\DATABASE.GDB'
     DBParams.Strings = (
       'password=masterkey'
       'user_name=SYSDBA'
-      'lc_ctype=WIN1251')
+      'lc_ctype=WIN1251'
+      'sql_role_name=')
     SQLDialect = 3
     Timeout = 0
     DesignDBOptions = [ddoIsDefaultDatabase, ddoStoreConnected]
@@ -20,7 +22,6 @@ object Data: TData
     Top = 9
   end
   object TRead_Arrival_N: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 28
     Top = 104
@@ -128,7 +129,6 @@ object Data: TData
     poSQLINT64ToBCD = True
   end
   object TRead_Depots: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 200
     Top = 104
@@ -195,7 +195,6 @@ object Data: TData
     poSQLINT64ToBCD = True
   end
   object TRead_Firms: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 286
     Top = 104
@@ -293,7 +292,6 @@ object Data: TData
     poSQLINT64ToBCD = True
   end
   object TRead_GoodTypes: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 372
     Top = 104
@@ -470,7 +468,6 @@ object Data: TData
     poSQLINT64ToBCD = True
   end
   object TRead_Customers: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 458
     Top = 104
@@ -552,7 +549,6 @@ object Data: TData
     poSQLINT64ToBCD = True
   end
   object TRead_Currency: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 545
     Top = 104
@@ -661,7 +657,6 @@ object Data: TData
     end
   end
   object TRead_Curs: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 631
     Top = 104
@@ -681,11 +676,8 @@ object Data: TData
       'UPDATE GOODS'
       'SET '
       '    FULLNAME = :FULLNAME,'
-      '    NAME = :NAME,'
-      '    ML = :ML,'
       '    TYPE_ID = :TYPE_ID,'
       '    FIRM_ID = :FIRM_ID,'
-      '    STATE = :STATE,'
       '    PRICE1 = :PRICE1,'
       '    PRICE2 = :PRICE2,'
       '    PRICE_SHOP = :PRICE_SHOP,'
@@ -694,13 +686,10 @@ object Data: TData
       '    PRICE_SHOP2_LAST = :PRICE_SHOP2_LAST,'
       '    PRICE1_LAST = :PRICE1_LAST,'
       '    PRICE2_LAST = :PRICE2_LAST,'
-      '    PRICE_LAST_ARRIVAL = :PRICE_LAST_ARRIVAL,'
-      '    LAST_ARRIVAL_CURR_ID = :LAST_ARRIVAL_CURR_ID,'
       '    DATE_ADDED = :DATE_ADDED,'
       '    DATE_CHANGED = :DATE_CHANGED,'
-      '    DATE_ARRIVED = :DATE_ARRIVED,'
       '    DATE_SALED = :DATE_SALED,'
-      '    LAST_SUPPLIER_ID = :LAST_SUPPLIER_ID,'
+      '    C0 = :C0,'
       '    C1 = :C1,'
       '    C2 = :C2,'
       '    C3 = :C3,'
@@ -721,72 +710,8 @@ object Data: TData
       '    C18 = :C18,'
       '    C19 = :C19,'
       '    C20 = :C20,'
-      '    P1 = :P1,'
-      '    P2 = :P2,'
-      '    P3 = :P3,'
-      '    P4 = :P4,'
-      '    P5 = :P5,'
-      '    P6 = :P6,'
-      '    P7 = :P7,'
-      '    P8 = :P8,'
-      '    P9 = :P9,'
-      '    P10 = :P10,'
-      '    P11 = :P11,'
-      '    P12 = :P12,'
-      '    P13 = :P13,'
-      '    P14 = :P14,'
-      '    P15 = :P15,'
-      '    P16 = :P16,'
-      '    P17 = :P17,'
-      '    P18 = :P18,'
-      '    P19 = :P19,'
-      '    P20 = :P20,'
-      '    P21 = :P21,'
-      '    P22 = :P22,'
-      '    P23 = :P23,'
-      '    P24 = :P24,'
-      '    P25 = :P25,'
-      '    P26 = :P26,'
-      '    P27 = :P27,'
-      '    P28 = :P28,'
-      '    P29 = :P29,'
-      '    P30 = :P30,'
-      '    P31 = :P31,'
-      '    P32 = :P32,'
-      '    P33 = :P33,'
-      '    P34 = :P34,'
-      '    P35 = :P35,'
-      '    P36 = :P36,'
-      '    P37 = :P37,'
-      '    P38 = :P38,'
-      '    P39 = :P39,'
-      '    P40 = :P40,'
       '    SELECTED = :SELECTED,'
       '    DELETED = :DELETED,'
-      '    C0 = :C0,'
-      '    CB1 = :CB1,'
-      '    CB2 = :CB2,'
-      '    CB3 = :CB3,'
-      '    CB4 = :CB4,'
-      '    CB5 = :CB5,'
-      '    CB6 = :CB6,'
-      '    CB7 = :CB7,'
-      '    CB8 = :CB8,'
-      '    CB9 = :CB9,'
-      '    CB10 = :CB10,'
-      '    CB11 = :CB11,'
-      '    CB12 = :CB12,'
-      '    CB13 = :CB13,'
-      '    CB14 = :CB14,'
-      '    CB15 = :CB15,'
-      '    CB16 = :CB16,'
-      '    CB17 = :CB17,'
-      '    CB18 = :CB18,'
-      '    CB19 = :CB19,'
-      '    CB20 = :CB20,'
-      '    ALL_SALED = :ALL_SALED,'
-      '    ALL_ARRIVED = :ALL_ARRIVED,'
-      '    CNT_LAST_ARRIVAL = :CNT_LAST_ARRIVAL,'
       '    ART_1 = :ART_1,'
       '    ART_2 = :ART_2,'
       '    ART_3 = :ART_3,'
@@ -868,18 +793,9 @@ object Data: TData
       '    SUPPL_DATE_19 = :SUPPL_DATE_19,'
       '    SUPPL_DATE_20 = :SUPPL_DATE_20,'
       '    PRICE_CATEGORY_ID = :PRICE_CATEGORY_ID,'
-      '    COL_PACK = :COL_PACK,'
       '    USE_EXPORT = :USE_EXPORT,'
       '    FIXED_PRICE = :FIXED_PRICE,'
-      '    CONF_SKU = :CONF_SKU,'
-      '    PRODUCT_COLOR = :PRODUCT_COLOR,'
-      '    PRODUCT_TYPE = :PRODUCT_TYPE,'
-      '    PRODUCT_NO = :PRODUCT_NO,'
-      '    NO_INTERNET = :NO_INTERNET,'
-      '    SET_DESCRIPTION = :SET_DESCRIPTION,'
-      '    DEFECT_DESCRIPTION = :DEFECT_DESCRIPTION,'
       '    WEIGHT = :WEIGHT,'
-      '    BARCODE = :BARCODE,'
       '    UNIT = :UNIT,'
       '    ITEM_WEIGHT = :ITEM_WEIGHT'
       'WHERE'
@@ -895,11 +811,8 @@ object Data: TData
       'INSERT INTO GOODS('
       '    ID,'
       '    FULLNAME,'
-      '    NAME,'
-      '    ML,'
       '    TYPE_ID,'
       '    FIRM_ID,'
-      '    STATE,'
       '    PRICE1,'
       '    PRICE2,'
       '    PRICE_SHOP,'
@@ -908,13 +821,10 @@ object Data: TData
       '    PRICE_SHOP2_LAST,'
       '    PRICE1_LAST,'
       '    PRICE2_LAST,'
-      '    PRICE_LAST_ARRIVAL,'
-      '    LAST_ARRIVAL_CURR_ID,'
       '    DATE_ADDED,'
       '    DATE_CHANGED,'
-      '    DATE_ARRIVED,'
       '    DATE_SALED,'
-      '    LAST_SUPPLIER_ID,'
+      '    C0,'
       '    C1,'
       '    C2,'
       '    C3,'
@@ -935,72 +845,8 @@ object Data: TData
       '    C18,'
       '    C19,'
       '    C20,'
-      '    P1,'
-      '    P2,'
-      '    P3,'
-      '    P4,'
-      '    P5,'
-      '    P6,'
-      '    P7,'
-      '    P8,'
-      '    P9,'
-      '    P10,'
-      '    P11,'
-      '    P12,'
-      '    P13,'
-      '    P14,'
-      '    P15,'
-      '    P16,'
-      '    P17,'
-      '    P18,'
-      '    P19,'
-      '    P20,'
-      '    P21,'
-      '    P22,'
-      '    P23,'
-      '    P24,'
-      '    P25,'
-      '    P26,'
-      '    P27,'
-      '    P28,'
-      '    P29,'
-      '    P30,'
-      '    P31,'
-      '    P32,'
-      '    P33,'
-      '    P34,'
-      '    P35,'
-      '    P36,'
-      '    P37,'
-      '    P38,'
-      '    P39,'
-      '    P40,'
       '    SELECTED,'
       '    DELETED,'
-      '    C0,'
-      '    CB1,'
-      '    CB2,'
-      '    CB3,'
-      '    CB4,'
-      '    CB5,'
-      '    CB6,'
-      '    CB7,'
-      '    CB8,'
-      '    CB9,'
-      '    CB10,'
-      '    CB11,'
-      '    CB12,'
-      '    CB13,'
-      '    CB14,'
-      '    CB15,'
-      '    CB16,'
-      '    CB17,'
-      '    CB18,'
-      '    CB19,'
-      '    CB20,'
-      '    ALL_SALED,'
-      '    ALL_ARRIVED,'
-      '    CNT_LAST_ARRIVAL,'
       '    ART_1,'
       '    ART_2,'
       '    ART_3,'
@@ -1082,29 +928,17 @@ object Data: TData
       '    SUPPL_DATE_19,'
       '    SUPPL_DATE_20,'
       '    PRICE_CATEGORY_ID,'
-      '    COL_PACK,'
       '    USE_EXPORT,'
       '    FIXED_PRICE,'
-      '    CONF_SKU,'
-      '    PRODUCT_COLOR,'
-      '    PRODUCT_TYPE,'
-      '    PRODUCT_NO,'
-      '    NO_INTERNET,'
-      '    SET_DESCRIPTION,'
-      '    DEFECT_DESCRIPTION,'
       '    WEIGHT,'
-      '    BARCODE,'
       '    UNIT,'
       '    ITEM_WEIGHT'
       ')'
       'VALUES('
       '    :ID,'
       '    :FULLNAME,'
-      '    :NAME,'
-      '    :ML,'
       '    :TYPE_ID,'
       '    :FIRM_ID,'
-      '    :STATE,'
       '    :PRICE1,'
       '    :PRICE2,'
       '    :PRICE_SHOP,'
@@ -1113,13 +947,10 @@ object Data: TData
       '    :PRICE_SHOP2_LAST,'
       '    :PRICE1_LAST,'
       '    :PRICE2_LAST,'
-      '    :PRICE_LAST_ARRIVAL,'
-      '    :LAST_ARRIVAL_CURR_ID,'
       '    :DATE_ADDED,'
       '    :DATE_CHANGED,'
-      '    :DATE_ARRIVED,'
       '    :DATE_SALED,'
-      '    :LAST_SUPPLIER_ID,'
+      '    :C0,'
       '    :C1,'
       '    :C2,'
       '    :C3,'
@@ -1140,72 +971,8 @@ object Data: TData
       '    :C18,'
       '    :C19,'
       '    :C20,'
-      '    :P1,'
-      '    :P2,'
-      '    :P3,'
-      '    :P4,'
-      '    :P5,'
-      '    :P6,'
-      '    :P7,'
-      '    :P8,'
-      '    :P9,'
-      '    :P10,'
-      '    :P11,'
-      '    :P12,'
-      '    :P13,'
-      '    :P14,'
-      '    :P15,'
-      '    :P16,'
-      '    :P17,'
-      '    :P18,'
-      '    :P19,'
-      '    :P20,'
-      '    :P21,'
-      '    :P22,'
-      '    :P23,'
-      '    :P24,'
-      '    :P25,'
-      '    :P26,'
-      '    :P27,'
-      '    :P28,'
-      '    :P29,'
-      '    :P30,'
-      '    :P31,'
-      '    :P32,'
-      '    :P33,'
-      '    :P34,'
-      '    :P35,'
-      '    :P36,'
-      '    :P37,'
-      '    :P38,'
-      '    :P39,'
-      '    :P40,'
       '    :SELECTED,'
       '    :DELETED,'
-      '    :C0,'
-      '    :CB1,'
-      '    :CB2,'
-      '    :CB3,'
-      '    :CB4,'
-      '    :CB5,'
-      '    :CB6,'
-      '    :CB7,'
-      '    :CB8,'
-      '    :CB9,'
-      '    :CB10,'
-      '    :CB11,'
-      '    :CB12,'
-      '    :CB13,'
-      '    :CB14,'
-      '    :CB15,'
-      '    :CB16,'
-      '    :CB17,'
-      '    :CB18,'
-      '    :CB19,'
-      '    :CB20,'
-      '    :ALL_SALED,'
-      '    :ALL_ARRIVED,'
-      '    :CNT_LAST_ARRIVAL,'
       '    :ART_1,'
       '    :ART_2,'
       '    :ART_3,'
@@ -1287,33 +1054,273 @@ object Data: TData
       '    :SUPPL_DATE_19,'
       '    :SUPPL_DATE_20,'
       '    :PRICE_CATEGORY_ID,'
-      '    :COL_PACK,'
       '    :USE_EXPORT,'
       '    :FIXED_PRICE,'
-      '    :CONF_SKU,'
-      '    :PRODUCT_COLOR,'
-      '    :PRODUCT_TYPE,'
-      '    :PRODUCT_NO,'
-      '    :NO_INTERNET,'
-      '    :SET_DESCRIPTION,'
-      '    :DEFECT_DESCRIPTION,'
       '    :WEIGHT,'
-      '    :BARCODE,'
       '    :UNIT,'
       '    :ITEM_WEIGHT'
       ')')
     RefreshSQL.Strings = (
       'SELECT'
-      '*'
+      '    ID,'
+      '    FULLNAME,'
+      '    TYPE_ID,'
+      '    FIRM_ID,'
+      '    PRICE1,'
+      '    PRICE2,'
+      '    PRICE_SHOP,'
+      '    PRICE_SHOP_LAST,'
+      '    PRICE_SHOP2,'
+      '    PRICE_SHOP2_LAST,'
+      '    PRICE1_LAST,'
+      '    PRICE2_LAST,'
+      '    DATE_ADDED,'
+      '    DATE_CHANGED,'
+      '    DATE_SALED,'
+      '    C0,'
+      '    C1,'
+      '    C2,'
+      '    C3,'
+      '    C4,'
+      '    C5,'
+      '    C6,'
+      '    C7,'
+      '    C8,'
+      '    C9,'
+      '    C10,'
+      '    C11,'
+      '    C12,'
+      '    C13,'
+      '    C14,'
+      '    C15,'
+      '    C16,'
+      '    C17,'
+      '    C18,'
+      '    C19,'
+      '    C20,'
+      '    SELECTED,'
+      '    DELETED,'
+      '    ART_1,'
+      '    ART_2,'
+      '    ART_3,'
+      '    ART_4,'
+      '    ART_5,'
+      '    ART_6,'
+      '    ART_7,'
+      '    ART_8,'
+      '    ART_9,'
+      '    ART_10,'
+      '    ART_11,'
+      '    ART_12,'
+      '    ART_13,'
+      '    ART_14,'
+      '    ART_15,'
+      '    ART_16,'
+      '    ART_17,'
+      '    ART_18,'
+      '    ART_19,'
+      '    ART_20,'
+      '    AVAILABLE_1,'
+      '    AVAILABLE_2,'
+      '    AVAILABLE_3,'
+      '    AVAILABLE_4,'
+      '    AVAILABLE_5,'
+      '    AVAILABLE_6,'
+      '    AVAILABLE_7,'
+      '    AVAILABLE_8,'
+      '    AVAILABLE_9,'
+      '    AVAILABLE_10,'
+      '    AVAILABLE_11,'
+      '    AVAILABLE_12,'
+      '    AVAILABLE_13,'
+      '    AVAILABLE_14,'
+      '    AVAILABLE_15,'
+      '    AVAILABLE_16,'
+      '    AVAILABLE_17,'
+      '    AVAILABLE_18,'
+      '    AVAILABLE_19,'
+      '    AVAILABLE_20,'
+      '    SUPL_PRICE_1,'
+      '    SUPL_PRICE_2,'
+      '    SUPL_PRICE_3,'
+      '    SUPL_PRICE_4,'
+      '    SUPL_PRICE_5,'
+      '    SUPL_PRICE_6,'
+      '    SUPL_PRICE_7,'
+      '    SUPL_PRICE_8,'
+      '    SUPL_PRICE_9,'
+      '    SUPL_PRICE_10,'
+      '    SUPL_PRICE_11,'
+      '    SUPL_PRICE_12,'
+      '    SUPL_PRICE_13,'
+      '    SUPL_PRICE_14,'
+      '    SUPL_PRICE_15,'
+      '    SUPL_PRICE_16,'
+      '    SUPL_PRICE_17,'
+      '    SUPL_PRICE_18,'
+      '    SUPL_PRICE_19,'
+      '    SUPL_PRICE_20,'
+      '    SUPPL_DATE_1,'
+      '    SUPPL_DATE_2,'
+      '    SUPPL_DATE_3,'
+      '    SUPPL_DATE_4,'
+      '    SUPPL_DATE_5,'
+      '    SUPPL_DATE_6,'
+      '    SUPPL_DATE_7,'
+      '    SUPPL_DATE_8,'
+      '    SUPPL_DATE_9,'
+      '    SUPPL_DATE_10,'
+      '    SUPPL_DATE_11,'
+      '    SUPPL_DATE_12,'
+      '    SUPPL_DATE_13,'
+      '    SUPPL_DATE_14,'
+      '    SUPPL_DATE_15,'
+      '    SUPPL_DATE_16,'
+      '    SUPPL_DATE_17,'
+      '    SUPPL_DATE_18,'
+      '    SUPPL_DATE_19,'
+      '    SUPPL_DATE_20,'
+      '    PRICE_CATEGORY_ID,'
+      '    USE_EXPORT,'
+      '    FIXED_PRICE,'
+      '    WEIGHT,'
+      '    UNIT,'
+      '    ITEM_WEIGHT,'
+      '    CNT_ALL,'
+      '    TOTAL_WEIGHT'
       'FROM'
       '    GOODS '
-      ' '
       ' WHERE '
-      '        GOODS.ID = :OLD_ID'
+      '    GOODS.ID = :OLD_ID'
       '    ')
     SelectSQL.Strings = (
       'SELECT'
-      '*'
+      '    ID,'
+      '    FULLNAME,'
+      '    TYPE_ID,'
+      '    FIRM_ID,'
+      '    PRICE1,'
+      '    PRICE2,'
+      '    PRICE_SHOP,'
+      '    PRICE_SHOP_LAST,'
+      '    PRICE_SHOP2,'
+      '    PRICE_SHOP2_LAST,'
+      '    PRICE1_LAST,'
+      '    PRICE2_LAST,'
+      '    DATE_ADDED,'
+      '    DATE_CHANGED,'
+      '    DATE_SALED,'
+      '    C0,'
+      '    C1,'
+      '    C2,'
+      '    C3,'
+      '    C4,'
+      '    C5,'
+      '    C6,'
+      '    C7,'
+      '    C8,'
+      '    C9,'
+      '    C10,'
+      '    C11,'
+      '    C12,'
+      '    C13,'
+      '    C14,'
+      '    C15,'
+      '    C16,'
+      '    C17,'
+      '    C18,'
+      '    C19,'
+      '    C20,'
+      '    SELECTED,'
+      '    DELETED,'
+      '    ART_1,'
+      '    ART_2,'
+      '    ART_3,'
+      '    ART_4,'
+      '    ART_5,'
+      '    ART_6,'
+      '    ART_7,'
+      '    ART_8,'
+      '    ART_9,'
+      '    ART_10,'
+      '    ART_11,'
+      '    ART_12,'
+      '    ART_13,'
+      '    ART_14,'
+      '    ART_15,'
+      '    ART_16,'
+      '    ART_17,'
+      '    ART_18,'
+      '    ART_19,'
+      '    ART_20,'
+      '    AVAILABLE_1,'
+      '    AVAILABLE_2,'
+      '    AVAILABLE_3,'
+      '    AVAILABLE_4,'
+      '    AVAILABLE_5,'
+      '    AVAILABLE_6,'
+      '    AVAILABLE_7,'
+      '    AVAILABLE_8,'
+      '    AVAILABLE_9,'
+      '    AVAILABLE_10,'
+      '    AVAILABLE_11,'
+      '    AVAILABLE_12,'
+      '    AVAILABLE_13,'
+      '    AVAILABLE_14,'
+      '    AVAILABLE_15,'
+      '    AVAILABLE_16,'
+      '    AVAILABLE_17,'
+      '    AVAILABLE_18,'
+      '    AVAILABLE_19,'
+      '    AVAILABLE_20,'
+      '    SUPL_PRICE_1,'
+      '    SUPL_PRICE_2,'
+      '    SUPL_PRICE_3,'
+      '    SUPL_PRICE_4,'
+      '    SUPL_PRICE_5,'
+      '    SUPL_PRICE_6,'
+      '    SUPL_PRICE_7,'
+      '    SUPL_PRICE_8,'
+      '    SUPL_PRICE_9,'
+      '    SUPL_PRICE_10,'
+      '    SUPL_PRICE_11,'
+      '    SUPL_PRICE_12,'
+      '    SUPL_PRICE_13,'
+      '    SUPL_PRICE_14,'
+      '    SUPL_PRICE_15,'
+      '    SUPL_PRICE_16,'
+      '    SUPL_PRICE_17,'
+      '    SUPL_PRICE_18,'
+      '    SUPL_PRICE_19,'
+      '    SUPL_PRICE_20,'
+      '    SUPPL_DATE_1,'
+      '    SUPPL_DATE_2,'
+      '    SUPPL_DATE_3,'
+      '    SUPPL_DATE_4,'
+      '    SUPPL_DATE_5,'
+      '    SUPPL_DATE_6,'
+      '    SUPPL_DATE_7,'
+      '    SUPPL_DATE_8,'
+      '    SUPPL_DATE_9,'
+      '    SUPPL_DATE_10,'
+      '    SUPPL_DATE_11,'
+      '    SUPPL_DATE_12,'
+      '    SUPPL_DATE_13,'
+      '    SUPPL_DATE_14,'
+      '    SUPPL_DATE_15,'
+      '    SUPPL_DATE_16,'
+      '    SUPPL_DATE_17,'
+      '    SUPPL_DATE_18,'
+      '    SUPPL_DATE_19,'
+      '    SUPPL_DATE_20,'
+      '    PRICE_CATEGORY_ID,'
+      '    USE_EXPORT,'
+      '    FIXED_PRICE,'
+      '    WEIGHT,'
+      '    UNIT,'
+      '    ITEM_WEIGHT,'
+      '    CNT_ALL,'
+      '    TOTAL_WEIGHT'
       'FROM'
       '    GOODS '
       'ORDER BY '
@@ -1379,52 +1386,41 @@ object Data: TData
       ')')
     RefreshSQL.Strings = (
       'SELECT'
-      '  ID,'
-      '  NAKL_ID,'
-      '  GOOD_ID,'
-      '  (SELECT FULLNAME FROM GOODS WHERE GOOD_ID = GOODS.ID) NAME,'
+      '  a.ID,'
+      '  a.NAKL_ID,'
+      '  a.GOOD_ID,'
+      '  g.fullname as name,'
       
-        '  IIF(ARRIVAL.PRICE IS NULL, NULL, (SELECT GOODS.PRICE1 / IIF(AR' +
-        'RIVAL.PRICE = 0, 0.00000001, ARRIVAL.PRICE) * 100 - 100 FROM GOO' +
-        'DS WHERE GOOD_ID = GOODS.ID)) PRC,'
-      
-        '  IIF(GOOD_ID IS NULL, '#39#39', IIF((SELECT UNIT FROM GOODS WHERE GOO' +
-        'D_ID = GOODS.ID)=0, '#39#1096#1090'.'#39', '#39#1082#1075'.'#39')) UNIT,'
-      '  (SELECT UNIT FROM GOODS WHERE GOOD_ID = GOODS.ID) UNIT_ID,'
-      '  CNT,'
-      '  PRICE,'
-      '  SUMM,'
-      '  (SELECT WEIGHT FROM GOODS WHERE GOOD_ID = GOODS.ID) WEIGHT,'
-      
-        '  (PRICE + (SELECT WEIGHT * 0.0085 FROM GOODS WHERE GOOD_ID = GO' +
-        'ODS.ID)) WPRICE'
-      'FROM'
-      '    ARRIVAL'
+        '  g.PRICE1 / IIF(a.PRICE = 0, 0.00000001, a.PRICE) * 100 - 100 a' +
+        's PRC,'
+      '  IIF(a.GOOD_ID IS NULL, '#39#39', IIF(g.UNIT=0, '#39#1096#1090'.'#39', '#39#1082#1075'.'#39')) UNIT,'
+      '  g.unit as UNIT_ID,'
+      '  a.CNT,'
+      '  a.PRICE,'
+      '  a.SUMM,'
+      '  a.CNT * G.ITEM_WEIGHT AS TOTAL_WEIGHT'
+      'FROM ARRIVAL a'
+      'JOIN GOODS g on a.good_id = g.id'
       'WHERE'
       '  ("NAKL_ID" = :"ID") and'
-      '  ("ARRIVAL".ID = :OLD_ID)')
+      '  (a.ID = :OLD_ID)')
     SelectSQL.Strings = (
       'SELECT'
-      '  ID,'
-      '  NAKL_ID,'
-      '  GOOD_ID,'
-      '  (SELECT FULLNAME FROM GOODS WHERE GOOD_ID = GOODS.ID) NAME,'
+      '  a.ID,'
+      '  a.NAKL_ID,'
+      '  a.GOOD_ID,'
+      '  g.fullname as name,'
       
-        '  (SELECT GOODS.PRICE1 / IIF(ARRIVAL.PRICE = 0, 0.00000001, ARRI' +
-        'VAL.PRICE) * 100 - 100 FROM GOODS WHERE GOOD_ID = GOODS.ID) PRC,'
-      
-        '  IIF(GOOD_ID IS NULL, '#39#39', IIF((SELECT UNIT FROM GOODS WHERE GOO' +
-        'D_ID = GOODS.ID)=0, '#39#1096#1090'.'#39', '#39#1082#1075'.'#39')) UNIT,'
-      '  (SELECT UNIT FROM GOODS WHERE GOOD_ID = GOODS.ID) UNIT_ID,'
-      '  CNT,'
-      '  PRICE,'
-      '  SUMM,'
-      '  (SELECT WEIGHT FROM GOODS WHERE GOOD_ID = GOODS.ID) WEIGHT,'
-      
-        '  (PRICE + (SELECT WEIGHT * 0.0085 FROM GOODS WHERE GOOD_ID = GO' +
-        'ODS.ID)) WPRICE'
-      'FROM'
-      '    ARRIVAL'
+        '  g.PRICE1 / IIF(a.PRICE = 0, 0.00000001, a.PRICE) * 100 - 100 a' +
+        's PRC,'
+      '  IIF(a.GOOD_ID IS NULL, '#39#39', IIF(g.UNIT=0, '#39#1096#1090'.'#39', '#39#1082#1075'.'#39')) UNIT,'
+      '  g.unit as UNIT_ID,'
+      '  a.CNT,'
+      '  a.PRICE,'
+      '  a.SUMM,'
+      '  a.CNT * G.ITEM_WEIGHT AS TOTAL_WEIGHT'
+      'FROM ARRIVAL a'
+      'JOIN GOODS g on a.good_id = g.id'
       'WHERE'
       '  ("NAKL_ID" = :"ID")')
     AutoUpdateOptions.UpdateTableName = 'ARRIVAL'
@@ -1443,7 +1439,6 @@ object Data: TData
     poSQLINT64ToBCD = True
   end
   object TRead_Arrival: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 114
     Top = 104
@@ -1651,6 +1646,7 @@ object Data: TData
     end
     object DS_Arrival_NSUM_TOTAL: TFIBFloatField
       FieldName = 'SUM_TOTAL'
+      DisplayFormat = '0.00'
     end
     object DS_Arrival_NEDITINGBY: TFIBIntegerField
       FieldName = 'EDITINGBY'
@@ -1782,7 +1778,6 @@ object Data: TData
     end
   end
   object TRead_Defaults: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 117
     Top = 336
@@ -1857,81 +1852,86 @@ object Data: TData
       ')')
     RefreshSQL.Strings = (
       'SELECT'
+      '    sn.ID,'
+      '    sn.COMMENTS,'
+      '    sn.SUMM,'
+      '    sn.S_DATE,'
+      '    sn.CUST_ID,'
+      '    sn.ENTERED,'
+      '    sn.CNT,'
+      '    sn.CURR_ID,'
+      '    sn.PRICE_TYPE,'
+      '    sn.PRINTED,'
+      '    sn.SUMM_ARRIVAL,'
+      '    sn.DISCOUNT,'
+      '    sn.CURS,'
+      '    sn.USERID,'
+      '    sn.EUSERID,'
+      '    sn.CHANGED,'
+      '    sn.SUM_TOTAL,'
+      '    u.id as EDITINGBY,'
       
-        '    ID, COMMENTS, SUMM, S_DATE, CUST_ID, ENTERED, CNT, CURR_ID, ' +
-        'PRICE_TYPE,'
+        '    (SELECT SUM(SUMM) FROM KASSA WHERE sn.ID = KASSA.NAKL_ID) PA' +
+        'ID,'
+      '    cr.name as CURRENCY,'
+      '    cr.PREFIX1 as CURR_PREFIX,'
+      '    c.NAME as CUSTOMER,'
+      '    c.PRINTNAME as CUST_PRINT,'
+      '    u1.USERNAME,'
+      '    u2.USERNAME as EUSERNAME'
+      'FROM sale_n sn'
+      'JOIN currency cr ON sn.curr_id = cr.id'
+      'JOIN customers c ON sn.cust_id = c.id '
       
-        '    PRINTED,SUMM_ARRIVAL,DISCOUNT,CURS,USERID,EUSERID,CHANGED, S' +
-        'UM_TOTAL,'
-      
-        '    (SELECT ID FROM USERS WHERE (CURRENT_DOC = 0) AND (CURRENT_D' +
-        'OC_ID = SALE_N.ID) ROWS 1) EDITINGBY,'
-      
-        '    (SELECT SUM(SUMM) FROM KASSA WHERE SALE_N.ID = KASSA.NAKL_ID' +
-        ') PAID,'
-      
-        '    (SELECT NAME FROM CURRENCY WHERE CURR_ID = CURRENCY.ID) CURR' +
-        'ENCY,'
-      
-        '    (SELECT PREFIX1 FROM CURRENCY WHERE CURR_ID = CURRENCY.ID) C' +
-        'URR_PREFIX,'
-      
-        '    (SELECT NAME FROM CUSTOMERS WHERE CUST_ID = CUSTOMERS.ID) CU' +
-        'STOMER,'
-      
-        '    (SELECT PRINTNAME FROM CUSTOMERS WHERE CUST_ID = CUSTOMERS.I' +
-        'D) CUST_PRINT,'
-      
-        '    (SELECT USERNAME FROM USERS WHERE USERID = USERS.ID) USERNAM' +
-        'E,'
-      
-        '    (SELECT USERNAME FROM USERS WHERE EUSERID = USERS.ID) EUSERN' +
-        'AME'
-      'FROM'
-      '    SALE_N '
-      ' WHERE '
-      '        SALE_N.ID = :OLD_ID'
+        'LEFT JOIN users u ON sn.ID = u.current_doc_id AND u.current_doc ' +
+        '= 0'
+      'LEFT JOIN users u1 ON sn.USERID = u1.ID '
+      'LEFT JOIN users u2 ON sn.EUSERID = u2.ID'
+      'WHERE sn.ID = :OLD_ID'
       '    ')
     SelectSQL.Strings = (
       'SELECT'
+      '    sn.ID,'
+      '    sn.COMMENTS,'
+      '    sn.SUMM,'
+      '    sn.S_DATE,'
+      '    sn.CUST_ID,'
+      '    sn.ENTERED,'
+      '    sn.CNT,'
+      '    sn.CURR_ID,'
+      '    sn.PRICE_TYPE,'
+      '    sn.PRINTED,'
+      '    sn.SUMM_ARRIVAL,'
+      '    sn.DISCOUNT,'
+      '    sn.CURS,'
+      '    sn.USERID,'
+      '    sn.EUSERID,'
+      '    sn.CHANGED,'
+      '    sn.SUM_TOTAL,'
+      '    u.id as EDITINGBY,'
       
-        '    ID, COMMENTS, SUMM, S_DATE, CUST_ID, ENTERED, CNT, CURR_ID, ' +
-        'PRICE_TYPE,'
+        '    (SELECT SUM(SUMM) FROM KASSA WHERE sn.ID = KASSA.NAKL_ID) PA' +
+        'ID,'
+      '    cr.name as CURRENCY,'
+      '    cr.PREFIX1 as CURR_PREFIX,'
+      '    c.NAME as CUSTOMER,'
+      '    c.PRINTNAME as CUST_PRINT,'
+      '    u1.USERNAME,'
+      '    u2.USERNAME as EUSERNAME'
+      'FROM sale_n sn'
+      'JOIN currency cr ON sn.curr_id = cr.id'
+      'JOIN customers c ON sn.cust_id = c.id '
       
-        '    PRINTED,SUMM_ARRIVAL,DISCOUNT,CURS,USERID,EUSERID,CHANGED, S' +
-        'UM_TOTAL,'
-      
-        '    (SELECT ID FROM USERS WHERE (CURRENT_DOC = 0) AND (CURRENT_D' +
-        'OC_ID = SALE_N.ID) ROWS 1) EDITINGBY,'
-      
-        '    (SELECT SUM(SUMM) FROM KASSA WHERE SALE_N.ID = KASSA.NAKL_ID' +
-        ') PAID,'
-      
-        '    (SELECT NAME FROM CURRENCY WHERE CURR_ID = CURRENCY.ID) CURR' +
-        'ENCY,'
-      
-        '    (SELECT PREFIX1 FROM CURRENCY WHERE CURR_ID = CURRENCY.ID) C' +
-        'URR_PREFIX,'
-      
-        '    (SELECT NAME FROM CUSTOMERS WHERE CUST_ID = CUSTOMERS.ID) CU' +
-        'STOMER,'
-      
-        '    (SELECT PRINTNAME FROM CUSTOMERS WHERE CUST_ID = CUSTOMERS.I' +
-        'D) CUST_PRINT,'
-      
-        '    (SELECT USERNAME FROM USERS WHERE USERID = USERS.ID) USERNAM' +
-        'E,'
-      
-        '    (SELECT USERNAME FROM USERS WHERE EUSERID = USERS.ID) EUSERN' +
-        'AME'
-      'FROM'
-      '    SALE_N'
+        'LEFT JOIN users u ON sn.ID = u.current_doc_id AND u.current_doc ' +
+        '= 0'
+      'LEFT JOIN users u1 ON sn.USERID = u1.ID '
+      'LEFT JOIN users u2 ON sn.EUSERID = u2.ID'
       'WHERE'
-      '    ENTERED = 0'
+      '    sn.ENTERED = 0'
       ''
       ''
       'ORDER BY'
-      '    S_DATE;')
+      '    sn.S_DATE;')
     AutoUpdateOptions.UpdateTableName = 'SALE_N'
     AutoUpdateOptions.KeyFields = 'ID'
     AutoUpdateOptions.GeneratorName = 'SALE_N_ID_GEN'
@@ -1955,37 +1955,49 @@ object Data: TData
       EmptyStrToNull = True
     end
     object DS_Sale_NSUMM: TFIBFloatField
+      DefaultExpression = '0,0'
       FieldName = 'SUMM'
       DisplayFormat = '0.00'
     end
     object DS_Sale_NS_DATE: TFIBDateTimeField
+      DefaultExpression = 'NOW'
       FieldName = 'S_DATE'
+      DisplayFormat = 'dd.mm.yyyy hh:nn'
     end
     object DS_Sale_NCUST_ID: TFIBSmallIntField
       FieldName = 'CUST_ID'
     end
     object DS_Sale_NENTERED: TFIBBooleanField
+      DefaultExpression = 'False'
       FieldName = 'ENTERED'
     end
     object DS_Sale_NCNT: TFIBFloatField
+      DefaultExpression = '0'
       FieldName = 'CNT'
+      DisplayFormat = '0.000#'
     end
     object DS_Sale_NCURR_ID: TFIBSmallIntField
+      DefaultExpression = '1'
       FieldName = 'CURR_ID'
     end
     object DS_Sale_NPRICE_TYPE: TFIBIntegerField
+      DefaultExpression = '1'
       FieldName = 'PRICE_TYPE'
     end
     object DS_Sale_NPRINTED: TFIBIntegerField
+      DefaultExpression = '0'
       FieldName = 'PRINTED'
     end
     object DS_Sale_NSUMM_ARRIVAL: TFIBFloatField
       FieldName = 'SUMM_ARRIVAL'
+      DisplayFormat = '0.00##'
     end
     object DS_Sale_NDISCOUNT: TFIBFloatField
+      DefaultExpression = '0,0'
       FieldName = 'DISCOUNT'
     end
     object DS_Sale_NCURS: TFIBFloatField
+      DefaultExpression = '1,0'
       FieldName = 'CURS'
     end
     object DS_Sale_NUSERID: TFIBSmallIntField
@@ -1995,10 +2007,13 @@ object Data: TData
       FieldName = 'EUSERID'
     end
     object DS_Sale_NCHANGED: TFIBDateTimeField
+      DefaultExpression = 'NOW'
       FieldName = 'CHANGED'
+      DisplayFormat = 'dd.mm.yyyy hh:nn'
     end
     object DS_Sale_NSUM_TOTAL: TFIBFloatField
       FieldName = 'SUM_TOTAL'
+      DisplayFormat = '0.00'
     end
     object DS_Sale_NEDITINGBY: TFIBIntegerField
       FieldName = 'EDITINGBY'
@@ -2038,7 +2053,6 @@ object Data: TData
     end
   end
   object TRead_Sale_N: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 203
     Top = 336
@@ -2160,7 +2174,6 @@ object Data: TData
     poSQLINT64ToBCD = True
   end
   object TRead_Sale: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 289
     Top = 336
@@ -2328,47 +2341,39 @@ object Data: TData
       ')')
     RefreshSQL.Strings = (
       'SELECT'
-      '    ID,'
-      '    CNT,'
-      '    NAKL_ID,'
-      '    GOOD_ID,'
+      '    m.id,'
+      '    m.cnt,'
+      '    m.nakl_id,'
+      '    m.good_id,'
+      '    g.fullname AS name,'
       
-        '    (SELECT FULLNAME FROM GOODS WHERE GOOD_ID = GOODS.ID) "NAME"' +
-        ','
-      
-        '    IIF(GOOD_ID IS NULL, '#39#39', IIF((SELECT UNIT FROM GOODS WHERE G' +
-        'OOD_ID = GOODS.ID)=0, '#39#1096#1090'.'#39', '#39#1082#1075'.'#39')) UNIT,'
-      '    (SELECT UNIT FROM GOODS WHERE GOOD_ID = GOODS.ID) UNIT_ID,'
-      '    (SELECT PRICE1 FROM GOODS WHERE GOOD_ID = GOODS.ID) PRICE1,'
-      
-        '    (SELECT DATE_CHANGED FROM GOODS WHERE GOOD_ID = GOODS.ID) DA' +
-        'TE_CHANGED'
-      'FROM '
-      '  DEPOT_MOVES'
-      'WHERE('
-      '  "NAKL_ID" = :"ID")'
-      '    and ( "DEPOT_MOVES".ID = :OLD_ID)   ')
+        '    IIF(m.good_id IS NULL, '#39#39', IIF(g.unit = 0, '#39#1096#1090'.'#39', '#39#1082#1075'.'#39')) AS' +
+        ' unit,'
+      '    g.unit AS unit_id,'
+      '    g.price1,'
+      '    g.date_changed,'
+      '    m.cnt * g.item_weight as total_weight'
+      'FROM depot_moves m'
+      'JOIN goods g ON g.id = m.good_id'
+      'WHERE nakl_id = :id AND  m.id = :old_id')
     SelectSQL.Strings = (
       'SELECT'
-      '    ID,'
-      '    CNT,'
-      '    NAKL_ID,'
-      '    GOOD_ID,'
+      '    m.id,'
+      '    m.cnt,'
+      '    m.nakl_id,'
+      '    m.good_id,'
+      '    g.fullname AS name,'
       
-        '    (SELECT FULLNAME FROM GOODS WHERE GOOD_ID = GOODS.ID) "NAME"' +
-        ','
-      
-        '    IIF(GOOD_ID IS NULL, '#39#39', IIF((SELECT UNIT FROM GOODS WHERE G' +
-        'OOD_ID = GOODS.ID)=0, '#39#1096#1090'.'#39', '#39#1082#1075'.'#39')) UNIT,'
-      '    (SELECT UNIT FROM GOODS WHERE GOOD_ID = GOODS.ID) UNIT_ID,'
-      '    (SELECT PRICE1 FROM GOODS WHERE GOOD_ID = GOODS.ID) PRICE1,'
-      
-        '    (SELECT DATE_CHANGED FROM GOODS WHERE GOOD_ID = GOODS.ID) DA' +
-        'TE_CHANGED'
-      'FROM'
-      '    DEPOT_MOVES'
+        '    IIF(m.good_id IS NULL, '#39#39', IIF(g.unit = 0, '#39#1096#1090'.'#39', '#39#1082#1075'.'#39')) AS' +
+        ' unit,'
+      '    g.unit AS unit_id,'
+      '    g.price1,'
+      '    g.date_changed,'
+      '    m.cnt * g.item_weight as total_weight'
+      'FROM depot_moves m'
+      'JOIN goods g ON g.id = m.good_id'
       'WHERE '
-      '    "NAKL_ID" = :"ID"')
+      '    nakl_id = :id')
     AutoUpdateOptions.UpdateTableName = 'DEPOT_MOVES'
     AutoUpdateOptions.KeyFields = 'ID'
     AutoUpdateOptions.GeneratorName = 'DEPOT_MOVES_ID_GEN'
@@ -2385,7 +2390,6 @@ object Data: TData
     poSQLINT64ToBCD = True
   end
   object TRead_Moves_N: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 375
     Top = 336
@@ -2396,7 +2400,6 @@ object Data: TData
     Top = 384
   end
   object TRead_Moves: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 461
     Top = 336
@@ -2448,31 +2451,44 @@ object Data: TData
       ')')
     RefreshSQL.Strings = (
       'SELECT'
-      '   ID, GOOD_ID, NAKL_ID, CNT, PRICE, SUMM, DEPOT_ID,'
-      '   (SELECT FULLNAME FROM GOODS WHERE GOOD_ID = GOODS.ID) NAME,'
-      '   (SELECT NAME FROM DEPOTS WHERE DEPOT_ID = DEPOTS.ID) DEPOT,'
+      '   R.ID,'
+      '   R.GOOD_ID,'
+      '   R.NAKL_ID,'
+      '   R.CNT,'
+      '   R.PRICE,'
+      '   R.SUMM,'
+      '   R.DEPOT_ID,'
+      '   G.FULLNAME AS NAME,'
+      '   D.NAME AS DEPOT,'
       
-        '   IIF(GOOD_ID IS NULL, '#39#39', IIF((SELECT UNIT FROM GOODS WHERE GO' +
-        'OD_ID = GOODS.ID)=0, '#39#1096#1090'.'#39', '#39#1082#1075'.'#39')) UNIT,'
-      '   (SELECT UNIT FROM GOODS WHERE GOOD_ID = GOODS.ID) UNIT_ID'
-      'FROM'
-      '  RETURN_SUPPL'
-      'WHERE( '
-      '  "NAKL_ID" = :"ID" )'
-      '    and (     "RETURN_SUPPL".ID = :OLD_ID'
-      '     )')
+        '   IIF(R.GOOD_ID IS NULL, '#39#39', IIF(G.UNIT = 0, '#39#1096#1090'.'#39', '#39#1082#1075'.'#39')) AS ' +
+        'UNIT,'
+      '   G.UNIT AS UNIT_ID,'
+      '   R.CNT * G.ITEM_WEIGHT AS TOTAL_WEIGHT'
+      'FROM RETURN_SUPPL R'
+      'JOIN GOODS G ON G.ID = R.GOOD_ID'
+      'LEFT JOIN DEPOTS D ON R.DEPOT_ID = D.ID'
+      'WHERE NAKL_ID = :ID AND R.ID = :OLD_ID')
     SelectSQL.Strings = (
       'SELECT'
-      '   ID, GOOD_ID, NAKL_ID, CNT, PRICE, SUMM, DEPOT_ID,'
-      '   (SELECT FULLNAME FROM GOODS WHERE GOOD_ID = GOODS.ID) NAME,'
-      '   (SELECT NAME FROM DEPOTS WHERE DEPOT_ID = DEPOTS.ID) DEPOT,'
+      '   R.ID,'
+      '   R.GOOD_ID,'
+      '   R.NAKL_ID,'
+      '   R.CNT,'
+      '   R.PRICE,'
+      '   R.SUMM,'
+      '   R.DEPOT_ID,'
+      '   G.FULLNAME AS NAME,'
+      '   D.NAME AS DEPOT,'
       
-        '   IIF(GOOD_ID IS NULL, '#39#39', IIF((SELECT UNIT FROM GOODS WHERE GO' +
-        'OD_ID = GOODS.ID)=0, '#39#1096#1090'.'#39', '#39#1082#1075'.'#39')) UNIT,'
-      '   (SELECT UNIT FROM GOODS WHERE GOOD_ID = GOODS.ID) UNIT_ID'
-      'FROM  RETURN_SUPPL'
-      'WHERE'
-      '  "NAKL_ID" = :"ID"')
+        '   IIF(R.GOOD_ID IS NULL, '#39#39', IIF(G.UNIT = 0, '#39#1096#1090'.'#39', '#39#1082#1075'.'#39')) AS ' +
+        'UNIT,'
+      '   G.UNIT AS UNIT_ID,'
+      '   R.CNT * G.ITEM_WEIGHT AS TOTAL_WEIGHT'
+      'FROM RETURN_SUPPL R'
+      'JOIN GOODS G ON G.ID = R.GOOD_ID'
+      'LEFT JOIN DEPOTS D ON R.DEPOT_ID = D.ID'
+      'WHERE NAKL_ID = :ID')
     AutoUpdateOptions.UpdateTableName = 'RETURN_SUPPL'
     AutoUpdateOptions.KeyFields = 'ID'
     AutoUpdateOptions.GeneratorName = 'RETURN_SUPPL_ID_GEN'
@@ -2490,7 +2506,6 @@ object Data: TData
     poSQLINT64ToBCD = True
   end
   object TRead_Return_Suppl: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 632
     Top = 336
@@ -2645,6 +2660,7 @@ object Data: TData
     end
     object DS_Return_Suppl_NCNT: TFIBFloatField
       FieldName = 'CNT'
+      DisplayFormat = '0.000#'
     end
     object DS_Return_Suppl_NSUMM: TFIBFloatField
       FieldName = 'SUMM'
@@ -2667,6 +2683,7 @@ object Data: TData
     end
     object DS_Return_Suppl_NSUMM_TOTAL: TFIBFloatField
       FieldName = 'SUMM_TOTAL'
+      DisplayFormat = '0.00'
     end
     object DS_Return_Suppl_NCLIENT: TFIBStringField
       FieldName = 'CLIENT'
@@ -2703,7 +2720,6 @@ object Data: TData
     end
   end
   object TRead_Return_Suppl_N: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 546
     Top = 336
@@ -2796,7 +2812,6 @@ object Data: TData
     poSQLINT64ToBCD = True
   end
   object TRead_Filters: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 718
     Top = 336
@@ -2908,7 +2923,6 @@ object Data: TData
     Top = 288
   end
   object TRead_ImportPrice: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 804
     Top = 336
@@ -3001,7 +3015,6 @@ object Data: TData
     Top = 288
   end
   object TRead_Banned: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 890
     Top = 336
@@ -3012,7 +3025,6 @@ object Data: TData
     Top = 384
   end
   object TRead_Return_Cust_N: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 803
     Top = 104
@@ -3065,30 +3077,40 @@ object Data: TData
       ')')
     RefreshSQL.Strings = (
       'SELECT'
-      '    ID, GOOD_ID, NAKL_ID, CNT, PRICE, SUMM,'
-      '    (SELECT FULLNAME FROM GOODS WHERE GOOD_ID = GOODS.ID) NAME,'
+      '    R.ID,'
+      '    R.GOOD_ID,'
+      '    R.NAKL_ID,'
+      '    R.CNT,'
+      '    R.PRICE,'
+      '    R.SUMM,'
+      '    G.FULLNAME AS NAME,'
       
-        '    IIF(GOOD_ID IS NULL, '#39#39', IIF((SELECT UNIT FROM GOODS WHERE G' +
-        'OOD_ID = GOODS.ID)=0, '#39#1096#1090'.'#39', '#39#1082#1075'.'#39')) UNIT,'
-      '    (SELECT UNIT FROM GOODS WHERE GOOD_ID = GOODS.ID) UNIT_ID'
-      'FROM'
-      '  RETURN_CUST'
-      'WHERE'
-      '  ("NAKL_ID" = :"ID") and'
-      '  ("RETURN_CUST".ID = :OLD_ID)'
+        '    IIF(R.GOOD_ID IS NULL, '#39#39', IIF(G.UNIT = 0, '#39#1096#1090'.'#39', '#39#1082#1075'.'#39')) AS' +
+        ' UNIT,'
+      '    G.UNIT AS UNIT_ID,'
+      '    R.CNT * G.ITEM_WEIGHT AS TOTAL_WEIGHT'
+      'FROM RETURN_CUST R'
+      'JOIN GOODS G ON R.GOOD_ID = G.ID'
+      'WHERE NAKL_ID = :ID'
+      '    AND R.ID = :OLD_ID'
       '    ')
     SelectSQL.Strings = (
       'SELECT'
-      '    ID, GOOD_ID, NAKL_ID, CNT, PRICE, SUMM,'
-      '    (SELECT FULLNAME FROM GOODS WHERE GOOD_ID = GOODS.ID) NAME,'
+      '    R.ID,'
+      '    R.GOOD_ID,'
+      '    R.NAKL_ID,'
+      '    R.CNT,'
+      '    R.PRICE,'
+      '    R.SUMM,'
+      '    G.FULLNAME AS NAME,'
       
-        '    IIF(GOOD_ID IS NULL, '#39#39', IIF((SELECT UNIT FROM GOODS WHERE G' +
-        'OOD_ID = GOODS.ID)=0, '#39#1096#1090'.'#39', '#39#1082#1075'.'#39')) UNIT,'
-      '    (SELECT UNIT FROM GOODS WHERE GOOD_ID = GOODS.ID) UNIT_ID'
-      'FROM'
-      '    RETURN_CUST '
-      'WHERE'
-      '  ("NAKL_ID" = :"ID")')
+        '    IIF(R.GOOD_ID IS NULL, '#39#39', IIF(G.UNIT = 0, '#39#1096#1090'.'#39', '#39#1082#1075'.'#39')) AS' +
+        ' UNIT,'
+      '    G.UNIT AS UNIT_ID,'
+      '    R.CNT * G.ITEM_WEIGHT AS TOTAL_WEIGHT'
+      'FROM RETURN_CUST R'
+      'JOIN GOODS G ON R.GOOD_ID = G.ID'
+      'WHERE NAKL_ID = :ID')
     AutoUpdateOptions.UpdateTableName = 'RETURN_CUST'
     AutoUpdateOptions.KeyFields = 'ID'
     AutoUpdateOptions.GeneratorName = 'RETURN_CUST_ID_GEN'
@@ -3105,7 +3127,6 @@ object Data: TData
     poSQLINT64ToBCD = True
   end
   object TRead_Return_Cust: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 889
     Top = 104
@@ -3280,6 +3301,7 @@ object Data: TData
     end
     object DS_Return_Cust_NSUMM_TOTAL: TFIBFloatField
       FieldName = 'SUMM_TOTAL'
+      DisplayFormat = '0.00'
     end
     object DS_Return_Cust_NCUSTOMER: TFIBStringField
       FieldName = 'CUSTOMER'
@@ -3372,7 +3394,6 @@ object Data: TData
     poSQLINT64ToBCD = True
   end
   object TRead_PriceCategory: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 632
     Top = 560
@@ -3546,7 +3567,6 @@ object Data: TData
     end
   end
   object TRead_KASSA: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 717
     Top = 104
@@ -3644,7 +3664,6 @@ object Data: TData
     poSQLINT64ToBCD = True
   end
   object TRead_Users: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 976
     Top = 104
@@ -3745,7 +3764,6 @@ object Data: TData
     poSQLINT64ToBCD = True
   end
   object TRead_Requirements: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 32
     Top = 560
@@ -3794,7 +3812,6 @@ object Data: TData
     Top = 512
   end
   object TRead_ReqList: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 1056
     Top = 560
@@ -3898,7 +3915,6 @@ object Data: TData
     Top = 512
   end
   object TRead_EXT_PRICE: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 208
     Top = 560
@@ -3950,7 +3966,6 @@ object Data: TData
     Top = 512
   end
   object TRead_LAST_ARRIVALS: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 896
     Top = 560
@@ -4025,7 +4040,6 @@ object Data: TData
     poSQLINT64ToBCD = True
   end
   object TRead_Discounts: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 120
     Top = 560
@@ -4157,7 +4171,6 @@ object Data: TData
     Top = 512
   end
   object TRead_EmailGroups: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 720
     Top = 560
@@ -4196,7 +4209,6 @@ object Data: TData
     Top = 512
   end
   object TRead_PRICETOEXCEL: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 984
     Top = 560
@@ -4270,7 +4282,6 @@ object Data: TData
     Top = 288
   end
   object TRead_SaleImportDepots: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 976
     Top = 336
@@ -4281,7 +4292,6 @@ object Data: TData
     Top = 384
   end
   object TRead_Production_N: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 288
     Top = 560
@@ -4436,43 +4446,41 @@ object Data: TData
       ')')
     RefreshSQL.Strings = (
       'SELECT'
-      '    ID,'
-      '    GOOD_ID,'
-      '    CNT,'
-      '    NAKL_ID,'
-      '    (SELECT FULLNAME FROM GOODS WHERE GOOD_ID = GOODS.ID) NAME,'
+      '    P.ID,'
+      '    P.GOOD_ID,'
+      '    P.CNT,'
+      '    P.NAKL_ID,'
+      '    G.FULLNAME AS NAME,'
       
-        '    IIF(GOOD_ID IS NULL, '#39#39', IIF((SELECT UNIT FROM GOODS WHERE G' +
-        'OOD_ID = GOODS.ID)=0, '#39#1096#1090'.'#39', '#39#1082#1075'.'#39')) UNIT,'
-      '    (SELECT UNIT FROM GOODS WHERE GOOD_ID = GOODS.ID) UNIT_ID,'
+        '    IIF(P.GOOD_ID IS NULL, '#39#39', IIF(G.UNIT = 0, '#39#1096#1090'.'#39', '#39#1082#1075'.'#39')) AS' +
+        ' UNIT,'
+      '    G.UNIT AS UNIT_ID,'
       
-        '    (SELECT COUNT(ID) FROM PRODUCTION_SP WHERE PRODUCTION_SP.NAK' +
-        'L_ID = PRODUCTION.ID) SPECIFICATION_COUNT'
-      'FROM'
-      '    PRODUCTION'
-      'WHERE'
-      '  ("NAKL_ID" = :"ID") and'
-      '  ("PRODUCTION".ID = :OLD_ID)'
+        '    (SELECT COUNT(ID) FROM PRODUCTION_SP SP WHERE SP.NAKL_ID = P' +
+        '.ID) SPECIFICATION_COUNT,'
+      '    P.CNT * G.ITEM_WEIGHT AS TOTAL_WEIGHT'
+      'FROM PRODUCTION P'
+      'JOIN GOODS G ON P.GOOD_ID = G.ID'
+      'WHERE P.ID = :OLD_ID'
       '')
     SelectSQL.Strings = (
       'SELECT'
-      '    ID,'
-      '    GOOD_ID,'
-      '    CNT,'
-      '    NAKL_ID,'
-      '    (SELECT FULLNAME FROM GOODS WHERE GOOD_ID = GOODS.ID) NAME,'
+      '    P.ID,'
+      '    P.GOOD_ID,'
+      '    P.CNT,'
+      '    P.NAKL_ID,'
+      '    G.FULLNAME AS NAME,'
       
-        '    IIF(GOOD_ID IS NULL, '#39#39', IIF((SELECT UNIT FROM GOODS WHERE G' +
-        'OOD_ID = GOODS.ID)=0, '#39#1096#1090'.'#39', '#39#1082#1075'.'#39')) UNIT,'
-      '    (SELECT UNIT FROM GOODS WHERE GOOD_ID = GOODS.ID) UNIT_ID,'
+        '    IIF(P.GOOD_ID IS NULL, '#39#39', IIF(G.UNIT = 0, '#39#1096#1090'.'#39', '#39#1082#1075'.'#39')) AS' +
+        ' UNIT,'
+      '    G.UNIT AS UNIT_ID,'
       
-        '    (SELECT COUNT(ID) FROM PRODUCTION_SP WHERE PRODUCTION_SP.NAK' +
-        'L_ID = PRODUCTION.ID) SPECIFICATION_COUNT'
-      'FROM'
-      '    PRODUCTION'
-      'WHERE'
-      '  ("NAKL_ID" = :"ID")'
-      '')
+        '    (SELECT COUNT(ID) FROM PRODUCTION_SP SP WHERE SP.NAKL_ID = P' +
+        '.ID) SPECIFICATION_COUNT,'
+      '    P.CNT * G.ITEM_WEIGHT AS TOTAL_WEIGHT'
+      'FROM PRODUCTION P'
+      'JOIN GOODS G ON P.GOOD_ID = G.ID'
+      'WHERE NAKL_ID = :ID')
     AutoUpdateOptions.UpdateTableName = 'PRODUCTION'
     AutoUpdateOptions.KeyFields = 'ID'
     AutoUpdateOptions.GeneratorName = 'PRODUCTION_ID_GEN'
@@ -4492,7 +4500,6 @@ object Data: TData
     poSQLINT64ToBCD = True
   end
   object TRead_Production: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 376
     Top = 560
@@ -4548,19 +4555,15 @@ object Data: TData
       '    P.DEPOT_ID,'
       '    G.FULLNAME NAME,'
       
-        '    IIF(P.GOOD_ID IS NULL, '#39#39', IIF(G.UNIT=0, '#39#1096#1090'.'#39', '#39#1082#1075'.'#39')) UNIT' +
-        ','
+        '    IIF(P.GOOD_ID IS NULL, '#39#39', IIF(G.UNIT = 0, '#39#1096#1090'.'#39', '#39#1082#1075'.'#39')) AS' +
+        ' UNIT,'
       '    G.UNIT UNIT_ID,'
-      '    D.NAME DEPOT_NAME'
-      'FROM'
-      '    PRODUCTION_SP P'
-      'INNER JOIN'
-      '    GOODS G ON G.ID = P.GOOD_ID'
-      'INNER JOIN'
-      '    DEPOTS D ON D.ID = P.DEPOT_ID'
-      'WHERE'
-      '  (P.NAKL_ID = :"ID") and'
-      '  (P.ID = :OLD_ID)'
+      '    D.NAME DEPOT_NAME,'
+      '    P.CNT * G.ITEM_WEIGHT AS TOTAL_WEIGHT'
+      'FROM PRODUCTION_SP P'
+      'JOIN GOODS G ON G.ID = P.GOOD_ID'
+      'JOIN DEPOTS D ON D.ID = P.DEPOT_ID'
+      'WHERE P.ID = :OLD_ID'
       '')
     SelectSQL.Strings = (
       'SELECT'
@@ -4571,19 +4574,15 @@ object Data: TData
       '    P.DEPOT_ID,'
       '    G.FULLNAME NAME,'
       
-        '    IIF(P.GOOD_ID IS NULL, '#39#39', IIF(G.UNIT=0, '#39#1096#1090'.'#39', '#39#1082#1075'.'#39')) UNIT' +
-        ','
+        '    IIF(P.GOOD_ID IS NULL, '#39#39', IIF(G.UNIT = 0, '#39#1096#1090'.'#39', '#39#1082#1075'.'#39')) AS' +
+        ' UNIT,'
       '    G.UNIT UNIT_ID,'
-      '    D.NAME DEPOT_NAME'
-      'FROM'
-      '    PRODUCTION_SP P'
-      'INNER JOIN'
-      '    GOODS G ON G.ID = P.GOOD_ID'
-      'INNER JOIN'
-      '    DEPOTS D ON D.ID = P.DEPOT_ID'
-      'WHERE'
-      '    (P.NAKL_ID = :"ID")'
-      '')
+      '    D.NAME DEPOT_NAME,'
+      '    P.CNT * G.ITEM_WEIGHT AS TOTAL_WEIGHT'
+      'FROM PRODUCTION_SP P'
+      'JOIN GOODS G ON G.ID = P.GOOD_ID'
+      'JOIN DEPOTS D ON D.ID = P.DEPOT_ID'
+      'WHERE P.NAKL_ID = :ID')
     AutoUpdateOptions.UpdateTableName = 'PRODUCTION_SP'
     AutoUpdateOptions.KeyFields = 'ID'
     AutoUpdateOptions.GeneratorName = 'PRODUCTION_SP_ID_GEN'
@@ -4603,7 +4602,6 @@ object Data: TData
     poSQLINT64ToBCD = True
   end
   object TRead_Production_SP: TpFIBTransaction
-    Active = True
     DefaultDatabase = Database
     Left = 464
     Top = 560

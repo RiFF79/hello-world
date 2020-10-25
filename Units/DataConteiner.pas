@@ -682,7 +682,7 @@ end;
 
 procedure TData.RecalculateCounts(id: integer);
 var
-  cnt: real;
+  cnt: double;
   depot_id: integer;
 begin
   DS_Depots.DisableControls;

@@ -269,6 +269,7 @@ object SaleForm: TSaleForm
         item
           AutoFitColWidth = False
           CellButtons = <>
+          DisplayFormat = '0.###'
           DynProps = <>
           EditButtons = <>
           FieldName = 'CNT'
@@ -276,11 +277,11 @@ object SaleForm: TSaleForm
           Title.Alignment = taCenter
           Title.Caption = #1050#1086#1083'-'#1074#1086
           Width = 80
-          OnUpdateData = TB_SaleColumns2UpdateData
         end
         item
           AutoFitColWidth = False
           CellButtons = <>
+          DisplayFormat = '0.00##'
           DynProps = <>
           EditButtons = <>
           FieldName = 'PRICE'
@@ -289,7 +290,6 @@ object SaleForm: TSaleForm
           Title.Caption = #1062#1077#1085#1072
           Width = 80
           OnGetCellParams = TB_SaleColumns2GetCellParams
-          OnUpdateData = TB_SaleColumns3UpdateData
         end
         item
           Alignment = taCenter
@@ -306,11 +306,11 @@ object SaleForm: TSaleForm
           Footers = <>
           Title.Alignment = taCenter
           Title.Caption = #1057#1082#1083#1072#1076
-          Width = 60
+          Width = 103
         end
         item
           CellButtons = <>
-          DisplayFormat = '#.00'
+          DisplayFormat = '0.00##'
           DropDownRows = 8
           DynProps = <>
           EditButtons = <>
@@ -324,6 +324,7 @@ object SaleForm: TSaleForm
         end
         item
           CellButtons = <>
+          DisplayFormat = '0.###'
           DynProps = <>
           EditButtons = <>
           FieldName = 'TOTAL_WEIGHT'

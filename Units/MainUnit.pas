@@ -630,7 +630,6 @@ type
     act_print_ondepot: TAction;
     check_print_ondepot: TcxBarEditItem;
     popup_newdoc: TdxRibbonPopupMenu;
-    act_file_goods_full: TAction;
     btn_admin_fullaccess: TdxBarLargeButton;
     dxBarButton9: TdxBarButton;
     P_AccReport: TcxTabSheet;
@@ -1120,7 +1119,6 @@ type
     procedure act_print_prepareExecute(Sender: TObject);
     procedure act_print_reset_depotExecute(Sender: TObject);
     procedure act_print_lastExecute(Sender: TObject);
-    procedure act_file_goods_fullExecute(Sender: TObject);
     procedure edit_moves_datePropertiesCloseUp(Sender: TObject);
     procedure act_arr_historyExecute(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -1196,6 +1194,8 @@ type
     procedure act_prod_reset_depotExecute(Sender: TObject);
     procedure act_prod_previewExecute(Sender: TObject);
     procedure act_prod_printExecute(Sender: TObject);
+    procedure TB_PriceColumns6GetCellParams(Sender: TObject; EditMode: Boolean;
+      Params: TColCellParamsEh);
   private
     kassa_sum, kassa_sum_usd, kassa_sum_uah: real;
     firstrun: Boolean;
@@ -1315,7 +1315,7 @@ uses
   Settings, CalculateSalesUnit, SelectDepot,
   procentExport, PriceImport, UnsortedItems, BannedItemsUnit,
   SupplReportEdit, KassaUnit, RetCustUnit, DeptReasonSelectUnit,
-  ClientCardUnit, GoodsFullEdit, HistoryUnit, ExternapPriceImportUnit,
+  ClientCardUnit, HistoryUnit, ExternapPriceImportUnit,
   AuthoriseUnit, ChangePassUnit, ImportExcelSale, OptionsUnit,
   WaitUnit, ProgressUnit, Top100, SupplSelector, CONF_SKU_Unit,
   EmailSetupUnit, exportcsvUnit, CustomHistoryUnit, ShopProduct, SelectShopGood,
@@ -1396,7 +1396,6 @@ begin
   ApplySkinToForm(ArrivalForm);
   ApplySkinToForm(MovesForm);
   ApplySkinToForm(BannedItemsForm);
-  ApplySkinToForm(GoodsFullEditForm);
   ApplySkinToForm(HistoryForm);
   ApplySkinToForm(ItemEditorForm);
   ApplySkinToForm(MoneyInDepotsForm);
@@ -1657,6 +1656,35 @@ begin
   end;
 end;
 
+procedure TMainForm.TB_PriceColumns6GetCellParams(Sender: TObject;
+  EditMode: Boolean; Params: TColCellParamsEh);
+var
+  item_value: double;
+  item_weight: double;
+  weight_text: String;
+begin
+  if EditMode then exit;
+
+  item_value := Params.Text.ToDouble();
+  if item_value < 0 then
+  begin
+    Params.Font.Style := [fsBold];
+    Params.Font.Color := color_Minus;
+  end;
+  if item_value = 0 then
+  begin
+    Params.Font.Color := clGrayText;
+  end;
+  if Data.DS_Goods.FBN('UNIT').AsInteger = 0
+    then Params.Text := Params.Text + ' רע'
+    else Params.Text := Params.Text + ' ךד';
+  item_weight := Data.DS_Goods.FBN('ITEM_WEIGHT').AsFloat * item_value;
+  if item_weight <> 0 then
+  begin
+    Params.Text := Params.Text + ' (' + floatToStrF(RoundTo(item_weight, -3), ffGeneral, 15, 3) + ' ךד)';
+  end;
+end;
+
 procedure TMainForm.TB_PriceDblClick(Sender: TObject);
 begin
   act_price_edit.Execute;
@@ -1859,48 +1887,29 @@ end;
 procedure TMainForm.TB_GoodsOnDepotsColumnsGetCellParams(Sender: TObject;
   EditMode: Boolean; Params: TColCellParamsEh);
 var
-  c_name, cb_name: string;
-  c, cb: real;
+  item_value: double;
   item_weight: double;
-  weight_text: string;
-  main: string;
+  weight_text: String;
 begin
-  cb_name := (Sender as TDBGridColumnEh).FieldName;
-  c_name := cb_name;
-  Delete(c_name, 2, 1);
-  c := RoundTo(Data.DS_Goods.fbn(c_name).AsFloat, -2);
-  cb := RoundTo(Data.DS_Goods.fbn(cb_name).AsFloat, -2);
-  if EditMode then
-    Params.Text := floattostrF(cb, ffFixed, 20, 2)
-  else
-    begin
-      if Data.DS_Goods.FBN('UNIT').AsInteger = 0
-        then main := floattostrF(c, ffFixed, 20, 0) + 'רע'
-        else main := floattostrF(c, ffFixed, 20, 2) + 'ךד';
-      item_weight := Data.DS_Goods.FBN('ITEM_WEIGHT').AsFloat * c;
-      weight_text := '';
-      if item_weight <> 0 then
-        begin
-          weight_text := ' (' + floatToStrF(item_weight, ffFixed, 20, 2) + 'ךד)';
-        end;
-      Params.Text := main + weight_text;
-    end;
-  if cb > 0 then
-  begin
-    Params.Font.Color := clBlue;
-    Params.Font.Style := [fsBold];
-    Params.Background := clSilver;
-  end;
-  if cb < 0 then
-  begin
-    Params.Font.Color := clPurple;
-    Params.Font.Style := [fsBold];
-    Params.Background := clMedGray;
-  end;
-  if c < 0 then
+  if EditMode then exit;
+
+  item_value := Params.Text.ToDouble();
+  if item_value < 0 then
   begin
     Params.Font.Style := [fsBold];
     Params.Font.Color := color_Minus;
+  end;
+  if item_value = 0 then
+  begin
+    Params.Font.Color := clGrayText;
+  end;
+  if Data.DS_Goods.FBN('UNIT').AsInteger = 0
+    then Params.Text := Params.Text + ' רע'
+    else Params.Text := Params.Text + ' ךד';
+  item_weight := Data.DS_Goods.FBN('ITEM_WEIGHT').AsFloat * item_value;
+  if item_weight <> 0 then
+  begin
+    Params.Text := Params.Text + ' (' + floatToStrF(RoundTo(item_weight, -3), ffGeneral, 15, 3) + ' ךד)';
   end;
 end;
 
@@ -2567,13 +2576,13 @@ begin
   else
     date_filter := '';
 
-  Data.DS_Sale_N.SQLs.SelectSQL.Strings[14] := '(ENTERED = 1)' + date_filter +
+  Data.DS_Sale_N.SQLs.SelectSQL.Strings[33] := '(ENTERED = 1)' + date_filter +
     customer_filter;
 end;
 
 procedure TMainForm.SetWaitSaleFilter;
 begin
-  Data.DS_Sale_N.SQLs.SelectSQL.Strings[14] := '    (ENTERED = 0)';
+  Data.DS_Sale_N.SQLs.SelectSQL.Strings[33] := '    (ENTERED = 0)';
 end;
 
 procedure TMainForm.SetExecProductionFilter;
@@ -4865,25 +4874,6 @@ begin
   end;
 end;
 
-procedure TMainForm.act_file_goods_fullExecute(Sender: TObject);
-label
-  AndAskPassAgain;
-begin
-  DebtReasonSelectForm.CommentsEdit.Properties.EchoMode := eemPassword;
-  DebtReasonSelectForm.Label1.Caption := 'Âגוהטעו ןאנמכü:';
-  DebtReasonSelectForm.CommentsEdit.Text := '';
-AndAskPassAgain:
-  if DebtReasonSelectForm.ShowModal = mrOK then
-    if DebtReasonSelectForm.CommentsEdit.Text = 'porosenok' then
-      GoodsFullEditForm.ShowModal
-    else
-    begin
-      MessageBox(Application.Handle, 'Íוגונםûי ןאנמכü.',
-        PChar(MainForm.Caption), MB_OK + MB_ICONEXCLAMATION);
-      goto AndAskPassAgain
-    end;
-end;
-
 procedure TMainForm.act_acc_closedebtExecute(Sender: TObject);
 var
   cid: variant;
@@ -5077,7 +5067,7 @@ begin
     Screen.Cursor := crHourGlass;
     Data.DS_Sale.Close;
     Data.DS_Sale_N.Close;
-    Data.DS_Sale_N.SQLs.SelectSQL[14] := '(ID = ' +
+    Data.DS_Sale_N.SQLs.SelectSQL[33] := '(sn.ID = ' +
       inttostr(Query.DS_QueryDolgi.fbn('NAKL_ID').AsInteger) + ')';
     Data.DS_Sale_N.Open;
     Data.DS_Sale.Open;
@@ -6370,6 +6360,7 @@ begin
   Data.DS_Sale_N.Post;
   area_tree.ActivePage := P_Documents;
   Tree_Docs.Select(Tree_Docs.Items[tr_sale_wait]);
+  SetSaleFilter;
   SaleForm.ShowModal;
 end;
 
@@ -6443,6 +6434,7 @@ begin
   Data.ClearUserActivity;
   Data.CanUpdateUser := true;
   Data.DS_Sale_N.EnableControls;
+  SetSaleFilter;
 end;
 
 procedure TMainForm.act_sale_editExecute(Sender: TObject);
@@ -6505,6 +6497,7 @@ begin
   Data.DS_Sale_N.Edit;
   Data.DS_Sale_N.fbn('ENTERED').AsBoolean := true;
   Data.DS_Sale_N.Post;
+  SetSaleFilter;
 end;
 
 procedure TMainForm.act_sale_exportExecute(Sender: TObject);
@@ -6974,6 +6967,7 @@ begin
   Data.DS_Sale_N.Edit;
   Data.DS_Sale_N.fbn('ENTERED').AsBoolean := false;
   Data.DS_Sale_N.Post;
+  SetSaleFilter;
 end;
 
 procedure TMainForm.act_sale_todayExecute(Sender: TObject);
@@ -7714,26 +7708,6 @@ begin
     FieldValues['C18'] := 0;
     FieldValues['C19'] := 0;
     FieldValues['C20'] := 0;
-    FieldValues['CB1'] := 0;
-    FieldValues['CB2'] := 0;
-    FieldValues['CB3'] := 0;
-    FieldValues['CB4'] := 0;
-    FieldValues['CB5'] := 0;
-    FieldValues['CB6'] := 0;
-    FieldValues['CB7'] := 0;
-    FieldValues['CB8'] := 0;
-    FieldValues['CB9'] := 0;
-    FieldValues['CB10'] := 0;
-    FieldValues['CB11'] := 0;
-    FieldValues['CB12'] := 0;
-    FieldValues['CB13'] := 0;
-    FieldValues['CB14'] := 0;
-    FieldValues['CB15'] := 0;
-    FieldValues['CB16'] := 0;
-    FieldValues['CB17'] := 0;
-    FieldValues['CB18'] := 0;
-    FieldValues['CB19'] := 0;
-    FieldValues['CB20'] := 0;
     FieldValues['PRICE_CATEGORY_ID'] := 0;
     ItemEditorForm.EnControl := true;
     if ItemEditorForm.ShowModal = mrOK then
@@ -7832,26 +7806,6 @@ begin
     FieldValues['C18'] := 0;
     FieldValues['C19'] := 0;
     FieldValues['C20'] := 0;
-    FieldValues['CB1'] := 0;
-    FieldValues['CB2'] := 0;
-    FieldValues['CB3'] := 0;
-    FieldValues['CB4'] := 0;
-    FieldValues['CB5'] := 0;
-    FieldValues['CB6'] := 0;
-    FieldValues['CB7'] := 0;
-    FieldValues['CB8'] := 0;
-    FieldValues['CB9'] := 0;
-    FieldValues['CB10'] := 0;
-    FieldValues['CB11'] := 0;
-    FieldValues['CB12'] := 0;
-    FieldValues['CB13'] := 0;
-    FieldValues['CB14'] := 0;
-    FieldValues['CB15'] := 0;
-    FieldValues['CB16'] := 0;
-    FieldValues['CB17'] := 0;
-    FieldValues['CB18'] := 0;
-    FieldValues['CB19'] := 0;
-    FieldValues['CB20'] := 0;
     ItemEditorForm.EnControl := true;
 
     if ItemEditorForm.ShowModal = mrOK then

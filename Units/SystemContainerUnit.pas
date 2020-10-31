@@ -1180,10 +1180,7 @@ begin
   with Data.DS_Goods do
   begin
     Append;
-    FieldValues['NAME'] := Row[0].Value;
     FieldValues['FULLNAME'] := Row[0].Value;
-    FieldValues['ML'] := '-';
-    FieldValues['STATE'] := 'Ж';
     FieldValues['TYPE_ID'] := 11;
     FieldValues['FIRM_ID'] := 64;
     FieldValues['PRICE1'] := 0;

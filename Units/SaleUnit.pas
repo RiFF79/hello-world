@@ -131,8 +131,6 @@ type
     procedure edit_clientPropertiesCloseUp(Sender: TObject);
     procedure edit_clientPropertiesEditValueChanged(Sender: TObject);
     procedure edit_procentExit(Sender: TObject);
-    procedure TB_SaleColumns6GetCellParams(Sender: TObject; EditMode: Boolean;
-      Params: TColCellParamsEh);
   private
     procedure SetRecord;
     procedure ApplyDepot;
@@ -228,6 +226,7 @@ begin
       TB_Sale.Columns[2].ReadOnly := false;
       TB_Sale.Columns[3].ReadOnly := false;
       TB_Sale.Columns[4].ReadOnly := false;
+      TB_Sale.Columns[5].ReadOnly := false;
       Data.DS_Sale.Edit;
       Data.DS_Sale.fbn('GOOD_ID').AsInteger := SelectedID;
       Data.DS_Sale.Post;
@@ -244,13 +243,14 @@ begin
   TB_Sale.Columns[2].ReadOnly := null_id;
   TB_Sale.Columns[3].ReadOnly := null_id;
   TB_Sale.Columns[4].ReadOnly := null_id;
+  TB_Sale.Columns[5].ReadOnly := null_id;
 
   if (Key = VK_ESCAPE) and not(Data.DS_Sale_N.State in [dsEdit, dsInsert]) then
     Close;
   if (TB_Sale.SelectedIndex = 0) and (Key = VK_RETURN) and (FilterLayout.Enabled)
     then SetRecord;
 
-  if (Key = VK_SPACE) and (TB_Sale.SelectedIndex = 4) and
+  if (Key = VK_SPACE) and (TB_Sale.SelectedIndex = 6) and
     FilterLayout.Enabled and not null_id then
     ShowDepotsPanel;
 end;
@@ -564,7 +564,7 @@ end;
 
 procedure TSaleForm.TB_SaleCellClick(Column: TColumnEh);
 begin
-  if (Column.Index = 4) and FilterLayout.Enabled and
+  if (Column.Index = 6) and FilterLayout.Enabled and
     not Data.DS_Sale.fbn('GOOD_ID').IsNull then
     ShowDepotsPanel;
 end;
@@ -596,22 +596,14 @@ begin
     end;
 end;
 
-procedure TSaleForm.TB_SaleColumns6GetCellParams(Sender: TObject;
-  EditMode: Boolean; Params: TColCellParamsEh);
-begin
-  if (Data.DS_Sale.FBN('UNIT_ID').AsInteger = 1) OR (Data.DS_Sale.FBN('TOTAL_WEIGHT').AsFloat = 0)
-    then Params.Text := ''
-    else Params.Text := Params.Text + ' êã';
-end;
-
 procedure TSaleForm.ShowDepotsPanel;
 var
   p_top, p_left: Integer;
 begin
   DepotPanel.Height := Query.DS_Depots.VisibleRecordCount * 20;
-  DepotPanel.Width := TB_Sale.Columns[4].Width + 2;
-  p_top := TB_Sale.Top + (TB_Sale).CellRect(4, THackDBGrid(TB_Sale).Row).Top;
-  p_left := TB_Sale.Left + (TB_Sale).CellRect(4, THackDBGrid(TB_Sale).Row).Left;
+  DepotPanel.Width := TB_Sale.Columns[6].Width + 2;
+  p_top := TB_Sale.Top + (TB_Sale).CellRect(6, THackDBGrid(TB_Sale).Row).Top;
+  p_left := TB_Sale.Left + (TB_Sale).CellRect(6, THackDBGrid(TB_Sale).Row).Left;
   if (p_top + DepotPanel.Height) > (SaleForm.Height - 20) then
     p_top := p_top - DepotPanel.Height;
   DepotPanel.Left := p_left;

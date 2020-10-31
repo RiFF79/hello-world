@@ -5,7 +5,8 @@ object Data: TData
   Width = 1128
   object Database: TpFIBDatabase
     AutoReconnect = True
-    DBName = 'SERVER:C:\Mosquito-Stretch v3.5\DATABASE.GDB'
+    Connected = True
+    DBName = 'SERVER:C:\mosquito-stretch\DATABASE.GDB'
     DBParams.Strings = (
       'password=masterkey'
       'user_name=SYSDBA'
@@ -21,6 +22,7 @@ object Data: TData
     Top = 9
   end
   object TRead_Arrival_N: TpFIBTransaction
+    Active = True
     DefaultDatabase = Database
     Left = 28
     Top = 104
@@ -1357,7 +1359,9 @@ object Data: TData
       '    "NAKL_ID" = :"MAS_ID",'
       '    "GOOD_ID" = :"GOOD_ID",'
       '    "CNT" = :"CNT",'
-      '    "PRICE" = :"PRICE"'
+      '    "PRICE" = :"PRICE",'
+      '    "SUM_REAL" = :"SUM_REAL",'
+      '    "WEIGHT_TOTAL" = :"WEIGHT_TOTAL"'
       'WHERE'
       '    "ID" = :"OLD_ID"'
       '    ')
@@ -1373,14 +1377,18 @@ object Data: TData
       '    "NAKL_ID",'
       '    "GOOD_ID",'
       '    "CNT",'
-      '    "PRICE"'
+      '    "PRICE",'
+      '    "SUM_REAL",'
+      '    "WEIGHT_TOTAL"'
       ')'
       'VALUES('
       '    :"ID",'
       '    :"MAS_ID",'
       '    :"GOOD_ID",'
       '    :"CNT",'
-      '    :"PRICE"'
+      '    :"PRICE",'
+      '    :"SUM_REAL",'
+      '    :"WEIGHT_TOTAL"'
       ')')
     RefreshSQL.Strings = (
       'SELECT'
@@ -1396,7 +1404,8 @@ object Data: TData
       '  a.CNT,'
       '  a.PRICE,'
       '  a.SUMM,'
-      '  a.CNT * G.ITEM_WEIGHT AS TOTAL_WEIGHT'
+      '  a.SUM_REAL,'
+      '  a.WEIGHT_TOTAL'
       'FROM ARRIVAL a'
       'JOIN GOODS g on a.good_id = g.id'
       'WHERE'
@@ -1416,7 +1425,8 @@ object Data: TData
       '  a.CNT,'
       '  a.PRICE,'
       '  a.SUMM,'
-      '  a.CNT * G.ITEM_WEIGHT AS TOTAL_WEIGHT'
+      '  a.SUM_REAL,'
+      '  a.WEIGHT_TOTAL'
       'FROM ARRIVAL a'
       'JOIN GOODS g on a.good_id = g.id'
       'WHERE'
@@ -1437,6 +1447,7 @@ object Data: TData
     poSQLINT64ToBCD = True
   end
   object TRead_Arrival: TpFIBTransaction
+    Active = True
     DefaultDatabase = Database
     Left = 114
     Top = 104
@@ -1513,7 +1524,7 @@ object Data: TData
       ' CNT,'
       ' IS_NEW,'
       ' USERID,EUSERID,'
-      ' CHANGED, CURS, SUM_TOTAL,'
+      ' CHANGED, CURS, SUM_TOTAL, SUM_REAL,'
       
         ' (SELECT ID FROM USERS WHERE (CURRENT_DOC = 1) AND (CURRENT_DOC_' +
         'ID = ARRIVAL_N.ID) ROWS 1) EDITINGBY,'
@@ -1553,7 +1564,7 @@ object Data: TData
       ' CNT,'
       ' IS_NEW,'
       ' USERID,EUSERID,'
-      ' CHANGED, CURS, SUM_TOTAL,'
+      ' CHANGED, CURS, SUM_TOTAL, SUM_REAL,'
       
         ' (SELECT ID FROM USERS WHERE (CURRENT_DOC = 1) AND (CURRENT_DOC_' +
         'ID = ARRIVAL_N.ID) ROWS 1) EDITINGBY,'
@@ -1683,6 +1694,10 @@ object Data: TData
       FieldName = 'EUSERNAME'
       Size = 255
       EmptyStrToNull = True
+    end
+    object DS_Arrival_NSUM_REAL: TFIBFloatField
+      FieldName = 'SUM_REAL'
+      DisplayFormat = '0.00'
     end
   end
   object DS_Defaults: TpFIBDataSet
@@ -1841,9 +1856,9 @@ object Data: TData
       '    :ENTERED,'
       '    :CURR_ID,'
       '    :PRICE_TYPE,'
-      '    :PRINTED, '
-      '    :SUMM_ARRIVAL, '
-      '    :DISCOUNT, '
+      '    :PRINTED,'
+      '    :SUMM_ARRIVAL,'
+      '    :DISCOUNT,'
       '    :CURS,'
       '    :USERID,'
       '    :EUSERID'
@@ -1866,7 +1881,7 @@ object Data: TData
       '    sn.USERID,'
       '    sn.EUSERID,'
       '    sn.CHANGED,'
-      '    sn.SUM_TOTAL,'
+      '    sn.SUM_TOTAL, sn.SUM_REAL,'
       '    u.id as EDITINGBY,'
       
         '    (SELECT SUM(SUMM) FROM KASSA WHERE sn.ID = KASSA.NAKL_ID) PA' +
@@ -1905,7 +1920,7 @@ object Data: TData
       '    sn.USERID,'
       '    sn.EUSERID,'
       '    sn.CHANGED,'
-      '    sn.SUM_TOTAL,'
+      '    sn.SUM_TOTAL, sn.SUM_REAL,'
       '    u.id as EDITINGBY,'
       
         '    (SELECT SUM(SUMM) FROM KASSA WHERE sn.ID = KASSA.NAKL_ID) PA' +
@@ -1953,7 +1968,7 @@ object Data: TData
       EmptyStrToNull = True
     end
     object DS_Sale_NSUMM: TFIBFloatField
-      DefaultExpression = '0,0'
+      DefaultExpression = '0.0'
       FieldName = 'SUMM'
       DisplayFormat = '0.00'
     end
@@ -1991,11 +2006,11 @@ object Data: TData
       DisplayFormat = '0.00##'
     end
     object DS_Sale_NDISCOUNT: TFIBFloatField
-      DefaultExpression = '0,0'
+      DefaultExpression = '0.0'
       FieldName = 'DISCOUNT'
     end
     object DS_Sale_NCURS: TFIBFloatField
-      DefaultExpression = '1,0'
+      DefaultExpression = '1.0'
       FieldName = 'CURS'
     end
     object DS_Sale_NUSERID: TFIBSmallIntField
@@ -2049,8 +2064,13 @@ object Data: TData
       Size = 255
       EmptyStrToNull = True
     end
+    object DS_Sale_NSUM_REAL: TFIBFloatField
+      FieldName = 'SUM_REAL'
+      DisplayFormat = '0.00'
+    end
   end
   object TRead_Sale_N: TpFIBTransaction
+    Active = True
     DefaultDatabase = Database
     Left = 203
     Top = 336
@@ -2073,7 +2093,10 @@ object Data: TData
       '    DEPOT_ID = :DEPOT_ID,'
       '    PRICE = :PRICE,'
       '    NAKL_ID = :MAS_ID,'
-      '    GOOD_ID = :GOOD_ID, PRICE_LAST_ARRIVAL = :PRICE_LAST_ARRIVAL'
+      '    GOOD_ID = :GOOD_ID,'
+      '    PRICE_LAST_ARRIVAL = :PRICE_LAST_ARRIVAL,'
+      '    SUM_REAL = :SUM_REAL,'
+      '    WEIGHT_TOTAL = :WEIGHT_TOTAL'
       'WHERE'
       '    ID = :OLD_ID'
       '    ')
@@ -2090,7 +2113,10 @@ object Data: TData
       '    DEPOT_ID,'
       '    PRICE,'
       '    NAKL_ID,'
-      '    GOOD_ID, PRICE_LAST_ARRIVAL'
+      '    GOOD_ID,'
+      '    PRICE_LAST_ARRIVAL,'
+      '    SUM_REAL,'
+      '    WEIGHT_TOTAL'
       ')'
       'VALUES('
       '    :ID,'
@@ -2098,7 +2124,10 @@ object Data: TData
       '    :DEPOT_ID,'
       '    :PRICE,'
       '    :MAS_ID,'
-      '    :GOOD_ID, :PRICE_LAST_ARRIVAL'
+      '    :GOOD_ID,'
+      '    :PRICE_LAST_ARRIVAL,'
+      '    :SUM_REAL,'
+      '    :WEIGHT_TOTAL'
       ')')
     RefreshSQL.Strings = (
       'SELECT'
@@ -2120,7 +2149,7 @@ object Data: TData
       '     (AN.ID = A.NAKL_ID) AND'
       '     (SN.ID = S.NAKL_ID)'
       '   ORDER BY AN.A_DATE DESC ROWS 1) AS LAST_AR_PRICE,'
-      '   S.CNT * G.ITEM_WEIGHT AS TOTAL_WEIGHT'
+      '  S.WEIGHT_TOTAL, S.SUM_REAL'
       'FROM SALE S, DEPOTS D, GOODS G'
       'WHERE'
       '  (S.NAKL_ID = :ID) AND'
@@ -2147,7 +2176,7 @@ object Data: TData
       '     (AN.ID = A.NAKL_ID) AND'
       '     (SN.ID = S.NAKL_ID)'
       '   ORDER BY AN.A_DATE DESC ROWS 1) AS LAST_AR_PRICE,'
-      '  S.CNT * G.ITEM_WEIGHT AS TOTAL_WEIGHT'
+      '  S.WEIGHT_TOTAL, S.SUM_REAL'
       'FROM SALE S, DEPOTS D, GOODS G'
       'WHERE'
       '  (S.NAKL_ID = :ID) AND'
@@ -2160,7 +2189,6 @@ object Data: TData
     AutoUpdateOptions.WhenGetGenID = wgOnNewRecord
     AfterDelete = DS_SaleAfterDelete
     AfterPost = DS_SaleAfterPost
-    BeforePost = DS_SaleBeforePost
     OnNewRecord = DS_SaleNewRecord
     Transaction = TRead_Sale
     Database = Database
@@ -2172,6 +2200,7 @@ object Data: TData
     poSQLINT64ToBCD = True
   end
   object TRead_Sale: TpFIBTransaction
+    Active = True
     DefaultDatabase = Database
     Left = 289
     Top = 336
@@ -2314,7 +2343,8 @@ object Data: TData
       'SET '
       '    CNT = :CNT,'
       '    NAKL_ID = :MAS_ID,'
-      '    GOOD_ID = :GOOD_ID'
+      '    GOOD_ID = :GOOD_ID,'
+      '    WEIGHT_TOTAL = :WEIGHT_TOTAL'
       'WHERE'
       '    ID = :OLD_ID'
       '    ')
@@ -2329,13 +2359,15 @@ object Data: TData
       '    ID,'
       '    CNT,'
       '    NAKL_ID,'
-      '    GOOD_ID'
+      '    GOOD_ID,'
+      '    WEIGHT_TOTAL'
       ')'
       'VALUES('
       '    :ID,'
       '    :CNT,'
       '    :MAS_ID,'
-      '    :GOOD_ID'
+      '    :GOOD_ID,'
+      '    :WEIGHT_TOTAL'
       ')')
     RefreshSQL.Strings = (
       'SELECT'
@@ -2350,7 +2382,7 @@ object Data: TData
       '    g.unit AS unit_id,'
       '    g.price1,'
       '    g.date_changed,'
-      '    m.cnt * g.item_weight as total_weight'
+      '    m.weight_total'
       'FROM depot_moves m'
       'JOIN goods g ON g.id = m.good_id'
       'WHERE nakl_id = :id AND  m.id = :old_id')
@@ -2367,7 +2399,7 @@ object Data: TData
       '    g.unit AS unit_id,'
       '    g.price1,'
       '    g.date_changed,'
-      '    m.cnt * g.item_weight as total_weight'
+      '    m.weight_total'
       'FROM depot_moves m'
       'JOIN goods g ON g.id = m.good_id'
       'WHERE '
@@ -2398,6 +2430,7 @@ object Data: TData
     Top = 384
   end
   object TRead_Moves: TpFIBTransaction
+    Active = True
     DefaultDatabase = Database
     Left = 461
     Top = 336
@@ -4419,7 +4452,8 @@ object Data: TData
       'SET '
       '    GOOD_ID = :GOOD_ID,'
       '    CNT = :CNT,'
-      '    NAKL_ID = :MAS_ID'
+      '    NAKL_ID = :MAS_ID,'
+      '    WEIGHT_TOTAL = :WEIGHT_TOTAL'
       'WHERE'
       '    ID = :OLD_ID'
       '    ')
@@ -4434,13 +4468,15 @@ object Data: TData
       '    ID,'
       '    GOOD_ID,'
       '    CNT,'
-      '    NAKL_ID'
+      '    NAKL_ID,'
+      '    WEIGHT_TOTAL'
       ')'
       'VALUES('
       '    :ID,'
       '    :GOOD_ID,'
       '    :CNT,'
-      '    :MAS_ID'
+      '    :MAS_ID,'
+      '    :WEIGHT_TOTAL'
       ')')
     RefreshSQL.Strings = (
       'SELECT'
@@ -4456,7 +4492,7 @@ object Data: TData
       
         '    (SELECT COUNT(ID) FROM PRODUCTION_SP SP WHERE SP.NAKL_ID = P' +
         '.ID) SPECIFICATION_COUNT,'
-      '    P.CNT * G.ITEM_WEIGHT AS TOTAL_WEIGHT'
+      '    P.WEIGHT_TOTAL'
       'FROM PRODUCTION P'
       'JOIN GOODS G ON P.GOOD_ID = G.ID'
       'WHERE P.ID = :OLD_ID'
@@ -4475,7 +4511,7 @@ object Data: TData
       
         '    (SELECT COUNT(ID) FROM PRODUCTION_SP SP WHERE SP.NAKL_ID = P' +
         '.ID) SPECIFICATION_COUNT,'
-      '    P.CNT * G.ITEM_WEIGHT AS TOTAL_WEIGHT'
+      '    P.WEIGHT_TOTAL'
       'FROM PRODUCTION P'
       'JOIN GOODS G ON P.GOOD_ID = G.ID'
       'WHERE NAKL_ID = :ID')
@@ -4498,6 +4534,7 @@ object Data: TData
     poSQLINT64ToBCD = True
   end
   object TRead_Production: TpFIBTransaction
+    Active = True
     DefaultDatabase = Database
     Left = 376
     Top = 560
@@ -4519,7 +4556,8 @@ object Data: TData
       '    GOOD_ID = :GOOD_ID,'
       '    CNT = :CNT,'
       '    NAKL_ID = :MAS_ID,'
-      '    DEPOT_ID = :DEPOT_ID'
+      '    DEPOT_ID = :DEPOT_ID,'
+      '    WEIGHT_TOTAL = :WEIGHT_TOTAL'
       'WHERE'
       '    ID = :OLD_ID'
       '    ')
@@ -4535,14 +4573,16 @@ object Data: TData
       '    GOOD_ID,'
       '    CNT,'
       '    NAKL_ID,'
-      '    DEPOT_ID'
+      '    DEPOT_ID,'
+      '    WEIGHT_TOTAL'
       ')'
       'VALUES('
       '    :ID,'
       '    :GOOD_ID,'
       '    :CNT,'
       '    :MAS_ID,'
-      '    :DEPOT_ID'
+      '    :DEPOT_ID,'
+      '    :WEIGHT_TOTAL'
       ')')
     RefreshSQL.Strings = (
       'SELECT'
@@ -4557,7 +4597,7 @@ object Data: TData
         ' UNIT,'
       '    G.UNIT UNIT_ID,'
       '    D.NAME DEPOT_NAME,'
-      '    P.CNT * G.ITEM_WEIGHT AS TOTAL_WEIGHT'
+      '    P.WEIGHT_TOTAL'
       'FROM PRODUCTION_SP P'
       'JOIN GOODS G ON G.ID = P.GOOD_ID'
       'JOIN DEPOTS D ON D.ID = P.DEPOT_ID'
@@ -4576,7 +4616,7 @@ object Data: TData
         ' UNIT,'
       '    G.UNIT UNIT_ID,'
       '    D.NAME DEPOT_NAME,'
-      '    P.CNT * G.ITEM_WEIGHT AS TOTAL_WEIGHT'
+      '    P.WEIGHT_TOTAL'
       'FROM PRODUCTION_SP P'
       'JOIN GOODS G ON G.ID = P.GOOD_ID'
       'JOIN DEPOTS D ON D.ID = P.DEPOT_ID'

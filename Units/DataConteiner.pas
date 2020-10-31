@@ -293,6 +293,8 @@ type
     DS_Production_SP: TpFIBDataSet;
     TRead_Production_SP: TpFIBTransaction;
     TWrite_Production_SP: TpFIBTransaction;
+    DS_Arrival_NSUM_REAL: TFIBFloatField;
+    DS_Sale_NSUM_REAL: TFIBFloatField;
     procedure DataModuleCreate(Sender: TObject);
     procedure DS_ArrivalAfterDelete(DataSet: TDataSet);
     procedure DS_ArrivalAfterPost(DataSet: TDataSet);
@@ -307,7 +309,6 @@ type
     procedure DS_Return_SupplAfterDelete(DataSet: TDataSet);
     procedure DS_Return_SupplAfterPost(DataSet: TDataSet);
     procedure DS_Return_SupplNewRecord(DataSet: TDataSet);
-    procedure DS_SaleBeforePost(DataSet: TDataSet);
     procedure DS_Sale_NAfterRefresh(DataSet: TDataSet);
     procedure DS_KASSAAfterInsert(DataSet: TDataSet);
     procedure DS_Return_CustAfterDelete(DataSet: TDataSet);
@@ -1065,18 +1066,6 @@ end;
 procedure TData.DS_Return_SupplNewRecord(DataSet: TDataSet);
 begin
   DS_Return_Suppl.FieldByName('DEPOT_ID').AsInteger := RSDepot;
-end;
-
-procedure TData.DS_SaleBeforePost(DataSet: TDataSet);
-var
-  la: Variant;
-begin
-  la := DS_Goods.Lookup('ID', DS_Sale.FieldByName('GOOD_ID').AsInteger,
-    'PRICE_LAST_ARRIVAL');
-  if VarIsNull(la) then
-    DS_Sale.FieldByName('PRICE_LAST_ARRIVAL').AsFloat := 0
-  else
-    DS_Sale.FieldByName('PRICE_LAST_ARRIVAL').AsFloat := la;
 end;
 
 procedure TData.DS_Sale_NAfterRefresh(DataSet: TDataSet);

@@ -98,11 +98,7 @@ type
       Shift: TShiftState);
     procedure TB_ArrivalGetCellParams(Sender: TObject; Column: TColumnEh;
       AFont: TFont; var Background: TColor; State: TGridDrawState);
-    procedure TB_ArrivalColumns5GetCellParams(Sender: TObject;
-      EditMode: Boolean; Params: TColCellParamsEh);
     procedure check_ColoursClick(Sender: TObject);
-    procedure TB_ArrivalColumns4GetCellParams(Sender: TObject;
-      EditMode: Boolean; Params: TColCellParamsEh);
   private
     procedure SetRecord;
   public
@@ -147,22 +143,6 @@ procedure TArrivalForm.TB_ArrivalColumns0EditButtonClick(Sender: TObject;
 begin
   if LayoutControl.Enabled then
     SetRecord;
-end;
-
-procedure TArrivalForm.TB_ArrivalColumns4GetCellParams(Sender: TObject;
-  EditMode: Boolean; Params: TColCellParamsEh);
-begin
-//  if Data.DS_Arrival.FBN('PRC').IsNull then exit;
-  if Data.DS_Arrival.FBN('PRC').AsFloat > 100 then
-    Params.Text := '>100';
-end;
-
-procedure TArrivalForm.TB_ArrivalColumns5GetCellParams(Sender: TObject;
-  EditMode: Boolean; Params: TColCellParamsEh);
-begin
-  if (Data.DS_Arrival.FBN('UNIT_ID').AsInteger = 1) OR (Data.DS_Arrival.FBN('TOTAL_WEIGHT').AsFloat = 0)
-    then Params.Text := ''
-    else Params.Text := Params.Text + ' Í„';
 end;
 
 procedure TArrivalForm.TB_ArrivalDblClick(Sender: TObject);

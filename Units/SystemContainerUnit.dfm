@@ -441,7 +441,6 @@ object SysContainer: TSysContainer
     Version = '6.4.11'
     DotMatrixReport = False
     IniFile = '\Software\Fast Reports'
-    Preview = MainForm.preview_Report
     PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick]
     PreviewOptions.Zoom = 1.000000000000000000
     PrintOptions.Printer = 'Default'

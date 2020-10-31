@@ -130,7 +130,7 @@ object MainForm: TMainForm
     Height = 684
     Align = alClient
     TabOrder = 4
-    Properties.ActivePage = P_Price
+    Properties.ActivePage = P_Sale_N
     Properties.CustomButtons.Buttons = <>
     Properties.HideTabs = True
     ClientRectBottom = 683
@@ -240,7 +240,7 @@ object MainForm: TMainForm
             DisplayFormat = '0.00'
             DynProps = <>
             EditButtons = <>
-            FieldName = 'SUMM'
+            FieldName = 'SUM_REAL'
             Footers = <>
             Title.Caption = #1057#1091#1084#1084#1072
             Width = 131
@@ -424,7 +424,7 @@ object MainForm: TMainForm
             DisplayFormat = '0.00'
             DynProps = <>
             EditButtons = <>
-            FieldName = 'SUMM'
+            FieldName = 'SUM_REAL'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = -11
@@ -917,10 +917,6 @@ object MainForm: TMainForm
     object P_Depots: TcxTabSheet
       Caption = 'P_Depots'
       ImageIndex = 5
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object TB_Depots: TDBGridEh
         Left = 0
         Top = 0
@@ -1041,10 +1037,6 @@ object MainForm: TMainForm
     object P_Firms: TcxTabSheet
       Caption = 'P_Firms'
       ImageIndex = 6
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object TB_Firms: TDBGridEh
         Left = 0
         Top = 0
@@ -1091,10 +1083,6 @@ object MainForm: TMainForm
     object P_Suppliers: TcxTabSheet
       Caption = 'P_Suppliers'
       ImageIndex = 7
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object TB_Suppliers: TDBGridEh
         Left = 0
         Top = 0
@@ -1139,10 +1127,6 @@ object MainForm: TMainForm
     object P_GoodTypes: TcxTabSheet
       Caption = 'P_GoodTypes'
       ImageIndex = 8
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object TB_GoodTypes: TDBGridEh
         Left = 0
         Top = 0
@@ -1326,10 +1310,6 @@ object MainForm: TMainForm
     object P_Currency: TcxTabSheet
       Caption = 'P_Currency'
       ImageIndex = 10
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
     end
     object P_Price: TcxTabSheet
       Caption = 'P_Price'
@@ -1855,10 +1835,6 @@ object MainForm: TMainForm
     object P_List: TcxTabSheet
       Caption = 'P_List'
       ImageIndex = 17
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object list_ExecDoc: TListView
         Left = 0
         Top = 0
@@ -1885,19 +1861,6 @@ object MainForm: TMainForm
     object P_Report: TcxTabSheet
       Caption = 'P_Report'
       ImageIndex = 19
-      object preview_Report: TfrxPreview
-        Left = 0
-        Top = 31
-        Width = 1163
-        Height = 651
-        Align = alClient
-        OutlineVisible = False
-        OutlineWidth = 120
-        ThumbnailVisible = False
-        FindFmVisible = False
-        UseReportHints = True
-        HideScrolls = False
-      end
       object dxBarDockControl11: TdxBarDockControl
         Left = 0
         Top = 0
@@ -1910,10 +1873,6 @@ object MainForm: TMainForm
     object P_ImportPrices: TcxTabSheet
       Caption = 'P_ImportPrices'
       ImageIndex = 21
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object TB_ImportPrices: TDBGridEh
         Left = 0
         Top = 0
@@ -2088,10 +2047,6 @@ object MainForm: TMainForm
     object P_Articuls: TcxTabSheet
       Caption = 'P_Articuls'
       ImageIndex = 22
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object TB_Articuls: TDBGridEh
         Left = 0
         Top = 0
@@ -2488,11 +2443,13 @@ object MainForm: TMainForm
           object lbl_kassa_sum_usd: TLabel
             Left = 21
             Top = 1
-            Width = 43
-            Height = 13
+            Width = 146
+            Height = 15
             Align = alClient
             Alignment = taCenter
             Caption = '0.00'#1075#1088#1085'.'
+            ExplicitWidth = 43
+            ExplicitHeight = 13
           end
           object Panel16: TPanel
             Left = 1
@@ -2691,15 +2648,16 @@ object MainForm: TMainForm
             Left = 1
             Top = 1
             Width = 48
-            Height = 13
+            Height = 12
             Align = alLeft
             Caption = '   '#1044#1077#1073#1077#1090': '
+            ExplicitHeight = 13
           end
           object lbl_vzial: TLabel
             Left = 49
             Top = 1
             Width = 15
-            Height = 13
+            Height = 12
             Align = alLeft
             Caption = '---'
             Font.Charset = RUSSIAN_CHARSET
@@ -2708,6 +2666,7 @@ object MainForm: TMainForm
             Font.Name = 'Tahoma'
             Font.Style = [fsBold]
             ParentFont = False
+            ExplicitHeight = 13
           end
         end
         object Panel18: TPanel
@@ -2722,15 +2681,16 @@ object MainForm: TMainForm
             Left = 1
             Top = 1
             Width = 38
-            Height = 13
+            Height = 12
             Align = alLeft
             Caption = #1057#1091#1084#1084#1072': '
+            ExplicitHeight = 13
           end
           object lbl_AccSelSumm: TLabel
             Left = 39
             Top = 1
             Width = 15
-            Height = 13
+            Height = 12
             Align = alLeft
             Caption = '---'
             Font.Charset = RUSSIAN_CHARSET
@@ -2739,6 +2699,7 @@ object MainForm: TMainForm
             Font.Name = 'Tahoma'
             Font.Style = [fsBold]
             ParentFont = False
+            ExplicitHeight = 13
           end
         end
         object Panel19: TPanel
@@ -2753,15 +2714,16 @@ object MainForm: TMainForm
             Left = 1
             Top = 1
             Width = 54
-            Height = 13
+            Height = 12
             Align = alLeft
             Caption = '   '#1050#1088#1077#1076#1080#1090': '
+            ExplicitHeight = 13
           end
           object lbl_oplatil: TLabel
             Left = 55
             Top = 1
             Width = 15
-            Height = 13
+            Height = 12
             Align = alLeft
             Caption = '---'
             Font.Charset = RUSSIAN_CHARSET
@@ -2770,6 +2732,7 @@ object MainForm: TMainForm
             Font.Name = 'Tahoma'
             Font.Style = [fsBold]
             ParentFont = False
+            ExplicitHeight = 13
           end
         end
       end
@@ -3035,10 +2998,6 @@ object MainForm: TMainForm
     object P_DayReport: TcxTabSheet
       Caption = 'P_DayReport'
       ImageIndex = 26
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object TB_DayReport: TDBGridEh
         Left = 0
         Top = 0
@@ -3128,15 +3087,16 @@ object MainForm: TMainForm
             Left = 1
             Top = 1
             Width = 38
-            Height = 13
+            Height = 12
             Align = alLeft
             Caption = #1057#1091#1084#1084#1072': '
+            ExplicitHeight = 13
           end
           object Label50: TLabel
             Left = 39
             Top = 1
             Width = 15
-            Height = 13
+            Height = 12
             Align = alLeft
             Caption = '---'
             Font.Charset = RUSSIAN_CHARSET
@@ -3145,6 +3105,7 @@ object MainForm: TMainForm
             Font.Name = 'Tahoma'
             Font.Style = [fsBold]
             ParentFont = False
+            ExplicitHeight = 13
           end
         end
         object Panel21: TPanel
@@ -3159,15 +3120,16 @@ object MainForm: TMainForm
             Left = 1
             Top = 1
             Width = 39
-            Height = 13
+            Height = 12
             Align = alLeft
             Caption = '   '#1042#1079#1103#1083': '
+            ExplicitHeight = 13
           end
           object Label52: TLabel
             Left = 40
             Top = 1
             Width = 15
-            Height = 13
+            Height = 12
             Align = alLeft
             Caption = '---'
             Font.Charset = RUSSIAN_CHARSET
@@ -3176,6 +3138,7 @@ object MainForm: TMainForm
             Font.Name = 'Tahoma'
             Font.Style = [fsBold]
             ParentFont = False
+            ExplicitHeight = 13
           end
         end
         object Panel22: TPanel
@@ -3190,15 +3153,16 @@ object MainForm: TMainForm
             Left = 1
             Top = 1
             Width = 49
-            Height = 13
+            Height = 12
             Align = alLeft
             Caption = '   '#1054#1090#1076#1072#1083': '
+            ExplicitHeight = 13
           end
           object Label54: TLabel
             Left = 50
             Top = 1
             Width = 15
-            Height = 13
+            Height = 12
             Align = alLeft
             Caption = '---'
             Font.Charset = RUSSIAN_CHARSET
@@ -3207,6 +3171,7 @@ object MainForm: TMainForm
             Font.Name = 'Tahoma'
             Font.Style = [fsBold]
             ParentFont = False
+            ExplicitHeight = 13
           end
         end
       end
@@ -3772,10 +3737,6 @@ object MainForm: TMainForm
     object P_Reports: TcxTabSheet
       Caption = #1054#1090#1095#1105#1090#1099
       ImageIndex = 0
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Tree_Reports: TTreeView
         Left = 0
         Top = 0
@@ -3877,10 +3838,6 @@ object MainForm: TMainForm
     object P_Classifiers: TcxTabSheet
       Caption = 'P_Classifiers'
       ImageIndex = 3
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Tree_Classifiers: TTreeView
         Left = 0
         Top = 0
@@ -7856,7 +7813,6 @@ object MainForm: TMainForm
       GroupIndex = 1
       Hint = #1055#1086#1082#1072#1079#1099#1074#1072#1090#1100' '#1082#1086#1083#1086#1085#1082#1091' '#1089' '#1087#1088#1080#1073#1099#1083#1100#1102
       ImageIndex = 13
-      OnExecute = act_sale_profitExecute
     end
     object act_sale_excelexport: TAction
       Category = #1056#1072#1089#1093#1086#1076#1085#1072#1103' '#1085#1072#1082#1083#1072#1076#1085#1072#1103

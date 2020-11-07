@@ -5,6 +5,7 @@ object Data: TData
   Width = 1128
   object Database: TpFIBDatabase
     AutoReconnect = True
+    Connected = True
     DBName = 'SERVER:C:\Mosquito-Stretch v3.5\DATABASE.GDB'
     DBParams.Strings = (
       'password=masterkey'
@@ -2160,7 +2161,6 @@ object Data: TData
     AutoUpdateOptions.WhenGetGenID = wgOnNewRecord
     AfterDelete = DS_SaleAfterDelete
     AfterPost = DS_SaleAfterPost
-    BeforePost = DS_SaleBeforePost
     OnNewRecord = DS_SaleNewRecord
     Transaction = TRead_Sale
     Database = Database

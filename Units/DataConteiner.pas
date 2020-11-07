@@ -307,7 +307,6 @@ type
     procedure DS_Return_SupplAfterDelete(DataSet: TDataSet);
     procedure DS_Return_SupplAfterPost(DataSet: TDataSet);
     procedure DS_Return_SupplNewRecord(DataSet: TDataSet);
-    procedure DS_SaleBeforePost(DataSet: TDataSet);
     procedure DS_Sale_NAfterRefresh(DataSet: TDataSet);
     procedure DS_KASSAAfterInsert(DataSet: TDataSet);
     procedure DS_Return_CustAfterDelete(DataSet: TDataSet);
@@ -1065,18 +1064,6 @@ end;
 procedure TData.DS_Return_SupplNewRecord(DataSet: TDataSet);
 begin
   DS_Return_Suppl.FieldByName('DEPOT_ID').AsInteger := RSDepot;
-end;
-
-procedure TData.DS_SaleBeforePost(DataSet: TDataSet);
-var
-  la: Variant;
-begin
-  la := DS_Goods.Lookup('ID', DS_Sale.FieldByName('GOOD_ID').AsInteger,
-    'PRICE_LAST_ARRIVAL');
-  if VarIsNull(la) then
-    DS_Sale.FieldByName('PRICE_LAST_ARRIVAL').AsFloat := 0
-  else
-    DS_Sale.FieldByName('PRICE_LAST_ARRIVAL').AsFloat := la;
 end;
 
 procedure TData.DS_Sale_NAfterRefresh(DataSet: TDataSet);

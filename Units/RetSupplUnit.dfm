@@ -38,8 +38,8 @@ object RetSupplForm: TRetSupplForm
     GridLineParams.VertEmptySpaceStyle = dessNonEh
     IndicatorOptions = []
     OddRowColor = 15921906
-    Options = [dgEditing, dgTitles, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete]
-    OptionsEh = [dghFixed3D, dghFooter3D, dghHighlightFocus, dghClearSelection, dghEnterAsTab, dghColumnResize, dghColumnMove]
+    Options = [dgEditing, dgTitles, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete]
+    OptionsEh = [dghFixed3D, dghFooter3D, dghHighlightFocus, dghClearSelection, dghEnterAsTab, dghColumnResize]
     ParentFont = False
     SumList.Active = True
     TabOrder = 0
@@ -88,6 +88,17 @@ object RetSupplForm: TRetSupplForm
         Width = 80
       end
       item
+        CellButtons = <>
+        DisplayFormat = '0.###'
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'WEIGHT_TOTAL'
+        Footers = <>
+        Title.Alignment = taCenter
+        Title.Caption = #1042#1077#1089
+        Width = 80
+      end
+      item
         AutoFitColWidth = False
         CellButtons = <>
         DisplayFormat = '0.00##'
@@ -97,6 +108,17 @@ object RetSupplForm: TRetSupplForm
         Footers = <>
         Title.Alignment = taCenter
         Title.Caption = #1062#1077#1085#1072
+        Width = 80
+      end
+      item
+        CellButtons = <>
+        DisplayFormat = '0.00##'
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'SUM_REAL'
+        Footers = <>
+        Title.Alignment = taCenter
+        Title.Caption = #1057#1091#1084#1084#1072
         Width = 80
       end
       item
@@ -120,32 +142,7 @@ object RetSupplForm: TRetSupplForm
         TextEditing = False
         Title.Alignment = taCenter
         Title.Caption = #1057#1082#1083#1072#1076
-        Width = 60
-      end
-      item
-        CellButtons = <>
-        DisplayFormat = '0.00##'
-        DynProps = <>
-        EditButtons = <>
-        FieldName = 'SUMM'
-        Footers = <>
-        ReadOnly = True
-        Title.Alignment = taCenter
-        Title.Caption = #1057#1091#1084#1084#1072
-        Width = 80
-      end
-      item
-        CellButtons = <>
-        DisplayFormat = '0.###'
-        DynProps = <>
-        EditButtons = <>
-        FieldName = 'TOTAL_WEIGHT'
-        Footers = <>
-        ReadOnly = True
-        Title.Alignment = taCenter
-        Title.Caption = #1042#1077#1089
-        Width = 80
-        OnGetCellParams = TB_RetSupplColumns6GetCellParams
+        Width = 120
       end>
     object RowDetailData: TRowDetailPanelControlEh
     end
@@ -321,11 +318,12 @@ object RetSupplForm: TRetSupplForm
         Left = 121
         Top = 126
         AutoSize = True
-        DataBinding.DataField = 'SUMM'
+        DataBinding.DataField = 'SUM_REAL'
         DataBinding.DataSource = Data.S_Return_Suppl_N
         Style.HotTrack = False
         Style.TextColor = clHotLight
         Style.TextStyle = [fsBold]
+        AnchorX = 190
       end
       object summ_layoutGroup_Root: TdxLayoutGroup
         AlignHorz = ahParentManaged

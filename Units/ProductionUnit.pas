@@ -97,7 +97,9 @@ type
     procedure edit_commentsKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure edit_commentsExit(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
+    depot_col: Integer;
     procedure SetProductionRecord;
     procedure SetSpecificationRecord;
     procedure ShowDepotsPanel;
@@ -192,6 +194,11 @@ begin
   MainForm.event_locked := false;
 end;
 
+procedure TProductionForm.FormCreate(Sender: TObject);
+begin
+  depot_col := SysContainer.findDepotColId(TB_Specification);
+end;
+
 procedure TProductionForm.FormShortCut(var Msg: TWMKey; var Handled: Boolean);
 begin
   if (Msg.CharCode = VK_F5) or (Msg.CharCode = VK_ESCAPE) then Close;
@@ -245,7 +252,7 @@ end;
 
 procedure TProductionForm.TB_SpecificationCellClick(Column: TColumnEh);
 begin
-  if (Column.Index = 4) and LayoutControl.Enabled and
+  if (Column.Index = depot_col) and LayoutControl.Enabled and
     not Data.DS_Production_SP.fbn('GOOD_ID').IsNull then
     ShowDepotsPanel;
 end;
@@ -261,9 +268,9 @@ var
   p_top, p_left: Integer;
 begin
   DepotPanel.Height := Query.DS_Depots.VisibleRecordCount * 20;
-  DepotPanel.Width := TB_Specification.Columns[4].Width + 2;
-  p_top := TB_Specification.Top + (TB_Specification).CellRect(4, THackDBGrid(TB_Specification).Row).Top;
-  p_left := TB_Specification.Left + (TB_Specification).CellRect(4, THackDBGrid(TB_Specification).Row).Left;
+  DepotPanel.Width := TB_Specification.Columns[depot_col].Width + 2;
+  p_top := TB_Specification.Top + (TB_Specification).CellRect(depot_col, THackDBGrid(TB_Specification).Row).Top;
+  p_left := TB_Specification.Left + (TB_Specification).CellRect(depot_col, THackDBGrid(TB_Specification).Row).Left;
   if (p_top + DepotPanel.Height) > (ProductionForm.Height - 20) then
     p_top := p_top - DepotPanel.Height;
   DepotPanel.Left := p_left;
@@ -300,7 +307,7 @@ begin
 if Key = VK_ESCAPE then Close;
   if (TB_Specification.SelectedIndex = 0) and (Key = VK_RETURN) and
     (LayoutControl.Enabled) then SetSpecificationRecord;
-  if (Key = VK_SPACE) and (TB_Specification.SelectedIndex = 4) and
+  if (Key = VK_SPACE) and (TB_Specification.SelectedIndex = depot_col) and
     LayoutControl.Enabled then
     ShowDepotsPanel;
   if Key = VK_F1 then MainForm.act_prod_spec_item_card.Execute;

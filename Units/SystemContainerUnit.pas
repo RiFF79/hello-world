@@ -12,7 +12,7 @@ uses
   frxExportBaseDialog, cxImageList, System.ImageList, QImport3Wizard,
   MainUnit, Settings, SaleUnit, ImportExcelSale,
   UnsortedItems, ProgressUnit, ArrivalUnit, QueryDataContainer,
-  ExternapPriceImportUnit;
+  ExternapPriceImportUnit, GridsEh, DBGridEh, ExtCtrls;
 
 type
   TSysContainer = class(TDataModule)
@@ -65,16 +65,12 @@ type
     defReport: TfrxReport;
     frxXLSExport1: TfrxXLSExport;
     AccReport: TfrxReport;
-    ReqReport: TfrxReport;
-    FDS_Requirements: TfrxDBDataset;
-    FDS_ReqList: TfrxDBDataset;
     frxPDFExport1: TfrxPDFExport;
     frxJPEGExport1: TfrxJPEGExport;
     frxCSVExport1: TfrxCSVExport;
     xlsShopProduct: tqimport3XLS;
     IL_Customers: TcxImageList;
     IL_Accounting: TcxImageList;
-    exlSaleReq: TQImport3XLS;
     FDS_Production: TfrxDBDataset;
     FDS_Production_N: TfrxDBDataset;
     FDS_Production_SP: TfrxDBDataset;
@@ -103,11 +99,7 @@ type
     procedure MovesReportEndDoc(Sender: TObject);
     procedure KassaReportGetValue(const VarName: string; var Value: Variant);
     procedure DolgiReportBeginDoc(Sender: TObject);
-    procedure ReqReportGetValue(const VarName: string; var Value: Variant);
     procedure SaleReportEndDoc(Sender: TObject);
-    procedure exlSaleReqBeforeImport(Sender: TObject);
-    procedure exlSaleReqAfterImport(Sender: TObject);
-    procedure exlSaleReqUserDefinedImport(Sender: TObject; Row: TQImportRow);
   private
     pre_summ: Real;
     first_row: boolean;
@@ -123,8 +115,6 @@ type
     function GetColName(col_id: Integer): string;
     function isNumeric(p: string): boolean;
     function isInteger(p: string): boolean;
-    function GetMinSupplierName: string;
-    function GetMinSupplierPrice: Real;
     function SupplPrice(good_id: Integer; suppl_nid: Integer): Real;
     function ToNaturalLook(str: string): string;
     function RemoveTextFromEnd(Text: string; RemoveText: string): string;
@@ -143,6 +133,7 @@ type
       firm: string): string;
     function RemoveWasteSpaces(str: string): string;
     function FirstCapitals(str: string): string;
+    function findDepotColId(table: TDBGridEh): integer;
   end;
 
 var
@@ -153,7 +144,6 @@ implementation
 uses DataConteiner;
 
 {$R *.dfm}
-
 
 function TSysContainer.FirstCapitals(str: string): string;
 var
@@ -378,6 +368,21 @@ begin
     Result := false;
 end;
 
+function TSysContainer.findDepotColId(table: TDBGridEh): integer;
+var
+  enum: TCollectionEnumerator;
+  col: TDBGridColumnEh;
+begin
+  enum := table.Columns.GetEnumerator;
+  result := -1;
+  while enum.MoveNext do
+    begin
+      col := enum.GetCurrent as TDBGridColumnEh;
+      if col.FieldName.Contains('DEPOT') then result := col.ID;
+    end;
+end;
+
+
 procedure TSysContainer.PriceReportUserFunction(const Name: String;
   p1, p2, p3: Variant; var Val: Variant);
 begin
@@ -388,15 +393,6 @@ begin
     else
       Val := false;
   end;
-end;
-
-procedure TSysContainer.ReqReportGetValue(const VarName: string;
-  var Value: Variant);
-begin
-  if VarName = 'SUPPLIER' then
-    Value := GetMinSupplierName;
-  if VarName = 'SUPPLIER_PRICE' then
-    Value := GetMinSupplierPrice;
 end;
 
 procedure TSysContainer.PriceReportGetValue(const ParName: String;
@@ -412,6 +408,15 @@ begin
       ParValue := Data.DS_Goods.FBN('CNT_ALL').AsFloat
     else
       ParValue := Data.DS_Goods.FBN('C' + inttostr(MainForm.DepotOnPrint))
+        .AsFloat;
+  end;
+
+  if ParName = 'DEPOT_WEIGHT' then
+  begin
+    if MainForm.DepotOnPrint = -1 then
+      ParValue := Data.DS_Goods.FBN('WEIGHT_ALL').AsFloat
+    else
+      ParValue := Data.DS_Goods.FBN('W' + inttostr(MainForm.DepotOnPrint))
         .AsFloat;
   end;
 
@@ -471,11 +476,9 @@ procedure TSysContainer.exlSaleAfterImport(Sender: TObject);
 begin
   MainForm.progressbar.Position := 0;
   Data.DS_Sale.ReopenLocate('ID');
-  SaleForm.UpdateRequirementsFilter;
   Data.DS_Goods.EnableControls;
   Data.DS_Sale_N.EnableControls;
   Data.DS_Sale.EnableControls;
-  Data.DS_Requirements.EnableControls;
   Screen.Cursor := crDefault;
 end;
 
@@ -486,70 +489,12 @@ begin
   Data.DS_Sale.DisableControls;
   Data.DS_Sale_N.DisableControls;
   Data.DS_Goods.DisableControls;
-  Data.DS_Requirements.DisableControls;
 
   Screen.Cursor := crHourGlass;
   Data.DS_Sale_N.Refresh;
   Data.DS_Sale.Last;
   MainForm.progressbar.Max := exlSale.TotalRecCount;
   MainForm.progressbar.Position := 0;
-  {
-  pricetype := Data.DS_Sale_N.FBN('PRICE_TYPE').AsInteger;
-  XLSDepots_Count := 0;
-  for I := 0 to 20 do
-    if ImportExcelSaleForm.clbDepots.Checked[I] then
-    begin
-      XLSDepots[XLSDepots_Count] := Settings.XLSDepotsOrder[I];
-      Inc(XLSDepots_Count);
-    end;
-  }
-end;
-
-procedure TSysContainer.exlSaleReqAfterImport(Sender: TObject);
-begin
-  MainForm.progressbar.Position := 0;
-  if (Data.DS_Requirements.State = dsEdit) or
-     (Data.DS_Requirements.State = dsInsert)
-    then Data.DS_Requirements.Post;
-  SaleForm.UpdateRequirementsFilter;
-  SaleForm.UpdateReqList;
-  SaleForm.UpdateReqButtons;
-  Data.DS_Requirements.EnableControls;
-  Screen.Cursor := crDefault;
-end;
-
-procedure TSysContainer.exlSaleReqBeforeImport(Sender: TObject);
-var
-  I: Integer;
-begin
-  Data.DS_Requirements.DisableControls;
-  import_sale_n_id := Data.DS_Sale_N.FBN('ID').AsInteger;
-  import_sale_n_cust := Data.DS_Sale_N.FBN('CUST_ID').AsInteger;
-  Screen.Cursor := crHourGlass;
-  Data.DS_Requirements.Last;
-end;
-
-procedure TSysContainer.exlSaleReqUserDefinedImport(Sender: TObject;
-  Row: TQImportRow);
-const
-  c_id = 0;
-  c_price = 1;
-  c_cnt = 2;
-var
-  price: double;
-  cnt: double;
-  id: Integer;
-begin
-  if not TryStrToInt(Row[c_id].Value, id) or
-     not TryStrToFloat(Row[c_cnt].Value, cnt) or
-     not TryStrToFloat(Row[c_price].Value, price) then exit;
-  if cnt < 1 then exit;
-  Data.DS_Requirements.Append;
-  Data.DS_Requirements.FBN('GOOD_ID').AsInteger := id;
-  Data.DS_Requirements.FBN('CLIENT_ID').AsInteger := import_sale_n_cust;
-  Data.DS_Requirements.FBN('CNT').AsFloat := cnt;
-  Data.DS_Requirements.FBN('ORIGINAL_PRICE').AsFloat := price;
-  Data.DS_Requirements.FBN('ORIGINAL_NAKL_ID').AsInteger := import_sale_n_id;
 end;
 
 function TSysContainer.isInteger(p: string): boolean;
@@ -613,66 +558,11 @@ begin
     begin
       j := 0;
       price := 0;
-      if ImportExcelSaleForm.price_selector.ItemIndex = 0 then
-      begin
-      {
-        case pricetype of
-          1:
-            price := Data.DS_Goods.fbn('PRICE1').AsFloat;
-          2:
-            price := Data.DS_Goods.fbn('PRICE2').AsFloat;
-          3:
-            price := Data.DS_Goods.fbn('PRICE_SHOP').AsFloat;
-          4:
-            price := Data.DS_Goods.fbn('PRICE_SHOP2').AsFloat;
-        end;
-      }
-        price := RoundTo(price + price * SaleForm.edit_Procent.Value / 100, -2);
-      end
-      else
-        price := zprice;
+      if ImportExcelSaleForm.price_selector.ItemIndex = 0
+        then price := RoundTo(price + price * SaleForm.edit_Procent.Value / 100, -2)
+        else price := zprice;
 
       dcnt := cnt;
-      {
-      while cnt > 0 do
-      begin
-        depot_cnt := Data.DS_Goods.FieldValues['C' + inttostr(XLSDepots[j])];
-        if depot_cnt >= cnt then
-        begin
-          AddToInvoice(id, cnt, price, XLSDepots[j]);
-          dcnt := 0;
-          cnt := 0;
-        end
-        else
-        begin
-          if depot_cnt > 0 then
-          begin
-            AddToInvoice(id, depot_cnt, price, XLSDepots[j]);
-            cnt := cnt - depot_cnt;
-          end;
-          Inc(j);
-          if j = XLSDepots_Count then
-          begin
-            dcnt := cnt;
-            cnt := 0;
-          end;
-        end;
-
-      end;
-      }
-      if dcnt > 0 then
-      begin
-        Data.DS_Requirements.Insert;
-        Data.DS_Requirements.FBN('GOOD_ID').AsInteger := id;
-        Data.DS_Requirements.FBN('CLIENT_ID').AsInteger :=
-          Data.DS_Sale_N.FBN('CUST_ID').AsInteger;
-        Data.DS_Requirements.FBN('CNT').AsFloat := dcnt;
-        Data.DS_Requirements.FBN('ORIGINAL_PRICE').AsFloat := zprice;
-        Data.DS_Requirements.FBN('ORIGINAL_NAKL_ID').AsInteger :=
-          Data.DS_Sale_N.FBN('ID').AsInteger;
-        Data.DS_Requirements.Post;
-      end;
-
     end
     else
       ShowMessage('Товар с артикулом №' + inttostr(id) + ' не существует.');
@@ -1289,79 +1179,6 @@ begin
     Result := Data.DS_Goods.FBN('SUPL_PRICE_' + inttostr(suppl_nid)).AsFloat
   else
     Result := 999999;
-end;
-
-function TSysContainer.GetMinSupplierPrice: Real;
-var
-  spl: array [1 .. 7] of double;
-  min_price: Real;
-begin
-  spl[1] := SupplPrice(Data.DS_Requirements.FBN('GOOD_ID').AsInteger, 1); // Дед
-  spl[2] := SupplPrice(Data.DS_Requirements.FBN('GOOD_ID').AsInteger, 3);
-  // Вова
-  spl[3] := SupplPrice(Data.DS_Requirements.FBN('GOOD_ID').AsInteger, 6);
-  // Днепр
-  spl[4] := SupplPrice(Data.DS_Requirements.FBN('GOOD_ID').AsInteger, 9);
-  // Парфекс
-  spl[5] := SupplPrice(Data.DS_Requirements.FBN('GOOD_ID').AsInteger, 4);
-  // Флакон
-  spl[6] := SupplPrice(Data.DS_Requirements.FBN('GOOD_ID').AsInteger, 14);
-  // Олег Косметика
-  spl[7] := SupplPrice(Data.DS_Requirements.FBN('GOOD_ID').AsInteger, 8);
-  // ВВ
-  min_price := MinValue(spl);
-  if min_price >= 999999 then
-    Result := 0
-  else
-    Result := min_price;
-end;
-
-function TSysContainer.GetMinSupplierName: string;
-var
-  spl: array [1 .. 7] of double;
-  min_place: Integer;
-  I: Integer;
-  min_price: Real;
-  good_id: Integer;
-begin
-  good_id := Data.DS_Requirements.FBN('GOOD_ID').AsInteger;
-  spl[1] := SupplPrice(good_id, 1); // Дед
-  spl[2] := SupplPrice(good_id, 3); // Вова
-  spl[3] := SupplPrice(good_id, 6); // Днепр
-  spl[4] := SupplPrice(good_id, 9); // Парфекс
-  spl[5] := SupplPrice(good_id, 4); // Флакон
-  spl[6] := SupplPrice(good_id, 14); // Олег Косметика
-  spl[7] := SupplPrice(good_id, 8); //ВВ
-
-  min_price := MinValue(spl);
-
-  if min_price >= 999999 then
-    min_place := 0
-  else
-  begin
-    min_place := 1;
-    for I := 2 to 7 do
-      if spl[I] < spl[min_place] then
-        min_place := I;
-  end;
-  case min_place of
-    0:
-      Result := '----';
-    1:
-      Result := 'К';
-    2:
-      Result := 'В';
-    3:
-      Result := 'Д';
-    4:
-      Result := 'П';
-    5:
-      Result := 'Ф';
-    6:
-      Result := 'О';
-    7:
-      Result := 'ВВ';
-  end;
 end;
 
 end.

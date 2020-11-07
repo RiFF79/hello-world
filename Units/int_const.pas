@@ -8,7 +8,6 @@ const
 
   // Файлы
   inifile = 'mosquito35.ini';
-  req_report_file = 'Требования.fr3';
 
   // Стандартные значения
   default_depotrowcount = 8;
@@ -82,8 +81,9 @@ const
   tr_AccReport = 2;
   tr_DayReport = 3;
   tr_DolgiKlienta = 4;
-  tr_PriceReport = 5;
-  tr_CountReport_Depots = 6;
+  tr_PrintReports = 5;
+  tr_PriceReport = 6;
+  tr_CountReport_Depots = 7;
 
   // Настройки
   tr_ReportsSettings = 0;

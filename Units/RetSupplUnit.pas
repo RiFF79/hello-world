@@ -85,9 +85,8 @@ type
       Shift: TShiftState);
     procedure TB_RetSupplCellClick(Column: TColumnEh);
     procedure edit_clientPropertiesCloseUp(Sender: TObject);
-    procedure TB_RetSupplColumns6GetCellParams(Sender: TObject;
-      EditMode: Boolean; Params: TColCellParamsEh);
   private
+    depot_col: Integer;
     curs_accept: Boolean;
     procedure SetRecord;
     procedure ApplyDepot;
@@ -140,7 +139,7 @@ begin
   if (TB_RetSuppl.SelectedIndex = 0) and (Key = VK_RETURN) and
     (control_layout.Enabled) then
     SetRecord;
-  if (Key = VK_SPACE) and (TB_RetSuppl.SelectedIndex = 4) and control_layout.Enabled
+  if (Key = VK_SPACE) and (TB_RetSuppl.SelectedIndex = depot_col) and control_layout.Enabled
   then
     ShowDepotsPanel;
 
@@ -166,7 +165,7 @@ end;
 
 procedure TRetSupplForm.TB_RetSupplCellClick(Column: TColumnEh);
 begin
-  if (Column.Index = 4) and control_layout.Enabled then
+  if (Column.Index = depot_col) and control_layout.Enabled then
     ShowDepotsPanel;
 end;
 
@@ -175,14 +174,6 @@ procedure TRetSupplForm.TB_RetSupplColumns0EditButtonClick(Sender: TObject;
 begin
   if control_layout.Enabled then
     SetRecord;
-end;
-
-procedure TRetSupplForm.TB_RetSupplColumns6GetCellParams(Sender: TObject;
-  EditMode: Boolean; Params: TColCellParamsEh);
-begin
-  if (Data.DS_Return_Suppl.FBN('UNIT_ID').AsInteger = 1) OR (Data.DS_Return_Suppl.FBN('TOTAL_WEIGHT').AsFloat = 0)
-    then Params.Text := ''
-    else Params.Text := Params.Text + ' êã';
 end;
 
 procedure TRetSupplForm.FormCreate(Sender: TObject);
@@ -195,6 +186,7 @@ begin
   Width := I.ReadInteger('RetSupplForm', 'Width', 640);
   Height := I.ReadInteger('RetSupplForm', 'Height', 480);
   I.Free;
+  depot_col := SysContainer.findDepotColId(TB_RetSuppl);
 end;
 
 procedure TRetSupplForm.edit_clientPropertiesCloseUp(Sender: TObject);
@@ -242,10 +234,12 @@ procedure TRetSupplForm.ShowDepotsPanel;
 var
   p_top, p_left: Integer;
 begin
+  DepotPanel.Height := Query.DS_Depots.VisibleRecordCount * 20;
+  DepotPanel.Width := TB_RetSuppl.Columns[depot_col].Width + 2;
   p_top := TB_RetSuppl.Top + (TB_RetSuppl)
-    .CellRect(4, THackDBGrid(TB_RetSuppl).Row).Top;
+    .CellRect(depot_col, THackDBGrid(TB_RetSuppl).Row).Top;
   p_left := TB_RetSuppl.Left + (TB_RetSuppl)
-    .CellRect(4, THackDBGrid(TB_RetSuppl).Row).Left;
+    .CellRect(depot_col, THackDBGrid(TB_RetSuppl).Row).Left;
   if (p_top + DepotPanel.Height) > (RetSupplForm.Height - 20) then
     p_top := p_top - DepotPanel.Height;
   DepotPanel.Left := p_left;

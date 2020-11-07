@@ -39,6 +39,7 @@ object MainForm: TMainForm
     TabOrder = 1
     TabStop = False
     object rib_tab_documents: TdxRibbonTab
+      Active = True
       Caption = #1044#1086#1082#1091#1084#1077#1085#1090#1099
       Groups = <
         item
@@ -63,7 +64,6 @@ object MainForm: TMainForm
       Index = 1
     end
     object rib_tab_file: TdxRibbonTab
-      Active = True
       Caption = #1057#1080#1089#1090#1077#1084#1072
       Groups = <
         item
@@ -130,7 +130,7 @@ object MainForm: TMainForm
     Height = 684
     Align = alClient
     TabOrder = 4
-    Properties.ActivePage = P_Sale_N
+    Properties.ActivePage = P_Price
     Properties.CustomButtons.Buttons = <>
     Properties.HideTabs = True
     ClientRectBottom = 683
@@ -727,7 +727,7 @@ object MainForm: TMainForm
             DisplayFormat = '0.00'
             DynProps = <>
             EditButtons = <>
-            FieldName = 'SUMM'
+            FieldName = 'SUM_REAL'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = -11
@@ -866,7 +866,7 @@ object MainForm: TMainForm
             DisplayFormat = '0.00'
             DynProps = <>
             EditButtons = <>
-            FieldName = 'SUMM'
+            FieldName = 'SUM_REAL'
             Footers = <>
             Title.Caption = #1057#1091#1084#1084#1072
             Width = 148
@@ -1868,6 +1868,20 @@ object MainForm: TMainForm
         Height = 31
         Align = dalTop
         BarManager = BarManager
+      end
+      object preview_Report: TfrxPreview
+        Left = 0
+        Top = 31
+        Width = 1163
+        Height = 651
+        Align = alClient
+        OutlineVisible = False
+        OutlineWidth = 121
+        ThumbnailVisible = False
+        FindFmVisible = False
+        UseReportHints = True
+        OutlineTreeSortType = dtsUnsorted
+        HideScrolls = False
       end
     end
     object P_ImportPrices: TcxTabSheet
@@ -3725,7 +3739,7 @@ object MainForm: TMainForm
     Height = 684
     Align = alLeft
     TabOrder = 5
-    Properties.ActivePage = P_Documents
+    Properties.ActivePage = P_Reports
     Properties.ActivateFocusedTab = False
     Properties.CustomButtons.Buttons = <>
     Properties.HideTabs = True
@@ -7996,6 +8010,7 @@ object MainForm: TMainForm
       Caption = #1055#1077#1095#1072#1090#1085#1099#1077' '#1086#1090#1095#1105#1090#1099
       Hint = #1055#1077#1095#1072#1090#1085#1099#1077' '#1086#1090#1095#1105#1090#1099
       ImageIndex = 39
+      OnExecute = act_rep_ReportsExecute
     end
     object act_rep_history: TAction
       Category = #1054#1090#1095#1105#1090#1099
@@ -9208,27 +9223,6 @@ object MainForm: TMainForm
       ImageIndex = 74
       OnExecute = act_price_recalc_ostatkiExecute
     end
-    object act_sale_req_delete: TAction
-      Category = #1056#1072#1089#1093#1086#1076#1085#1072#1103' '#1085#1072#1082#1083#1072#1076#1085#1072#1103
-      Caption = #1059#1076#1072#1083#1080#1090#1100' '#1090#1086#1074#1072#1088' '#1080#1079' '#1089#1087#1080#1089#1082#1072' '#1090#1088#1077#1073#1086#1074#1072#1085#1080#1081
-      Hint = #1059#1076#1072#1083#1080#1090#1100' '#1074#1099#1073#1088#1072#1085#1085#1099#1081' '#1090#1086#1074#1072#1088' '#1080#1079' '#1089#1087#1080#1089#1082#1072' '#1090#1088#1077#1073#1086#1074#1072#1085#1080#1081
-      ImageIndex = 3
-      OnExecute = act_sale_req_deleteExecute
-    end
-    object act_sale_req_add: TAction
-      Category = #1056#1072#1089#1093#1086#1076#1085#1072#1103' '#1085#1072#1082#1083#1072#1076#1085#1072#1103
-      Caption = #1055#1077#1088#1077#1084#1077#1089#1090#1080#1090#1100' '#1074#1099#1073#1088#1072#1085#1085#1099#1081' '#1090#1086#1074#1072#1088' '#1074' '#1089#1087#1080#1089#1086#1082' '#1090#1088#1077#1073#1086#1074#1072#1085#1080#1081
-      Hint = #1055#1077#1088#1077#1084#1077#1089#1090#1080#1090#1100' '#1074#1099#1073#1088#1072#1085#1085#1099#1081' '#1090#1086#1074#1072#1088' '#1074' '#1089#1087#1080#1089#1086#1082' '#1090#1088#1077#1073#1086#1074#1072#1085#1080#1081
-      ImageIndex = 91
-      OnExecute = act_sale_req_addExecute
-    end
-    object act_sale_check: TAction
-      Category = #1056#1072#1089#1093#1086#1076#1085#1072#1103' '#1085#1072#1082#1083#1072#1076#1085#1072#1103
-      Caption = #1055#1077#1088#1077#1084#1077#1089#1090#1080#1090#1100' '#1090#1086#1074#1072#1088#1099', '#1082#1086#1090#1086#1088#1099#1093' '#1085#1077#1090' '#1074' '#1085#1072#1083#1080#1095#1080#1080', '#1074' '#1090#1088#1077#1073#1086#1074#1072#1085#1080#1103
-      Hint = #1055#1077#1088#1077#1084#1077#1089#1090#1080#1090#1100' '#1090#1086#1074#1072#1088#1099', '#1082#1086#1090#1086#1088#1099#1093' '#1085#1077#1090' '#1074' '#1085#1072#1083#1080#1095#1080#1080', '#1074' '#1090#1088#1077#1073#1086#1074#1072#1085#1080#1103
-      ImageIndex = 93
-      OnExecute = act_sale_checkExecute
-    end
     object act_file_recalc_lux: TAction
       Category = #1060#1072#1081#1083
       Caption = #1055#1077#1088#1077#1089#1095#1080#1090#1072#1090#1100' '#1094#1077#1085#1099' '#1085#1072' '#1085#1080#1096#1077#1074#1099#1081' '#1090#1086#1074#1072#1088
@@ -9239,32 +9233,12 @@ object MainForm: TMainForm
       Caption = #1055#1077#1088#1077#1089#1095#1080#1090#1072#1090#1100' '#1094#1077#1085#1099' '#1074' '#1087#1088#1072#1081#1089#1077' '#1087#1086' '#1101#1090#1086#1081' '#1085#1072#1082#1083#1072#1076#1085#1086#1081
       ImageIndex = 64
     end
-    object act_sale_req_clear: TAction
-      Category = #1056#1072#1089#1093#1086#1076#1085#1072#1103' '#1085#1072#1082#1083#1072#1076#1085#1072#1103
-      Caption = 'act_sale_req_clear'
-      Hint = #1054#1095#1080#1089#1090#1080#1090#1100' '#1090#1088#1077#1073#1086#1074#1072#1085#1080#1103' '#1087#1086' '#1074#1099#1073#1088#1072#1085#1085#1099#1084' '#1085#1072#1082#1083#1072#1076#1085#1099#1084
-      ImageIndex = 90
-      OnExecute = act_sale_req_clearExecute
-    end
     object act_rep_top100: TAction
       Category = #1054#1090#1095#1105#1090#1099
       Caption = #1058#1086#1087' 100 '#1087#1088#1086#1076#1072#1078
       Hint = #1058#1086#1087' 100 '#1090#1086#1074#1072#1088#1086#1074
       ImageIndex = 79
       OnExecute = act_rep_top100Execute
-    end
-    object act_sale_req_print: TAction
-      Category = #1056#1072#1089#1093#1086#1076#1085#1072#1103' '#1085#1072#1082#1083#1072#1076#1085#1072#1103
-      Caption = #1055#1077#1095#1072#1090#1100' '#1090#1088#1077#1073#1086#1074#1072#1085#1080#1081
-      ImageIndex = 5
-      OnExecute = act_sale_req_printExecute
-    end
-    object act_sale_req_tosale: TAction
-      Category = #1056#1072#1089#1093#1086#1076#1085#1072#1103' '#1085#1072#1082#1083#1072#1076#1085#1072#1103
-      Caption = #1054#1073#1085#1086#1074#1080#1090#1100' '#1088#1072#1089#1093#1086#1076#1085#1091#1102' '#1085#1072#1082#1083#1072#1076#1085#1091#1102' '#1087#1086' '#1090#1088#1077#1073#1086#1074#1072#1085#1080#1103#1084
-      Hint = #1054#1073#1085#1086#1074#1080#1090#1100' '#1088#1072#1089#1093#1086#1076#1085#1091#1102' '#1085#1072#1082#1083#1072#1076#1085#1091#1102' '#1087#1086' '#1090#1088#1077#1073#1086#1074#1072#1085#1080#1103#1084
-      ImageIndex = 65
-      OnExecute = act_sale_req_tosaleExecute
     end
     object act_file_email: TAction
       Category = #1060#1072#1081#1083
@@ -9348,12 +9322,6 @@ object MainForm: TMainForm
       Caption = #1059#1076#1072#1083#1080#1090#1100' '#1079#1072#1087#1080#1089#1100' '#1082#1091#1088#1089#1072
       Hint = #1059#1076#1072#1083#1080#1090#1100' '#1079#1072#1087#1080#1089#1100
       ImageIndex = 3
-    end
-    object act_sale_req_import: TAction
-      Category = #1056#1072#1089#1093#1086#1076#1085#1072#1103' '#1085#1072#1082#1083#1072#1076#1085#1072#1103
-      Caption = #1048#1084#1087#1086#1088#1090' '#1085#1072#1082#1083#1072#1076#1085#1086#1081' '#1080#1079' Microsoft Excel'
-      ImageIndex = 20
-      OnExecute = act_sale_req_importExecute
     end
     object act_sale_update_prices: TAction
       Category = #1056#1072#1089#1093#1086#1076#1085#1072#1103' '#1085#1072#1082#1083#1072#1076#1085#1072#1103

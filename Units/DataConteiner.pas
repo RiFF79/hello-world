@@ -152,13 +152,6 @@ type
     DS_KASSACASHOUT: TFIBSmallIntField;
     DS_KASSACLIENT_NAME: TFIBstringField;
     DS_DefaultsLAST_SYS_DATE: TFIBDateTimeField;
-    S_Requirements: TDataSource;
-    DS_Requirements: TpFIBDataSet;
-    TRead_Requirements: TpFIBTransaction;
-    TWrite_Requirements: TpFIBTransaction;
-    DS_ReqList: TpFIBDataSet;
-    S_ReqList: TDataSource;
-    TRead_ReqList: TpFIBTransaction;
     DS_EXT_PRICE: TpFIBDataSet;
     S_EXT_PRICE: TDataSource;
     TRead_EXT_PRICE: TpFIBTransaction;
@@ -295,6 +288,8 @@ type
     TWrite_Production_SP: TpFIBTransaction;
     DS_Arrival_NSUM_REAL: TFIBFloatField;
     DS_Sale_NSUM_REAL: TFIBFloatField;
+    DS_Return_Cust_NSUM_REAL: TFIBFloatField;
+    DS_Return_Suppl_NSUM_REAL: TFIBFloatField;
     procedure DataModuleCreate(Sender: TObject);
     procedure DS_ArrivalAfterDelete(DataSet: TDataSet);
     procedure DS_ArrivalAfterPost(DataSet: TDataSet);
@@ -315,7 +310,6 @@ type
     procedure DS_Return_CustAfterPost(DataSet: TDataSet);
     procedure AfterEdit(DataSet: TDataSet);
     procedure AfterInsert(DataSet: TDataSet);
-    procedure DS_ReqListAfterScroll(DataSet: TDataSet);
     procedure DS_ProductionAfterDelete(DataSet: TDataSet);
     procedure DS_ProductionAfterPost(DataSet: TDataSet);
     procedure DS_Production_SPAfterDelete(DataSet: TDataSet);
@@ -352,7 +346,6 @@ type
     procedure ClearUserActivity;
     procedure SetUserActivity(billtype: integer);
     procedure RecalculateCounts(id: integer);
-    procedure DeleteFromRequirements(id: integer);
     function BillOpened(bill_type: integer): integer;
     function ArrivalRCount: integer;
     function SaleRCount: integer;
@@ -369,6 +362,7 @@ type
     function AllMovedOnDate(id: integer; OnDate: TDate; Depot: integer)
       : real;
     function TotalDepotCount(id, depot_id: integer): real;
+    function TotalDepotWeight(id, depot_id: integer): real;
     function LastCurs: Real;
     function UseMinSupplPrice: Real;
     function UseStandartPrice: Real;
@@ -440,12 +434,6 @@ begin
   SplashForm.text.Caption := s + 'DS_Curs';
   Application.ProcessMessages;
   DS_Curs.Open;
-  SplashForm.text.Caption := s + 'DS_Requirements';
-  Application.ProcessMessages;
-  DS_Requirements.Open;
-  SplashForm.text.Caption := s + 'DS_ReqList';
-  Application.ProcessMessages;
-  DS_ReqList.Open;
   SplashForm.text.Caption := s + 'DS_Kassa';
   Application.ProcessMessages;
   DS_KASSA.Open;
@@ -683,7 +671,7 @@ end;
 
 procedure TData.RecalculateCounts(id: integer);
 var
-  cnt: double;
+  cnt, weight: double;
   depot_id: integer;
 begin
   DS_Depots.DisableControls;
@@ -693,8 +681,10 @@ begin
   begin
     depot_id := DS_Depots.FBN('ID').AsInteger;
     cnt := TotalDepotCount(id, depot_id);
+    weight := TotalDepotWeight(id, depot_id);
     Database.Execute('UPDATE GOODS SET C' + inttostr(depot_id) + '=' +
-      floattostr(cnt) + ' WHERE ID=' + inttostr(id));
+      floattostr(cnt) + ', W' + inttostr(depot_id) + '=' +
+      floattostr(weight) + ' WHERE ID=' + inttostr(id));
     DS_Depots.Next;
   end;
   DS_Goods.ReopenLocate('ID');
@@ -734,14 +724,21 @@ begin
 end;
 
 function TData.TotalDepotCount(id, depot_id: integer): real;
-var
-  ondate: TDateTime;
 begin
-  ondate := DateUtils.IncYear(now, 100); //shit
-  Result := AllArrivedOnDate(id, ondate, depot_id)
-          + AllMovedOnDate(id, ondate, depot_id)
-          - AllSaledOnDate(id, ondate, depot_id);
+  Result := Data.Database.QueryValue(
+    'execute procedure GET_TOTAL_DEPOT_COUNT('+inttostr(id)+','+inttostr(depot_id)+')', 0);
+//  ondate := DateUtils.IncYear(now, 100); //shit
+//  Result := AllArrivedOnDate(id, ondate, depot_id)
+//          + AllMovedOnDate(id, ondate, depot_id)
+//          - AllSaledOnDate(id, ondate, depot_id);
 end;
+
+function TData.TotalDepotWeight(id, depot_id: integer): real;
+begin
+  Result := Data.Database.QueryValue(
+    'execute procedure GET_TOTAL_DEPOT_WEIGHT('+inttostr(id)+','+inttostr(depot_id)+')', 0);
+end;
+
 
 function TData.GetLastSalePrice(good_id: integer; cust_id: integer): Variant;
 begin
@@ -843,14 +840,12 @@ procedure TData.DS_SaleAfterDelete(DataSet: TDataSet);
 begin
   if (DS_Sale_N.State <> dsInsert) or (DS_Sale_N.State <> dsInactive) then
     Data.DS_Sale_N.Refresh;
-  SaleForm.UpdateReqButtons;
 end;
 
 procedure TData.DS_SaleAfterPost(DataSet: TDataSet);
 begin
   if (DS_Sale_N.State <> dsInsert) or (DS_Sale_N.State <> dsInactive) then
     DS_Sale_N.Refresh;
-  SaleForm.UpdateReqButtons;
   FDepot := DS_Sale.FieldByName('DEPOT_ID').AsInteger;
 end;
 
@@ -1103,16 +1098,6 @@ begin
     DS_KASSA['CURS'] := LastCurs;
 end;
 
-procedure TData.DS_ReqListAfterScroll(DataSet: TDataSet);
-begin
-  SaleForm.UpdateRequirementsFilter;
-end;
-
-procedure TData.DeleteFromRequirements(id: integer);
-begin
-  Data.Database.Execute('delete from Requirements where ORIGINAL_NAKL_ID = ' +
-    inttostr(id));
-end;
 
 procedure TData.DS_Return_CustAfterDelete(DataSet: TDataSet);
 begin

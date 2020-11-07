@@ -41,171 +41,11 @@ object SaleForm: TSaleForm
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object panel_Requirements: TPanel
-      Left = 1
-      Top = 396
-      Width = 808
-      Height = 255
-      Align = alBottom
-      BevelEdges = []
-      BevelOuter = bvNone
-      TabOrder = 0
-      object Label1: TLabel
-        Left = 424
-        Top = 88
-        Width = 31
-        Height = 13
-        Caption = 'Label1'
-      end
-      object TB_Requirements: TDBGridEh
-        Left = 275
-        Top = 31
-        Width = 533
-        Height = 224
-        Align = alClient
-        AllowedOperations = []
-        AutoFitColWidths = True
-        ColumnDefValues.Title.Alignment = taCenter
-        DataSource = Data.S_Requirements
-        DynProps = <>
-        EditActions = [geaCopyEh, geaSelectAllEh]
-        Font.Charset = RUSSIAN_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        FooterParams.Color = clWindow
-        IndicatorOptions = []
-        Options = [dgTitles, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgMultiSelect]
-        ParentFont = False
-        TabOrder = 0
-        OnKeyDown = TB_RequirementsKeyDown
-        Columns = <
-          item
-            AutoFitColWidth = False
-            CellButtons = <>
-            DynProps = <>
-            EditButtons = <>
-            FieldName = 'GOOD_ID'
-            Footers = <>
-            Title.Caption = #1040#1088#1090#1080#1082#1091#1083
-          end
-          item
-            CellButtons = <>
-            DynProps = <>
-            EditButtons = <>
-            FieldName = 'FULLNAME'
-            Footers = <>
-            Title.Caption = #1053#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077
-            Width = 590
-          end
-          item
-            AutoFitColWidth = False
-            CellButtons = <>
-            DynProps = <>
-            EditButtons = <>
-            FieldName = 'CNT'
-            Footers = <>
-            Title.Caption = #1050#1086#1083'-'#1074#1086
-          end
-          item
-            AutoFitColWidth = False
-            CellButtons = <>
-            DynProps = <>
-            EditButtons = <>
-            FieldName = 'ORIGINAL_PRICE'
-            Footers = <>
-            Title.Caption = #1062#1077#1085#1072
-          end>
-        object RowDetailData: TRowDetailPanelControlEh
-        end
-      end
-      object dxBarDockControl1: TdxBarDockControl
-        Left = 0
-        Top = 0
-        Width = 808
-        Height = 31
-        Align = dalTop
-        BarManager = dxBarManager1
-      end
-      object TB_ReqList: TDBGridEh
-        Left = 0
-        Top = 31
-        Width = 275
-        Height = 224
-        Align = alLeft
-        AllowedOperations = []
-        AutoFitColWidths = True
-        ColumnDefValues.Title.Alignment = taCenter
-        DataSource = Data.S_ReqList
-        DynProps = <>
-        EditActions = [geaCopyEh, geaSelectAllEh]
-        Font.Charset = RUSSIAN_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        FooterParams.Color = clWindow
-        IndicatorOptions = []
-        Options = [dgTitles, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgMultiSelect]
-        OptionsEh = [dghFixed3D, dghHighlightFocus, dghClearSelection, dghRowHighlight, dghColumnResize, dghColumnMove, dghHotTrack, dghExtendVertLines]
-        ParentFont = False
-        TabOrder = 2
-        OnGetCellParams = TB_ReqListGetCellParams
-        OnKeyDown = TB_ReqListKeyDown
-        Columns = <
-          item
-            Alignment = taCenter
-            AutoFitColWidth = False
-            CellButtons = <>
-            DisplayFormat = 'DD.MM.YY'
-            DynProps = <>
-            EditButtons = <>
-            FieldName = 'R_DATE'
-            Footers = <>
-            Title.Caption = #1044#1072#1090#1072
-            Width = 55
-          end
-          item
-            Alignment = taCenter
-            AutoFitColWidth = False
-            CellButtons = <>
-            DisplayFormat = 'hh:mm'
-            DynProps = <>
-            EditButtons = <>
-            FieldName = 'R_DATE'
-            Footers = <>
-            Title.Caption = #1042#1088#1077#1084#1103
-            Width = 42
-          end
-          item
-            AutoFitColWidth = False
-            CellButtons = <>
-            DynProps = <>
-            EditButtons = <>
-            FieldName = 'ORIGINAL_NAKL_ID'
-            Footers = <>
-            Title.Caption = #1053#1072#1082#1083#1072#1076#1085#1072#1103
-            Width = 70
-          end
-          item
-            CellButtons = <>
-            DynProps = <>
-            EditButtons = <>
-            FieldName = 'COMMENTS'
-            Footers = <>
-            Title.Caption = #1050#1086#1084#1084#1077#1085#1090#1072#1088#1080#1080
-            Width = 82
-          end>
-        object RowDetailData: TRowDetailPanelControlEh
-        end
-      end
-    end
     object TB_Sale: TDBGridEh
       Left = 1
       Top = 1
       Width = 808
-      Height = 390
+      Height = 650
       Align = alClient
       AutoFitColWidths = True
       Ctl3D = True
@@ -222,8 +62,8 @@ object SaleForm: TSaleForm
       GridLineParams.VertEmptySpaceStyle = dessNonEh
       IndicatorOptions = []
       OddRowColor = clWindow
-      Options = [dgEditing, dgTitles, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete]
-      OptionsEh = [dghFixed3D, dghFooter3D, dghHighlightFocus, dghClearSelection, dghEnterAsTab, dghDblClickOptimizeColWidth, dghColumnResize, dghColumnMove, dghHotTrack]
+      Options = [dgEditing, dgTitles, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete]
+      OptionsEh = [dghFixed3D, dghFooter3D, dghHighlightFocus, dghClearSelection, dghEnterAsTab, dghDblClickOptimizeColWidth, dghColumnResize, dghHotTrack]
       ParentCtl3D = False
       ParentFont = False
       ParentShowHint = False
@@ -231,7 +71,7 @@ object SaleForm: TSaleForm
       RowLines = 1
       SelectionDrawParams.SelectionStyle = gsdsGridThemedEh
       ShowHint = False
-      TabOrder = 1
+      TabOrder = 0
       TitleParams.Images = SysContainer.SmallImages
       TitleParams.RowLines = 1
       OnCellClick = TB_SaleCellClick
@@ -279,6 +119,17 @@ object SaleForm: TSaleForm
           Width = 80
         end
         item
+          CellButtons = <>
+          DisplayFormat = '0.###'
+          DynProps = <>
+          EditButtons = <>
+          FieldName = 'WEIGHT_TOTAL'
+          Footers = <>
+          Title.Alignment = taCenter
+          Title.Caption = #1042#1077#1089
+          Width = 80
+        end
+        item
           AutoFitColWidth = False
           CellButtons = <>
           DisplayFormat = '0.00##'
@@ -304,17 +155,6 @@ object SaleForm: TSaleForm
           Width = 80
         end
         item
-          CellButtons = <>
-          DisplayFormat = '0.###'
-          DynProps = <>
-          EditButtons = <>
-          FieldName = 'WEIGHT_TOTAL'
-          Footers = <>
-          Title.Alignment = taCenter
-          Title.Caption = #1042#1077#1089
-          Width = 80
-        end
-        item
           Alignment = taCenter
           AutoFitColWidth = False
           ButtonStyle = cbsNone
@@ -334,23 +174,13 @@ object SaleForm: TSaleForm
       object RowDetailData: TRowDetailPanelControlEh
       end
     end
-    object Splitter: TcxSplitter
-      Left = 1
-      Top = 391
-      Width = 808
-      Height = 5
-      AlignSplitter = salBottom
-      PositionAfterOpen = 2
-      ResizeUpdate = True
-      Control = panel_Requirements
-    end
     object DepotPanel: TPanel
       Left = 376
       Top = 216
       Width = 113
       Height = 81
       Caption = 'DepotPanel'
-      TabOrder = 3
+      TabOrder = 1
       Visible = False
       object TB_Depots: TDBGridEh
         Left = 1
@@ -865,62 +695,6 @@ object SaleForm: TSaleForm
       Visible = True
       WholeRow = False
     end
-    object dxBarManager1Bar2: TdxBar
-      AllowClose = False
-      AllowCustomizing = False
-      AllowQuickCustomizing = False
-      AllowReset = False
-      Caption = #1058#1088#1077#1073#1086#1074#1072#1085#1080#1103
-      CaptionButtons = <>
-      DockControl = dxBarDockControl1
-      DockedDockControl = dxBarDockControl1
-      DockedLeft = 0
-      DockedTop = 0
-      FloatLeft = 801
-      FloatTop = 704
-      FloatClientWidth = 51
-      FloatClientHeight = 22
-      ItemLinks = <
-        item
-          Visible = True
-          ItemName = 'dxBarButton23'
-        end
-        item
-          BeginGroup = True
-          Visible = True
-          ItemName = 'dxBarButton19'
-        end
-        item
-          Visible = True
-          ItemName = 'dxBarButton20'
-        end
-        item
-          BeginGroup = True
-          Visible = True
-          ItemName = 'dxBarButton24'
-        end
-        item
-          BeginGroup = True
-          Visible = True
-          ItemName = 'dxBarButton22'
-        end
-        item
-          BeginGroup = True
-          Visible = True
-          ItemName = 'dxBarButton25'
-        end
-        item
-          BeginGroup = True
-          Visible = True
-          ItemName = 'NoReqLabel'
-        end>
-      NotDocking = [dsNone, dsLeft, dsTop, dsRight, dsBottom]
-      OneOnRow = True
-      Row = 0
-      UseOwnFont = False
-      Visible = True
-      WholeRow = True
-    end
     object dxBarButton2: TdxBarButton
       Action = MainForm.act_sale_colprint
       Category = 0
@@ -966,20 +740,10 @@ object SaleForm: TSaleForm
       Category = 0
     end
     object dxBarButton16: TdxBarButton
-      Action = MainForm.act_sale_req_import
+      Caption = #1048#1084#1087#1086#1088#1090' '#1085#1072#1082#1083#1072#1076#1085#1086#1081' '#1080#1079' Microsoft Excel'
       Category = 0
-    end
-    object dxBarButton19: TdxBarButton
-      Action = MainForm.act_sale_req_add
-      Category = 0
-    end
-    object dxBarButton20: TdxBarButton
-      Action = MainForm.act_sale_req_delete
-      Category = 0
-    end
-    object dxBarButton22: TdxBarButton
-      Action = MainForm.act_sale_check
-      Category = 0
+      Visible = ivAlways
+      ImageIndex = 20
     end
     object dxBarStatic1: TdxBarStatic
       Caption = #1055#1086' '#1076#1072#1085#1085#1086#1081' '#1085#1072#1082#1083#1072#1076#1085#1086#1081' '#1085#1077#1090' '#1090#1088#1077#1073#1086#1074#1072#1085#1080#1081
@@ -988,31 +752,12 @@ object SaleForm: TSaleForm
       Visible = ivAlways
       BorderStyle = sbsLowered
     end
-    object cxBarEditItem1: TcxBarEditItem
-      Caption = #1055#1054' '#1044#1040#1053#1053#1054#1049' '#1053#1040#1050#1051#1040#1044#1053#1054#1049' '#1055#1054#1050#1040' '#1053#1045#1058' '#1058#1056#1045#1041#1054#1042#1040#1053#1048#1049
-      Category = 0
-      Hint = #1055#1054' '#1044#1040#1053#1053#1054#1049' '#1053#1040#1050#1051#1040#1044#1053#1054#1049' '#1055#1054#1050#1040' '#1053#1045#1058' '#1058#1056#1045#1041#1054#1042#1040#1053#1048#1049
-      Visible = ivAlways
-      PropertiesClassName = 'TcxLabelProperties'
-    end
     object NoReqLabel: TdxBarControlContainerItem
       Caption = 'New Item'
       Category = 0
       Hint = 'New Item'
       Visible = ivNever
       Control = Label2
-    end
-    object dxBarButton23: TdxBarButton
-      Action = MainForm.act_sale_req_clear
-      Category = 0
-    end
-    object dxBarButton24: TdxBarButton
-      Action = MainForm.act_sale_req_print
-      Category = 0
-    end
-    object dxBarButton25: TdxBarButton
-      Action = MainForm.act_sale_req_tosale
-      Category = 0
     end
     object dxBarButton28: TdxBarButton
       Caption = #1048#1089#1090#1086#1088#1080#1103' '#1087#1086' '#1082#1083#1080#1077#1085#1090#1091

@@ -711,6 +711,27 @@ object Data: TData
       '    C18 = :C18,'
       '    C19 = :C19,'
       '    C20 = :C20,'
+      '    W0 = :W0,'
+      '    W1 = :W1,'
+      '    W2 = :W2,'
+      '    W3 = :W3,'
+      '    W4 = :W4,'
+      '    W5 = :W5,'
+      '    W6 = :W6,'
+      '    W7 = :W7,'
+      '    W8 = :W8,'
+      '    W9 = :W9,'
+      '    W10 = :W10,'
+      '    W11 = :W11,'
+      '    W12 = :W12,'
+      '    W13 = :W13,'
+      '    W14 = :W14,'
+      '    W15 = :W15,'
+      '    W16 = :W16,'
+      '    W17 = :W17,'
+      '    W18 = :W18,'
+      '    W19 = :W19,'
+      '    W20 = :W20,'
       '    SELECTED = :SELECTED,'
       '    DELETED = :DELETED,'
       '    ART_1 = :ART_1,'
@@ -846,6 +867,9 @@ object Data: TData
       '    C18,'
       '    C19,'
       '    C20,'
+      
+        '    W0,W1,W2,W3,W4,W5,W6,W7,W8,W9,W10,W11,W12,W13,W14,W15,W16,W1' +
+        '7,W18,W19,W20,'
       '    SELECTED,'
       '    DELETED,'
       '    ART_1,'
@@ -972,6 +996,9 @@ object Data: TData
       '    :C18,'
       '    :C19,'
       '    :C20,'
+      
+        '    :W0,:W1,:W2,:W3,:W4,:W5,:W6,:W7,:W8,:W9,:W10,:W11,:W12,:W13,' +
+        ':W14,:W15,:W16,:W17,:W18,:W19,:W20,'
       '    :SELECTED,'
       '    :DELETED,'
       '    :ART_1,'
@@ -1069,118 +1096,40 @@ object Data: TData
       '    FIRM_ID,'
       '    PRICE1,'
       '    PRICE2,'
-      '    PRICE_SHOP,'
-      '    PRICE_SHOP_LAST,'
-      '    PRICE_SHOP2,'
-      '    PRICE_SHOP2_LAST,'
-      '    PRICE1_LAST,'
-      '    PRICE2_LAST,'
-      '    DATE_ADDED,'
-      '    DATE_CHANGED,'
+      '    PRICE_SHOP, PRICE_SHOP_LAST, PRICE_SHOP2, PRICE_SHOP2_LAST, '
+      '    PRICE1_LAST, PRICE2_LAST,'
+      '    DATE_ADDED, DATE_CHANGED,'
       '    DATE_SALED,'
-      '    C0,'
-      '    C1,'
-      '    C2,'
-      '    C3,'
-      '    C4,'
-      '    C5,'
-      '    C6,'
-      '    C7,'
-      '    C8,'
-      '    C9,'
-      '    C10,'
-      '    C11,'
-      '    C12,'
-      '    C13,'
-      '    C14,'
-      '    C15,'
-      '    C16,'
-      '    C17,'
-      '    C18,'
-      '    C19,'
-      '    C20,'
+      
+        '    C0, C1, C2, C3, C4, C5, C6, C7, C8, C9, C10, C11, C12, C13, ' +
+        'C14,C15, C16, C17, C18, C19, C20,'
+      
+        '    W0, W1, W2, W3, W4, W5, W6, W7, W8, W9, W10, W11, W12, W13, ' +
+        'W14, W15, W16, W17, W18, W19, W20,'
       '    SELECTED,'
       '    DELETED,'
-      '    ART_1,'
-      '    ART_2,'
-      '    ART_3,'
-      '    ART_4,'
-      '    ART_5,'
-      '    ART_6,'
-      '    ART_7,'
-      '    ART_8,'
-      '    ART_9,'
-      '    ART_10,'
-      '    ART_11,'
-      '    ART_12,'
-      '    ART_13,'
-      '    ART_14,'
-      '    ART_15,'
-      '    ART_16,'
-      '    ART_17,'
-      '    ART_18,'
-      '    ART_19,'
-      '    ART_20,'
-      '    AVAILABLE_1,'
-      '    AVAILABLE_2,'
-      '    AVAILABLE_3,'
-      '    AVAILABLE_4,'
-      '    AVAILABLE_5,'
-      '    AVAILABLE_6,'
-      '    AVAILABLE_7,'
-      '    AVAILABLE_8,'
-      '    AVAILABLE_9,'
-      '    AVAILABLE_10,'
-      '    AVAILABLE_11,'
-      '    AVAILABLE_12,'
-      '    AVAILABLE_13,'
-      '    AVAILABLE_14,'
-      '    AVAILABLE_15,'
-      '    AVAILABLE_16,'
-      '    AVAILABLE_17,'
-      '    AVAILABLE_18,'
-      '    AVAILABLE_19,'
-      '    AVAILABLE_20,'
-      '    SUPL_PRICE_1,'
-      '    SUPL_PRICE_2,'
-      '    SUPL_PRICE_3,'
-      '    SUPL_PRICE_4,'
-      '    SUPL_PRICE_5,'
-      '    SUPL_PRICE_6,'
-      '    SUPL_PRICE_7,'
-      '    SUPL_PRICE_8,'
-      '    SUPL_PRICE_9,'
-      '    SUPL_PRICE_10,'
-      '    SUPL_PRICE_11,'
-      '    SUPL_PRICE_12,'
-      '    SUPL_PRICE_13,'
-      '    SUPL_PRICE_14,'
-      '    SUPL_PRICE_15,'
-      '    SUPL_PRICE_16,'
-      '    SUPL_PRICE_17,'
-      '    SUPL_PRICE_18,'
-      '    SUPL_PRICE_19,'
-      '    SUPL_PRICE_20,'
-      '    SUPPL_DATE_1,'
-      '    SUPPL_DATE_2,'
-      '    SUPPL_DATE_3,'
-      '    SUPPL_DATE_4,'
-      '    SUPPL_DATE_5,'
-      '    SUPPL_DATE_6,'
-      '    SUPPL_DATE_7,'
-      '    SUPPL_DATE_8,'
-      '    SUPPL_DATE_9,'
-      '    SUPPL_DATE_10,'
-      '    SUPPL_DATE_11,'
-      '    SUPPL_DATE_12,'
-      '    SUPPL_DATE_13,'
-      '    SUPPL_DATE_14,'
-      '    SUPPL_DATE_15,'
-      '    SUPPL_DATE_16,'
-      '    SUPPL_DATE_17,'
-      '    SUPPL_DATE_18,'
-      '    SUPPL_DATE_19,'
-      '    SUPPL_DATE_20,'
+      
+        '    ART_1, ART_2, ART_3, ART_4, ART_5, ART_6, ART_7, ART_8, ART_' +
+        '9, ART_10, ART_11, ART_12, ART_13, ART_14, ART_15, ART_16, ART_1' +
+        '7, ART_18, ART_19, ART_20,'
+      
+        '    AVAILABLE_1, AVAILABLE_2, AVAILABLE_3, AVAILABLE_4, AVAILABL' +
+        'E_5, AVAILABLE_6, AVAILABLE_7, AVAILABLE_8, AVAILABLE_9, AVAILAB' +
+        'LE_10, AVAILABLE_11, AVAILABLE_12, AVAILABLE_13, AVAILABLE_14, A' +
+        'VAILABLE_15, AVAILABLE_16, AVAILABLE_17, AVAILABLE_18, AVAILABLE' +
+        '_19, AVAILABLE_20,'
+      
+        '    SUPL_PRICE_1, SUPL_PRICE_2, SUPL_PRICE_3, SUPL_PRICE_4, SUPL' +
+        '_PRICE_5, SUPL_PRICE_6, SUPL_PRICE_7, SUPL_PRICE_8, SUPL_PRICE_9' +
+        ', SUPL_PRICE_10, SUPL_PRICE_11, SUPL_PRICE_12, SUPL_PRICE_13, SU' +
+        'PL_PRICE_14, SUPL_PRICE_15, SUPL_PRICE_16, SUPL_PRICE_17, SUPL_P' +
+        'RICE_18, SUPL_PRICE_19, SUPL_PRICE_20,'
+      
+        '    SUPPL_DATE_1, SUPPL_DATE_2, SUPPL_DATE_3, SUPPL_DATE_4, SUPP' +
+        'L_DATE_5, SUPPL_DATE_6, SUPPL_DATE_7, SUPPL_DATE_8, SUPPL_DATE_9' +
+        ', SUPPL_DATE_10, SUPPL_DATE_11, SUPPL_DATE_12, SUPPL_DATE_13, SU' +
+        'PPL_DATE_14, SUPPL_DATE_15, SUPPL_DATE_16, SUPPL_DATE_17, SUPPL_' +
+        'DATE_18,SUPPL_DATE_19,SUPPL_DATE_20,'
       '    PRICE_CATEGORY_ID,'
       '    USE_EXPORT,'
       '    FIXED_PRICE,'
@@ -1188,6 +1137,7 @@ object Data: TData
       '    UNIT,'
       '    ITEM_WEIGHT,'
       '    CNT_ALL,'
+      '    WEIGHT_ALL,'
       '    TOTAL_WEIGHT'
       'FROM'
       '    GOODS '
@@ -1202,118 +1152,40 @@ object Data: TData
       '    FIRM_ID,'
       '    PRICE1,'
       '    PRICE2,'
-      '    PRICE_SHOP,'
-      '    PRICE_SHOP_LAST,'
-      '    PRICE_SHOP2,'
-      '    PRICE_SHOP2_LAST,'
-      '    PRICE1_LAST,'
-      '    PRICE2_LAST,'
-      '    DATE_ADDED,'
-      '    DATE_CHANGED,'
+      '    PRICE_SHOP, PRICE_SHOP_LAST, PRICE_SHOP2, PRICE_SHOP2_LAST, '
+      '    PRICE1_LAST, PRICE2_LAST,'
+      '    DATE_ADDED, DATE_CHANGED,'
       '    DATE_SALED,'
-      '    C0,'
-      '    C1,'
-      '    C2,'
-      '    C3,'
-      '    C4,'
-      '    C5,'
-      '    C6,'
-      '    C7,'
-      '    C8,'
-      '    C9,'
-      '    C10,'
-      '    C11,'
-      '    C12,'
-      '    C13,'
-      '    C14,'
-      '    C15,'
-      '    C16,'
-      '    C17,'
-      '    C18,'
-      '    C19,'
-      '    C20,'
+      
+        '    C0, C1, C2, C3, C4, C5, C6, C7, C8, C9, C10, C11, C12, C13, ' +
+        'C14,C15, C16, C17, C18, C19, C20,'
+      
+        '    W0, W1, W2, W3, W4, W5, W6, W7, W8, W9, W10, W11, W12, W13, ' +
+        'W14, W15, W16, W17, W18, W19, W20,'
       '    SELECTED,'
       '    DELETED,'
-      '    ART_1,'
-      '    ART_2,'
-      '    ART_3,'
-      '    ART_4,'
-      '    ART_5,'
-      '    ART_6,'
-      '    ART_7,'
-      '    ART_8,'
-      '    ART_9,'
-      '    ART_10,'
-      '    ART_11,'
-      '    ART_12,'
-      '    ART_13,'
-      '    ART_14,'
-      '    ART_15,'
-      '    ART_16,'
-      '    ART_17,'
-      '    ART_18,'
-      '    ART_19,'
-      '    ART_20,'
-      '    AVAILABLE_1,'
-      '    AVAILABLE_2,'
-      '    AVAILABLE_3,'
-      '    AVAILABLE_4,'
-      '    AVAILABLE_5,'
-      '    AVAILABLE_6,'
-      '    AVAILABLE_7,'
-      '    AVAILABLE_8,'
-      '    AVAILABLE_9,'
-      '    AVAILABLE_10,'
-      '    AVAILABLE_11,'
-      '    AVAILABLE_12,'
-      '    AVAILABLE_13,'
-      '    AVAILABLE_14,'
-      '    AVAILABLE_15,'
-      '    AVAILABLE_16,'
-      '    AVAILABLE_17,'
-      '    AVAILABLE_18,'
-      '    AVAILABLE_19,'
-      '    AVAILABLE_20,'
-      '    SUPL_PRICE_1,'
-      '    SUPL_PRICE_2,'
-      '    SUPL_PRICE_3,'
-      '    SUPL_PRICE_4,'
-      '    SUPL_PRICE_5,'
-      '    SUPL_PRICE_6,'
-      '    SUPL_PRICE_7,'
-      '    SUPL_PRICE_8,'
-      '    SUPL_PRICE_9,'
-      '    SUPL_PRICE_10,'
-      '    SUPL_PRICE_11,'
-      '    SUPL_PRICE_12,'
-      '    SUPL_PRICE_13,'
-      '    SUPL_PRICE_14,'
-      '    SUPL_PRICE_15,'
-      '    SUPL_PRICE_16,'
-      '    SUPL_PRICE_17,'
-      '    SUPL_PRICE_18,'
-      '    SUPL_PRICE_19,'
-      '    SUPL_PRICE_20,'
-      '    SUPPL_DATE_1,'
-      '    SUPPL_DATE_2,'
-      '    SUPPL_DATE_3,'
-      '    SUPPL_DATE_4,'
-      '    SUPPL_DATE_5,'
-      '    SUPPL_DATE_6,'
-      '    SUPPL_DATE_7,'
-      '    SUPPL_DATE_8,'
-      '    SUPPL_DATE_9,'
-      '    SUPPL_DATE_10,'
-      '    SUPPL_DATE_11,'
-      '    SUPPL_DATE_12,'
-      '    SUPPL_DATE_13,'
-      '    SUPPL_DATE_14,'
-      '    SUPPL_DATE_15,'
-      '    SUPPL_DATE_16,'
-      '    SUPPL_DATE_17,'
-      '    SUPPL_DATE_18,'
-      '    SUPPL_DATE_19,'
-      '    SUPPL_DATE_20,'
+      
+        '    ART_1, ART_2, ART_3, ART_4, ART_5, ART_6, ART_7, ART_8, ART_' +
+        '9, ART_10, ART_11, ART_12, ART_13, ART_14, ART_15, ART_16, ART_1' +
+        '7, ART_18, ART_19, ART_20,'
+      
+        '    AVAILABLE_1, AVAILABLE_2, AVAILABLE_3, AVAILABLE_4, AVAILABL' +
+        'E_5, AVAILABLE_6, AVAILABLE_7, AVAILABLE_8, AVAILABLE_9, AVAILAB' +
+        'LE_10, AVAILABLE_11, AVAILABLE_12, AVAILABLE_13, AVAILABLE_14, A' +
+        'VAILABLE_15, AVAILABLE_16, AVAILABLE_17, AVAILABLE_18, AVAILABLE' +
+        '_19, AVAILABLE_20,'
+      
+        '    SUPL_PRICE_1, SUPL_PRICE_2, SUPL_PRICE_3, SUPL_PRICE_4, SUPL' +
+        '_PRICE_5, SUPL_PRICE_6, SUPL_PRICE_7, SUPL_PRICE_8, SUPL_PRICE_9' +
+        ', SUPL_PRICE_10, SUPL_PRICE_11, SUPL_PRICE_12, SUPL_PRICE_13, SU' +
+        'PL_PRICE_14, SUPL_PRICE_15, SUPL_PRICE_16, SUPL_PRICE_17, SUPL_P' +
+        'RICE_18, SUPL_PRICE_19, SUPL_PRICE_20,'
+      
+        '    SUPPL_DATE_1, SUPPL_DATE_2, SUPPL_DATE_3, SUPPL_DATE_4, SUPP' +
+        'L_DATE_5, SUPPL_DATE_6, SUPPL_DATE_7, SUPPL_DATE_8, SUPPL_DATE_9' +
+        ', SUPPL_DATE_10, SUPPL_DATE_11, SUPPL_DATE_12, SUPPL_DATE_13, SU' +
+        'PPL_DATE_14, SUPPL_DATE_15, SUPPL_DATE_16, SUPPL_DATE_17, SUPPL_' +
+        'DATE_18,SUPPL_DATE_19,SUPPL_DATE_20,'
       '    PRICE_CATEGORY_ID,'
       '    USE_EXPORT,'
       '    FIXED_PRICE,'
@@ -1321,6 +1193,7 @@ object Data: TData
       '    UNIT,'
       '    ITEM_WEIGHT,'
       '    CNT_ALL,'
+      '    WEIGHT_ALL,'
       '    TOTAL_WEIGHT'
       'FROM'
       '    GOODS '
@@ -1338,6 +1211,7 @@ object Data: TData
     poSQLINT64ToBCD = True
   end
   object TRead_Goods: TpFIBTransaction
+    Active = True
     DefaultDatabase = Database
     Left = 32
     Top = 336
@@ -2453,7 +2327,9 @@ object Data: TData
       '    NAKL_ID = :MAS_ID,'
       '    CNT = :CNT,'
       '    PRICE = :PRICE,'
-      '    DEPOT_ID = :DEPOT_ID'
+      '    DEPOT_ID = :DEPOT_ID,'
+      '    SUM_REAL = :SUM_REAL,'
+      '    WEIGHT_TOTAL = :WEIGHT_TOTAL'
       'WHERE'
       '    ID = :OLD_ID'
       '    ')
@@ -2470,7 +2346,9 @@ object Data: TData
       '    NAKL_ID,'
       '    CNT,'
       '    PRICE,'
-      '    DEPOT_ID'
+      '    DEPOT_ID,'
+      '    SUM_REAL,'
+      '    WEIGHT_TOTAL'
       ')'
       'VALUES('
       '    :ID,'
@@ -2478,7 +2356,9 @@ object Data: TData
       '    :MAS_ID,'
       '    :CNT,'
       '    :PRICE,'
-      '    :DEPOT_ID'
+      '    :DEPOT_ID,'
+      '    :SUM_REAL,'
+      '    :WEIGHT_TOTAL'
       ')')
     RefreshSQL.Strings = (
       'SELECT'
@@ -2495,7 +2375,8 @@ object Data: TData
         '   IIF(R.GOOD_ID IS NULL, '#39#39', IIF(G.UNIT = 0, '#39#1096#1090'.'#39', '#39#1082#1075'.'#39')) AS ' +
         'UNIT,'
       '   G.UNIT AS UNIT_ID,'
-      '   R.CNT * G.ITEM_WEIGHT AS TOTAL_WEIGHT'
+      '   R.SUM_REAL,'
+      '   R.WEIGHT_TOTAL'
       'FROM RETURN_SUPPL R'
       'JOIN GOODS G ON G.ID = R.GOOD_ID'
       'LEFT JOIN DEPOTS D ON R.DEPOT_ID = D.ID'
@@ -2515,7 +2396,8 @@ object Data: TData
         '   IIF(R.GOOD_ID IS NULL, '#39#39', IIF(G.UNIT = 0, '#39#1096#1090'.'#39', '#39#1082#1075'.'#39')) AS ' +
         'UNIT,'
       '   G.UNIT AS UNIT_ID,'
-      '   R.CNT * G.ITEM_WEIGHT AS TOTAL_WEIGHT'
+      '   R.SUM_REAL,'
+      '   R.WEIGHT_TOTAL'
       'FROM RETURN_SUPPL R'
       'JOIN GOODS G ON G.ID = R.GOOD_ID'
       'LEFT JOIN DEPOTS D ON R.DEPOT_ID = D.ID'
@@ -2537,6 +2419,7 @@ object Data: TData
     poSQLINT64ToBCD = True
   end
   object TRead_Return_Suppl: TpFIBTransaction
+    Active = True
     DefaultDatabase = Database
     Left = 632
     Top = 336
@@ -2599,7 +2482,7 @@ object Data: TData
       'SELECT'
       
         '    ID, R_DATE, CUST_ID, COMMENTS, CURR_ID, CNT, SUMM, ENTERED, ' +
-        'USERID, EUSERID, CHANGED, CURS, SUMM_TOTAL,'
+        'USERID, EUSERID, CHANGED, CURS, SUMM_TOTAL,SUM_REAL,'
       
         '    (SELECT NAME FROM CUSTOMERS WHERE CUST_ID = CUSTOMERS.ID) CL' +
         'IENT,'
@@ -2630,7 +2513,9 @@ object Data: TData
       'SELECT'
       '    ID, R_DATE, CUST_ID, COMMENTS,'
       '    CURR_ID, CNT, SUMM,'
-      '    ENTERED, USERID, EUSERID, CHANGED, CURS, SUMM_TOTAL,'
+      
+        '    ENTERED, USERID, EUSERID, CHANGED, CURS, SUMM_TOTAL, SUM_REA' +
+        'L,'
       
         '    (SELECT NAME FROM CUSTOMERS WHERE CUST_ID = CUSTOMERS.ID) CL' +
         'IENT,'
@@ -2676,7 +2561,9 @@ object Data: TData
       FieldName = 'ID'
     end
     object DS_Return_Suppl_NR_DATE: TFIBDateTimeField
+      DefaultExpression = 'NOW'
       FieldName = 'R_DATE'
+      DisplayFormat = 'dd.mm.yyyy hh:nn'
     end
     object DS_Return_Suppl_NCUST_ID: TFIBSmallIntField
       FieldName = 'CUST_ID'
@@ -2690,14 +2577,17 @@ object Data: TData
       FieldName = 'CURR_ID'
     end
     object DS_Return_Suppl_NCNT: TFIBFloatField
+      DefaultExpression = '0'
       FieldName = 'CNT'
       DisplayFormat = '0.000#'
     end
     object DS_Return_Suppl_NSUMM: TFIBFloatField
+      DefaultExpression = '0.0'
       FieldName = 'SUMM'
       DisplayFormat = '0.00'
     end
     object DS_Return_Suppl_NENTERED: TFIBBooleanField
+      DefaultExpression = 'False'
       FieldName = 'ENTERED'
     end
     object DS_Return_Suppl_NUSERID: TFIBSmallIntField
@@ -2707,9 +2597,12 @@ object Data: TData
       FieldName = 'EUSERID'
     end
     object DS_Return_Suppl_NCHANGED: TFIBDateTimeField
+      DefaultExpression = 'NOW'
       FieldName = 'CHANGED'
+      DisplayFormat = 'dd.mm.yyyy hh:nn'
     end
     object DS_Return_Suppl_NCURS: TFIBFloatField
+      DefaultExpression = '1.0'
       FieldName = 'CURS'
     end
     object DS_Return_Suppl_NSUMM_TOTAL: TFIBFloatField
@@ -2749,8 +2642,14 @@ object Data: TData
       Size = 255
       EmptyStrToNull = True
     end
+    object DS_Return_Suppl_NSUM_REAL: TFIBFloatField
+      DefaultExpression = '0'
+      FieldName = 'SUM_REAL'
+      DisplayFormat = '0.00##'
+    end
   end
   object TRead_Return_Suppl_N: TpFIBTransaction
+    Active = True
     DefaultDatabase = Database
     Left = 546
     Top = 336
@@ -3056,6 +2955,7 @@ object Data: TData
     Top = 384
   end
   object TRead_Return_Cust_N: TpFIBTransaction
+    Active = True
     DefaultDatabase = Database
     Left = 803
     Top = 104
@@ -3082,7 +2982,9 @@ object Data: TData
       '    "NAKL_ID" = :"MAS_ID",'
       '    "GOOD_ID" = :"GOOD_ID",'
       '    "CNT" = :"CNT",'
-      '    "PRICE" = :"PRICE"'
+      '    "PRICE" = :"PRICE",'
+      '    "SUM_REAL" = :"SUM_REAL",'
+      '    "WEIGHT_TOTAL" = :"WEIGHT_TOTAL"'
       'WHERE'
       '    "ID" = :"OLD_ID"')
     DeleteSQL.Strings = (
@@ -3097,14 +2999,18 @@ object Data: TData
       '    NAKL_ID,'
       '    GOOD_ID,'
       '    CNT,'
-      '    PRICE'
+      '    PRICE,'
+      '    SUM_REAL,'
+      '    WEIGHT_TOTAL'
       ')'
       'VALUES('
       '    :ID,'
       '    :MAS_ID,'
       '    :GOOD_ID,'
       '    :CNT,'
-      '    :PRICE'
+      '    :PRICE,'
+      '    :SUM_REAL,'
+      '    :WEIGHT_TOTAL'
       ')')
     RefreshSQL.Strings = (
       'SELECT'
@@ -3119,7 +3025,8 @@ object Data: TData
         '    IIF(R.GOOD_ID IS NULL, '#39#39', IIF(G.UNIT = 0, '#39#1096#1090'.'#39', '#39#1082#1075'.'#39')) AS' +
         ' UNIT,'
       '    G.UNIT AS UNIT_ID,'
-      '    R.CNT * G.ITEM_WEIGHT AS TOTAL_WEIGHT'
+      '    R.SUM_REAL,'
+      '    R.WEIGHT_TOTAL'
       'FROM RETURN_CUST R'
       'JOIN GOODS G ON R.GOOD_ID = G.ID'
       'WHERE NAKL_ID = :ID'
@@ -3138,7 +3045,8 @@ object Data: TData
         '    IIF(R.GOOD_ID IS NULL, '#39#39', IIF(G.UNIT = 0, '#39#1096#1090'.'#39', '#39#1082#1075'.'#39')) AS' +
         ' UNIT,'
       '    G.UNIT AS UNIT_ID,'
-      '    R.CNT * G.ITEM_WEIGHT AS TOTAL_WEIGHT'
+      '    R.SUM_REAL,'
+      '    R.WEIGHT_TOTAL'
       'FROM RETURN_CUST R'
       'JOIN GOODS G ON R.GOOD_ID = G.ID'
       'WHERE NAKL_ID = :ID')
@@ -3158,6 +3066,7 @@ object Data: TData
     poSQLINT64ToBCD = True
   end
   object TRead_Return_Cust: TpFIBTransaction
+    Active = True
     DefaultDatabase = Database
     Left = 889
     Top = 104
@@ -3218,7 +3127,7 @@ object Data: TData
       'SELECT'
       
         '    ID, R_DATE, CUST_ID, DEPOT_ID, COMMENTS, CURR_ID, CNT, SUMM,' +
-        ' ENTERED, USERID, EUSERID, CHANGED, CURS, SUMM_TOTAL,'
+        ' ENTERED, USERID, EUSERID, CHANGED, CURS, SUMM_TOTAL, SUM_REAL,'
       
         '    (SELECT NAME FROM CUSTOMERS WHERE CUST_ID = CUSTOMERS.ID) CU' +
         'STOMER,'
@@ -3247,7 +3156,7 @@ object Data: TData
       'SELECT'
       
         '    ID, R_DATE, CUST_ID, DEPOT_ID, COMMENTS, CURR_ID, CNT, SUMM,' +
-        ' ENTERED, USERID, EUSERID, CHANGED, CURS, SUMM_TOTAL,'
+        ' ENTERED, USERID, EUSERID, CHANGED, CURS, SUMM_TOTAL, SUM_REAL,'
       
         '    (SELECT NAME FROM CUSTOMERS WHERE CUST_ID = CUSTOMERS.ID) CU' +
         'STOMER,'
@@ -3292,7 +3201,9 @@ object Data: TData
       FieldName = 'ID'
     end
     object DS_Return_Cust_NR_DATE: TFIBDateTimeField
+      DefaultExpression = 'NOW'
       FieldName = 'R_DATE'
+      DisplayFormat = 'dd.mm.yyyy hh:nn'
     end
     object DS_Return_Cust_NCUST_ID: TFIBIntegerField
       FieldName = 'CUST_ID'
@@ -3309,13 +3220,16 @@ object Data: TData
       FieldName = 'CURR_ID'
     end
     object DS_Return_Cust_NCNT: TFIBFloatField
+      DefaultExpression = '0'
       FieldName = 'CNT'
     end
     object DS_Return_Cust_NSUMM: TFIBFloatField
+      DefaultExpression = '0.0'
       FieldName = 'SUMM'
       DisplayFormat = '0.00'
     end
     object DS_Return_Cust_NENTERED: TFIBBooleanField
+      DefaultExpression = 'False'
       FieldName = 'ENTERED'
     end
     object DS_Return_Cust_NUSERID: TFIBSmallIntField
@@ -3325,9 +3239,12 @@ object Data: TData
       FieldName = 'EUSERID'
     end
     object DS_Return_Cust_NCHANGED: TFIBDateTimeField
+      DefaultExpression = 'NOW'
       FieldName = 'CHANGED'
+      DisplayFormat = 'dd.mm.yyyy hh:nn'
     end
     object DS_Return_Cust_NCURS: TFIBFloatField
+      DefaultExpression = '1.0'
       FieldName = 'CURS'
     end
     object DS_Return_Cust_NSUMM_TOTAL: TFIBFloatField
@@ -3366,6 +3283,11 @@ object Data: TData
       FieldName = 'EUSERNAME'
       Size = 255
       EmptyStrToNull = True
+    end
+    object DS_Return_Cust_NSUM_REAL: TFIBFloatField
+      DefaultExpression = '0'
+      FieldName = 'SUM_REAL'
+      DisplayFormat = '0.00##'
     end
   end
   object S_PriceCategory: TDataSource
@@ -3703,149 +3625,6 @@ object Data: TData
     DefaultDatabase = Database
     Left = 976
     Top = 152
-  end
-  object S_Requirements: TDataSource
-    DataSet = DS_Requirements
-    Left = 32
-    Top = 504
-  end
-  object DS_Requirements: TpFIBDataSet
-    UpdateSQL.Strings = (
-      'UPDATE REQUIREMENTS'
-      'SET '
-      '    CLIENT_ID = :CLIENT_ID,'
-      '    R_DATE = :R_DATE,'
-      '    GOOD_ID = :GOOD_ID,'
-      '    CNT = :CNT,'
-      '    ORIGINAL_PRICE = :ORIGINAL_PRICE,'
-      '    ORIGINAL_NAKL_ID = :ORIGINAL_NAKL_ID'
-      'WHERE'
-      '    ID = :OLD_ID'
-      '    ')
-    DeleteSQL.Strings = (
-      'DELETE FROM'
-      '    REQUIREMENTS'
-      'WHERE'
-      '        ID = :OLD_ID'
-      '    ')
-    InsertSQL.Strings = (
-      'INSERT INTO REQUIREMENTS('
-      '    ID,'
-      '    CLIENT_ID,'
-      '    R_DATE,'
-      '    GOOD_ID,'
-      '    CNT,'
-      '    ORIGINAL_PRICE,'
-      '    ORIGINAL_NAKL_ID'
-      ')'
-      'VALUES('
-      '    :ID,'
-      '    :CLIENT_ID,'
-      '    :R_DATE,'
-      '    :GOOD_ID,'
-      '    :CNT,'
-      '    :ORIGINAL_PRICE,'
-      '    :ORIGINAL_NAKL_ID'
-      ')')
-    RefreshSQL.Strings = (
-      'SELECT'
-      '    ID,'
-      '    CLIENT_ID,'
-      '    R_DATE,'
-      '    GOOD_ID,'
-      
-        '    (SELECT FULLNAME FROM GOODS WHERE GOODS.ID = GOOD_ID) FULLNA' +
-        'ME,'
-      '    CNT,'
-      '    ORIGINAL_PRICE,'
-      '    ORIGINAL_NAKL_ID'
-      'FROM'
-      '    REQUIREMENTS'
-      ' '
-      ' WHERE '
-      '        REQUIREMENTS.ID = :OLD_ID'
-      '    ')
-    SelectSQL.Strings = (
-      'SELECT'
-      '    ID,'
-      '    CLIENT_ID,'
-      '    R_DATE,'
-      '    GOOD_ID,'
-      
-        '    (SELECT FULLNAME FROM GOODS WHERE GOODS.ID = GOOD_ID) FULLNA' +
-        'ME,'
-      '    CNT,'
-      '    ORIGINAL_PRICE,'
-      '    ORIGINAL_NAKL_ID'
-      'FROM'
-      '    REQUIREMENTS'
-      'WHERE'
-      '    CLIENT_ID = 0'
-      'ORDER BY'
-      '    ORIGINAL_NAKL_ID DESC, FULLNAME;')
-    FilterOptions = [foCaseInsensitive]
-    AutoUpdateOptions.UpdateTableName = 'GOODS'
-    AutoUpdateOptions.GeneratorName = 'GOODS_ID_GEN'
-    Transaction = TRead_Requirements
-    Database = Database
-    UpdateTransaction = TWrite_Requirements
-    AutoCommit = True
-    Left = 32
-    Top = 464
-    poSQLINT64ToBCD = True
-  end
-  object TRead_Requirements: TpFIBTransaction
-    DefaultDatabase = Database
-    Left = 32
-    Top = 560
-  end
-  object TWrite_Requirements: TpFIBTransaction
-    DefaultDatabase = Database
-    Left = 32
-    Top = 608
-  end
-  object DS_ReqList: TpFIBDataSet
-    UpdateSQL.Strings = (
-      '')
-    DeleteSQL.Strings = (
-      '')
-    InsertSQL.Strings = (
-      '')
-    RefreshSQL.Strings = (
-      '')
-    SelectSQL.Strings = (
-      'SELECT'
-      
-        '    DISTINCT ORIGINAL_NAKL_ID, (SELECT S_DATE FROM SALE_N s WHER' +
-        'E s.ID = ORIGINAL_NAKL_ID) R_DATE, (SELECT NAME FROM CUSTOMERS W' +
-        'HERE CUSTOMERS.ID = REQUIREMENTS.CLIENT_ID) CUST_NAME, (SELECT C' +
-        'OMMENTS FROM SALE_N s WHERE s.ID = ORIGINAL_NAKL_ID) COMMENTS'
-      'FROM'
-      '    REQUIREMENTS'
-      'WHERE'
-      '    CLIENT_ID = 0'
-      'ORDER BY'
-      '    ID DESC')
-    FilterOptions = [foCaseInsensitive]
-    AutoUpdateOptions.UpdateTableName = 'GOODS'
-    AutoUpdateOptions.GeneratorName = 'GOODS_ID_GEN'
-    AfterScroll = DS_ReqListAfterScroll
-    Transaction = TRead_ReqList
-    Database = Database
-    AutoCommit = True
-    Left = 1056
-    Top = 464
-    poSQLINT64ToBCD = True
-  end
-  object S_ReqList: TDataSource
-    DataSet = DS_ReqList
-    Left = 1056
-    Top = 512
-  end
-  object TRead_ReqList: TpFIBTransaction
-    DefaultDatabase = Database
-    Left = 1056
-    Top = 560
   end
   object DS_EXT_PRICE: TpFIBDataSet
     UpdateSQL.Strings = (

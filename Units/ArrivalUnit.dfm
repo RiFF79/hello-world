@@ -39,8 +39,8 @@ object ArrivalForm: TArrivalForm
     GridLineParams.VertEmptySpaceStyle = dessNonEh
     IndicatorOptions = []
     OddRowColor = 15921906
-    Options = [dgEditing, dgTitles, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete]
-    OptionsEh = [dghFixed3D, dghFooter3D, dghHighlightFocus, dghClearSelection, dghEnterAsTab, dghColumnResize, dghColumnMove]
+    Options = [dgEditing, dgTitles, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete]
+    OptionsEh = [dghFixed3D, dghFooter3D, dghHighlightFocus, dghClearSelection, dghEnterAsTab, dghColumnResize]
     SumList.Active = True
     TabOrder = 0
     OnDblClick = TB_ArrivalDblClick
@@ -88,17 +88,6 @@ object ArrivalForm: TArrivalForm
       end
       item
         CellButtons = <>
-        DisplayFormat = '0.00##'
-        DynProps = <>
-        EditButtons = <>
-        FieldName = 'PRICE'
-        Footers = <>
-        Title.Alignment = taCenter
-        Title.Caption = #1062#1077#1085#1072
-        Width = 80
-      end
-      item
-        CellButtons = <>
         DisplayFormat = '0.###'
         DynProps = <>
         EditButtons = <>
@@ -106,6 +95,17 @@ object ArrivalForm: TArrivalForm
         Footers = <>
         Title.Alignment = taCenter
         Title.Caption = #1042#1077#1089
+        Width = 80
+      end
+      item
+        CellButtons = <>
+        DisplayFormat = '0.00##'
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'PRICE'
+        Footers = <>
+        Title.Alignment = taCenter
+        Title.Caption = #1062#1077#1085#1072
         Width = 80
       end
       item

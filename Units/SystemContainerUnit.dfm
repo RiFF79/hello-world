@@ -279,7 +279,7 @@ object SysContainer: TSysContainer
       000000000000}
   end
   object ArrivalReport: TfrxReport
-    Version = '6.4.11'
+    Version = '6.8.4'
     DotMatrixReport = False
     IniFile = '\Software\Fast Reports'
     PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick]
@@ -337,7 +337,7 @@ object SysContainer: TSysContainer
     Top = 248
   end
   object ReturnSupplReport: TfrxReport
-    Version = '6.4.11'
+    Version = '6.8.4'
     DotMatrixReport = False
     IniFile = '\Software\Fast Reports'
     PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick]
@@ -349,7 +349,7 @@ object SysContainer: TSysContainer
     ScriptLanguage = 'PascalScript'
     ShowProgress = False
     StoreInDFM = False
-    Left = 176
+    Left = 184
     Top = 280
   end
   object FDS_Sale: TfrxDBDataset
@@ -376,7 +376,7 @@ object SysContainer: TSysContainer
     Top = 200
   end
   object SaleReport: TfrxReport
-    Version = '6.4.11'
+    Version = '6.8.4'
     DotMatrixReport = False
     IniFile = '\Software\Fast Reports'
     PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick]
@@ -389,7 +389,7 @@ object SysContainer: TSysContainer
     ShowProgress = False
     StoreInDFM = False
     OnEndDoc = SaleReportEndDoc
-    Left = 176
+    Left = 184
     Top = 328
   end
   object FDS_Moves: TfrxDBDataset
@@ -411,7 +411,7 @@ object SysContainer: TSysContainer
     Top = 104
   end
   object MovesReport: TfrxReport
-    Version = '6.4.11'
+    Version = '6.8.4'
     DotMatrixReport = False
     IniFile = '\Software\Fast Reports'
     PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick]
@@ -438,7 +438,7 @@ object SysContainer: TSysContainer
     Top = 152
   end
   object PriceReport: TfrxReport
-    Version = '6.4.11'
+    Version = '6.8.4'
     DotMatrixReport = False
     IniFile = '\Software\Fast Reports'
     PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick]
@@ -450,7 +450,7 @@ object SysContainer: TSysContainer
     ScriptLanguage = 'PascalScript'
     StoreInDFM = False
     OnGetValue = PriceReportGetValue
-    Left = 336
+    Left = 352
     Top = 328
   end
   object SelectReport: TOpenDialog
@@ -465,7 +465,7 @@ object SysContainer: TSysContainer
     Top = 424
   end
   object SupplSummReport: TfrxReport
-    Version = '6.4.11'
+    Version = '6.8.4'
     DataSet = FDS_Goods
     DataSetName = 'FDS_Goods'
     DotMatrixReport = False
@@ -482,7 +482,7 @@ object SysContainer: TSysContainer
     Top = 112
   end
   object CennikReport: TfrxReport
-    Version = '6.4.11'
+    Version = '6.8.4'
     DotMatrixReport = False
     IniFile = '\Software\Fast Reports'
     PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick]
@@ -534,7 +534,7 @@ object SysContainer: TSysContainer
     Top = 424
   end
   object SaleBillsReport: TfrxReport
-    Version = '6.4.11'
+    Version = '6.8.4'
     DotMatrixReport = False
     IniFile = '\Software\Fast Reports'
     PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick]
@@ -547,7 +547,7 @@ object SysContainer: TSysContainer
     ShowProgress = False
     StoreInDFM = False
     OnGetValue = SaleBillsReportGetValue
-    Left = 256
+    Left = 272
     Top = 328
   end
   object FDS_SaleBillsReport: TfrxDBDataset
@@ -621,7 +621,7 @@ object SysContainer: TSysContainer
     Top = 568
   end
   object RetCustReport: TfrxReport
-    Version = '6.4.11'
+    Version = '6.8.4'
     DotMatrixReport = False
     IniFile = '\Software\Fast Reports'
     PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick]
@@ -634,7 +634,7 @@ object SysContainer: TSysContainer
     ShowProgress = False
     StoreInDFM = False
     OnGetValue = ArrivalReportGetValue
-    Left = 256
+    Left = 272
     Top = 280
   end
   object FDS_RetCust: TfrxDBDataset
@@ -701,7 +701,7 @@ object SysContainer: TSysContainer
     Top = 472
   end
   object DolgiReport: TfrxReport
-    Version = '6.4.11'
+    Version = '6.8.4'
     DotMatrixReport = False
     IniFile = '\Software\Fast Reports'
     PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick]
@@ -715,7 +715,7 @@ object SysContainer: TSysContainer
     StoreInDFM = False
     OnBeginDoc = DolgiReportBeginDoc
     OnGetValue = DolgiReportGetValue
-    Left = 336
+    Left = 352
     Top = 280
   end
   object FDS_Dolgi: TfrxDBDataset
@@ -6227,7 +6227,7 @@ object SysContainer: TSysContainer
       end>
   end
   object KassaReport: TfrxReport
-    Version = '6.4.11'
+    Version = '6.8.4'
     DotMatrixReport = False
     IniFile = '\Software\Fast Reports'
     PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick]
@@ -6266,7 +6266,7 @@ object SysContainer: TSysContainer
     Top = 8
   end
   object ProductionReport: TfrxReport
-    Version = '6.4.11'
+    Version = '6.8.4'
     DotMatrixReport = False
     IniFile = '\Software\Fast Reports'
     PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick]
@@ -6279,7 +6279,7 @@ object SysContainer: TSysContainer
     ShowProgress = False
     StoreInDFM = False
     OnEndDoc = SaleReportEndDoc
-    Left = 176
+    Left = 184
     Top = 216
   end
   object FDS_Production_N: TfrxDBDataset
@@ -9033,7 +9033,7 @@ object SysContainer: TSysContainer
     Top = 520
   end
   object defReport: TfrxReport
-    Version = '6.4.11'
+    Version = '6.8.4'
     DotMatrixReport = False
     IniFile = '\Software\Fast Reports'
     PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick]
@@ -9063,7 +9063,7 @@ object SysContainer: TSysContainer
     Top = 432
   end
   object AccReport: TfrxReport
-    Version = '6.4.11'
+    Version = '6.8.4'
     DotMatrixReport = False
     IniFile = '\Software\Fast Reports'
     PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick]
@@ -9078,58 +9078,12 @@ object SysContainer: TSysContainer
     Left = 344
     Top = 424
   end
-  object ReqReport: TfrxReport
-    Version = '6.4.11'
-    DotMatrixReport = False
-    IniFile = '\Software\Fast Reports'
-    PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick]
-    PreviewOptions.Zoom = 1.000000000000000000
-    PrintOptions.Printer = 'Default'
-    PrintOptions.PrintOnSheet = 0
-    ReportOptions.CreateDate = 38963.653104201400000000
-    ReportOptions.LastChange = 41928.546953136580000000
-    ScriptLanguage = 'PascalScript'
-    ShowProgress = False
-    StoreInDFM = False
-    OnGetValue = ReqReportGetValue
-    Left = 104
-    Top = 216
-  end
-  object FDS_Requirements: TfrxDBDataset
-    UserName = 'FDS_Requirements'
-    CloseDataSource = False
-    FieldAliases.Strings = (
-      'ID=ID'
-      'CLIENT_ID=CLIENT_ID'
-      'R_DATE=R_DATE'
-      'GOOD_ID=GOOD_ID'
-      'FULLNAME=FULLNAME'
-      'CNT=CNT'
-      'ORIGINAL_PRICE=ORIGINAL_PRICE'
-      'ORIGINAL_NAKL_ID=ORIGINAL_NAKL_ID')
-    DataSource = Data.S_Requirements
-    BCDToCurrency = False
-    Left = 496
-    Top = 200
-  end
-  object FDS_ReqList: TfrxDBDataset
-    UserName = 'FDS_ReqList'
-    CloseDataSource = False
-    FieldAliases.Strings = (
-      'ORIGINAL_NAKL_ID=ORIGINAL_NAKL_ID'
-      'R_DATE=R_DATE'
-      'CUST_NAME=CUST_NAME'
-      'COMMENTS=COMMENTS')
-    DataSource = Data.S_ReqList
-    BCDToCurrency = False
-    Left = 496
-    Top = 152
-  end
   object frxPDFExport1: TfrxPDFExport
     UseFileCache = True
     ShowProgress = True
     OverwritePrompt = False
     DataOnly = False
+    InteractiveFormsFontSubset = 'A-Z,a-z,0-9,#43-#47 '
     OpenAfterExport = False
     PrintOptimized = False
     Outline = False
@@ -9813,38 +9767,5 @@ object SysContainer: TSysContainer
           8EDC2600A370BA12EC33ECF4E9475D509ADDFF0F469C7A0EBA2B851F00000000
           49454E44AE426082}
       end>
-  end
-  object exlSaleReq: TQImport3XLS
-    AutoTrimValue = True
-    DataSet = Data.DS_Requirements
-    ImportDestination = qidUserDefined
-    Map.Strings = (
-      'GOOD_ID=A6-COLFINISH'
-      'PRICE=F6-COLFINISH'
-      'CNT=G6-COLFINISH')
-    Formats.DecimalSeparator = '.'
-    Formats.ThousandSeparator = #160
-    Formats.DateSeparator = '.'
-    Formats.TimeSeparator = ':'
-    Formats.BooleanTrue.Strings = (
-      'True')
-    Formats.BooleanFalse.Strings = (
-      'False')
-    Formats.NullValues.Strings = (
-      'Null')
-    Formats.ShortDateFormat = 'dd/MM/yyyy'
-    Formats.LongDateFormat = 'd MMMM yyyy '#39#1075'.'#39
-    Formats.ShortTimeFormat = 'h:mm'
-    Formats.LongTimeFormat = 'h:mm:ss'
-    FieldFormats = <>
-    ErrorLogFileName = 'error.log'
-    AddType = qatInsert
-    OnBeforeImport = exlSaleReqBeforeImport
-    OnAfterImport = exlSaleReqAfterImport
-    OnUserDefinedImport = exlSaleReqUserDefinedImport
-    FileName = 'C:\Users\'#1056#1086#1084#1072#1085'\Desktop\TEST.xls'
-    SkipFirstRows = 5
-    Left = 280
-    Top = 424
   end
 end

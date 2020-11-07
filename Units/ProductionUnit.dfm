@@ -12,6 +12,7 @@ object ProductionForm: TProductionForm
   Font.Style = []
   OldCreateOrder = False
   OnClose = FormClose
+  OnCreate = FormCreate
   OnShortCut = FormShortCut
   OnShow = FormShow
   PixelsPerInch = 96
@@ -263,8 +264,8 @@ object ProductionForm: TProductionForm
         GridLineParams.VertEmptySpaceStyle = dessNonEh
         IndicatorOptions = []
         OddRowColor = clWindow
-        Options = [dgEditing, dgTitles, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete]
-        OptionsEh = [dghFixed3D, dghFooter3D, dghHighlightFocus, dghClearSelection, dghEnterAsTab, dghColumnResize, dghColumnMove]
+        Options = [dgEditing, dgTitles, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete]
+        OptionsEh = [dghFixed3D, dghFooter3D, dghHighlightFocus, dghClearSelection, dghEnterAsTab, dghColumnResize]
         SumList.Active = True
         TabOrder = 0
         OnDblClick = TB_ProductionDblClick
@@ -354,8 +355,8 @@ object ProductionForm: TProductionForm
         GridLineParams.VertEmptySpaceStyle = dessNonEh
         IndicatorOptions = []
         OddRowColor = clWindow
-        Options = [dgEditing, dgTitles, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete]
-        OptionsEh = [dghFixed3D, dghFooter3D, dghHighlightFocus, dghClearSelection, dghEnterAsTab, dghColumnResize, dghColumnMove]
+        Options = [dgEditing, dgTitles, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete]
+        OptionsEh = [dghFixed3D, dghFooter3D, dghHighlightFocus, dghClearSelection, dghEnterAsTab, dghColumnResize]
         SumList.Active = True
         TabOrder = 0
         OnCellClick = TB_SpecificationCellClick
@@ -506,8 +507,8 @@ object ProductionForm: TProductionForm
     ImageOptions.Images = SysContainer.SmallImages
     PopupMenuLinks = <>
     UseSystemFont = True
-    Left = 272
-    Top = 392
+    Left = 32
+    Top = 296
     PixelsPerInch = 96
     DockControlHeights = (
       0

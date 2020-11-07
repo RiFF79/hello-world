@@ -33,8 +33,8 @@ object MovesForm: TMovesForm
     GridLineParams.VertEmptySpaceStyle = dessNonEh
     IndicatorOptions = []
     OddRowColor = 15921906
-    Options = [dgEditing, dgTitles, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete]
-    OptionsEh = [dghFixed3D, dghFooter3D, dghHighlightFocus, dghClearSelection, dghEnterAsTab, dghColumnResize, dghColumnMove]
+    Options = [dgEditing, dgTitles, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete]
+    OptionsEh = [dghFixed3D, dghFooter3D, dghHighlightFocus, dghClearSelection, dghEnterAsTab, dghColumnResize]
     SumList.Active = True
     TabOrder = 0
     OnDblClick = TB_MovesDblClick

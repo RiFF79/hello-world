@@ -680,9 +680,6 @@ type
     lbl_salary: TcxLabel;
     dxLayoutControl1Item13: TdxLayoutItem;
     lbl_rent: TcxLabel;
-    act_sale_req_delete: TAction;
-    act_sale_req_add: TAction;
-    act_sale_check: TAction;
     dxBarButton15: TdxBarButton;
     act_file_recalc_lux: TAction;
     dxBarLargeButton3: TdxBarLargeButton;
@@ -694,11 +691,8 @@ type
     dxBarSeparator2: TdxBarSeparator;
     dxBarSeparator3: TdxBarSeparator;
     dxBarSeparator4: TdxBarSeparator;
-    act_sale_req_clear: TAction;
     dxBarLargeButton4: TdxBarLargeButton;
     act_rep_top100: TAction;
-    act_sale_req_print: TAction;
-    act_sale_req_tosale: TAction;
     dxBarButton20: TdxBarButton;
     dxBarButton21: TdxBarButton;
     dxBarButton22: TdxBarButton;
@@ -746,7 +740,6 @@ type
     act_curs_delete: TAction;
     act_curs_edit: TAction;
     dxBarButton39: TdxBarButton;
-    act_sale_req_import: TAction;
     act_sale_update_prices: TAction;
     act_sale_clear: TAction;
     editCustType: TcxBarEditItem;
@@ -800,6 +793,7 @@ type
     rib_group_prod_filter: TdxBarGroup;
     dxBarButton42: TdxBarButton;
     act_prod_preview: TAction;
+    preview_Report: TfrxPreview;
     procedure FormCreate(Sender: TObject);
     procedure TB_PriceKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
@@ -1127,13 +1121,8 @@ type
     procedure TB_ClientSelectDolgColumns2GetCellParams(Sender: TObject;
       EditMode: Boolean; Params: TColCellParamsEh);
     procedure act_price_recalc_ostatkiExecute(Sender: TObject);
-    procedure act_sale_req_deleteExecute(Sender: TObject);
-    procedure act_sale_req_addExecute(Sender: TObject);
-    procedure act_sale_checkExecute(Sender: TObject);
     procedure dxBarButton15Click(Sender: TObject);
-    procedure act_sale_req_clearExecute(Sender: TObject);
     procedure act_rep_top100Execute(Sender: TObject);
-    procedure act_sale_req_printExecute(Sender: TObject);
     procedure TB_Sale_NGetCellParams(Sender: TObject; Column: TColumnEh;
       AFont: TFont; var Background: TColor; State: TGridDrawState);
     procedure dxBarButton20Click(Sender: TObject);
@@ -1151,8 +1140,6 @@ type
     procedure act_rc_shopcardExecute(Sender: TObject);
     procedure act_moves_shopcardExecute(Sender: TObject);
     procedure act_rs_shopcardExecute(Sender: TObject);
-    procedure act_sale_req_importExecute(Sender: TObject);
-    procedure act_sale_req_tosaleExecute(Sender: TObject);
     procedure act_sale_update_pricesExecute(Sender: TObject);
     procedure act_sale_clearExecute(Sender: TObject);
     procedure TB_ClientSelectDolgGetCellParams(Sender: TObject;
@@ -1194,6 +1181,7 @@ type
     procedure act_prod_printExecute(Sender: TObject);
     procedure TB_PriceColumns6GetCellParams(Sender: TObject; EditMode: Boolean;
       Params: TColCellParamsEh);
+    procedure act_rep_ReportsExecute(Sender: TObject);
   private
     kassa_sum, kassa_sum_usd, kassa_sum_uah: real;
     firstrun: Boolean;
@@ -1438,6 +1426,8 @@ begin
   act_doc_rc_wait.Tag := tr_ret_cust_wait;
   act_doc_kassa.Tag := tr_kassa;
 
+  act_rep_Reports.Tag := tr_CountReport_Depots;
+
 end;
 
 procedure TMainForm.UpdateDocumentsWindow;
@@ -1676,7 +1666,7 @@ begin
   if Data.DS_Goods.FBN('UNIT').AsInteger = 0
     then Params.Text := Params.Text + ' шт'
     else Params.Text := Params.Text + ' кг';
-  item_weight := Data.DS_Goods.FBN('ITEM_WEIGHT').AsFloat * item_value;
+  item_weight := Data.DS_Goods.FBN('WEIGHT_ALL').AsFloat;
   if item_weight <> 0 then
   begin
     Params.Text := Params.Text + ' (' + floatToStrF(RoundTo(item_weight, -3), ffGeneral, 15, 3) + ' кг)';
@@ -1856,7 +1846,7 @@ begin
     tr_CountReport_Depots:
       begin
         label_ListName.Caption := 'Общее количество на складе';
-//        preview_Report.Clear;
+        preview_Report.Clear;
         area_client.ActivePage := P_Report;
         check_print_ondepot.enabled := true;
         act_print_edit.enabled := false;
@@ -1888,6 +1878,7 @@ var
   item_value: double;
   item_weight: double;
   weight_text: String;
+  weight_field: String;
 begin
   if EditMode then exit;
 
@@ -1904,7 +1895,8 @@ begin
   if Data.DS_Goods.FBN('UNIT').AsInteger = 0
     then Params.Text := Params.Text + ' шт'
     else Params.Text := Params.Text + ' кг';
-  item_weight := Data.DS_Goods.FBN('ITEM_WEIGHT').AsFloat * item_value;
+  weight_field := (Sender as TDBGridColumnEh).FieldName.Replace('C', 'W');
+  item_weight := Data.DS_Goods.FBN(weight_field).AsFloat;
   if item_weight <> 0 then
   begin
     Params.Text := Params.Text + ' (' + floatToStrF(RoundTo(item_weight, -3), ffGeneral, 15, 3) + ' кг)';
@@ -2443,9 +2435,6 @@ begin
   act_sale_delete.enabled := b;
   act_sale_execute.enabled := b;
   act_sale_edit.enabled := b;
-//  act_sale_preview.enabled := b;
-//  act_sale_print.enabled := b;
-//  act_sale_colprint.enabled := b;
   act_sale_export.enabled := b;
   act_sale_excelexport.enabled := b;
   act_sale_pay.enabled := b;
@@ -2454,14 +2443,7 @@ begin
   rib_group_sale_filter.enabled := false;
   act_sale_return.enabled := false;
   act_sale_clear.Enabled := true;
-  act_sale_req_import.Enabled := true;
   SaleForm.FilterLayout.enabled := true;
-  act_sale_req_clear.Enabled := true;
-  act_sale_req_add.Enabled := true;
-  act_sale_req_delete.Enabled := true;
-  act_sale_check.Enabled := true;
-  act_sale_req_tosale.Enabled := true;
-//  SaleForm.l_changecaption.Visible := true;
   SaleForm.TB_Sale.Options := [dgEditing, dgTitles, dgColumnResize, dgColLines,
     dgRowLines, dgTabs, dgAlwaysShowSelection];
   SaleForm.TB_Sale.AllowedOperations := SaleForm.TB_Sale.AllowedOperations +
@@ -2476,12 +2458,9 @@ var
 begin
   b := Data.DS_Sale_N.VisibleRecordCount > 0;
   act_sale_return.enabled := b;
-//  act_sale_preview.enabled := b;
   act_sale_edit.enabled := b;
-//  act_sale_print.enabled := b;
   act_sale_export.enabled := b;
   act_sale_excelexport.enabled := b;
-//  act_sale_colprint.enabled := b;
   act_sale_pay.enabled := b;
   act_sale_printperiod.enabled := b;
 
@@ -2490,14 +2469,7 @@ begin
   act_sale_delete.enabled := false;
   act_sale_excelimport.enabled := false;
   act_sale_clear.Enabled := false;
-  act_sale_req_import.Enabled := false;
-  act_sale_req_clear.Enabled := false;
-  act_sale_req_add.Enabled := false;
-  act_sale_req_delete.Enabled := false;
-  act_sale_check.Enabled := false;
-  act_sale_req_tosale.Enabled := false;
   SaleForm.FilterLayout.enabled := false;
-//  SaleForm.l_changecaption.Visible := false;
   SaleForm.TB_Sale.Options := [dgTitles, dgColumnResize, dgColLines, dgRowLines,
     dgTabs, dgRowSelect, dgAlwaysShowSelection];
   SaleForm.TB_Sale.AllowedOperations := SaleForm.TB_Sale.AllowedOperations -
@@ -2951,8 +2923,6 @@ begin
   Data.DS_Goods.Close;
   Data.DS_Curs.Close;
   Data.DS_KASSA.Close;
-  Data.DS_Requirements.Close;
-  Data.DS_ReqList.Close;
   Data.DS_Currency.Close;
   Data.DS_GoodTypes.Close;
   Data.DS_PriceCategory.Close;
@@ -3272,13 +3242,13 @@ var
   ItemIndex: Integer;
 begin
   ItemIndex := combo_print_scale.CurItemIndex;
-//  if ItemIndex < 8 then
-//    preview_Report.Zoom := (ItemIndex + 1) * 0.25
-//  else if ItemIndex = 8 then
-//    preview_Report.ZoomMode := zmWholePage
-//  else
-//    preview_Report.ZoomMode := zmPageWidth;
-//  combo_print_scale.Text := floattostr(preview_Report.Zoom * 100) + '%';
+  if ItemIndex < 8 then
+    preview_Report.Zoom := (ItemIndex + 1) * 0.25
+  else if ItemIndex = 8 then
+    preview_Report.ZoomMode := zmWholePage
+  else
+    preview_Report.ZoomMode := zmPageWidth;
+  combo_print_scale.Text := floattostr(preview_Report.Zoom * 100) + '%';
 end;
 
 procedure TMainForm.combo_SupplierRetSupplFilterChange(Sender: TObject);
@@ -5073,7 +5043,6 @@ begin
     SaleForm.Caption := 'Расходная накладная № ' +
       inttostr(Query.DS_QueryDolgi.fbn('NAKL_ID').AsInteger);
     SetSaleButtonsExec;
-    SaleForm.Splitter.CloseSplitter;
     act_sale_return.enabled := false;
     SaleForm.ShowModal;
   end;
@@ -6103,6 +6072,12 @@ begin
   MoneyInDepotsForm.ShowModal;
 end;
 
+procedure TMainForm.act_rep_ReportsExecute(Sender: TObject);
+begin
+  area_tree.ActivePage := P_Reports;
+  Tree_Docs.Select(Tree_Reports.Items[(Sender as TAction).Tag]);
+end;
+
 procedure TMainForm.act_rep_top100Execute(Sender: TObject);
 begin
   Top100Form.Show;
@@ -6362,30 +6337,10 @@ begin
   SaleForm.ShowModal;
 end;
 
-procedure TMainForm.act_sale_checkExecute(Sender: TObject);
-begin
- if Data.DS_Sale.RecordCount = 0 then
-    exit;
-  if MessageBox(Application.Handle,
-    'Переместить товары, которых нет в наличии, в требования?',
-    PChar(MainForm.Caption), MB_OKCANCEL + MB_ICONQUESTION) <> IDOK then
-    exit;
-  if Data.DS_Sale.State = dsEdit then Data.DS_Sale.Post;
-  
-  Data.Database.Execute('execute procedure MOVE_MISSING_TO_REQUIREMENTS('+
-                        inttostr(Data.DS_Sale_N.FBN('ID').AsInteger)+')');
-  Data.DS_Sale.CloseOpen(true);
-  Data.DS_Sale_N.ReopenLocate('ID');
-  SaleForm.UpdateReqList;
-  SaleForm.UpdateRequirementsFilter;
-  SaleForm.SetCurrentRequirements;
-  SaleForm.UpdateReqButtons;
-end;
-
 procedure TMainForm.act_sale_clearExecute(Sender: TObject);
 begin
   if Data.DS_Sale.VisibleRecordCount = 0 then exit;
-  
+
   if MessageBox(Application.Handle,
     'Очистить накладную?', PChar(MainForm.Caption),
     MB_OKCANCEL + MB_ICONQUESTION) <> IDOK then
@@ -6393,7 +6348,6 @@ begin
   Data.Database.Execute('delete from sale where nakl_id = ' +
                         inttostr(Data.DS_Sale_N.FBN('ID').AsInteger));
   Data.DS_Sale.CloseOpen(true);
-  SaleForm.UpdateReqButtons;
 end;
 
 
@@ -6426,7 +6380,6 @@ begin
   if SaleForm.Visible then
     SaleForm.Close;
   Data.SetUserActivity(SL);
-  Data.DeleteFromRequirements(Data.DS_Sale_N.fbn('ID').AsInteger);
   isMyApplyActivity := true;
   Data.DS_Sale_N.Delete;
   Data.ClearUserActivity;
@@ -6621,14 +6574,9 @@ end;
 
 procedure TMainForm.act_sale_item_cardExecute(Sender: TObject);
 begin
-  if not(SaleForm.TB_Requirements.Focused) and not(SaleForm.TB_Sale.Focused)
-  then
-    exit;
+  if not(SaleForm.TB_Sale.Focused) then exit;
 
   Data.DS_Goods.Filtered := false;
-  if SaleForm.TB_Requirements.Focused then
-    Data.DS_Goods.Locate('ID', Data.DS_Requirements.fbn('GOOD_ID')
-      .AsInteger, []);
   if SaleForm.TB_Sale.Focused then
     Data.DS_Goods.Locate('ID', Data.DS_Sale.fbn('GOOD_ID').AsInteger, []);
 
@@ -6656,14 +6604,10 @@ end;
 
 procedure TMainForm.act_sale_item_historyExecute(Sender: TObject);
 begin
-  if not(SaleForm.TB_Requirements.Focused) and not(SaleForm.TB_Sale.Focused)
-  then
-    exit;
+  if not(SaleForm.TB_Sale.Focused) then exit;
 
   Data.DS_Goods.Filtered := false;
 
-  if SaleForm.TB_Requirements.Focused then
-    HistoryForm.ShowEx(Data.DS_Requirements.fbn('GOOD_ID').AsInteger, all);
   if SaleForm.TB_Sale.Focused then
     HistoryForm.ShowEx(Data.DS_Sale.fbn('GOOD_ID').AsInteger, all);
 
@@ -6797,123 +6741,6 @@ begin
     end
   else
     ShowMessage('Ошибка открытия файла.');
-end;
-
-procedure TMainForm.act_sale_req_addExecute(Sender: TObject);
-begin
-  if not SaleForm.Visible or (Data.DS_Sale.RecordCount = 0) then
-    exit;
-  if MessageBox(Application.Handle,
-    'Перенести выбранную позицию в список требований?', PChar(MainForm.Caption),
-    MB_OKCANCEL + MB_ICONQUESTION) <> IDOK then
-    exit;
-  Data.DS_Sale.DisableControls;
-  if Data.DS_Sale.State = dsEdit then Data.DS_Sale.Post;
-  Data.Database.Execute('execute procedure MOVE_TO_REQUIREMENTS(' +
-                         inttostr(Data.DS_Sale.FBN('ID').AsInteger) + ')');
-  SaleForm.TB_Sale.MoveBy(1);
-  Data.DS_Sale.ReopenLocate('ID');
-  Data.DS_Sale_N.ReopenLocate('ID');
-  SaleForm.UpdateReqList;
-  SaleForm.UpdateRequirementsFilter;
-  SaleForm.SetCurrentRequirements;
-  SaleForm.UpdateReqButtons;
-  Data.DS_Sale.EnableControls;
-end;
-
-procedure TMainForm.act_sale_req_clearExecute(Sender: TObject);
-var
-  RowCnt: Integer;
-  id: Integer;
-  I: Integer;
-begin
-  if MessageBox(Application.Handle,
-    'Очистить требования по выбранным накладным?', PChar(MainForm.Caption),
-    MB_OKCANCEL + MB_ICONQUESTION) <> IDOK then
-    exit;
-
-  Data.DS_ReqList.DisableControls;
-  RowCnt := SaleForm.TB_ReqList.SelectedRows.Count;
-  if RowCnt > 0 then
-    for I := 0 to RowCnt - 1 do
-    begin
-      SaleForm.TB_ReqList.DataSource.DataSet.GotoBookmark
-        (TBookmark(SaleForm.TB_ReqList.SelectedRows.Items[I]));
-      id := SaleForm.TB_ReqList.DataSource.DataSet.FieldByName
-        ('ORIGINAL_NAKL_ID').AsInteger;
-      Data.DeleteFromRequirements(id);
-    end
-  else
-  begin
-    id := SaleForm.TB_ReqList.DataSource.DataSet.FieldByName('ORIGINAL_NAKL_ID')
-      .AsInteger;
-    Data.DeleteFromRequirements(id);
-  end;
-  SaleForm.UpdateReqList;
-  SaleForm.UpdateRequirementsFilter;
-  SaleForm.SetCurrentRequirements;
-  SaleForm.UpdateReqButtons;
-  Data.DS_ReqList.EnableControls;
-end;
-
-procedure TMainForm.act_sale_req_deleteExecute(Sender: TObject);
-begin
-  if Data.DS_Requirements.RecordCount = 0 then
-    exit;
-  if MessageBox(Application.Handle, 'Удалить товар из списка требований?',
-    PChar(MainForm.Caption), MB_OKCANCEL + MB_ICONQUESTION) <> IDOK then
-    exit;
-  SaleForm.TB_Requirements.Selection.Clear;
-  Data.DS_Requirements.Delete;
-  SaleForm.UpdateRequirementsFilter;
-  SaleForm.UpdateReqList;
-  SaleForm.SetCurrentRequirements;
-  SaleForm.UpdateReqButtons;
-end;
-
-procedure TMainForm.act_sale_req_importExecute(Sender: TObject);
-var
-  reqID, saleID: Integer;
-begin
-  if SysContainer.ImportExcelDialog.Execute then
-  begin
-    SysContainer.exlSaleReq.filename := SysContainer.ImportExcelDialog.filename;
-    SysContainer.exlSaleReq.Execute;
-    SaleForm.UpdateReqList;
-    SaleForm.UpdateRequirementsFilter;
-    SaleForm.SetCurrentRequirements;
-
-    reqID := Data.DS_ReqList.fbn('ORIGINAL_NAKL_ID').AsInteger;
-    saleID := Data.DS_Sale_N.fbn('ID').AsInteger;
-    if (reqID = saleID) and SaleForm.Visible then
-      begin
-        SaleForm.Splitter.OpenSplitter;
-        SaleForm.UpdateSaleFromRequirements;
-      end;
-  end;
-end;
-
-procedure TMainForm.act_sale_req_printExecute(Sender: TObject);
-begin
-  if Data.BillOpened(SL) > 0 then
-    exit;
-  if SysContainer.ReqReport.LoadFromFile(Settings.ApplicationPath + 'Reports\' +
-    req_report_file) then
-  begin
-    Data.DS_Requirements.DisableControls;
-    SaleForm.UpdateRequirementsFilter;
-    SysContainer.ReqReport.PrepareReport;
-    SysContainer.ReqReport.PrintOptions.ShowDialog := false;
-    SysContainer.ReqReport.ShowPreparedReport;
-    Data.DS_Requirements.EnableControls;
-  end
-  else
-    ShowMessage('Ошибка открытия файла.');
-end;
-
-procedure TMainForm.act_sale_req_tosaleExecute(Sender: TObject);
-begin
-  SaleForm.UpdateSaleFromRequirements;
 end;
 
 procedure TMainForm.act_sale_resetExecute(Sender: TObject);
@@ -7824,38 +7651,38 @@ end;
 
 procedure TMainForm.act_print_biggerExecute(Sender: TObject);
 begin
-//  preview_Report.Zoom := preview_Report.Zoom + 0.25;
-//  combo_print_scale.Text := floattostr(preview_Report.Zoom * 100) + '%';
+  preview_Report.Zoom := preview_Report.Zoom + 0.25;
+  combo_print_scale.Text := floattostr(preview_Report.Zoom * 100) + '%';
 end;
 
 procedure TMainForm.act_print_editExecute(Sender: TObject);
 begin
-//  preview_Report.Edit;
+  preview_Report.Edit;
 end;
 
 procedure TMainForm.act_print_findExecute(Sender: TObject);
 begin
-//  preview_Report.Find;
+  preview_Report.Find;
 end;
 
 procedure TMainForm.act_print_firstExecute(Sender: TObject);
 begin
-//  preview_Report.First;
+  preview_Report.First;
 end;
 
 procedure TMainForm.act_print_lastExecute(Sender: TObject);
 begin
-//  preview_Report.Last;
+  preview_Report.Last;
 end;
 
 procedure TMainForm.act_print_nextExecute(Sender: TObject);
 begin
-//  preview_Report.Next;
+  preview_Report.Next;
 end;
 
 procedure TMainForm.act_print_openExecute(Sender: TObject);
 begin
-//  preview_Report.LoadFromFile;
+  preview_Report.LoadFromFile;
 end;
 
 procedure TMainForm.act_print_prepareExecute(Sender: TObject);
@@ -7931,12 +7758,12 @@ end;
 procedure TMainForm.act_print_printExecute(Sender: TObject);
 begin
   SysContainer.PriceReport.PrintOptions.ShowDialog := false;
-//  preview_Report.Print;
+  preview_Report.Print;
 end;
 
 procedure TMainForm.act_print_priorExecute(Sender: TObject);
 begin
-//  preview_Report.Prior;
+  preview_Report.Prior;
 end;
 
 procedure TMainForm.act_print_reset_depotExecute(Sender: TObject);
@@ -7947,22 +7774,22 @@ end;
 
 procedure TMainForm.act_print_saveExecute(Sender: TObject);
 begin
-//  preview_Report.SaveToFile;
+  preview_Report.SaveToFile;
 end;
 
 procedure TMainForm.act_print_settingsExecute(Sender: TObject);
 begin
   SysContainer.PriceReport.PrintOptions.ShowDialog := true;
-//  preview_Report.Print;
+  preview_Report.Print;
 end;
 
 procedure TMainForm.act_print_smallerExecute(Sender: TObject);
 begin
-//  if preview_Report.Zoom <= 0.25 then
-//    exit;
-//
-//  preview_Report.Zoom := preview_Report.Zoom - 0.25;
-//  combo_print_scale.Text := floattostr(preview_Report.Zoom * 100) + '%';
+  if preview_Report.Zoom <= 0.25 then
+    exit;
+
+  preview_Report.Zoom := preview_Report.Zoom - 0.25;
+  combo_print_scale.Text := floattostr(preview_Report.Zoom * 100) + '%';
 end;
 
 procedure TMainForm.act_prod_clear_naklExecute(Sender: TObject);

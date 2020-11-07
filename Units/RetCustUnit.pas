@@ -84,8 +84,6 @@ type
       Shift: TShiftState);
     procedure controlExit(Sender: TObject);
     procedure clientCloseUp(Sender: TObject);
-    procedure TB_RetCustColumns5GetCellParams(Sender: TObject;
-      EditMode: Boolean; Params: TColCellParamsEh);
   private
     { Private declarations }
     curs_accept: Boolean;
@@ -152,14 +150,6 @@ procedure TRetCustForm.TB_RetCustColumns0EditButtonClick(Sender: TObject;
 begin
   if FilterLayout.Enabled then
     SetRecord;
-end;
-
-procedure TRetCustForm.TB_RetCustColumns5GetCellParams(Sender: TObject;
-  EditMode: Boolean; Params: TColCellParamsEh);
-begin
-  if (Data.DS_Return_Cust.FBN('UNIT_ID').AsInteger = 1) OR (Data.DS_Return_Cust.FBN('TOTAL_WEIGHT').AsFloat = 0)
-    then Params.Text := ''
-    else Params.Text := Params.Text + ' Í„';
 end;
 
 procedure TRetCustForm.FormCreate(Sender: TObject);

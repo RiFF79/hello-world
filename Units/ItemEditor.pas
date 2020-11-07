@@ -67,7 +67,7 @@ type
     cxGroupBox5: TcxGroupBox;
     cxGroupBox6: TcxGroupBox;
     cxGroupBox7: TcxGroupBox;
-    cxLabel1: TcxLabel;
+    btn_recalculate: TcxLabel;
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormShortCut(var Msg: TWMKey; var Handled: Boolean);
@@ -116,7 +116,7 @@ type
     procedure LPgridDrawCell(Sender: TObject; ACol, ARow: Integer; Rect: TRect;
       State: TGridDrawState);
     procedure cxButton1Click(Sender: TObject);
-    procedure cxLabel1Click(Sender: TObject);
+    procedure btn_recalculateClick(Sender: TObject);
   private
     min_ext_price: real;
     procedure UpdateLabels;
@@ -150,6 +150,7 @@ begin
   edit_OldPriceShop2.Enabled := EnControl;
   Edit_Type.Enabled := EnControl;
   edit_PriceCategory.Enabled := EnControl;
+  btn_recalculate.Visible := Data.DS_Goods.State <> dsInsert;
   if EnControl then
     begin
       Edit_Price1.SetFocus;
@@ -234,7 +235,7 @@ begin
     - saled));
 end;
 
-procedure TItemEditorForm.cxLabel1Click(Sender: TObject);
+procedure TItemEditorForm.btn_recalculateClick(Sender: TObject);
 begin
   Data.RecalculateCounts(Data.DS_Goods.fbn('ID').AsInteger);
   UpdateLabels;

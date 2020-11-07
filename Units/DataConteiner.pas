@@ -293,6 +293,8 @@ type
     DS_Production_SP: TpFIBDataSet;
     TRead_Production_SP: TpFIBTransaction;
     TWrite_Production_SP: TpFIBTransaction;
+    DS_Arrival_NSUM_REAL: TFIBFloatField;
+    DS_Sale_NSUM_REAL: TFIBFloatField;
     procedure DataModuleCreate(Sender: TObject);
     procedure DS_ArrivalAfterDelete(DataSet: TDataSet);
     procedure DS_ArrivalAfterPost(DataSet: TDataSet);

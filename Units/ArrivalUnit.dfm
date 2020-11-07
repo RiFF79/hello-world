@@ -99,48 +99,24 @@ object ArrivalForm: TArrivalForm
       end
       item
         CellButtons = <>
-        DisplayFormat = '0.00##'
-        DynProps = <>
-        EditButtons = <>
-        FieldName = 'SUMM'
-        Footers = <>
-        ReadOnly = True
-        Title.Alignment = taCenter
-        Title.Caption = #1057#1091#1084#1084#1072
-        Width = 80
-      end
-      item
-        CellButtons = <>
         DisplayFormat = '0.###'
         DynProps = <>
         EditButtons = <>
-        FieldName = 'TOTAL_WEIGHT'
+        FieldName = 'WEIGHT_TOTAL'
         Footers = <>
-        ReadOnly = True
         Title.Alignment = taCenter
         Title.Caption = #1042#1077#1089
         Width = 80
-        OnGetCellParams = TB_ArrivalColumns5GetCellParams
       end
       item
-        Alignment = taCenter
-        AutoFitColWidth = False
         CellButtons = <>
-        DisplayFormat = '#.##'
         DynProps = <>
         EditButtons = <>
-        FieldName = 'PRC'
-        Font.Charset = RUSSIAN_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'Tahoma'
-        Font.Style = [fsItalic]
+        FieldName = 'SUM_REAL'
         Footers = <>
-        ReadOnly = True
         Title.Alignment = taCenter
-        Title.Caption = '%'
-        Width = 40
-        OnGetCellParams = TB_ArrivalColumns4GetCellParams
+        Title.Caption = #1057#1091#1084#1084#1072
+        Width = 80
       end>
     object RowDetailData: TRowDetailPanelControlEh
     end
@@ -271,7 +247,7 @@ object ArrivalForm: TArrivalForm
         Left = 128
         Top = 149
         AutoSize = True
-        DataBinding.DataField = 'SUMM'
+        DataBinding.DataField = 'SUM_REAL'
         DataBinding.DataSource = Data.S_Arrival_N
         Style.HotTrack = False
         Style.TextColor = clHotLight

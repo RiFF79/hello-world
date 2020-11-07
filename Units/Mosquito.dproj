@@ -3,7 +3,7 @@
         <ProjectGuid>{CEA280BD-FE92-48AA-B386-9CA71468DB85}</ProjectGuid>
         <MainSource>Mosquito.dpr</MainSource>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Release</Config>
+        <Config Condition="'$(Config)'==''">Debug</Config>
         <TargetedPlatforms>1</TargetedPlatforms>
         <AppType>Application</AppType>
         <FrameworkType>VCL</FrameworkType>
@@ -43,14 +43,14 @@
     <PropertyGroup Condition="'$(Base)'!=''">
         <DCC_ImageBase>00400000</DCC_ImageBase>
         <DCC_SymbolReferenceInfo>1</DCC_SymbolReferenceInfo>
-        <DCC_ExeOutput>C:\Mosquito-Stretch v3.5</DCC_ExeOutput>
+        <DCC_ExeOutput>C:\mosquito-stretch\</DCC_ExeOutput>
         <DCC_Namespace>Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;System;Xml;Data;Datasnap;Web;Soap;Winapi;$(DCC_Namespace)</DCC_Namespace>
         <DCC_GenerateStackFrames>true</DCC_GenerateStackFrames>
         <VerInfo_Locale>1049</VerInfo_Locale>
         <DCC_RangeChecking>true</DCC_RangeChecking>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <DCC_UsePackage>vcl;rtl;vclx;indy;inet;xmlrtl;vclie;inetdbbde;inetdbxpress;dbrtl;dsnap;dsnapcon;vcldb;soaprtl;VclSmp;dbexpress;dbxcds;inetdb;bdertl;vcldbx;webdsnap;websnap;adortl;ibxpress;teeui;teedb;tee;dss;visualclx;visualdbclx;vclactnband;vclshlctrls;dclOfficeXP;QR4RunD7;fs7;frx7;frxDB7;fsDB7;frxADO7;fsADO7;frxBDE7;fsBDE7;frxDBX7;frxIBX7;fsIBX7;frxe7;EXLReportRT_D7;RxCtl7;RxDB7;RxBDE7;mosquito;FR7;FIBDBMidas7;$(DCC_UsePackage)</DCC_UsePackage>
-        <DCC_DcuOutput>C:\Mosquito-Stretch v3.5\Units</DCC_DcuOutput>
+        <DCC_DcuOutput>C:\mosquito-stretch\Units</DCC_DcuOutput>
         <DCC_N>true</DCC_N>
         <DCC_E>false</DCC_E>
         <DCC_MapFile>3</DCC_MapFile>
@@ -63,8 +63,8 @@
         <SanitizedProjectName>Mosquito</SanitizedProjectName>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
-        <DCC_ExeOutput>C:\Mosquito-Stretch v3.5\</DCC_ExeOutput>
-        <DCC_DcuOutput>C:\Mosquito-Stretch v3.5\Units\</DCC_DcuOutput>
+        <DCC_ExeOutput>C:\mosquito-stretch\</DCC_ExeOutput>
+        <DCC_DcuOutput>C:\mosquito-stretch\Units\</DCC_DcuOutput>
         <DCC_Namespace>System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <VerInfo_Keys>CompanyName=SADIM;FileVersion=3.5.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductVersion=1.0.0.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName);FileDescription=$(MSBuildProjectName);ProductName=$(MSBuildProjectName)</VerInfo_Keys>
@@ -84,8 +84,8 @@
         <VerInfo_Locale>1033</VerInfo_Locale>
         <VerInfo_Keys>CompanyName=SADIM;FileVersion=3.5.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductVersion=1.0.0.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName);FileDescription=$(MSBuildProjectName);ProductName=$(MSBuildProjectName)</VerInfo_Keys>
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
-        <DCC_ExeOutput>C:\Mosquito-Stretch v3.5\</DCC_ExeOutput>
-        <DCC_DcuOutput>C:\Mosquito-Stretch v3.5\Units\</DCC_DcuOutput>
+        <DCC_ExeOutput>C:\mosquito-stretch\</DCC_ExeOutput>
+        <DCC_DcuOutput>C:\mosquito-stretch\Units\</DCC_DcuOutput>
         <BT_BuildType>Debug</BT_BuildType>
         <Icon_MainIcon>Mosquito_Icon5.ico</Icon_MainIcon>
     </PropertyGroup>
@@ -303,10 +303,10 @@
                     <VersionInfoKeys Name="Comments"/>
                 </VersionInfoKeys>
                 <Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k260.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp260.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
                     <Excluded_Packages Name="C:\Program Files (x86)\FastReport 6 VCL Enterprise\LibD26\dclfrxTee26.bpl">FastReport 6.0 Tee Components</Excluded_Packages>
                     <Excluded_Packages Name="C:\Program Files (x86)\FastReport 6 VCL Enterprise\LibD26\dclfsTee26.bpl">FastScript 1.9 Tee Components</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k260.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp260.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
                 </Excluded_Packages>
             </Delphi.Personality>
             <Platforms>

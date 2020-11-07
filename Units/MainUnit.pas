@@ -214,7 +214,6 @@ type
     P_ImportPrices: TcxTabSheet;
     P_Articuls: TcxTabSheet;
     list_ExecDoc: TListView;
-    preview_Report: TfrxPreview;
     TB_ImportPrices: TDBGridEh;
     TB_Articuls: TDBGridEh;
     P_Kassa: TcxTabSheet;
@@ -910,7 +909,6 @@ type
     procedure act_sale_previewExecute(Sender: TObject);
     procedure act_sale_printExecute(Sender: TObject);
     procedure act_sale_colprintExecute(Sender: TObject);
-    procedure act_sale_profitExecute(Sender: TObject);
     procedure act_sale_excelexportExecute(Sender: TObject);
     procedure act_sale_importExecute(Sender: TObject);
     procedure act_sale_exportExecute(Sender: TObject);
@@ -1663,7 +1661,7 @@ var
   item_weight: double;
   weight_text: String;
 begin
-  if EditMode then exit;
+  if EditMode or (Params.Text.isEmpty) then exit;
 
   item_value := Params.Text.ToDouble();
   if item_value < 0 then
@@ -1858,7 +1856,7 @@ begin
     tr_CountReport_Depots:
       begin
         label_ListName.Caption := 'Общее количество на складе';
-        preview_Report.Clear;
+//        preview_Report.Clear;
         area_client.ActivePage := P_Report;
         check_print_ondepot.enabled := true;
         act_print_edit.enabled := false;
@@ -3274,13 +3272,13 @@ var
   ItemIndex: Integer;
 begin
   ItemIndex := combo_print_scale.CurItemIndex;
-  if ItemIndex < 8 then
-    preview_Report.Zoom := (ItemIndex + 1) * 0.25
-  else if ItemIndex = 8 then
-    preview_Report.ZoomMode := zmWholePage
-  else
-    preview_Report.ZoomMode := zmPageWidth;
-  combo_print_scale.Text := floattostr(preview_Report.Zoom * 100) + '%';
+//  if ItemIndex < 8 then
+//    preview_Report.Zoom := (ItemIndex + 1) * 0.25
+//  else if ItemIndex = 8 then
+//    preview_Report.ZoomMode := zmWholePage
+//  else
+//    preview_Report.ZoomMode := zmPageWidth;
+//  combo_print_scale.Text := floattostr(preview_Report.Zoom * 100) + '%';
 end;
 
 procedure TMainForm.combo_SupplierRetSupplFilterChange(Sender: TObject);
@@ -6801,17 +6799,6 @@ begin
     ShowMessage('Ошибка открытия файла.');
 end;
 
-procedure TMainForm.act_sale_profitExecute(Sender: TObject);
-begin
-  if btn_sale_profit.Down then
-  begin
-    TB_Sale_N.Columns[7].Visible := true;
-    TB_Sale_N.Columns[7].Width := 100;
-  end
-  else
-    TB_Sale_N.Columns[7].Visible := false;
-end;
-
 procedure TMainForm.act_sale_req_addExecute(Sender: TObject);
 begin
   if not SaleForm.Visible or (Data.DS_Sale.RecordCount = 0) then
@@ -7687,6 +7674,7 @@ begin
     FieldValues['PRICE2'] := 0;
     FieldValues['PRICE_SHOP'] := 0;
     FieldValues['PRICE_SHOP2'] := 0;
+    FieldValues['TYPE_ID'] := 0;
     FieldValues['C0'] := 0;
     FieldValues['C1'] := 0;
     FieldValues['C2'] := 0;
@@ -7733,51 +7721,32 @@ end;
 
 procedure TMainForm.act_price_newonExecute(Sender: TObject);
 var
-  fname, cname, gstate, volume: string;
+  fname: string;
   type_id, firm_id, pricecategory: Integer;
   sp: TBookmark;
 begin
   with Data.DS_Goods do
   begin
     sp := GetBookmark;
-    if FieldValues['FULLNAME'] <> Null then
-      fname := FieldValues['FULLNAME']
-    else
-      fname := '';
-    if FieldValues['NAME'] <> Null then
-      cname := FieldValues['NAME']
-    else
-      cname := '';
-    if FieldValues['STATE'] <> Null then
-      gstate := FieldValues['STATE']
-    else
-      gstate := '';
-    if FieldValues['TYPE_ID'] <> Null then
-      type_id := FieldValues['TYPE_ID']
-    else
-      type_id := -1;
-    if FieldValues['FIRM_ID'] <> Null then
-      firm_id := FieldValues['FIRM_ID']
-    else
-      firm_id := -1;
-    if FieldValues['ML'] <> Null then
-      volume := FieldValues['ML']
-    else
-      volume := '';
-    if FieldValues['PRICE_CATEGORY_ID'] <> Null then
-      pricecategory := FieldValues['PRICE_CATEGORY_ID']
-    else
-      pricecategory := 1;
+    if FieldValues['FULLNAME'] <> Null
+      then fname := FieldValues['FULLNAME']
+      else fname := '';
+    if FieldValues['TYPE_ID'] <> Null
+      then type_id := FieldValues['TYPE_ID']
+      else type_id := -1;
+    if FieldValues['FIRM_ID'] <> Null
+      then firm_id := FieldValues['FIRM_ID']
+      else firm_id := -1;
+    if FieldValues['PRICE_CATEGORY_ID'] <> Null
+      then pricecategory := FieldValues['PRICE_CATEGORY_ID']
+      else pricecategory := 1;
     Tree_Classifiers.Select(Tree_Classifiers.Items[tr_GenPrice]);
     Insert;
     FieldValues['FULLNAME'] := fname;
-    FieldValues['NAME'] := cname;
-    FieldValues['STATE'] := gstate;
     if type_id <> -1 then
       FieldValues['TYPE_ID'] := type_id;
     if firm_id <> -1 then
       FieldValues['FIRM_ID'] := firm_id;
-    FieldValues['ML'] := volume;
     FieldValues['PRICE_CATEGORY_ID'] := pricecategory;
     FieldValues['DATE_ADDED'] := Now;
     FieldValues['DATE_CHANGED'] := Now;
@@ -7855,43 +7824,41 @@ end;
 
 procedure TMainForm.act_print_biggerExecute(Sender: TObject);
 begin
-  preview_Report.Zoom := preview_Report.Zoom + 0.25;
-  combo_print_scale.Text := floattostr(preview_Report.Zoom * 100) + '%';
+//  preview_Report.Zoom := preview_Report.Zoom + 0.25;
+//  combo_print_scale.Text := floattostr(preview_Report.Zoom * 100) + '%';
 end;
 
 procedure TMainForm.act_print_editExecute(Sender: TObject);
 begin
-  preview_Report.Edit;
+//  preview_Report.Edit;
 end;
 
 procedure TMainForm.act_print_findExecute(Sender: TObject);
 begin
-  preview_Report.Find;
+//  preview_Report.Find;
 end;
 
 procedure TMainForm.act_print_firstExecute(Sender: TObject);
 begin
-  preview_Report.First;
+//  preview_Report.First;
 end;
 
 procedure TMainForm.act_print_lastExecute(Sender: TObject);
 begin
-  preview_Report.Last;
+//  preview_Report.Last;
 end;
 
 procedure TMainForm.act_print_nextExecute(Sender: TObject);
 begin
-  preview_Report.Next;
+//  preview_Report.Next;
 end;
 
 procedure TMainForm.act_print_openExecute(Sender: TObject);
 begin
-  preview_Report.LoadFromFile;
+//  preview_Report.LoadFromFile;
 end;
 
 procedure TMainForm.act_print_prepareExecute(Sender: TObject);
-var
-  prc: string;
 begin
   case Tree_Reports.Selected.AbsoluteIndex of
 
@@ -7964,12 +7931,12 @@ end;
 procedure TMainForm.act_print_printExecute(Sender: TObject);
 begin
   SysContainer.PriceReport.PrintOptions.ShowDialog := false;
-  preview_Report.Print;
+//  preview_Report.Print;
 end;
 
 procedure TMainForm.act_print_priorExecute(Sender: TObject);
 begin
-  preview_Report.Prior;
+//  preview_Report.Prior;
 end;
 
 procedure TMainForm.act_print_reset_depotExecute(Sender: TObject);
@@ -7980,22 +7947,22 @@ end;
 
 procedure TMainForm.act_print_saveExecute(Sender: TObject);
 begin
-  preview_Report.SaveToFile;
+//  preview_Report.SaveToFile;
 end;
 
 procedure TMainForm.act_print_settingsExecute(Sender: TObject);
 begin
   SysContainer.PriceReport.PrintOptions.ShowDialog := true;
-  preview_Report.Print;
+//  preview_Report.Print;
 end;
 
 procedure TMainForm.act_print_smallerExecute(Sender: TObject);
 begin
-  if preview_Report.Zoom <= 0.25 then
-    exit;
-
-  preview_Report.Zoom := preview_Report.Zoom - 0.25;
-  combo_print_scale.Text := floattostr(preview_Report.Zoom * 100) + '%';
+//  if preview_Report.Zoom <= 0.25 then
+//    exit;
+//
+//  preview_Report.Zoom := preview_Report.Zoom - 0.25;
+//  combo_print_scale.Text := floattostr(preview_Report.Zoom * 100) + '%';
 end;
 
 procedure TMainForm.act_prod_clear_naklExecute(Sender: TObject);

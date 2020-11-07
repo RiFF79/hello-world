@@ -97,10 +97,6 @@ type
     procedure edit_commentsKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure edit_commentsExit(Sender: TObject);
-    procedure TB_ProductionColumns3GetCellParams(Sender: TObject;
-      EditMode: Boolean; Params: TColCellParamsEh);
-    procedure TB_SpecificationColumns4GetCellParams(Sender: TObject;
-      EditMode: Boolean; Params: TColCellParamsEh);
   private
     procedure SetProductionRecord;
     procedure SetSpecificationRecord;
@@ -230,14 +226,6 @@ begin
     ApplyDepot;
 end;
 
-procedure TProductionForm.TB_ProductionColumns3GetCellParams(Sender: TObject;
-  EditMode: Boolean; Params: TColCellParamsEh);
-begin
-  if (Data.DS_Production.FBN('UNIT_ID').AsInteger = 1) OR (Data.DS_Production.FBN('TOTAL_WEIGHT').AsFloat = 0)
-    then Params.Text := ''
-    else Params.Text := Params.Text + ' êã';
-end;
-
 procedure TProductionForm.TB_ProductionDblClick(Sender: TObject);
 begin
   if (LayoutControl.Enabled) and (TB_Production.SelectedField.FieldName = 'NAME')
@@ -257,7 +245,7 @@ end;
 
 procedure TProductionForm.TB_SpecificationCellClick(Column: TColumnEh);
 begin
-  if (Column.Index = 3) and LayoutControl.Enabled and
+  if (Column.Index = 4) and LayoutControl.Enabled and
     not Data.DS_Production_SP.fbn('GOOD_ID').IsNull then
     ShowDepotsPanel;
 end;
@@ -268,22 +256,14 @@ begin
     then Data.DS_Production_SP.Post;
 end;
 
-procedure TProductionForm.TB_SpecificationColumns4GetCellParams(Sender: TObject;
-  EditMode: Boolean; Params: TColCellParamsEh);
-begin
-  if (Data.DS_Production_SP.FBN('UNIT_ID').AsInteger = 1) OR (Data.DS_Production_SP.FBN('TOTAL_WEIGHT').AsFloat = 0)
-    then Params.Text := ''
-    else Params.Text := Params.Text + ' êã';
-end;
-
 procedure TProductionForm.ShowDepotsPanel;
 var
   p_top, p_left: Integer;
 begin
   DepotPanel.Height := Query.DS_Depots.VisibleRecordCount * 20;
-  DepotPanel.Width := TB_Specification.Columns[3].Width + 2;
-  p_top := TB_Specification.Top + (TB_Specification).CellRect(3, THackDBGrid(TB_Specification).Row).Top;
-  p_left := TB_Specification.Left + (TB_Specification).CellRect(3, THackDBGrid(TB_Specification).Row).Left;
+  DepotPanel.Width := TB_Specification.Columns[4].Width + 2;
+  p_top := TB_Specification.Top + (TB_Specification).CellRect(4, THackDBGrid(TB_Specification).Row).Top;
+  p_left := TB_Specification.Left + (TB_Specification).CellRect(4, THackDBGrid(TB_Specification).Row).Left;
   if (p_top + DepotPanel.Height) > (ProductionForm.Height - 20) then
     p_top := p_top - DepotPanel.Height;
   DepotPanel.Left := p_left;
@@ -320,7 +300,7 @@ begin
 if Key = VK_ESCAPE then Close;
   if (TB_Specification.SelectedIndex = 0) and (Key = VK_RETURN) and
     (LayoutControl.Enabled) then SetSpecificationRecord;
-  if (Key = VK_SPACE) and (TB_Specification.SelectedIndex = 3) and
+  if (Key = VK_SPACE) and (TB_Specification.SelectedIndex = 4) and
     LayoutControl.Enabled then
     ShowDepotsPanel;
   if Key = VK_F1 then MainForm.act_prod_spec_item_card.Execute;

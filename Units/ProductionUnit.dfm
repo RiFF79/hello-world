@@ -313,13 +313,11 @@ object ProductionForm: TProductionForm
             DisplayFormat = '0.###'
             DynProps = <>
             EditButtons = <>
-            FieldName = 'TOTAL_WEIGHT'
+            FieldName = 'WEIGHT_TOTAL'
             Footers = <>
-            ReadOnly = True
             Title.Alignment = taCenter
             Title.Caption = #1042#1077#1089
             Width = 80
-            OnGetCellParams = TB_ProductionColumns3GetCellParams
           end>
         object RowDetailData: TRowDetailPanelControlEh
         end
@@ -405,6 +403,17 @@ object ProductionForm: TProductionForm
           end
           item
             CellButtons = <>
+            DisplayFormat = '0.###'
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'WEIGHT_TOTAL'
+            Footers = <>
+            Title.Alignment = taCenter
+            Title.Caption = #1042#1077#1089
+            Width = 80
+          end
+          item
+            CellButtons = <>
             DynProps = <>
             EditButtons = <>
             FieldName = 'DEPOT_NAME'
@@ -412,19 +421,6 @@ object ProductionForm: TProductionForm
             Title.Alignment = taCenter
             Title.Caption = #1057#1082#1083#1072#1076
             Width = 100
-          end
-          item
-            CellButtons = <>
-            DisplayFormat = '0.###'
-            DynProps = <>
-            EditButtons = <>
-            FieldName = 'TOTAL_WEIGHT'
-            Footers = <>
-            ReadOnly = True
-            Title.Alignment = taCenter
-            Title.Caption = #1042#1077#1089
-            Width = 80
-            OnGetCellParams = TB_SpecificationColumns4GetCellParams
           end>
         object RowDetailData: TRowDetailPanelControlEh
         end

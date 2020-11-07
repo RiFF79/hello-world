@@ -72,8 +72,6 @@ type
     procedure dxBarButton3Click(Sender: TObject);
     procedure edit_depotPropertiesCloseUp(Sender: TObject);
     procedure edit_commentsExit(Sender: TObject);
-    procedure TB_MovesColumns3GetCellParams(Sender: TObject; EditMode: Boolean;
-      Params: TColCellParamsEh);
   private
     procedure SetRecord;
   public
@@ -100,14 +98,6 @@ begin
       FieldValues['GOOD_ID'] := SelectGoodForm.SelectedID;
       Refresh;
     end;
-end;
-
-procedure TMovesForm.TB_MovesColumns3GetCellParams(Sender: TObject;
-  EditMode: Boolean; Params: TColCellParamsEh);
-begin
-  if (Data.DS_Moves.FBN('UNIT_ID').AsInteger = 1) OR (Data.DS_Moves.FBN('TOTAL_WEIGHT').AsFloat = 0)
-    then Params.Text := ''
-    else Params.Text := Params.Text + ' Í„';
 end;
 
 procedure TMovesForm.TB_MovesDblClick(Sender: TObject);

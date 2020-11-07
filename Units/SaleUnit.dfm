@@ -292,6 +292,29 @@ object SaleForm: TSaleForm
           OnGetCellParams = TB_SaleColumns2GetCellParams
         end
         item
+          CellButtons = <>
+          DisplayFormat = '0.00##'
+          DropDownRows = 8
+          DynProps = <>
+          EditButtons = <>
+          FieldName = 'SUM_REAL'
+          Footers = <>
+          Title.Alignment = taCenter
+          Title.Caption = #1057#1091#1084#1084#1072
+          Width = 80
+        end
+        item
+          CellButtons = <>
+          DisplayFormat = '0.###'
+          DynProps = <>
+          EditButtons = <>
+          FieldName = 'WEIGHT_TOTAL'
+          Footers = <>
+          Title.Alignment = taCenter
+          Title.Caption = #1042#1077#1089
+          Width = 80
+        end
+        item
           Alignment = taCenter
           AutoFitColWidth = False
           ButtonStyle = cbsNone
@@ -307,33 +330,6 @@ object SaleForm: TSaleForm
           Title.Alignment = taCenter
           Title.Caption = #1057#1082#1083#1072#1076
           Width = 103
-        end
-        item
-          CellButtons = <>
-          DisplayFormat = '0.00##'
-          DropDownRows = 8
-          DynProps = <>
-          EditButtons = <>
-          FieldName = 'SUMM'
-          Footers = <>
-          ReadOnly = True
-          TextEditing = False
-          Title.Alignment = taCenter
-          Title.Caption = #1057#1091#1084#1084#1072
-          Width = 80
-        end
-        item
-          CellButtons = <>
-          DisplayFormat = '0.###'
-          DynProps = <>
-          EditButtons = <>
-          FieldName = 'TOTAL_WEIGHT'
-          Footers = <>
-          ReadOnly = True
-          Title.Alignment = taCenter
-          Title.Caption = #1042#1077#1089
-          Width = 80
-          OnGetCellParams = TB_SaleColumns6GetCellParams
         end>
       object RowDetailData: TRowDetailPanelControlEh
       end
@@ -623,7 +619,7 @@ object SaleForm: TSaleForm
         Left = 70
         Top = 158
         AutoSize = True
-        DataBinding.DataField = 'SUMM'
+        DataBinding.DataField = 'SUM_REAL'
         DataBinding.DataSource = Data.S_Sale_N
         ParentShowHint = False
         Properties.Alignment.Horz = taLeftJustify

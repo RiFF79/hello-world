@@ -83,13 +83,11 @@ object MovesForm: TMovesForm
         DisplayFormat = '0.###'
         DynProps = <>
         EditButtons = <>
-        FieldName = 'TOTAL_WEIGHT'
+        FieldName = 'WEIGHT_TOTAL'
         Footers = <>
-        ReadOnly = True
         Title.Alignment = taCenter
         Title.Caption = #1042#1077#1089
         Width = 80
-        OnGetCellParams = TB_MovesColumns3GetCellParams
       end>
     object RowDetailData: TRowDetailPanelControlEh
     end

@@ -93,7 +93,6 @@ object ItemEditorForm: TItemEditorForm
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      ExplicitLeft = 354
     end
     object Label11: TLabel
       Left = 10
@@ -118,7 +117,6 @@ object ItemEditorForm: TItemEditorForm
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      ExplicitLeft = 314
     end
     object Label16: TLabel
       Left = 10
@@ -143,7 +141,6 @@ object ItemEditorForm: TItemEditorForm
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      ExplicitLeft = 340
     end
     object Label25: TLabel
       Left = 10
@@ -168,7 +165,6 @@ object ItemEditorForm: TItemEditorForm
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      ExplicitLeft = 361
     end
   end
   object cxGroupBox3: TcxGroupBox
@@ -213,9 +209,9 @@ object ItemEditorForm: TItemEditorForm
     end
     object DBText1: TDBText
       AlignWithMargins = True
-      Left = 402
+      Left = 367
       Top = 94
-      Width = 6
+      Width = 41
       Height = 13
       Alignment = taRightJustify
       Anchors = [akTop, akRight]
@@ -228,7 +224,6 @@ object ItemEditorForm: TItemEditorForm
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      ExplicitLeft = 334
     end
     object Label12: TLabel
       Left = 10
@@ -299,7 +294,7 @@ object ItemEditorForm: TItemEditorForm
       ParentFont = False
       ExplicitLeft = 334
     end
-    object cxLabel1: TcxLabel
+    object btn_recalculate: TcxLabel
       Left = 189
       Top = 92
       Cursor = crHandPoint
@@ -308,7 +303,7 @@ object ItemEditorForm: TItemEditorForm
       Style.TextColor = clBlue
       StyleFocused.Color = clBlue
       StyleFocused.TextStyle = [fsUnderline]
-      OnClick = cxLabel1Click
+      OnClick = btn_recalculateClick
     end
   end
   object cxGroupBox4: TcxGroupBox

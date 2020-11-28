@@ -130,7 +130,7 @@ object MainForm: TMainForm
     Height = 684
     Align = alClient
     TabOrder = 4
-    Properties.ActivePage = P_Price
+    Properties.ActivePage = P_Return_Cust_N
     Properties.CustomButtons.Buttons = <>
     Properties.HideTabs = True
     ClientRectBottom = 683
@@ -3739,7 +3739,7 @@ object MainForm: TMainForm
     Height = 684
     Align = alLeft
     TabOrder = 5
-    Properties.ActivePage = P_Reports
+    Properties.ActivePage = P_Documents
     Properties.ActivateFocusedTab = False
     Properties.CustomButtons.Buttons = <>
     Properties.HideTabs = True
@@ -5581,11 +5581,13 @@ object MainForm: TMainForm
     object rib_btn_MoneyInGoods: TdxBarButton
       Action = act_rep_moneyingoods
       Category = 1
+      Enabled = False
       LargeImageIndex = 50
     end
     object rib_btn_Val: TdxBarButton
       Action = act_rep_valoviydohod
       Category = 1
+      Enabled = False
     end
     object rib_btn_PrintReports: TdxBarLargeButton
       Action = act_rep_Reports
@@ -6924,6 +6926,7 @@ object MainForm: TMainForm
     object dxBarButton12: TdxBarButton
       Action = act_rep_acc_report
       Category = 1
+      Enabled = False
     end
     object dxBarEdit1: TdxBarEdit
       Caption = #1054#1090':'

@@ -3542,7 +3542,7 @@ begin
     Background := clSilver;
   if btnColorfulGrid.Down then
   begin
-    a := RoundTo(Data.DS_Sale_N.fbn('SUM_TOTAL').AsFloat, -2);
+    a := RoundTo(Data.DS_Sale_N.fbn('SUM_REAL').AsFloat, -2);
     b := RoundTo(Data.DS_Sale_N.fbn('PAID').AsFloat, -2);
     c := a + b;
     if (c > 0) and (b <> 0) then
@@ -3840,13 +3840,13 @@ var
   sa: string;
 begin
   sa := 'select sum(' +
-    'coalesce((SELECT SUM(SUM_TOTAL) FROM SALE_N WHERE (clientcards.ID = SALE_N.CUST_ID) and (S_DATE<='''
+    'coalesce((SELECT SUM(SUM_REAL) FROM SALE_N WHERE (clientcards.ID = SALE_N.CUST_ID) and (S_DATE<='''
     + dt + ''')),0)+' +
-    'coalesce((SELECT SUM(SUMM_TOTAL) FROM RETURN_SUPPL_N WHERE (clientcards.ID = RETURN_SUPPL_N.CUST_ID) and (R_DATE<='''
+    'coalesce((SELECT SUM(SUMM_REAL) FROM RETURN_SUPPL_N WHERE (clientcards.ID = RETURN_SUPPL_N.CUST_ID) and (R_DATE<='''
     + dt + ''')),0)-' +
-    'coalesce((SELECT SUM(SUM_TOTAL) FROM ARRIVAL_N WHERE (clientcards.ID = ARRIVAL_N.CUST_ID) and (A_DATE<='''
+    'coalesce((SELECT SUM(SUM_REAL) FROM ARRIVAL_N WHERE (clientcards.ID = ARRIVAL_N.CUST_ID) and (A_DATE<='''
     + dt + ''')),0)-' +
-    'coalesce((SELECT SUM(SUMM_TOTAL) FROM RETURN_CUST_N WHERE (clientcards.ID = RETURN_CUST_N.CUST_ID) and (R_DATE<='''
+    'coalesce((SELECT SUM(SUM_REAL) FROM RETURN_CUST_N WHERE (clientcards.ID = RETURN_CUST_N.CUST_ID) and (R_DATE<='''
     + dt + ''')),0)+' +
     'coalesce((SELECT SUM(SUMM) FROM KASSA WHERE (clientcards.ID = KASSA.CLIENT_ID) and (K_DATE<='''
     + dt + ''')),0)) ' +
@@ -5079,13 +5079,13 @@ begin
     dt := DateToStr(edit_acc_dateto.EditValue) + ' 23:59:59';
 
   sa := 'select sum(' +
-    'coalesce((SELECT SUM(SUM_TOTAL) FROM SALE_N WHERE (clientcards.ID = SALE_N.CUST_ID) and (S_DATE<='''
+    'coalesce((SELECT SUM(SUM_REAL) FROM SALE_N WHERE (clientcards.ID = SALE_N.CUST_ID) and (S_DATE<='''
     + dt + ''')),0)+' +
-    'coalesce((SELECT SUM(SUMM_TOTAL) FROM RETURN_SUPPL_N WHERE (clientcards.ID = RETURN_SUPPL_N.CUST_ID) and (R_DATE<='''
+    'coalesce((SELECT SUM(SUM_REAL) FROM RETURN_SUPPL_N WHERE (clientcards.ID = RETURN_SUPPL_N.CUST_ID) and (R_DATE<='''
     + dt + ''')),0)-' +
-    'coalesce((SELECT SUM(SUM_TOTAL) FROM ARRIVAL_N WHERE (clientcards.ID = ARRIVAL_N.CUST_ID) and (A_DATE<='''
+    'coalesce((SELECT SUM(SUM_REAL) FROM ARRIVAL_N WHERE (clientcards.ID = ARRIVAL_N.CUST_ID) and (A_DATE<='''
     + dt + ''')),0)-' +
-    'coalesce((SELECT SUM(SUMM_TOTAL) FROM RETURN_CUST_N WHERE (clientcards.ID = RETURN_CUST_N.CUST_ID) and (R_DATE<='''
+    'coalesce((SELECT SUM(SUMM_REAL) FROM RETURN_CUST_N WHERE (clientcards.ID = RETURN_CUST_N.CUST_ID) and (R_DATE<='''
     + dt + ''')),0)+' +
     'coalesce((SELECT SUM(SUMM) FROM KASSA WHERE (clientcards.ID = KASSA.CLIENT_ID) and (K_DATE<='''
     + dt + ''')),0)) ' + 'from clientcards where accounting = 1';
@@ -6651,7 +6651,7 @@ begin
   id := Data.DS_Sale_N.fbn('ID').AsInteger;
 
   KassaForm.edit_paid.Value := paid_summ * - 1;
-  nakl_summ := Data.DS_Sale_N.fbn('SUM_TOTAL').AsFloat;
+  nakl_summ := Data.DS_Sale_N.fbn('SUM_REAL').AsFloat;
   cust_id := Data.DS_Sale_N.fbn('CUST_ID').AsInteger;
   s_date := Data.DS_Sale_N.fbn('S_DATE').AsDateTime;
 

@@ -130,7 +130,7 @@ object MainForm: TMainForm
     Height = 684
     Align = alClient
     TabOrder = 4
-    Properties.ActivePage = P_Return_Cust_N
+    Properties.ActivePage = P_Report
     Properties.CustomButtons.Buttons = <>
     Properties.HideTabs = True
     ClientRectBottom = 683
@@ -1876,12 +1876,16 @@ object MainForm: TMainForm
         Height = 651
         Align = alClient
         OutlineVisible = False
-        OutlineWidth = 121
+        OutlineWidth = 120
         ThumbnailVisible = False
         FindFmVisible = False
         UseReportHints = True
         OutlineTreeSortType = dtsUnsorted
         HideScrolls = False
+        ExplicitLeft = 400
+        ExplicitTop = 296
+        ExplicitWidth = 100
+        ExplicitHeight = 100
       end
     end
     object P_ImportPrices: TcxTabSheet
@@ -3739,7 +3743,7 @@ object MainForm: TMainForm
     Height = 684
     Align = alLeft
     TabOrder = 5
-    Properties.ActivePage = P_Documents
+    Properties.ActivePage = P_Reports
     Properties.ActivateFocusedTab = False
     Properties.CustomButtons.Buttons = <>
     Properties.HideTabs = True

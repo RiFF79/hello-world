@@ -7724,8 +7724,8 @@ begin
         begin
           DepotOnPrint := combo_print_depot.KeyValue;
           if check_print_ondepot.EditValue = true then
-            Data.DS_Goods.Filter := 'C' +
-              inttostr(combo_print_depot.KeyValue) + '<>0'
+            Data.DS_Goods.Filter := '(C' + inttostr(combo_print_depot.KeyValue) +
+            '<>0) AND W'+inttostr(combo_print_depot.KeyValue) + '<>0)'
           else
             Data.DS_Goods.Filter := 'DELETED=0';
         end

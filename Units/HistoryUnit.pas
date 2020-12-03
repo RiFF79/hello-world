@@ -339,7 +339,7 @@ begin
   Screen.Cursor := crHourGlass;
   Data.DS_Sale.Close;
   Data.DS_Sale_N.Close;
-  Data.DS_Sale_N.SQLs.SelectSQL[14] := '(ID = ' +
+  Data.DS_Sale_N.SQLs.SelectSQL[33] := '(sn.ID = ' +
     IntToStr(Query.DS_HISTORY.FieldByName('NAKL_ID').AsInteger) + ')';
   Data.DS_Sale_N.Open;
   Data.DS_Sale.Open;

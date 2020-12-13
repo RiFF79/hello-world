@@ -1882,10 +1882,6 @@ object MainForm: TMainForm
         UseReportHints = True
         OutlineTreeSortType = dtsUnsorted
         HideScrolls = False
-        ExplicitLeft = 400
-        ExplicitTop = 296
-        ExplicitWidth = 100
-        ExplicitHeight = 100
       end
     end
     object P_ImportPrices: TcxTabSheet

@@ -2294,6 +2294,7 @@ object Data: TData
     poSQLINT64ToBCD = True
   end
   object TRead_Moves_N: TpFIBTransaction
+    Active = True
     DefaultDatabase = Database
     Left = 375
     Top = 336
@@ -4102,6 +4103,7 @@ object Data: TData
     Top = 384
   end
   object TRead_Production_N: TpFIBTransaction
+    Active = True
     DefaultDatabase = Database
     Left = 288
     Top = 560
@@ -4219,6 +4221,8 @@ object Data: TData
     Left = 288
     Top = 464
     poSQLINT64ToBCD = True
+    dcForceMasterRefresh = True
+    dcForceOpen = True
   end
   object S_Production: TDataSource
     DataSet = DS_Production
@@ -4311,6 +4315,8 @@ object Data: TData
     Left = 376
     Top = 464
     poSQLINT64ToBCD = True
+    dcForceMasterRefresh = True
+    dcForceOpen = True
   end
   object TRead_Production: TpFIBTransaction
     Active = True
@@ -4417,8 +4423,11 @@ object Data: TData
     Left = 464
     Top = 464
     poSQLINT64ToBCD = True
+    dcForceMasterRefresh = True
+    dcForceOpen = True
   end
   object TRead_Production_SP: TpFIBTransaction
+    Active = True
     DefaultDatabase = Database
     Left = 464
     Top = 560

@@ -2,7 +2,7 @@ object SysContainer: TSysContainer
   OldCreateOrder = False
   OnCreate = DataModuleCreate
   Height = 638
-  Width = 865
+  Width = 684
   object CurrImageList: TImageList
     Left = 328
     Top = 17
@@ -292,8 +292,8 @@ object SysContainer: TSysContainer
     ShowProgress = False
     StoreInDFM = False
     OnGetValue = ArrivalReportGetValue
-    Left = 32
-    Top = 280
+    Left = 16
+    Top = 240
   end
   object FDS_Arrival: TfrxDBDataset
     UserName = 'FDS_Arrival'
@@ -309,12 +309,12 @@ object SysContainer: TSysContainer
       'CNT=CNT'
       'PRICE=PRICE'
       'SUMM=SUMM'
-      'WEIGHT=WEIGHT'
-      'WPRICE=WPRICE')
+      'SUM_REAL=SUM_REAL'
+      'WEIGHT_TOTAL=WEIGHT_TOTAL')
     DataSource = Data.S_Arrival
     BCDToCurrency = False
-    Left = 584
-    Top = 248
+    Left = 496
+    Top = 88
   end
   object FDS_ReturnSuppl: TfrxDBDataset
     UserName = 'FDS_ReturnSuppl'
@@ -330,11 +330,13 @@ object SysContainer: TSysContainer
       'NAME=NAME'
       'DEPOT=DEPOT'
       'UNIT=UNIT'
-      'UNIT_ID=UNIT_ID')
+      'UNIT_ID=UNIT_ID'
+      'SUM_REAL=SUM_REAL'
+      'WEIGHT_TOTAL=WEIGHT_TOTAL')
     DataSource = Data.S_Return_Suppl
     BCDToCurrency = False
-    Left = 664
-    Top = 248
+    Left = 496
+    Top = 200
   end
   object ReturnSupplReport: TfrxReport
     Version = '6.8.4'
@@ -349,8 +351,8 @@ object SysContainer: TSysContainer
     ScriptLanguage = 'PascalScript'
     ShowProgress = False
     StoreInDFM = False
-    Left = 184
-    Top = 280
+    Left = 160
+    Top = 240
   end
   object FDS_Sale: TfrxDBDataset
     UserName = 'FDS_Sale'
@@ -369,11 +371,13 @@ object SysContainer: TSysContainer
       'NAME=NAME'
       'UNIT=UNIT'
       'UNIT_ID=UNIT_ID'
-      'LAST_AR_PRICE=LAST_AR_PRICE')
+      'LAST_AR_PRICE=LAST_AR_PRICE'
+      'WEIGHT_TOTAL=WEIGHT_TOTAL'
+      'SUM_REAL=SUM_REAL')
     DataSource = Data.S_Sale
     BCDToCurrency = False
-    Left = 584
-    Top = 200
+    Left = 496
+    Top = 32
   end
   object SaleReport: TfrxReport
     Version = '6.8.4'
@@ -389,8 +393,8 @@ object SysContainer: TSysContainer
     ShowProgress = False
     StoreInDFM = False
     OnEndDoc = SaleReportEndDoc
-    Left = 184
-    Top = 328
+    Left = 160
+    Top = 288
   end
   object FDS_Moves: TfrxDBDataset
     UserName = 'FDS_Moves'
@@ -404,11 +408,12 @@ object SysContainer: TSysContainer
       'UNIT=UNIT'
       'UNIT_ID=UNIT_ID'
       'PRICE1=PRICE1'
-      'DATE_CHANGED=DATE_CHANGED')
+      'DATE_CHANGED=DATE_CHANGED'
+      'WEIGHT_TOTAL=WEIGHT_TOTAL')
     DataSource = Data.S_Moves
     BCDToCurrency = False
-    Left = 584
-    Top = 104
+    Left = 496
+    Top = 144
   end
   object MovesReport: TfrxReport
     Version = '6.8.4'
@@ -426,16 +431,16 @@ object SysContainer: TSysContainer
     StoreInDFM = False
     OnEndDoc = MovesReportEndDoc
     OnGetValue = MovesReportGetValue
-    Left = 104
-    Top = 280
+    Left = 88
+    Top = 240
   end
   object FDS_Goods: TfrxDBDataset
     UserName = 'FDS_Goods'
     CloseDataSource = False
     DataSource = Data.S_Goods
     BCDToCurrency = False
-    Left = 584
-    Top = 152
+    Left = 424
+    Top = 472
   end
   object PriceReport: TfrxReport
     Version = '6.8.4'
@@ -451,8 +456,8 @@ object SysContainer: TSysContainer
     ScriptLanguage = 'PascalScript'
     StoreInDFM = False
     OnGetValue = PriceReportGetValue
-    Left = 352
-    Top = 328
+    Left = 88
+    Top = 128
   end
   object SelectReport: TOpenDialog
     DefaultExt = 'fr3'
@@ -479,8 +484,8 @@ object SysContainer: TSysContainer
     ReportOptions.LastChange = 41370.620364155090000000
     ScriptLanguage = 'PascalScript'
     StoreInDFM = False
-    Left = 336
-    Top = 112
+    Left = 88
+    Top = 176
   end
   object CennikReport: TfrxReport
     Version = '6.8.4'
@@ -495,8 +500,8 @@ object SysContainer: TSysContainer
     ScriptLanguage = 'PascalScript'
     StoreInDFM = False
     OnGetValue = CennikReportGetValue
-    Left = 104
-    Top = 328
+    Left = 88
+    Top = 288
   end
   object OpenDialog: TOpenDialog
     Filter = #1060#1072#1081#1083#1099' '#1079#1072#1082#1091#1087#1082#1080' (*.amn)|*.amn'
@@ -548,16 +553,16 @@ object SysContainer: TSysContainer
     ShowProgress = False
     StoreInDFM = False
     OnGetValue = SaleBillsReportGetValue
-    Left = 272
-    Top = 328
+    Left = 88
+    Top = 80
   end
   object FDS_SaleBillsReport: TfrxDBDataset
     UserName = 'FDS_SaleBillsReport'
     CloseDataSource = False
     DataSource = Data.S_Sale_N
     BCDToCurrency = False
-    Left = 584
-    Top = 56
+    Left = 424
+    Top = 584
   end
   object exlSupplier: TQImport3XLS
     ImportDestination = qidUserDefined
@@ -590,8 +595,8 @@ object SysContainer: TSysContainer
   end
   object FSpecReport: TfrxUserDataSet
     UserName = 'FSpecReport'
-    Left = 584
-    Top = 8
+    Left = 496
+    Top = 416
   end
   object exlArrival: TQImport3XLS
     ImportDestination = qidUserDefined
@@ -635,16 +640,28 @@ object SysContainer: TSysContainer
     ShowProgress = False
     StoreInDFM = False
     OnGetValue = ArrivalReportGetValue
-    Left = 272
-    Top = 280
+    Left = 16
+    Top = 80
   end
   object FDS_RetCust: TfrxDBDataset
     UserName = 'FDS_RetCust'
     CloseDataSource = False
+    FieldAliases.Strings = (
+      'ID=ID'
+      'GOOD_ID=GOOD_ID'
+      'NAKL_ID=NAKL_ID'
+      'CNT=CNT'
+      'PRICE=PRICE'
+      'SUMM=SUMM'
+      'NAME=NAME'
+      'UNIT=UNIT'
+      'UNIT_ID=UNIT_ID'
+      'SUM_REAL=SUM_REAL'
+      'WEIGHT_TOTAL=WEIGHT_TOTAL')
     DataSource = Data.S_Return_Cust
     BCDToCurrency = False
-    Left = 664
-    Top = 104
+    Left = 496
+    Top = 256
   end
   object exlGoods: TQImport3XLS
     ImportEmptyRows = False
@@ -678,8 +695,8 @@ object SysContainer: TSysContainer
   end
   object ColorDialog: TColorDialog
     Options = [cdFullOpen]
-    Left = 512
-    Top = 432
+    Left = 112
+    Top = 568
   end
   object ImportExcelDialog: TOpenDialog
     DefaultExt = 'xls'
@@ -716,8 +733,8 @@ object SysContainer: TSysContainer
     StoreInDFM = False
     OnBeginDoc = DolgiReportBeginDoc
     OnGetValue = DolgiReportGetValue
-    Left = 352
-    Top = 280
+    Left = 160
+    Top = 128
   end
   object FDS_Dolgi: TfrxDBDataset
     UserName = 'FDS_Dolgi'
@@ -736,8 +753,8 @@ object SysContainer: TSysContainer
       'CURS=CURS')
     DataSource = Query.S_QueryDolgi
     BCDToCurrency = False
-    Left = 664
-    Top = 56
+    Left = 496
+    Top = 584
   end
   object BigImages: TcxImageList
     SourceDPI = 96
@@ -6084,14 +6101,16 @@ object SysContainer: TSysContainer
     FieldAliases.Strings = (
       'CNT=CNT'
       'PRICE=PRICE'
+      'WEIGHT_TOTAL=WEIGHT_TOTAL'
+      'SUM_REAL=SUM_REAL'
       'ID=ID'
       'GOOD_ID=GOOD_ID'
       'NAME=NAME'
       'UNIT=UNIT')
     DataSource = Query.S_Sale
     BCDToCurrency = False
-    Left = 664
-    Top = 152
+    Left = 568
+    Top = 32
   end
   object EditImages: TcxImageList
     SourceDPI = 96
@@ -6241,8 +6260,8 @@ object SysContainer: TSysContainer
     ShowProgress = False
     StoreInDFM = False
     OnGetValue = KassaReportGetValue
-    Left = 32
-    Top = 328
+    Left = 16
+    Top = 288
   end
   object fds_kassa: TfrxDBDataset
     UserName = 'Kassa'
@@ -6263,8 +6282,8 @@ object SysContainer: TSysContainer
       'CLIENT_NAME=CLIENT_NAME')
     DataSource = Data.S_KASSA
     BCDToCurrency = False
-    Left = 664
-    Top = 8
+    Left = 424
+    Top = 416
   end
   object ProductionReport: TfrxReport
     Version = '6.8.4'
@@ -6280,8 +6299,8 @@ object SysContainer: TSysContainer
     ShowProgress = False
     StoreInDFM = False
     OnEndDoc = SaleReportEndDoc
-    Left = 184
-    Top = 216
+    Left = 160
+    Top = 176
   end
   object FDS_Production_N: TfrxDBDataset
     RangeBegin = rbCurrent
@@ -6304,8 +6323,8 @@ object SysContainer: TSysContainer
       'EUSERNAME=EUSERNAME')
     DataSource = Data.S_Production_N
     BCDToCurrency = False
-    Left = 504
-    Top = 56
+    Left = 424
+    Top = 312
   end
   object FDS_Production: TfrxDBDataset
     UserName = 'FDS_Production'
@@ -6318,15 +6337,14 @@ object SysContainer: TSysContainer
       'NAME=NAME'
       'UNIT=UNIT'
       'UNIT_ID=UNIT_ID'
-      'SPECIFICATION_COUNT=SPECIFICATION_COUNT')
+      'SPECIFICATION_COUNT=SPECIFICATION_COUNT'
+      'WEIGHT_TOTAL=WEIGHT_TOTAL')
     DataSource = Data.S_Production
     BCDToCurrency = False
-    Left = 504
-    Top = 8
+    Left = 496
+    Top = 312
   end
   object FDS_Production_SP: TfrxDBDataset
-    RangeBegin = rbCurrent
-    RangeEnd = reCurrent
     UserName = 'FDS_Production_SP'
     CloseDataSource = False
     FieldAliases.Strings = (
@@ -6338,11 +6356,12 @@ object SysContainer: TSysContainer
       'NAME=NAME'
       'UNIT=UNIT'
       'UNIT_ID=UNIT_ID'
-      'DEPOT_NAME=DEPOT_NAME')
+      'DEPOT_NAME=DEPOT_NAME'
+      'WEIGHT_TOTAL=WEIGHT_TOTAL')
     DataSource = Data.S_Production_SP
     BCDToCurrency = False
-    Left = 504
-    Top = 104
+    Left = 568
+    Top = 312
   end
   object FDS_Depots: TfrxDBDataset
     UserName = 'FDS_Depots'
@@ -6358,8 +6377,8 @@ object SysContainer: TSysContainer
       'CENNIK_TYPE=CENNIK_TYPE')
     DataSet = Data.DS_Depots
     BCDToCurrency = False
-    Left = 664
-    Top = 200
+    Left = 496
+    Top = 472
   end
   object FDS_Sale_N: TfrxDBDataset
     RangeBegin = rbCurrent
@@ -6383,6 +6402,7 @@ object SysContainer: TSysContainer
       'USERID=USERID'
       'EUSERID=EUSERID'
       'CHANGED=CHANGED'
+      'SUM_TOTAL=SUM_TOTAL'
       'EDITINGBY=EDITINGBY'
       'PAID=PAID'
       'CURRENCY=CURRENCY'
@@ -6391,11 +6411,11 @@ object SysContainer: TSysContainer
       'CUST_PRINT=CUST_PRINT'
       'USERNAME=USERNAME'
       'EUSERNAME=EUSERNAME'
-      'SUM_TOTAL=SUM_TOTAL')
+      'SUM_REAL=SUM_REAL')
     DataSource = Data.S_Sale_N
     BCDToCurrency = False
-    Left = 584
-    Top = 296
+    Left = 424
+    Top = 32
   end
   object FDS_Curs: TfrxDBDataset
     RangeBegin = rbCurrent
@@ -6410,8 +6430,8 @@ object SysContainer: TSysContainer
       'CURRENCY=CURRENCY')
     DataSource = Data.S_Curs
     BCDToCurrency = False
-    Left = 664
-    Top = 296
+    Left = 424
+    Top = 528
   end
   object FDS_Arrival_N: TfrxDBDataset
     RangeBegin = rbCurrent
@@ -6424,7 +6444,6 @@ object SysContainer: TSysContainer
       'SUMM=SUMM'
       'A_TYPE=A_TYPE'
       'A_DATE=A_DATE'
-      '-SUPPL_ID=SUPPL_ID'
       'DEPOT_ID=DEPOT_ID'
       'CUST_ID=CUST_ID'
       'CURR_ID=CURR_ID'
@@ -6434,21 +6453,21 @@ object SysContainer: TSysContainer
       'USERID=USERID'
       'EUSERID=EUSERID'
       'CHANGED=CHANGED'
+      'CURS=CURS'
+      'SUM_TOTAL=SUM_TOTAL'
       'EDITINGBY=EDITINGBY'
       'CURRENCY=CURRENCY'
       'CURR_PREFIX=CURR_PREFIX'
       'DEPOT=DEPOT'
-      'SUPPLIER=SUPPLIER'
       'CLIENT=CLIENT'
+      'CLIENT_PRINT=CLIENT_PRINT'
       'USERNAME=USERNAME'
       'EUSERNAME=EUSERNAME'
-      'CURS=CURS'
-      'SUM_TOTAL=SUM_TOTAL'
-      'CLIENT_PRINT=CLIENT_PRINT')
+      'SUM_REAL=SUM_REAL')
     DataSource = Data.S_Arrival_N
     BCDToCurrency = False
-    Left = 664
-    Top = 344
+    Left = 424
+    Top = 88
   end
   object FDS_Moves_N: TfrxDBDataset
     RangeBegin = rbCurrent
@@ -6466,16 +6485,16 @@ object SysContainer: TSysContainer
       'PRINTED=PRINTED'
       'USERID=USERID'
       'EUSERID=EUSERID'
+      'CHANGED=CHANGED'
       'EDITINGBY=EDITINGBY'
       'DEPOT_TO=DEPOT_TO'
       'DEPOT_FROM=DEPOT_FROM'
-      'CHANGED=CHANGED'
       'USERNAME=USERNAME'
       'EUSERNAME=EUSERNAME')
     DataSource = Data.S_Moves_N
     BCDToCurrency = False
-    Left = 584
-    Top = 344
+    Left = 424
+    Top = 144
   end
   object FDS_ReturnSuppl_N: TfrxDBDataset
     UserName = 'FDS_ReturnSuppl_N'
@@ -6500,19 +6519,43 @@ object SysContainer: TSysContainer
       'CURR_PREFIX=CURR_PREFIX'
       'EDITINGBY=EDITINGBY'
       'USERNAME=USERNAME'
-      'EUSERNAME=EUSERNAME')
+      'EUSERNAME=EUSERNAME'
+      'SUM_REAL=SUM_REAL')
     DataSource = Data.S_Return_Suppl_N
     BCDToCurrency = False
-    Left = 496
-    Top = 344
+    Left = 424
+    Top = 200
   end
   object FDS_RetCust_N: TfrxDBDataset
     UserName = 'FDS_RetCust_N'
     CloseDataSource = False
+    FieldAliases.Strings = (
+      'ID=ID'
+      'R_DATE=R_DATE'
+      'CUST_ID=CUST_ID'
+      'DEPOT_ID=DEPOT_ID'
+      'COMMENTS=COMMENTS'
+      'CURR_ID=CURR_ID'
+      'CNT=CNT'
+      'SUMM=SUMM'
+      'ENTERED=ENTERED'
+      'USERID=USERID'
+      'EUSERID=EUSERID'
+      'CHANGED=CHANGED'
+      'CURS=CURS'
+      'SUMM_TOTAL=SUMM_TOTAL'
+      'CUSTOMER=CUSTOMER'
+      'CUST_PRINT=CUST_PRINT'
+      'CURRENCY=CURRENCY'
+      'DEPOT=DEPOT'
+      'EDITINGBY=EDITINGBY'
+      'USERNAME=USERNAME'
+      'EUSERNAME=EUSERNAME'
+      'SUM_REAL=SUM_REAL')
     DataSource = Data.S_Return_Cust_N
     BCDToCurrency = False
-    Left = 648
-    Top = 536
+    Left = 424
+    Top = 256
   end
   object FDS_Defaults: TfrxDBDataset
     UserName = 'FDS_Defaults'
@@ -6534,7 +6577,7 @@ object SysContainer: TSysContainer
     DataSource = Data.S_Defaults
     BCDToCurrency = False
     Left = 496
-    Top = 248
+    Top = 528
   end
   object SmallImages: TcxImageList
     SourceDPI = 96
@@ -9045,8 +9088,8 @@ object SysContainer: TSysContainer
     ReportOptions.LastChange = 41564.618361284700000000
     ScriptLanguage = 'PascalScript'
     StoreInDFM = False
-    Left = 32
-    Top = 216
+    Left = 16
+    Top = 176
   end
   object frxXLSExport1: TfrxXLSExport
     UseFileCache = True
@@ -9060,8 +9103,8 @@ object SysContainer: TSysContainer
     PageBreaks = True
     EmptyLines = True
     SuppressPageHeadersFooters = False
-    Left = 584
-    Top = 432
+    Left = 280
+    Top = 384
   end
   object AccReport: TfrxReport
     Version = '6.8.4'
@@ -9076,8 +9119,8 @@ object SysContainer: TSysContainer
     ScriptLanguage = 'PascalScript'
     ShowProgress = False
     StoreInDFM = False
-    Left = 344
-    Top = 424
+    Left = 16
+    Top = 128
   end
   object frxPDFExport1: TfrxPDFExport
     UseFileCache = True
@@ -9104,16 +9147,16 @@ object SysContainer: TSysContainer
     PdfA = False
     PDFStandard = psNone
     PDFVersion = pv17
-    Left = 648
-    Top = 432
+    Left = 280
+    Top = 520
   end
   object frxJPEGExport1: TfrxJPEGExport
     UseFileCache = True
     ShowProgress = True
     OverwritePrompt = False
     DataOnly = False
-    Left = 648
-    Top = 488
+    Left = 280
+    Top = 576
   end
   object frxCSVExport1: TfrxCSVExport
     UseFileCache = True
@@ -9126,8 +9169,8 @@ object SysContainer: TSysContainer
     OpenAfterExport = False
     NoSysSymbols = True
     ForcedQuotes = False
-    Left = 584
-    Top = 488
+    Left = 280
+    Top = 440
   end
   object xlsShopProduct: TQImport3XLS
     ImportEmptyRows = False
@@ -9170,8 +9213,8 @@ object SysContainer: TSysContainer
     AllowDuplicates = False
     FileName = 'C:\Users\'#1056#1086#1084#1072#1085'\Desktop\test_prom.xls'
     SkipFirstRows = 1
-    Left = 280
-    Top = 480
+    Left = 208
+    Top = 384
   end
   object IL_Customers: TcxImageList
     SourceDPI = 96

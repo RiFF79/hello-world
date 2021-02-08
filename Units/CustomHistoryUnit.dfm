@@ -160,6 +160,10 @@ object CustomerHistoryForm: TCustomerHistoryForm
     object tab_sale: TcxTabSheet
       Caption = 'tab_sale'
       ImageIndex = 0
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object TB_SaleDetails: TDBGridEh
         Left = 0
         Top = 0
@@ -232,6 +236,10 @@ object CustomerHistoryForm: TCustomerHistoryForm
     object tab_arrival: TcxTabSheet
       Caption = 'tab_arrival'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object DBGridEh1: TDBGridEh
         Left = 0
         Top = 0
@@ -297,6 +305,10 @@ object CustomerHistoryForm: TCustomerHistoryForm
     object tab_ret_cust: TcxTabSheet
       Caption = 'tab_ret_cust'
       ImageIndex = 3
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object DBGridEh2: TDBGridEh
         Left = 0
         Top = 0
@@ -358,6 +370,10 @@ object CustomerHistoryForm: TCustomerHistoryForm
     object tab_ret_suppl: TcxTabSheet
       Caption = 'tab_ret_suppl'
       ImageIndex = 4
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object DBGridEh3: TDBGridEh
         Left = 0
         Top = 0
@@ -430,6 +446,10 @@ object CustomerHistoryForm: TCustomerHistoryForm
     object tab_dolg: TcxTabSheet
       Caption = 'tab_dolg'
       ImageIndex = 5
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
     end
   end
   object dxBarManager1: TdxBarManager

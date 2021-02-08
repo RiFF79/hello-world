@@ -1182,6 +1182,8 @@ type
     procedure TB_PriceColumns6GetCellParams(Sender: TObject; EditMode: Boolean;
       Params: TColCellParamsEh);
     procedure act_rep_ReportsExecute(Sender: TObject);
+    procedure TB_Sale_NColumns8GetCellParams(Sender: TObject; EditMode: Boolean;
+      Params: TColCellParamsEh);
   private
     kassa_sum, kassa_sum_usd, kassa_sum_uah: real;
     firstrun: Boolean;
@@ -1432,6 +1434,8 @@ end;
 
 procedure TMainForm.UpdateDocumentsWindow;
 begin
+  if not Tree_Docs.Selected.Enabled then exit;
+
   case Tree_Docs.Selected.AbsoluteIndex of
     tr_Arrival:
       begin
@@ -1827,6 +1831,8 @@ end;
 
 procedure TMainForm.UpdateReportsWindow;
 begin
+  if not Tree_Reports.Selected.Enabled then exit;
+
   case Tree_Reports.Selected.AbsoluteIndex of
     tr_GoodsOnDepots:
       begin
@@ -3525,6 +3531,12 @@ begin
     else
       Params.Text := '';
   end;
+end;
+
+procedure TMainForm.TB_Sale_NColumns8GetCellParams(Sender: TObject;
+  EditMode: Boolean; Params: TColCellParamsEh);
+begin
+  if rights = 0 then Params.Text := '';
 end;
 
 procedure TMainForm.TB_Sale_NDblClick(Sender: TObject);
@@ -7695,14 +7707,14 @@ begin
         begin
           if VarIsNull(combo_print_depot.KeyValue) then
             Data.DS_Goods.Filter :=
-              '(DELETED=0) AND ((C1>0) or (C2>0) or (C3>0) or (C4>0) or (C5>0) or (C6>0)) and ((TYPE_ID=15) or (TYPE_ID=16))'
+              '(DELETED=0) AND ((CNT_ALL<>0) OR (WEIGHT_ALL<>0))'
           else
             Data.DS_Goods.Filter := '(C' + inttostr(combo_print_depot.KeyValue)
-              + '>0) and ((TYPE_ID=15) or (TYPE_ID=16))';
+              + '>0) OR (W'+inttostr(combo_print_depot.KeyValue)+'<>0)';
         end
         else
           Data.DS_Goods.Filter :=
-            '(DELETED=0) and ((TYPE_ID=15) or (TYPE_ID=16))';
+            '(DELETED=0)';
         Data.DS_Goods.Filtered := true;
         if SysContainer.PriceReport.LoadFromFile
           (OptionsForm.edit_SpecPriceReport.Text) then
@@ -7724,8 +7736,8 @@ begin
         begin
           DepotOnPrint := combo_print_depot.KeyValue;
           if check_print_ondepot.EditValue = true then
-            Data.DS_Goods.Filter := '(C' + inttostr(combo_print_depot.KeyValue) +
-            '<>0) AND W'+inttostr(combo_print_depot.KeyValue) + '<>0)'
+            Data.DS_Goods.Filter := '(C' + inttostr(DepotOnPrint) +
+            '<>0) OR (W'+inttostr(DepotOnPrint) + '<>0)'
           else
             Data.DS_Goods.Filter := 'DELETED=0';
         end
@@ -7733,7 +7745,7 @@ begin
         begin
           DepotOnPrint := -1;
           if check_print_ondepot.EditValue = true then
-            Data.DS_Goods.Filter := 'CNT_ALL<>0'
+            Data.DS_Goods.Filter := '(CNT_ALL<>0) OR (WEIGHT_ALL<>0)'
           else
             Data.DS_Goods.Filter := 'DELETED=0';
         end;

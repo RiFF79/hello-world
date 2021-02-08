@@ -7,12 +7,14 @@ uses
 
 procedure LoadSettings;
 procedure SaveSettings;
+procedure UpdateComponentsVisibility;
 procedure PlayBeep(ActionType: TMsgDlgType);
 
 var
   ApplicationPath: string;
   XLSDepotsOrder: array [0 .. 20] of integer;
   r_arrival, r_sale, r_prod, r_moves, r_rc, r_rs: integer;
+  rights: Integer;
 
 implementation
 
@@ -21,6 +23,26 @@ uses MainUnit, SysUtils, Forms, SelectGood, ArrivalUnit, SaleUnit,
   Variants, RetCustUnit, HistoryUnit, AuthoriseUnit, int_const, OptionsUnit,
   CustomHistoryUnit, SelectShopGood, ShopProduct, EmailSetupUnit,
   mailingunit, UnsortedItems;
+
+procedure UpdateComponentsVisibility;
+var
+  enabled: boolean;
+begin
+  enabled := rights = 1;
+  MainForm.act_rep_accounting.Enabled := enabled;
+  MainForm.act_rep_valoviydohod.Enabled := enabled;
+  MainForm.act_rep_moneyingoods.Enabled := enabled;
+  MainForm.act_rep_acc_report.Enabled := enabled;
+  MainForm.act_doc_kassa.Enabled := enabled;
+  MainForm.act_file_changepass.Enabled := enabled;
+  MainForm.act_file_importprice.Enabled := enabled;
+  MainForm.act_rep_customer_history.Enabled :=enabled;
+
+  MainForm.Tree_Reports.Items[tr_AccReport].Enabled := enabled;
+  MainForm.Tree_Reports.Items[tr_DayReport].Enabled := enabled;
+  MainForm.Tree_Reports.Items[tr_DolgiKlienta].Enabled := enabled;
+  MainForm.Tree_Docs.Items[tr_KASSA].Enabled := enabled;
+end;
 
 procedure LoadSettings;
 var
@@ -31,6 +53,7 @@ begin
   MainForm.user_id := I.ReadInteger('Users', 'DefaultUserID', 1);
   with OptionsForm do
   begin
+    rights := I.ReadInteger('Users', 'Rights', 0);
     edit_ArrivalReport.Text := I.ReadString('Dir_Reports', 'Arrival',
       '.\Reports\Приходная.frf');
     edit_ArrivalCheckReport.Text := I.ReadString('Dir_Reports', 'ArrivalCheck',

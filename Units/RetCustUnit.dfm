@@ -144,7 +144,6 @@ object RetCustForm: TRetCustForm
         Style.HotTrack = False
         Style.TextColor = clHotLight
         Style.TextStyle = [fsBold]
-        AnchorX = 190
       end
       object cxDBLabel3: TcxDBLabel
         Left = 121

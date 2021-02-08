@@ -96,7 +96,7 @@ implementation
 
 uses
   QueryDataContainer, MainUnit, SystemContainerUnit, SelectGood, DataConteiner,
-  ItemEditor, SaleUnit, OptionsUnit, ShopProduct;
+  ItemEditor, SaleUnit, OptionsUnit, ShopProduct, Settings;
 
 {$R *.dfm}
 
@@ -131,6 +131,8 @@ end;
 
 procedure THistoryForm.ShowEx(good_id: integer; deftab: integer);
 begin
+  if rights = 0 then exit;
+
   if good_id = -1 then
     edit_item.Caption :=
       '                                                ... Выберите товар ...                                                ';

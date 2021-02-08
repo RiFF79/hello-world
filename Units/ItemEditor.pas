@@ -131,7 +131,7 @@ var
 implementation
 
 uses DataConteiner, HistoryUnit, MainUnit, QueryDataContainer,
-  ShopProduct;
+  ShopProduct, Settings;
 
 {$R *.dfm}
 
@@ -174,7 +174,7 @@ begin
   lbl_allsaled.caption := floattostr(all_saled);
   lbl_allarrived.caption := floattostr(all_arrived);
   lbl_totalcount.caption := floattostr(all_arrived - all_saled);
-  lbl_total_weight.Caption := FloatToStrF(Data.DS_Goods.FBN('TOTAL_WEIGHT').AsFloat, ffFixed, 20, 2) + ' Í„.';
+  lbl_total_weight.Caption := FloatToStrF(Data.DS_Goods.FBN('WEIGHT_ALL').AsFloat, ffFixed, 20, 2) + ' Í„.';
 end;
 
 

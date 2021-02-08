@@ -191,6 +191,7 @@ var
   item_value: double;
   item_weight: double;
   weight_text: String;
+  weight_field: String;
 begin
   if EditMode then exit;
 
@@ -207,7 +208,8 @@ begin
   if Query.DS_Select.FBN('UNIT').AsInteger = 0
     then Params.Text := Params.Text + ' шт'
     else Params.Text := Params.Text + ' кг';
-  item_weight := Query.DS_Select.FBN('ITEM_WEIGHT').AsFloat * item_value;
+  weight_field := (Sender as TDBGridColumnEh).FieldName.Replace('C', 'W');
+  item_weight := Query.DS_Select.FBN(weight_field).AsFloat;
   if item_weight <> 0 then
   begin
     Params.Text := Params.Text + ' (' + floatToStrF(RoundTo(item_weight, -3), ffGeneral, 15, 3) + ' кг)';

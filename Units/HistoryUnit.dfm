@@ -171,6 +171,15 @@ object HistoryForm: THistoryForm
         Width = 80
       end
       item
+        CellButtons = <>
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'WEIGHT'
+        Footers = <>
+        Title.Alignment = taCenter
+        Title.Caption = #1042#1077#1089
+      end
+      item
         Alignment = taCenter
         CellButtons = <>
         DynProps = <>

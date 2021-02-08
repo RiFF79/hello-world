@@ -99,7 +99,7 @@ implementation
 
 uses
   DataConteiner, SelectGood, ItemEditor, QueryDataContainer, MainUnit,
-  HistoryUnit, SystemContainerUnit;
+  HistoryUnit, SystemContainerUnit, Settings;
 
 {$R *.dfm}
 

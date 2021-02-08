@@ -86,7 +86,7 @@ implementation
 {$R *.dfm}
 
 uses SystemContainerUnit, DataConteiner, QueryDataContainer, MainUnit,
-  OptionsUnit, int_const, HistoryUnit;
+  OptionsUnit, int_const, HistoryUnit, Settings;
 
 procedure TCustomerHistoryForm.AllPeriodBtnClick(Sender: TObject);
 begin
@@ -240,6 +240,8 @@ end;
 
 procedure TCustomerHistoryForm.ShowEx(cust_id: integer);
 begin
+  if rights = 0 then exit;
+
   edit_client.EditValue := cust_id;
   SetCustomerHistoryFilter;
   ShowModal;

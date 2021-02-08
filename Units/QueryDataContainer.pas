@@ -77,6 +77,7 @@ type
     T_RetCustDetails: TpFIBTransaction;
     T_RetSupplDetails: TpFIBTransaction;
     DS_HISTORYCNT: TFIBFloatField;
+    DS_HISTORYWEIGHT: TFIBFloatField;
     procedure DataModuleCreate(Sender: TObject);
     procedure DS_QueryDolgiAfterScroll(DataSet: TDataSet);
   private

@@ -188,6 +188,7 @@ begin
   SplashForm.text.Caption := 'Загрузка настроек';
   Application.ProcessMessages;
   Settings.LoadSettings;
+  Settings.UpdateComponentsVisibility;
   SplashForm.Hide;
   SplashForm.Free;
 
